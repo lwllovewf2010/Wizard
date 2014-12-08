@@ -21,7 +21,11 @@ public class ScreenGame extends ScreenAdapter
 
 	public TiledMap map;
 	public OrthogonalTiledMapRenderer map_renderer;
+	
 	public OrthographicCamera camera;
+	public final int WORLD_VIEW = 10;
+	public final int WORLD_TOTAL_HORIZONTAL;
+	public final int WORLD_TOTAL_VERTICAL;
 	
 	public ArrayList<Object> remove;
 	
@@ -33,8 +37,15 @@ public class ScreenGame extends ScreenAdapter
 		
 		//Map stuff. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = game.assets.getMap(Assets.MAP_TEST);							//Load map
-		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / 70f);	//Draws passed map. Passed float number is the the inverse of the pixels per unit.
-		camera = new OrthographicCamera(8, Gdx.graphics.getHeight() / Gdx.graphics.getWidth() * 8);
+		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / new Float(map.getProperties().get("tilewidth", Integer.class)));	//Draws passed map. Passed float number is the the inverse of the pixels per unit.
+		
+		WORLD_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
+		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);
+		
+		//Create the camera using the found number of blocks above.
+		camera = new OrthographicCamera(WORLD_VIEW, WORLD_VIEW * Gdx.graphics.getHeight() / Gdx.graphics.getWidth());
+		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+		camera.update();
 		
 		remove = new ArrayList<Object>();
 	}
@@ -64,15 +75,15 @@ public class ScreenGame extends ScreenAdapter
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);		
 		
-		camera.update();
-		
 		//Map
+		camera.update();
+		map_renderer.setView(camera);
 		map_renderer.render();
 		
 		//Sprites
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
+		//batch.setProjectionMatrix(camera.combined);
+		//batch.begin();
 		
-		batch.end();
+		//batch.end();
 	}
 }
