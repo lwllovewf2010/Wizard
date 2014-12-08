@@ -1,8 +1,10 @@
 package com.leepresswood.wizard;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets extends AssetManager
 {	
@@ -12,6 +14,9 @@ public class Assets extends AssetManager
 	public Assets()
 	{
 		//load("entities/ball.png", Texture.class);
+		
+		//Maps
+		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		load("maps/map.tmx", TiledMap.class);
 	}
 	
