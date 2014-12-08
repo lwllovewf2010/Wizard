@@ -8,12 +8,15 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets extends AssetManager
 {	
-	//public static final int TEXTURE_BALL = 1;
+	public static final int TEXTURE_CIRCLE = 0;
+	
 	public static final int MAP_TEST = -1;
+	
 	
 	public Assets()
 	{
-		//load("entities/ball.png", Texture.class);
+		//Textures
+		load("person/body_circle.png", Texture.class);
 		
 		//Maps
 		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
@@ -24,8 +27,8 @@ public class Assets extends AssetManager
 	{
 		switch(texture)
 		{
-			//case TEXTURE_BALL:
-			//	return get("entities/ball.png", Texture.class);
+			case TEXTURE_CIRCLE:
+				return get("person/body_circle.png", Texture.class);
 			default:
 				return null;
 		}

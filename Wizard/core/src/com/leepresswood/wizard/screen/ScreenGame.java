@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -27,6 +28,10 @@ public class ScreenGame extends ScreenAdapter
 	public final int WORLD_TOTAL_HORIZONTAL;
 	public final int WORLD_TOTAL_VERTICAL;
 	
+	public Sprite sprite;
+	public boolean moving_left = false;
+	public boolean moving_right = false;
+	
 	public ArrayList<Object> remove;
 	
 	public ScreenGame(GameWizard game)
@@ -47,12 +52,19 @@ public class ScreenGame extends ScreenAdapter
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
 		camera.update();
 		
+		sprite = new Sprite(game.assets.getTexture(Assets.TEXTURE_CIRCLE));
+		sprite.setBounds(0, 1, 1, 1);
+		
 		remove = new ArrayList<Object>();
 	}
 	
 	private void update(float delta)
 	{
 		//Updating all objects.
+		if(moving_left)
+			sprite.translateX(-1f * delta);
+		if(moving_right)
+			sprite.translateX(1f * delta);
 		
 		//Deleting old objects.
 		/*for(Object o : remove)
@@ -81,9 +93,9 @@ public class ScreenGame extends ScreenAdapter
 		map_renderer.render();
 		
 		//Sprites
-		//batch.setProjectionMatrix(camera.combined);
-		//batch.begin();
-		
-		//batch.end();
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+			sprite.draw(batch);
+		batch.end();
 	}
 }
