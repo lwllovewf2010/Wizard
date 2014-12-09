@@ -1,0 +1,27 @@
+{
+
+	"description" : "High power and low defense. .\n\nAbility: Radiating Heat - Burn close enemies for extra damage",
+	"attributes" : "HP: Average\nPower: High\nSpeed: Incredible\nJump: Godlike\n",
+	"hp" : 
+	{
+		"initial_value" : "40",
+		"growth_rate" : "4"
+	},
+	"power" :
+	{
+		"initial_value" : "2",
+		"growth_rate" : "1.5"
+	},
+	"speed" :
+	{
+		"initial_value" : "2.5",
+		"growth_rate" : "0"
+	},
+	"jump" :
+	{
+		"initial_value" : "2",
+		"growth_rate" : "0",
+		"number_of_jumps" : "1",
+		"multiple_jump_height_percent" : "0.66"
+	}
+}
