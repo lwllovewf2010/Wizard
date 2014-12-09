@@ -18,10 +18,10 @@ public class Input implements InputProcessor
 	{
 		switch(keycode)
 		{
-			case Keys.RIGHT:
+			case Keys.D:
 				screen.moving_right = true;
 				break;
-			case Keys.LEFT:
+			case Keys.A:
 				screen.moving_left = true;
 				break;
 			default:
@@ -36,10 +36,10 @@ public class Input implements InputProcessor
 	{
 		switch(keycode)
 		{
-			case Keys.RIGHT:
+			case Keys.D:
 				screen.moving_right = false;
 				break;
-			case Keys.LEFT:
+			case Keys.A:
 				screen.moving_left = false;
 				break;
 			default:
