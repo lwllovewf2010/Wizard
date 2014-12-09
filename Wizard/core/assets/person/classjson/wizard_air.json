@@ -1,0 +1,14 @@
+{
+	"description" : "Fastest of the wizards.\n\nAbility: Double-Jump",
+	"attributes" : "HP: Poor\nPower: Poor\nSpeed: Incredible\nJump: Godlike\n",
+	"hp" : 
+	{
+		"initial_value" : "40",
+		"growth_rate" : "4"
+	},
+	"power" :
+	{
+		"initial_value" : "1",
+		"growth_rate" : "1"
+	}
+}
