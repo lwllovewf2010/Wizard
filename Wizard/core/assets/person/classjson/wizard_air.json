@@ -1,5 +1,5 @@
 {
-	"description" : "Fastest of the wizards.\n\nAbility: Double-Jump",
+	"description" : "Fastest of the wizards.\n\nAbility: Double-Jump - Jump twice.",
 	"attributes" : "HP: Poor\nPower: Poor\nSpeed: Incredible\nJump: Godlike\n",
 	"hp" : 
 	{
@@ -10,5 +10,17 @@
 	{
 		"initial_value" : "1",
 		"growth_rate" : "1"
+	},
+	"speed" :
+	{
+		"initial_value" : "2.5",
+		"growth_rate" : "0"
+	},
+	"jump" :
+	{
+		"initial_value" : "4",
+		"growth_rate" : "0",
+		"number_of_jumps" : "2",
+		"multiple_jump_height_percent" : "0.75"
 	}
 }
