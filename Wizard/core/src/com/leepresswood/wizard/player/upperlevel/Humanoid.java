@@ -8,7 +8,6 @@ package com.leepresswood.wizard.player.upperlevel;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.leepresswood.wizard.Assets;
 import com.leepresswood.wizard.player.bodyparts.Body;
-import com.leepresswood.wizard.player.bodyparts.Foot;
 import com.leepresswood.wizard.player.bodyparts.Hand;
 import com.leepresswood.wizard.player.bodyparts.Head;
 import com.leepresswood.wizard.screen.ScreenGame;
@@ -18,7 +17,6 @@ public abstract class Humanoid extends Player
 	public Head head;
 	public Body body;
 	public Hand hand;
-	public Foot foot;
 	
 	public Humanoid(ScreenGame screen)
 	{
@@ -37,9 +35,9 @@ public abstract class Humanoid extends Player
 		body = new Body(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
 		body.setBounds(screen.player_start_point.x, screen.player_start_point.y, body_width, body_height);
 		
-		final float hand_foot_size = height * 0.2f;
+		final float hand_size = body_height * 0.25f;
 		hand = new Hand(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		hand.setBounds(screen.player_start_point.x + width / 2f, screen.player_start_point.y + height / 2f, hand_foot_size, hand_foot_size);
+		hand.setBounds(screen.player_start_point.x + width / 2f - hand_size / 2f, screen.player_start_point.y + height / 2f - hand_size / 2f, hand_size, hand_size);
 	}
 
 	@Override
@@ -58,7 +56,6 @@ public abstract class Humanoid extends Player
 	@Override
 	public void draw(SpriteBatch batch)
 	{
-		foot.draw(batch);
 		body.draw(batch);
 		hand.draw(batch);
 		head.draw(batch);

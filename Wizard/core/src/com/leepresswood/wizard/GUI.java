@@ -1,7 +1,9 @@
 package com.leepresswood.wizard;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.player.attributes.bars.HealthBar;
 import com.leepresswood.wizard.player.attributes.bars.ManaBar;
 import com.leepresswood.wizard.screen.ScreenGame;
@@ -9,7 +11,7 @@ import com.leepresswood.wizard.screen.ScreenGame;
 public class GUI
 {
 	private ScreenGame screen;
-	private SpriteBatch batch;
+	public ShapeRenderer renderer;	
 	
 	public HealthBar health_bar;
 	public ManaBar mana_bar;
@@ -17,14 +19,15 @@ public class GUI
 	public GUI(ScreenGame screen)
 	{
 		this.screen = screen;
-		batch = new SpriteBatch();
+		renderer = new ShapeRenderer();
 		
+		final float gap = 2f;
 		final float bar_width = Gdx.graphics.getWidth() * 0.3f;
-		final float bar_height = Gdx.graphics.getHeight() * 0.09f;
-		final float bar_x = Gdx.graphics.getWidth() * 0.01f;
-		final float bar_y = Gdx.graphics.getHeight() * 0.9f;
-		health_bar = new HealthBar(screen.game.assets, bar_x, bar_y, bar_width, bar_height);
-		mana_bar = new ManaBar(screen.game.assets, bar_x, bar_y - Gdx.graphics.getHeight() * 0.1f, bar_width, bar_height);
+		final float bar_height = Gdx.graphics.getHeight() * 0.02f;
+		final float bar_x = gap;
+		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
+		health_bar = new HealthBar(bar_x, bar_y, bar_width, bar_height);
+		mana_bar = new ManaBar(bar_x, bar_y - bar_height - gap, bar_width, bar_height);
 	}
 
 	public void update(float delta)
@@ -34,14 +37,19 @@ public class GUI
 	
 	public void draw()
 	{
-		batch.begin();
-			health_bar.draw(batch);
-			mana_bar.draw(batch);
-		batch.end();
+		renderer.begin(ShapeType.Filled);
+			renderer.identity();
+			renderer.rect(health_bar.x, health_bar.y, health_bar.width, health_bar.height, Color.RED, Color.RED, Color.RED, Color.RED);
+		renderer.end();
+		
+		renderer.begin(ShapeType.Filled);
+			renderer.identity();
+			renderer.rect(mana_bar.x, mana_bar.y, mana_bar.width, mana_bar.height, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
+		renderer.end();
 	}
 
 	public void dispose()
 	{
-		batch.dispose();
+		renderer.dispose();
 	}
 }

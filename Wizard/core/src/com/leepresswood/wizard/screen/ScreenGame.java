@@ -7,6 +7,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -21,7 +22,7 @@ public class ScreenGame extends ScreenAdapter
 {
 	public GameWizard game;
 	public GUI gui;
-	private SpriteBatch batch;
+	public SpriteBatch batch;
 
 	public TiledMap map;
 	public OrthogonalTiledMapRenderer map_renderer;
@@ -38,10 +39,11 @@ public class ScreenGame extends ScreenAdapter
 	
 	public ScreenGame(GameWizard game)
 	{
-		this.game = game;
-		gui = new GUI(this);
+		this.game = game;		;
 		Gdx.input.setInputProcessor(new Input(this));
 		batch = new SpriteBatch();
+		
+		gui = new GUI(this);
 		
 		//Map stuff. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = game.assets.getMap(Assets.MAP_TEST);							//Load map
