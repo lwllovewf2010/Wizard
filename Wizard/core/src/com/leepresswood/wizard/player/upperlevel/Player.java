@@ -1,53 +1,35 @@
+/* Class should include all attributes every player will have.
+ * This includes health, power, defense, speed, jump height, etc.
+ * Body parts included in extended classes to allow different shapes of classes.
+ */
 package com.leepresswood.wizard.player.upperlevel;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.leepresswood.wizard.Assets;
-import com.leepresswood.wizard.player.bodyparts.Body;
-import com.leepresswood.wizard.player.bodyparts.Foot;
-import com.leepresswood.wizard.player.bodyparts.Hand;
-import com.leepresswood.wizard.player.bodyparts.Head;
+import com.badlogic.gdx.math.Vector2;
+import com.leepresswood.wizard.screen.ScreenGame;
 
 public abstract class Player
-{
-	public Head head;
-	public Body body;
-	public Hand hand;
-	public Foot foot;
+{	
+	protected ScreenGame screen;
 	
-	public Player(Assets assets, float x, float y)
+	public HealthBar bar;
+	
+	public Player(ScreenGame screen)
 	{
-		final float width = 0.75f;
-		final float height = 2.25f;
-		
-		final float head_width = width;
-		final float head_height = head_width;
-		final float head_start_y = y + height - head_height;		
-		head = new Head(assets.getTexture(Assets.TEXTURE_CIRCLE));
-		head.setBounds(x + width / 2f - head_width / 2f, y + head_start_y, head_width, head_height);
-		
-		final float body_width = width;
-		final float body_height = (height - head_width) * 0.9f;
-		final float body_start_y = head_start_y - body_height;
-		body = new Body(assets.getTexture(Assets.TEXTURE_CIRCLE));
-		body.setBounds(x, y, body_width, body_height);
-		System.out.println(x);
-		hand = new Hand(assets.getTexture(Assets.TEXTURE_CIRCLE));
-		body.setBounds(x + width / 2f - head_width / 2f, y + head_start_y, head_width, head_height);
-		
-		foot = new Foot(assets.getTexture(Assets.TEXTURE_CIRCLE));
-		body.setBounds(x + width / 2f - head_width / 2f, y + head_start_y, head_width, head_height);
+		this.screen = screen;
 	}
 	
-	public void update(float delta)
+	public void hit(float amount)
 	{
 		
 	}
-
-	public void draw(SpriteBatch batch)
+	
+	public void die()
 	{
-		foot.draw(batch);
-		body.draw(batch);
-		hand.draw(batch);
-		head.draw(batch);
+		
 	}
+	
+	public abstract void attack(Vector2 click_point);
+	public abstract void update(float delta);
+	public abstract void draw(SpriteBatch batch);
 }

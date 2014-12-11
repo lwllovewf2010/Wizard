@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.Assets;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.Input;
@@ -28,6 +29,7 @@ public class ScreenGame extends ScreenAdapter
 	public final int WORLD_TOTAL_HORIZONTAL;
 	public final int WORLD_TOTAL_VERTICAL;
 	
+	public Vector2 start_point;
 	public Player player;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
@@ -52,8 +54,8 @@ public class ScreenGame extends ScreenAdapter
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
 		camera.update();
 		
-		
-		player = new AirWizard(game.assets, 0f, 1f);
+		start_point = new Vector2(0f, 1f);
+		player = new AirWizard(this);
 		
 		remove = new ArrayList<Object>();
 	}
