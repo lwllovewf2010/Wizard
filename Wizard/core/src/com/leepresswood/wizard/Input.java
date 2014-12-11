@@ -58,8 +58,7 @@ public class Input implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
-		screen.gui.mana_bar.change(-20f);
-		return true;
+		return false;
 	}
 
 	@Override

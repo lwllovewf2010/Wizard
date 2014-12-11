@@ -55,7 +55,7 @@ public class ScreenGame extends ScreenAdapter
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
 		camera.update();
 		
-		player_start_point = new Vector2(0f, 1f);
+		player_start_point = new Vector2(0f, 2f);
 		player = new AirWizard(this);
 		
 		remove = new ArrayList<Object>();
