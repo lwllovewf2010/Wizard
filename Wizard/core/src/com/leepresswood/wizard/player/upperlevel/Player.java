@@ -10,18 +10,14 @@ import com.leepresswood.wizard.screen.ScreenGame;
 
 public abstract class Player
 {	
-	protected ScreenGame screen;
-	
-	public HealthBar bar;
+	protected ScreenGame screen;	
+
+	public boolean moving_left = false;
+	public boolean moving_right = false;
 	
 	public Player(ScreenGame screen)
 	{
 		this.screen = screen;
-	}
-	
-	public void hit(float amount)
-	{
-		
 	}
 	
 	public void die()

@@ -28,26 +28,34 @@ public abstract class Humanoid extends Player
 		
 		final float head_width = width;
 		final float head_height = head_width;
-		final float head_start_y = screen.start_point.y + height - head_height;		
+		final float head_start_y = screen.player_start_point.y + height - head_height;		
 		head = new Head(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		head.setBounds(screen.start_point.x + width / 2f - head_width / 2f, screen.start_point.y + head_start_y, head_width, head_height);
+		head.setBounds(screen.player_start_point.x + width / 2f - head_width / 2f, screen.player_start_point.y + head_start_y, head_width, head_height);
 		
 		final float body_width = width;
 		final float body_height = (height - head_width) * 0.9f;
 		final float body_start_y = head_start_y - body_height;
 		body = new Body(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		body.setBounds(screen.start_point.x, screen.start_point.y, body_width, body_height);
+		body.setBounds(screen.player_start_point.x, screen.player_start_point.y, body_width, body_height);
 		
 		hand = new Hand(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		body.setBounds(screen.start_point.x + width / 2f - head_width / 2f, screen.start_point.y + head_start_y, head_width, head_height);
+		body.setBounds(screen.player_start_point.x + width / 2f - head_width / 2f, screen.player_start_point.y + head_start_y, head_width, head_height);
 		
 		foot = new Foot(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		body.setBounds(screen.start_point.x + width / 2f - head_width / 2f, screen.start_point.y + head_start_y, head_width, head_height);
+		body.setBounds(screen.player_start_point.x + width / 2f - head_width / 2f, screen.player_start_point.y + head_start_y, head_width, head_height);
 	}
 
 	@Override
 	public void update(float delta)
 	{
+		if(moving_left)
+		{
+			head.translateX(-1f * delta);
+		}
+		if(moving_right)
+		{
+			head.translateX(1f * delta);
+		}
 	}
 
 	@Override

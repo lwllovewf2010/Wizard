@@ -19,10 +19,10 @@ public class Input implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.moving_right = true;
+				screen.player.moving_right = true;
 				break;
 			case Keys.A:
-				screen.moving_left = true;
+				screen.player.moving_left = true;
 				break;
 			default:
 				break;
@@ -37,10 +37,10 @@ public class Input implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.moving_right = false;
+				screen.player.moving_right = false;
 				break;
 			case Keys.A:
-				screen.moving_left = false;
+				screen.player.moving_left = false;
 				break;
 			default:
 				break;
@@ -58,7 +58,8 @@ public class Input implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
-		return false;
+		screen.gui.mana_bar.change(-20f);
+		return true;
 	}
 
 	@Override

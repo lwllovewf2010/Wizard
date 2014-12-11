@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.Assets;
+import com.leepresswood.wizard.GUI;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.Input;
 import com.leepresswood.wizard.player.classes.AirWizard;
@@ -19,6 +20,7 @@ import com.leepresswood.wizard.player.upperlevel.Player;
 public class ScreenGame extends ScreenAdapter
 {
 	public GameWizard game;
+	public GUI gui;
 	private SpriteBatch batch;
 
 	public TiledMap map;
@@ -29,16 +31,15 @@ public class ScreenGame extends ScreenAdapter
 	public final int WORLD_TOTAL_HORIZONTAL;
 	public final int WORLD_TOTAL_VERTICAL;
 	
-	public Vector2 start_point;
+	public Vector2 player_start_point;
 	public Player player;
-	public boolean moving_left = false;
-	public boolean moving_right = false;
 	
 	public ArrayList<Object> remove;
 	
 	public ScreenGame(GameWizard game)
 	{
 		this.game = game;
+		gui = new GUI(this);
 		Gdx.input.setInputProcessor(new Input(this));
 		batch = new SpriteBatch();
 		
@@ -54,7 +55,7 @@ public class ScreenGame extends ScreenAdapter
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
 		camera.update();
 		
-		start_point = new Vector2(0f, 1f);
+		player_start_point = new Vector2(0f, 1f);
 		player = new AirWizard(this);
 		
 		remove = new ArrayList<Object>();
@@ -63,10 +64,8 @@ public class ScreenGame extends ScreenAdapter
 	private void update(float delta)
 	{
 		//Updating all objects.
-		//if(moving_left)
-		//	sprite.translateX(-1f * delta);
-		//if(moving_right)
-		//	sprite.translateX(1f * delta);
+		player.update(delta);
+		gui.draw();
 		
 		//Deleting old objects.
 		/*for(Object o : remove)
@@ -99,5 +98,16 @@ public class ScreenGame extends ScreenAdapter
 		batch.begin();
 			player.draw(batch);
 		batch.end();
+		
+		//GUI
+		gui.draw();
+	}
+	
+	@Override
+	public void dispose()
+	{
+		super.dispose();
+		batch.dispose();
+		gui.dispose();
 	}
 }
