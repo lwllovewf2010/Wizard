@@ -1,6 +1,5 @@
 {
-	"description" : "Fastest of the wizards.\n\nAbility: Double-Jump - Jump twice.",
-	"attributes" : "HP: Poor\nPower: Poor\nSpeed: Incredible\nJump: Godlike\n",
+	"description" : "Run with the wind under your feet as the fastest of the wizards.\nAbility: Evasion. Occasionally dodge attacks.",
 	"hp" : 
 	{
 		"initial_value" : "40",

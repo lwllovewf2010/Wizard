@@ -6,14 +6,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.Assets;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.Input;
-
+import com.leepresswood.wizard.player.Player;
 
 public class ScreenGame extends ScreenAdapter
 {
@@ -24,11 +23,11 @@ public class ScreenGame extends ScreenAdapter
 	public OrthogonalTiledMapRenderer map_renderer;
 	
 	public OrthographicCamera camera;
-	public final int WORLD_VIEW = 10;
+	public final int WORLD_VIEW = 25;
 	public final int WORLD_TOTAL_HORIZONTAL;
 	public final int WORLD_TOTAL_VERTICAL;
 	
-	public Sprite sprite;
+	public Player player;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
 	
@@ -52,8 +51,8 @@ public class ScreenGame extends ScreenAdapter
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
 		camera.update();
 		
-		sprite = new Sprite(game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		sprite.setBounds(0, 1, 1, 1);
+		
+		player = new Player(game.assets, 0f, 1f);
 		
 		remove = new ArrayList<Object>();
 	}
@@ -61,10 +60,10 @@ public class ScreenGame extends ScreenAdapter
 	private void update(float delta)
 	{
 		//Updating all objects.
-		if(moving_left)
-			sprite.translateX(-1f * delta);
-		if(moving_right)
-			sprite.translateX(1f * delta);
+		//if(moving_left)
+		//	sprite.translateX(-1f * delta);
+		//if(moving_right)
+		//	sprite.translateX(1f * delta);
 		
 		//Deleting old objects.
 		/*for(Object o : remove)
@@ -95,7 +94,7 @@ public class ScreenGame extends ScreenAdapter
 		//Sprites
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-			sprite.draw(batch);
+			player.draw(batch);
 		batch.end();
 	}
 }

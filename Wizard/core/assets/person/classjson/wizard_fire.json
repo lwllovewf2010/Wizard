@@ -1,7 +1,5 @@
 {
-
-	"description" : "High power and low defense. .\n\nAbility: Radiating Heat - Burn close enemies for extra damage",
-	"attributes" : "HP: Average\nPower: High\nSpeed: Incredible\nJump: Godlike\n",
+	"description" : "Formed in the kiln of a volcano, you are a glass cannon with high power and low defense.\n\nAbility: Radiating Heat - Burn close enemies for extra damage",
 	"hp" : 
 	{
 		"initial_value" : "40",
@@ -9,8 +7,8 @@
 	},
 	"power" :
 	{
-		"initial_value" : "2",
-		"growth_rate" : "1.5"
+		"initial_value" : "3",
+		"growth_rate" : "2"
 	},
 	"speed" :
 	{
