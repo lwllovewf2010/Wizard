@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="8" height="8" tilewidth="70" tileheight="70">
- <tileset firstgid="1" source="/tileset_forTiled.tsx"/>
- <layer name="Tile Layer 1" width="8" height="8">
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="70" tileheight="70">
+ <tileset firstgid="1" source="tileset_forTiled.tsx"/>
+ <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzjYGBg4BiiWA+Nvx1NTh+ItYFYBwnPQuMDAFkfBLA=
+   eJzt08kJgDAARcEUFFyu9l+Y8SBIcInihs7Au6rJxxAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAu1WpOKl99nN+J7//OtVNasJ1u8SN/mTcIb//pYZdSjbJ911r651f3ig/V+kOc//KWkeeu1TJOfb0Jmfd0Z19WQ9MNCIW
   </data>
  </layer>
 </map>
