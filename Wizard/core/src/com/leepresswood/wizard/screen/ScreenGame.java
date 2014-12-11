@@ -12,7 +12,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.Assets;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.Input;
-import com.leepresswood.wizard.player.Player;
+import com.leepresswood.wizard.player.classes.AirWizard;
+import com.leepresswood.wizard.player.upperlevel.Player;
 
 public class ScreenGame extends ScreenAdapter
 {
@@ -52,7 +53,7 @@ public class ScreenGame extends ScreenAdapter
 		camera.update();
 		
 		
-		player = new Player(game.assets, 0f, 1f);
+		player = new AirWizard(game.assets, 0f, 1f);
 		
 		remove = new ArrayList<Object>();
 	}

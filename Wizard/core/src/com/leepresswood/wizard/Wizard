@@ -1,7 +1,0 @@
-public abstract class Wizard extends Player
-{
-  public float mana_max;
-  public float mana_current;
-
-  public abstract void cast();
-}
