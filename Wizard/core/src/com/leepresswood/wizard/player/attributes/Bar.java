@@ -12,7 +12,11 @@ public class Bar
 	public float height;
 	private float max_sprite_width;
 	
-	public Bar(float x, float y, float width, float height)
+	private float recovery_amount;
+	private float current_time;
+	private float recovery_time;
+	
+	public Bar(float x, float y, float width, float height, float recovery_amount)
 	{		
 		this.x = x;
 		this.y = y;
@@ -23,6 +27,21 @@ public class Bar
 		
 		max_value = 100f;
 		current_value = max_value;
+		
+		this.recovery_amount = recovery_amount;
+		current_time = 0f;
+		recovery_time = 1f;
+	}
+	
+	public void updateTime(float delta)
+	{//Deals with recovering over time.
+		current_time += delta;
+		
+		if(current_time >= recovery_time)
+		{
+			current_time -= recovery_time;
+			change(recovery_amount);
+		}
 	}
 	
 	public float getHealthAsPercent()

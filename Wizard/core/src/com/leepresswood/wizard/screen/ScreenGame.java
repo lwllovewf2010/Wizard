@@ -66,7 +66,7 @@ public class ScreenGame extends ScreenAdapter
 	{
 		//Updating all objects.
 		player.update(delta);
-		gui.draw();
+		gui.update(delta);
 		
 		//Deleting old objects.
 		/*for(Object o : remove)

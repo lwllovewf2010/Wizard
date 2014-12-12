@@ -25,13 +25,15 @@ public class GUI
 		final float bar_height = Gdx.graphics.getHeight() * 0.02f;
 		final float bar_x = gap;
 		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
-		health_bar = new Bar(bar_x, bar_y, bar_width, bar_height);
-		mana_bar = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height);
+		
+		health_bar = new Bar(bar_x, bar_y, bar_width, bar_height, 2.75f);
+		mana_bar = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, 0.3f);health_bar.change(-50f);
 	}
 
 	public void update(float delta)
 	{
-		
+		health_bar.updateTime(delta);
+		mana_bar.updateTime(delta);
 	}
 	
 	public void draw()
