@@ -4,8 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.leepresswood.wizard.player.attributes.bars.HealthBar;
-import com.leepresswood.wizard.player.attributes.bars.ManaBar;
+import com.leepresswood.wizard.player.attributes.Bar;
 import com.leepresswood.wizard.screen.ScreenGame;
 
 public class GUI
@@ -13,8 +12,8 @@ public class GUI
 	private ScreenGame screen;
 	public ShapeRenderer renderer;	
 	
-	public HealthBar health_bar;
-	public ManaBar mana_bar;
+	public Bar health_bar;
+	public Bar mana_bar;
 	
 	public GUI(ScreenGame screen)
 	{
@@ -26,8 +25,8 @@ public class GUI
 		final float bar_height = Gdx.graphics.getHeight() * 0.02f;
 		final float bar_x = gap;
 		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
-		health_bar = new HealthBar(bar_x, bar_y, bar_width, bar_height);
-		mana_bar = new ManaBar(bar_x, bar_y - bar_height - gap, bar_width, bar_height);
+		health_bar = new Bar(bar_x, bar_y, bar_width, bar_height);
+		mana_bar = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height);
 	}
 
 	public void update(float delta)

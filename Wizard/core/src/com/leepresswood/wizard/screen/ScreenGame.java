@@ -7,7 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -39,7 +38,7 @@ public class ScreenGame extends ScreenAdapter
 	
 	public ScreenGame(GameWizard game)
 	{
-		this.game = game;		;
+		this.game = game;
 		Gdx.input.setInputProcessor(new Input(this));
 		batch = new SpriteBatch();
 		
