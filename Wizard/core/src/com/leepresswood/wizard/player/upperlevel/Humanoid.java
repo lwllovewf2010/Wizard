@@ -22,13 +22,13 @@ public abstract class Humanoid extends Player
 	{
 		super(screen);
 		final float width = 0.75f;
-		final float height = 2.0f;
+		final float height = 1.5f;
 		
 		final float head_width = width;
 		final float head_height = head_width;
 		final float head_start_y = screen.player_start_point.y + height - head_height;		
-		head = new Head(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		head.setBounds(screen.player_start_point.x, screen.player_start_point.y + head_start_y, head_width, head_height);
+		head = new Head(screen.game.assets.getTexture(Assets.TEXTURE_FACE));
+		head.setBounds(screen.player_start_point.x, head_start_y, head_width, head_height);
 		
 		final float body_width = width;
 		final float body_height = height - head_width;
@@ -37,7 +37,7 @@ public abstract class Humanoid extends Player
 		
 		final float hand_size = body_height * 0.25f;
 		hand = new Hand(screen.game.assets.getTexture(Assets.TEXTURE_CIRCLE));
-		hand.setBounds(screen.player_start_point.x + width / 2f - hand_size / 2f, screen.player_start_point.y + height / 2f - hand_size / 2f, hand_size, hand_size);
+		hand.setBounds(screen.player_start_point.x + width / 2f - hand_size / 2f, screen.player_start_point.y + height / 2f - hand_size, hand_size, hand_size);
 	}
 
 	@Override

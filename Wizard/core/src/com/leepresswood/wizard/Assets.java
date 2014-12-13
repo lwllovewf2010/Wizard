@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 public class Assets extends AssetManager
 {	
 	public static final int TEXTURE_CIRCLE = 0;
+	public static final int TEXTURE_FACE = 1;
+	public static final int TEXTURE_PERSON_SPRITES = 2;
 	
 	public static final int MAP_TEST = -1;
 	
@@ -16,7 +18,9 @@ public class Assets extends AssetManager
 	public Assets()
 	{
 		//Textures
+		load("person/person.png", Texture.class);
 		load("person/body_circle.png", Texture.class);
+		load("person/person_face.png", Texture.class);
 		
 		//Maps
 		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
@@ -29,6 +33,10 @@ public class Assets extends AssetManager
 		{
 			case TEXTURE_CIRCLE:
 				return get("person/body_circle.png", Texture.class);
+			case TEXTURE_FACE:
+				return get("person/person_face.png", Texture.class);
+			case TEXTURE_PERSON_SPRITES:
+				return get("person/person.png", Texture.class);
 			default:
 				return null;
 		}
