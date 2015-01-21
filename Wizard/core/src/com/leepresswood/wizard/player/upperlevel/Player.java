@@ -4,14 +4,16 @@
  */
 package com.leepresswood.wizard.player.upperlevel;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.screen.ScreenGame;
 
 public abstract class Player
 {	
 	protected ScreenGame screen;	
-
+	
+	//Direction and movement.
+	private boolean facing_left = false;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
 	
@@ -27,5 +29,5 @@ public abstract class Player
 	
 	public abstract void attack(Vector2 click_point);
 	public abstract void update(float delta);
-	public abstract void draw(SpriteBatch batch);
+	public abstract void draw(ShapeRenderer renderer);
 }

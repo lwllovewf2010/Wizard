@@ -1,13 +1,8 @@
 package com.leepresswood.wizard.player.bodyparts;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
-
-public class Hand extends Sprite
+public class Hand
 {
-	public Hand(Texture texture)
+	public Hand()
 	{
-		super(texture);
 	}	
 }
