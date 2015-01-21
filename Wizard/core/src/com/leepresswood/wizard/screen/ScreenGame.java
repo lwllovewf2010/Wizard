@@ -1,19 +1,19 @@
 package com.leepresswood.wizard.screen;
 
 import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.leepresswood.wizard.Assets;
 import com.leepresswood.wizard.GUI;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.Input;
+import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.player.classes.AirWizard;
 import com.leepresswood.wizard.player.upperlevel.Player;
 
@@ -21,7 +21,7 @@ public class ScreenGame extends ScreenAdapter
 {
 	public GameWizard game;
 	public GUI gui;
-	public SpriteBatch batch;
+	public ShapeRenderer renderer;
 
 	public TiledMap map;
 	public OrthogonalTiledMapRenderer map_renderer;
@@ -40,7 +40,7 @@ public class ScreenGame extends ScreenAdapter
 	{
 		this.game = game;
 		Gdx.input.setInputProcessor(new Input(this));
-		batch = new SpriteBatch();
+		renderer = new ShapeRenderer();
 		
 		gui = new GUI(this);
 		
@@ -95,10 +95,8 @@ public class ScreenGame extends ScreenAdapter
 		map_renderer.render();
 		
 		//Sprites
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-			player.draw(batch);
-		batch.end();
+		renderer.setProjectionMatrix(camera.combined);
+		player.draw(renderer);
 		
 		//GUI
 		gui.draw();

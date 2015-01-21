@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.player.classes;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.player.upperlevel.Player;
 import com.leepresswood.wizard.player.upperlevel.Wizard;
@@ -16,7 +17,17 @@ public class AirWizard extends Player implements Wizard
 	@Override
 	public void attack(Vector2 click_point)
 	{
-		super.attack(click_point);
+	}
+
+	@Override
+	public void update(float delta)
+	{
+	}
+
+	@Override
+	public void draw(ShapeRenderer renderer)
+	{
 		
 	}
+
 }
