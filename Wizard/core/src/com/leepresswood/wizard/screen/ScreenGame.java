@@ -5,15 +5,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.GUI;
 import com.leepresswood.wizard.GameWizard;
-import com.leepresswood.wizard.Input;
 import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.input.Input;
 import com.leepresswood.wizard.player.classes.AirWizard;
 import com.leepresswood.wizard.player.upperlevel.Player;
 
@@ -106,7 +105,7 @@ public class ScreenGame extends ScreenAdapter
 	public void dispose()
 	{
 		super.dispose();
-		batch.dispose();
+		renderer.dispose();
 		gui.dispose();
 	}
 }
