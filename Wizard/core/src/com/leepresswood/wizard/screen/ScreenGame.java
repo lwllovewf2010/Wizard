@@ -13,8 +13,7 @@ import com.leepresswood.wizard.GUI;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.input.Input;
-import com.leepresswood.wizard.player.classes.AirWizard;
-import com.leepresswood.wizard.player.upperlevel.Player;
+import com.leepresswood.wizard.player.Player;
 
 public class ScreenGame extends ScreenAdapter
 {
@@ -56,7 +55,7 @@ public class ScreenGame extends ScreenAdapter
 		camera.update();
 		
 		player_start_point = new Vector2(0f, 2f);
-		player = new AirWizard(this);
+		//player = new AirWizard(this);
 		
 		remove = new ArrayList<Object>();
 	}
