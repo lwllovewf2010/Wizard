@@ -2,7 +2,7 @@ package com.leepresswood.wizard;
 
 import com.badlogic.gdx.Game;
 import com.leepresswood.wizard.data.Assets;
-import com.leepresswood.wizard.screen.ScreenSplash;
+import com.leepresswood.wizard.screens.splash.ScreenSplash;
 
 public class GameWizard extends Game 
 {

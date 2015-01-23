@@ -2,11 +2,11 @@
  * This includes health, power, defense, speed, jump height, etc.
  * Body parts included in extended classes to allow different shapes of classes.
  */
-package com.leepresswood.wizard.player.upperlevel;
+package com.leepresswood.wizard.entities.player;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.leepresswood.wizard.screen.ScreenGame;
+import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public abstract class Player
 {	

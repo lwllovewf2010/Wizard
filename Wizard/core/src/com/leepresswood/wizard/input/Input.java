@@ -2,7 +2,7 @@ package com.leepresswood.wizard.input;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
-import com.leepresswood.wizard.screen.ScreenGame;
+import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class Input implements InputProcessor
 {
