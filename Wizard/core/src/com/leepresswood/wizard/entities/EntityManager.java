@@ -1,5 +1,8 @@
 package com.leepresswood.wizard.entities;
 
+import java.util.ArrayList;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 /**
  * Due to this being a vector-graphics-styled game, all game objects should be rendered through the screen's ShapeRenderer. This upper-level class will manage the objects' designs.<br/><br/>
  * 
@@ -10,19 +13,30 @@ package com.leepresswood.wizard.entities;
  */
 public class EntityManager
 {
+	public ArrayList<GameEntity> entities;
+	
+	private ShapeRenderer renderer;
+	
+	public EntityManager()
+	{
+		renderer = new ShapeRenderer();
+	}
 	
 	/**
 	 * Manager creates and manages the requested shapes based upon the type of entity requested.
 	 * 
 	 * @param entity The entity to be created. Call this entity from a static call to the manager.
-	 * @return The requested entity, or null if invalid.
 	 */
-	public GameEntity getEntity(int entity)
+	public void addEntity(int entity)
 	{
 		switch(entity)
 		{
 			default:
-				return null;
+				return;
 		}
 	}
+	
+	public static final int PLAYER_HEAD = 0;
+	public static final int PLAYER_HAND = 1;
+	public static final int PLAYER_BODY = 3;	
 }
