@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 
 
 public class InputGame implements InputProcessor
@@ -15,13 +16,37 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean keyDown(int keycode)
 	{
-		return false;
+		switch(keycode)
+		{
+			case Keys.D:
+				screen.player.moving_right = true;
+				break;
+			case Keys.A:
+				screen.player.moving_left = true;
+				break;
+			default:
+				break;
+		}
+		
+		return true;
 	}
-	
+
 	@Override
 	public boolean keyUp(int keycode)
 	{
-		return false;
+		switch(keycode)
+		{
+			case Keys.D:
+				screen.player.moving_right = false;
+				break;
+			case Keys.A:
+				screen.player.moving_left = false;
+				break;
+			default:
+				break;
+		}
+		
+		return true;
 	}
 	
 	@Override

@@ -28,6 +28,9 @@ public abstract class ScreenParent extends ScreenAdapter
 	public ScreenParent(GameWizard game)
 	{
 		this.game = game;
+		this.batch = new SpriteBatch();
+		this.renderer = new ShapeRenderer();
+		
 		setUpBackgroundColor();
 		setUpInput();
 		setUpCameras();
