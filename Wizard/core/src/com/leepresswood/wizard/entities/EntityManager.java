@@ -38,5 +38,5 @@ public class EntityManager
 	
 	public static final int PLAYER_HEAD = 0;
 	public static final int PLAYER_HAND = 1;
-	public static final int PLAYER_BODY = 3;	
+	public static final int PLAYER_BODY = 2;	
 }
