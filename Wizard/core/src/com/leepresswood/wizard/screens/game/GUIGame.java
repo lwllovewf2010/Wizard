@@ -9,13 +9,12 @@ public class GUIGame
 {
 	private ScreenGame screen;
 	
-	public Bar health_bar;
-	public Bar mana_bar;
+	public Bar bar_health, bar_mana;
+	private Color color_health, color_mana;
 	
 	public GUIGame(ScreenGame screen)
 	{
-		this.screen = screen;
-		
+		this.screen = screen;		
 		makeBars();
 	}
 	
@@ -35,29 +34,28 @@ public class GUIGame
 		final float recovery_health = 0.75f;
 		final float recovery_mana = 0.3f;
 		
-		health_bar = new Bar(bar_x, bar_y, bar_width, bar_height, recovery_health);
-		mana_bar = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, recovery_mana);
+		//Set bars
+		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, recovery_health);
+		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, recovery_mana);
 
+		//Set colors
+		color_health = new Color(Color.valueOf("AA3C39FF"));
+		color_mana = new Color(Color.valueOf("2E4372FF"));
 	}
 
 	public void update(float delta)
 	{
-		health_bar.updateTime(delta);
-		mana_bar.updateTime(delta);
+		bar_health.updateOverTime(delta);
+		bar_mana.updateOverTime(delta);
 	}
 	
 	public void draw()
 	{
-		screen.renderer.setProjectionMatrix(screen.camera_gui.combined);
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
 			
-			screen.renderer.rect(health_bar.x, health_bar.y, health_bar.width, health_bar.height, Color.RED, Color.RED, Color.RED, Color.RED);
-			screen.renderer.rect(mana_bar.x, mana_bar.y, mana_bar.width, mana_bar.height, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
+			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
+			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();
-		
-		/*renderer.begin(ShapeType.Filled);
-			renderer.identity();
-			renderer.end();*/
 	}
 }

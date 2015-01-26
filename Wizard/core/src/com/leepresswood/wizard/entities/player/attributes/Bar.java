@@ -3,16 +3,11 @@ package com.leepresswood.wizard.entities.player.attributes;
 
 public class Bar
 {	
-	public float current_value;
-	public float max_value;
-	
-	public float x;
-	public float y; 
-	public float width; 
-	public float height;
-	private float max_sprite_width;
+	public float current_bar_value, max_bar_value;	
+	public float x, y, width, height;
 	
 	private float recovery_amount;
+	private final float MAX_BAR_WIDTH;	
 	
 	public Bar(float x, float y, float width, float height, float recovery_amount)
 	{		
@@ -21,27 +16,40 @@ public class Bar
 		this.width = width;
 		this.height = height;
 		
-		max_sprite_width = width;
+		//This is the return value for the width. You will come here if current_bar_value = max_bar_value.
+		MAX_BAR_WIDTH = width;
 		
-		max_value = 100f;
-		current_value = max_value;
+		max_bar_value = 100f;
+		current_bar_value = max_bar_value;
 		
 		this.recovery_amount = recovery_amount;
 	}
 	
-	public void updateTime(float delta)
-	{//Deals with recovering over time.
+	/**
+	 * Deals with recovering over time
+	 * @param delta Change in time.
+	 */
+	public void updateOverTime(float delta)
+	{
 		change(recovery_amount * delta);
 	}
 	
+	/**
+	 * 
+	 * @return Current health as a decimal percentage of its maximum value.
+	 */
 	public float getHealthAsPercent()
-	{//Returns the current health as a percentage of its maximum value.
-		return current_value / max_value;
+	{
+		return current_bar_value / max_bar_value;
 	}
 		
+	/**
+	 * Change the bar's value.
+	 * @param amount Positive is an increase; negative is a decrease.
+	 */
 	public void change(float amount)
-	{//Change the bar's value by "amount". Positive is an increase, and negative is a decrease.
-		current_value = current_value + amount > max_value ? max_value : current_value + amount;
-		width = max_sprite_width * getHealthAsPercent();
+	{
+		current_bar_value = current_bar_value + amount > max_bar_value ? max_bar_value : current_bar_value + amount;
+		width =  MAX_BAR_WIDTH * getHealthAsPercent();
 	}
 }

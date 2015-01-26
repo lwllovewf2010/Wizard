@@ -88,9 +88,10 @@ public class ScreenGame extends ScreenParent
 		map_renderer.render();
 		
 		//Game objects
-		renderer.setProjectionMatrix(camera_game.combined);		
+		renderer.setProjectionMatrix(camera_game.combined);
 		
 		//GUI
+		renderer.setProjectionMatrix(camera_gui.combined);
 		gui.draw();
 	}
 }
