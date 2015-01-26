@@ -53,19 +53,19 @@ public class ScreenGame extends ScreenParent
 	{
 		//Map stuff. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = game.assets.getMap(Assets.MAP_TEST);							//Load map
-		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / new Float(map.getProperties().get("tilewidth", Integer.class)));	//Draws passed map. Passed float number is the the inverse of the pixels per unit.
+		float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
+		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);	//Draws passed map. Passed float number is the the inverse of the pixels per unit.
 		
 		//Create the camera using the found number of blocks above.
 		WORLD_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
 		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);		
-		camera_game = new OrthographicCamera(WORLD_VIEW, WORLD_VIEW * Gdx.graphics.getHeight() / Gdx.graphics.getWidth());
+		camera_game = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
 		camera_game.position.set(camera_game.viewportWidth / 2f, camera_game.viewportHeight / 2f, 0);
 		camera_game.update();
 		
 		//Create a camera for the GUI.
 		camera_gui = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera_gui.position.x = camera_gui.viewportWidth / 2f;
-		camera_gui.position.y = camera_gui.viewportHeight / 2f;
+		camera_gui.position.set(camera_gui.viewportWidth / 2f, camera_gui.viewportHeight / 2f, 0);
 		camera_gui.update();
 	}
 	
@@ -78,6 +78,7 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
+		
 	}
 
 	@Override
@@ -89,6 +90,7 @@ public class ScreenGame extends ScreenParent
 		
 		//Game objects
 		renderer.setProjectionMatrix(camera_game.combined);
+		
 		
 		//GUI
 		renderer.setProjectionMatrix(camera_gui.combined);

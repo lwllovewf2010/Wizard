@@ -43,9 +43,11 @@ public abstract class ScreenParent extends ScreenAdapter
 	@Override
 	public void render(float delta)
 	{
+		//Update
 		update(delta);
 		camera_game.update();
 		
+		//Draw
 		Gdx.gl.glClearColor(color_background.r, color_background.g, color_background.b, color_background.a);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		draw();

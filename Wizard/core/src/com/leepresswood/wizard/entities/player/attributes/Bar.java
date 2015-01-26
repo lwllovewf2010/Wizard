@@ -35,10 +35,10 @@ public class Bar
 	}
 	
 	/**
-	 * 
+	 * Do math to set the width of the bar after damage/healing.
 	 * @return Current health as a decimal percentage of its maximum value.
 	 */
-	public float getHealthAsPercent()
+	private float getHealthAsPercent()
 	{
 		return current_bar_value / max_bar_value;
 	}
