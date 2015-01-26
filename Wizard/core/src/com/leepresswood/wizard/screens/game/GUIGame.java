@@ -2,14 +2,12 @@ package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.entities.player.attributes.Bar;
 
 public class GUIGame
 {
 	private ScreenGame screen;
-	public ShapeRenderer renderer;	
 	
 	public Bar health_bar;
 	public Bar mana_bar;
@@ -17,8 +15,15 @@ public class GUIGame
 	public GUIGame(ScreenGame screen)
 	{
 		this.screen = screen;
-		renderer = new ShapeRenderer();
 		
+		makeBars();
+	}
+	
+	/**
+	 * Create the health and magic bars.
+	 */
+	private void makeBars()
+	{
 		final float gap = 2f;
 		
 		final float bar_width = Gdx.graphics.getWidth() * 0.3f;
@@ -32,6 +37,7 @@ public class GUIGame
 		
 		health_bar = new Bar(bar_x, bar_y, bar_width, bar_height, recovery_health);
 		mana_bar = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, recovery_mana);
+
 	}
 
 	public void update(float delta)
@@ -42,19 +48,16 @@ public class GUIGame
 	
 	public void draw()
 	{
-		renderer.begin(ShapeType.Filled);
-			renderer.identity();
-			renderer.rect(health_bar.x, health_bar.y, health_bar.width, health_bar.height, Color.RED, Color.RED, Color.RED, Color.RED);
-		renderer.end();
+		screen.renderer.setProjectionMatrix(screen.camera_gui.combined);
+		screen.renderer.begin(ShapeType.Filled);
+			screen.renderer.identity();
+			
+			screen.renderer.rect(health_bar.x, health_bar.y, health_bar.width, health_bar.height, Color.RED, Color.RED, Color.RED, Color.RED);
+			screen.renderer.rect(mana_bar.x, mana_bar.y, mana_bar.width, mana_bar.height, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
+		screen.renderer.end();
 		
-		renderer.begin(ShapeType.Filled);
+		/*renderer.begin(ShapeType.Filled);
 			renderer.identity();
-			renderer.rect(mana_bar.x, mana_bar.y, mana_bar.width, mana_bar.height, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
-		renderer.end();
-	}
-
-	public void dispose()
-	{
-		renderer.dispose();
+			renderer.end();*/
 	}
 }

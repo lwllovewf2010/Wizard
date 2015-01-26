@@ -17,17 +17,20 @@ import com.leepresswood.wizard.GameWizard;
  */
 public abstract class ScreenParent extends ScreenAdapter
 {
-	public GameWizard game;
+	public GameWizard game;	
+	public SpriteBatch batch;
+	public ShapeRenderer renderer;
+	public OrthographicCamera camera_game;
+	public OrthographicCamera camera_gui;
 	
-	protected SpriteBatch batch;
-	protected ShapeRenderer renderer;
-	protected OrthographicCamera camera;
 	protected Color color_background;
 	
 	public ScreenParent(GameWizard game)
 	{
 		this.game = game;
-		color_background = setBackgroundColor();
+		setUpBackgroundColor();
+		setUpInput();
+		setUpCameras();
 	}
 	
 	/**
@@ -37,16 +40,17 @@ public abstract class ScreenParent extends ScreenAdapter
 	@Override
 	public void render(float delta)
 	{
+		update(delta);
+		camera_game.update();
+		
 		Gdx.gl.glClearColor(color_background.r, color_background.g, color_background.b, color_background.a);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
-		update(delta);
-		camera.update();
 		draw();
 	}
 	
-	public abstract Color setBackgroundColor();
-	public abstract void setUpCamera(float height, float width);
+	public abstract void setUpBackgroundColor();
+	public abstract void setUpInput();
+	public abstract void setUpCameras();
 	public abstract void update(float delta);
 	public abstract void draw();
 }

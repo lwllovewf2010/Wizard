@@ -2,7 +2,7 @@ package com.leepresswood.wizard.screens.game;
 
 import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -13,10 +13,10 @@ import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.input.Input;
+import com.leepresswood.wizard.screens.ScreenParent;
 
-public class ScreenGame extends ScreenAdapter
+public class ScreenGame extends ScreenParent
 {
-	public GameWizard game;
 	public GUIGame gui;
 	public ShapeRenderer renderer;
 
@@ -35,7 +35,8 @@ public class ScreenGame extends ScreenAdapter
 	
 	public ScreenGame(GameWizard game)
 	{
-		this.game = game;
+		super(game);
+		
 		Gdx.input.setInputProcessor(new Input(this));
 		renderer = new ShapeRenderer();
 		
@@ -57,23 +58,6 @@ public class ScreenGame extends ScreenAdapter
 		//player = new AirWizard(this);
 		
 		remove = new ArrayList<Object>();
-	}
-	
-	private void update(float delta)
-	{
-		//Updating all objects.
-		player.update(delta);
-		gui.update(delta);
-		
-		//Deleting old objects.
-		/*for(Object o : remove)
-			if(o instanceof Powerup)
-				powerups.remove(o);
-			else if(o instanceof Ball)
-				balls.remove(o);
-			else if(o instanceof Block)
-				blocks.remove(o);
-		remove.clear();*/
 	}
 	
 	@Override
@@ -104,6 +88,32 @@ public class ScreenGame extends ScreenAdapter
 	{
 		super.dispose();
 		renderer.dispose();
-		gui.dispose();
+	}
+
+	@Override
+	public void setUpBackgroundColor()
+	{
+		color_background = new Color(Color.BLACK);
+	}
+
+	@Override
+	public void setUpCameras()
+	{
+	}
+	
+	@Override
+	public void setUpInput()
+	{
+		Gdx.input.setInputProcessor(new InputGame(this));
+	}
+
+	@Override
+	public void update(float delta)
+	{
+	}
+
+	@Override
+	public void draw()
+	{
 	}
 }
