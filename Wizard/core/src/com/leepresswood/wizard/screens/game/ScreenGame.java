@@ -53,7 +53,7 @@ public class ScreenGame extends ScreenParent
 	{
 		//Map stuff. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = game.assets.getMap(Assets.MAP_TEST);							//Load map
-		float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
+		final float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
 		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);	//Draws passed map. Passed float number is the the inverse of the pixels per unit.
 		
 		//Create the camera using the found number of blocks above.

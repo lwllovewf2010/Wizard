@@ -13,9 +13,11 @@ public abstract class Player
 	protected ScreenGame screen;	
 	
 	//Direction and movement.
-	private boolean facing_left = false;
+	public boolean facing_left = false;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
+	public float speed = 1f;
+	public Vector2 direction;
 	
 	public Player(ScreenGame screen)
 	{
