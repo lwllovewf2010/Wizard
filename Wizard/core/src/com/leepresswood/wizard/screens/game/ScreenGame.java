@@ -45,7 +45,7 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void setUpBackgroundColor()
 	{
-		color_background = new Color(Color.BLACK);
+		color_background = new Color(Color.CYAN);
 	}
 
 	@Override
