@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Polyline;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
 
@@ -46,7 +45,25 @@ public class GameShape
 			background.add(s);
 			
 			//The other shape should be smaller that the background to cause a black border.
-			
+			if(s instanceof Ellipse)
+			{
+				Ellipse new_shape = new Ellipse((Ellipse) s);
+				new_shape.width *= PERCENT_SIZE;
+				new_shape.height *= PERCENT_SIZE;
+			}
+			else if(s instanceof Rectangle)
+			{
+				Rectangle new_shape = new Rectangle((Rectangle) s);
+				new_shape.width *= PERCENT_SIZE;
+				new_shape.height *= PERCENT_SIZE;
+				new_shape.x += ((Rectangle) s).width * PERCENT_SIZE / 2f;
+				new_shape.y += ((Rectangle) s).height * PERCENT_SIZE / 2f;
+			}
+			else if(s instanceof Polygon)
+			{//Triangle.
+				Polygon new_shape = new Polygon(((Polygon) s).getVertices());
+				new_shape.scale(PERCENT_SIZE);
+			}
 		}
 	}
 	
@@ -85,7 +102,7 @@ public class GameShape
 			}
 			else if(s instanceof Polygon)
 			{//Triangle.
-				float v[] = ((Polyline) s).getVertices();
+				float v[] = ((Polygon) s).getVertices();
 				renderer.triangle(v[0], v[1], v[2], v[3], v[4], v[5]);
 			}
 		}
