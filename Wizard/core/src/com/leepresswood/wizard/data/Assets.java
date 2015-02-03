@@ -9,6 +9,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets extends AssetManager
 {
+	public static final int TEXTURE_HOLD = 0;
+	
 	public static final int MAP_TEST = 0;
 	
 	public Assets()
@@ -24,8 +26,8 @@ public class Assets extends AssetManager
 		Texture t;
 		switch(texture)
 		{
-			case 1:
-				t = new Texture("");
+			case TEXTURE_HOLD:
+				t = new Texture("person/textures/hold.png");
 				break;
 			default:
 				System.out.println("Error: Texture type " + texture + " not found.");

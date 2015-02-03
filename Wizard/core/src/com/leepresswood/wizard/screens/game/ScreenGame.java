@@ -32,14 +32,7 @@ public class ScreenGame extends ScreenParent
 		gui = new GUIGame(this);
 		
 		player_start_point = new Vector2(0f, 2f);
-		//player = new AirWizard(this);
-	}
-	
-	@Override
-	public void dispose()
-	{
-		super.dispose();
-		renderer.dispose();
+		player = new Player(this);
 	}
 
 	@Override
@@ -78,7 +71,8 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
-		
+		camera_game.position.x = player.sprite.getX() + player.sprite.getWidth() / 2f;
+		camera_game.position.y = player.sprite.getY() + player.sprite.getHeight() / 2f;
 	}
 
 	@Override
@@ -89,11 +83,20 @@ public class ScreenGame extends ScreenParent
 		map_renderer.render();
 		
 		//Game objects
-		renderer.setProjectionMatrix(camera_game.combined);
-		
+		batch.setProjectionMatrix(camera_game.combined);
+		batch.begin();
+			player.draw(batch);
+		batch.end();
 		
 		//GUI
-		renderer.setProjectionMatrix(camera_gui.combined);
+		batch.setProjectionMatrix(camera_gui.combined);
 		gui.draw();
+	}
+	
+	@Override
+	public void dispose()
+	{
+		super.dispose();
+		renderer.dispose();
 	}
 }
