@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.player.Player;
@@ -22,7 +21,6 @@ public class ScreenGame extends ScreenParent
 	public int WORLD_TOTAL_HORIZONTAL;
 	public int WORLD_TOTAL_VERTICAL;
 	
-	public Vector2 player_start_point;
 	public Player player;
 	
 	public ScreenGame(GameWizard game)
@@ -30,9 +28,7 @@ public class ScreenGame extends ScreenParent
 		super(game);
 		
 		gui = new GUIGame(this);
-		
-		player_start_point = new Vector2(0f, 2f);
-		player = new Player(this);
+		player = new Player(this, 0f, 2f);
 	}
 
 	@Override
@@ -90,7 +86,7 @@ public class ScreenGame extends ScreenParent
 		
 		//GUI
 		batch.setProjectionMatrix(camera_gui.combined);
-		gui.draw();
+		gui.draw(renderer, batch);
 	}
 	
 	@Override

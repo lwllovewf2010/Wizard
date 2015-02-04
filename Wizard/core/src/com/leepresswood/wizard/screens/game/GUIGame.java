@@ -2,6 +2,8 @@ package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.entities.player.attributes.Bar;
 
@@ -42,20 +44,24 @@ public class GUIGame
 		color_health = new Color(Color.valueOf("AA3C39FF"));
 		color_mana = new Color(Color.valueOf("2E4372FF"));
 	}
-
+	
+	/**
+	 * Timed update. This will be used in the recovery of health/mana, any animations, and possibly a game clock with a day/night system.
+	 * @param delta Change in time.
+	 */
 	public void update(float delta)
 	{
 		bar_health.updateOverTime(delta);
 		bar_mana.updateOverTime(delta);
 	}
 	
-	public void draw()
+	public void draw(ShapeRenderer renderer, SpriteBatch batch)
 	{
-		screen.renderer.begin(ShapeType.Filled);
-			screen.renderer.identity();
+		renderer.begin(ShapeType.Filled);
+			renderer.identity();
 			
-			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
-			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
-		screen.renderer.end();
+			renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
+			renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
+		renderer.end();
 	}
 }

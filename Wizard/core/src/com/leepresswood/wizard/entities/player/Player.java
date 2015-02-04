@@ -4,10 +4,8 @@
  */
 package com.leepresswood.wizard.entities.player;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.screens.game.ScreenGame;
@@ -26,11 +24,11 @@ public class Player
 	//Sprites and bounds.
 	public Sprite sprite;
 	
-	public Player(ScreenGame screen)
+	public Player(ScreenGame screen, float x, float y)
 	{
 		this.screen = screen;
 		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
-		sprite.setBounds(screen.player_start_point.x, screen.player_start_point.y, 1, 1);
+		sprite.setBounds(x, y, 1, 1);
 	}
 	
 	public void die()
