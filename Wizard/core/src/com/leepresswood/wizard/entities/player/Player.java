@@ -18,7 +18,7 @@ public class Player
 	public boolean facing_left = false;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
-	public float speed = 1f;
+	public float speed = 3f;
 	public Vector2 direction;
 	
 	//Sprites and bounds.
@@ -43,7 +43,10 @@ public class Player
 	
 	public void update(float delta)
 	{
-		
+		if(moving_left)
+			sprite.translateX(-delta * speed);
+		if(moving_right)
+			sprite.translateX(delta * speed);
 	}
 	
 	public void draw(SpriteBatch batch)

@@ -31,7 +31,7 @@ public class ScreenGame extends ScreenParent
 		super(game);
 		
 		gui = new GUIGame(this);
-		player = new Player(this, 0f, 2f);
+		player = new Player(this, 0f, 4f);
 	}
 
 	@Override
@@ -99,6 +99,10 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
+		//Player and enemies.
+		player.update(delta);
+		
+		//Camera.
 		setCameraBounds();
 	}
 
