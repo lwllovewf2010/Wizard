@@ -24,6 +24,9 @@ public class InputGame implements InputProcessor
 			case Keys.A:
 				screen.player.moving_left = true;
 				break;
+			case Keys.SPACE:
+				screen.player.jumping = true;
+				break;
 			default:
 				break;
 		}
@@ -41,6 +44,9 @@ public class InputGame implements InputProcessor
 				break;
 			case Keys.A:
 				screen.player.moving_left = false;
+				break;
+			case Keys.SPACE:
+				screen.player.jumping = false;
 				break;
 			default:
 				break;

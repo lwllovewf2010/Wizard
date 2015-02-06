@@ -24,6 +24,9 @@ public class ScreenGame extends ScreenParent
 	public float WORLD_TOP;
 	public float WORLD_BOTTOM;
 	
+	public float GROUND;
+	public float GRAVITY;
+	
 	public Player player;
 	
 	public ScreenGame(GameWizard game)
@@ -58,9 +61,13 @@ public class ScreenGame extends ScreenParent
 	private void setUpWorldCamera()
 	{
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
-		map = game.assets.getMap(Assets.MAP_TEST);																	//Load map
-		final float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
-		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);									//Passed float number is the the inverse of the pixels per unit.
+		map = game.assets.getMap(Assets.MAP_TEST);
+		float pixel_size = Float.parseFloat((String) (map.getProperties().get("tilewidth")));
+		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
+		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
+		
+		//Get the map renderer from this data.
+		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);									//Passed float number is the the inverse of the pixels per unit.		
 		
 		//Set the bounds of the camera.
 		camera_game = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
@@ -118,11 +125,11 @@ public class ScreenGame extends ScreenParent
 		//If this moves off the world's bounds, correct it.
 		if(camera_game.position.x < WORLD_LEFT)
 			camera_game.position.x = WORLD_LEFT;
-		else if(camera_game.position.x > WORLD_RIGHT)
+		if(camera_game.position.x > WORLD_RIGHT)
 			camera_game.position.x = WORLD_RIGHT;
 		if(camera_game.position.y < WORLD_BOTTOM)
 			camera_game.position.y = WORLD_BOTTOM;
-		else if(camera_game.position.y > WORLD_TOP)
+		if(camera_game.position.y > WORLD_TOP)
 			camera_game.position.y = WORLD_TOP;
 	}
 	

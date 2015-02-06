@@ -18,11 +18,14 @@ public class Player
 	public boolean facing_left = false;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
+	public boolean jumping = true;
+	public boolean	falling;
 	public float speed = 3f;
-	public Vector2 direction;
 	
 	//Sprites and bounds.
 	public Sprite sprite;
+
+	
 	
 	public Player(ScreenGame screen, float x, float y)
 	{
@@ -43,10 +46,15 @@ public class Player
 	
 	public void update(float delta)
 	{
+		//Left-right movement.
 		if(moving_left)
 			sprite.translateX(-delta * speed);
 		if(moving_right)
 			sprite.translateX(delta * speed);
+		
+		//Jumping or falling.
+		if(falling)
+			;
 	}
 	
 	public void draw(SpriteBatch batch)
