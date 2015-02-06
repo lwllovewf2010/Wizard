@@ -28,7 +28,7 @@ public class Player
 	{
 		this.screen = screen;
 		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
-		sprite.setBounds(x, y, 1, 1);
+		sprite.setBounds(x, y, 1, 2);
 	}
 	
 	public void die()

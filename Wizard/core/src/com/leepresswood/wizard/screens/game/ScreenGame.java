@@ -17,9 +17,12 @@ public class ScreenGame extends ScreenParent
 	public TiledMap map;
 	public OrthogonalTiledMapRenderer map_renderer;
 	
-	public int WORLD_VIEW = 25;
 	public int WORLD_TOTAL_HORIZONTAL;
 	public int WORLD_TOTAL_VERTICAL;
+	public float WORLD_LEFT;
+	public float WORLD_RIGHT;
+	public float WORLD_TOP;
+	public float WORLD_BOTTOM;
 	
 	public Player player;
 	
@@ -40,22 +43,51 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void setUpCameras()
 	{
-		//Map stuff. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
-		map = game.assets.getMap(Assets.MAP_TEST);							//Load map
-		final float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
-		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);	//Draws passed map. Passed float number is the the inverse of the pixels per unit.
+		//World camera.
+		setUpWorldCamera();
 		
-		//Create the camera using the found number of blocks above.
-		WORLD_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
-		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);		
+		//GUI camera.
+		camera_gui = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera_gui.position.set(camera_gui.viewportWidth / 2f, camera_gui.viewportHeight / 2f, 0);
+		camera_gui.update();
+	}
+	
+	/**
+	 * Get the world coordinates from the map to set up the camera.
+	 */
+	private void setUpWorldCamera()
+	{
+		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
+		map = game.assets.getMap(Assets.MAP_TEST);																	//Load map
+		final float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
+		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);									//Passed float number is the the inverse of the pixels per unit.
+		
+		//Set the bounds of the camera.
 		camera_game = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
 		camera_game.position.set(camera_game.viewportWidth / 2f, camera_game.viewportHeight / 2f, 0);
 		camera_game.update();
 		
-		//Create a camera for the GUI.
-		camera_gui = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera_gui.position.set(camera_gui.viewportWidth / 2f, camera_gui.viewportHeight / 2f, 0);
-		camera_gui.update();
+		
+		/* Set the bounds of the world.
+		 * These will be used to give the camera cues as to where to position itself.
+		 * For example, the camera will normally follow the player.
+		 * However, if the camera's bounds would go outside the world, 
+		 * the camera should snap to the world's edge until the player
+		 * returns to a location that allows the camera to move more freely.
+		 * Think about reaching one of the ends of the world in Terraria as an example. 
+		 * 
+		 * The positions are not the edges of the world -- that would be a waste of space and time.
+		 * Rather, they are the bounds of where the camera can move.
+		 * WORLD_BOTTOM will be the lowest Y value of the camera before it stops moving downward.
+		 * Extend this to the others.
+		 */
+		WORLD_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
+		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);		
+		
+		WORLD_BOTTOM = camera_game.viewportHeight / 2f;
+		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM;
+		WORLD_LEFT = camera_game.viewportWidth / 2f;
+		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 	}
 	
 	@Override
@@ -67,10 +99,29 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
-		camera_game.position.x = player.sprite.getX() + player.sprite.getWidth() / 2f;
-		camera_game.position.y = player.sprite.getY() + player.sprite.getHeight() / 2f;
+		setCameraBounds();
 	}
 
+	/**
+	 * Check the camera's position for correctness. It should not go off the world's bounds.
+	 */
+	private void setCameraBounds()
+	{
+		//First, set the camera to the player's position.
+		camera_game.position.x = player.sprite.getX() + player.sprite.getWidth() / 2f;
+		camera_game.position.y = player.sprite.getY() + player.sprite.getHeight() / 2f;
+		
+		//If this moves off the world's bounds, correct it.
+		if(camera_game.position.x < WORLD_LEFT)
+			camera_game.position.x = WORLD_LEFT;
+		else if(camera_game.position.x > WORLD_RIGHT)
+			camera_game.position.x = WORLD_RIGHT;
+		if(camera_game.position.y < WORLD_BOTTOM)
+			camera_game.position.y = WORLD_BOTTOM;
+		else if(camera_game.position.y > WORLD_TOP)
+			camera_game.position.y = WORLD_TOP;
+	}
+	
 	@Override
 	public void draw()
 	{		
