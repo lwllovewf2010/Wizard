@@ -18,9 +18,15 @@ public class Player
 	public boolean facing_left = false;
 	public boolean moving_left = false;
 	public boolean moving_right = false;
+	public float speed_current_x = 0f;
+	
+	public float accel_x = 3f;
+	public float decel_x = 3f * accel_x;
+	public float speed_max_x = 3f;
+		
 	public boolean jumping = true;
 	public boolean	falling;
-	public float speed = 3f;
+	
 	
 	//Sprites and bounds.
 	public Sprite sprite;
@@ -46,15 +52,52 @@ public class Player
 	
 	public void update(float delta)
 	{
-		//Left-right movement.
-		if(moving_left)
-			sprite.translateX(-delta * speed);
-		if(moving_right)
-			sprite.translateX(delta * speed);
+		calcMovementX(delta);
 		
 		//Jumping or falling.
 		if(falling)
 			;
+	}
+	
+	/**
+	 * Calculate movement if moving left or right.
+	 * @param delta Change in time.
+	 */
+	private void calcMovementX(float delta)
+	{
+		//Deceleration check. Decelerate if not moving, if both left and right are pressed at the same time, or if moving in one direction but pressing another.
+		if(!moving_right && !moving_left || moving_right && moving_left || moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0)
+			decelerate(delta);
+		
+		if(moving_left && !moving_right)
+		{
+			speed_current_x -= accel_x * delta;
+			if(speed_current_x < -speed_max_x)
+				speed_current_x = -speed_max_x;
+		}
+		else if(moving_right && !moving_left)
+		{
+			speed_current_x += accel_x * delta;
+			if(speed_current_x > speed_max_x)
+				speed_current_x = speed_max_x;
+		}
+		
+		//Move in the X direction.
+		sprite.translateX(delta * speed_current_x);		
+	}
+	
+	private void decelerate(float delta)
+	{
+		//Move command is no longer pressed. Move to 0 speed over time.
+		if(speed_current_x < 0f)
+			speed_current_x += decel_x * delta;
+		else if(speed_current_x > 0f)
+			speed_current_x -= decel_x * delta;
+		
+		
+		//Set some lack sensitivity.
+		if(Math.abs(speed_current_x) < 0.1f)
+			speed_current_x = 0f;
 	}
 	
 	public void draw(SpriteBatch batch)

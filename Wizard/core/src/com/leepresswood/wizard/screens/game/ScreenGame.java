@@ -62,7 +62,7 @@ public class ScreenGame extends ScreenParent
 	{
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = game.assets.getMap(Assets.MAP_TEST);
-		float pixel_size = Float.parseFloat((String) (map.getProperties().get("tilewidth")));
+		float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
 		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
 		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
 		
@@ -73,7 +73,6 @@ public class ScreenGame extends ScreenParent
 		camera_game = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
 		camera_game.position.set(camera_game.viewportWidth / 2f, camera_game.viewportHeight / 2f, 0);
 		camera_game.update();
-		
 		
 		/* Set the bounds of the world.
 		 * These will be used to give the camera cues as to where to position itself.
