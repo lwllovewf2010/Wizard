@@ -34,7 +34,7 @@ public class ScreenGame extends ScreenParent
 		super(game);
 		
 		gui = new GUIGame(this);
-		player = new Player(this, 0f, 4f);
+		player = new Player(this, 0f, GROUND);
 	}
 
 	@Override
