@@ -24,11 +24,10 @@ public class Player
 	public float speed_max_x = 3f;
 		
 	public boolean jumping = false;
-	public boolean	no_jump = false;
-	public float height_from_jump = 0f;
-	public float height_from_jump_max = 6f;
+	public float jump_start_speed = 6f;
 	public float speed_current_y = 0f;
-	public float speed_max_y = 60f;
+	public float jump_time_current = 0f;
+	public float jump_time_max = 0.25f;
 	
 	//Sprites and bounds.
 	public Sprite sprite;	
@@ -64,7 +63,7 @@ public class Player
 	private void calcMovementX(float delta)
 	{
 		//Deceleration check. Decelerate if not moving, if both left and right are pressed at the same time, or if moving in one direction but pressing another.
-		//Note: Simplifying the boolean math. (A and B) or (!A and !B) = (A == B)
+		//Note: Simplifying the boolean math. ((A and B) or (!A and !B)) is (A == B)
 		//if(!moving_right && !moving_left || moving_right && moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))
 		if(moving_right == moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))	
 		{
@@ -102,32 +101,33 @@ public class Player
 	 * @param delta Change in time.
 	 */
 	private void calcMovementY(float delta)
-	{		
-		//If the jumping variable is true, increase height.
-		if(jumping && !no_jump)
+	{
+		//If the jumping variable is true, jump button is being held.  This allows the jump button to be held longer to jump higher. There must be a max jump button time, though.
+		if(jumping && jump_time_current < jump_time_max)
 		{
-			speed_current_y += delta * speed_max_y;
-			height_from_jump += speed_current_y;
+			speed_current_y = jump_start_speed;
+			
+			//If we've gone over the max time allowed to hold the jump button, make it so that we cannot jump until we land.
+			jump_time_current += delta;
 		}
+		
+		//Block the player from jumping multiple times.
+		if(!jumping && jump_time_current > 0f)
+			jump_time_current = jump_time_max;
 		
 		//Do a fall calculation by simulating gravity.
 		if(sprite.getY() > screen.GROUND)
-			speed_current_y -= delta * speed_max_y;
-		
+			speed_current_y -= delta * screen.GRAVITY;
+
 		//Move in the Y direction.
-		sprite.translateY(speed_current_y);
+		sprite.translateY(speed_current_y * delta);
 		
-		//Check the jump height. It can't be 
-		if(height_from_jump >= height_from_jump_max)
-			no_jump = true;
-		
-		//Set a hard limit for how low the player can go.
+		//Set a hard limit for how low the player can go. If they pass this limit, they're on . Reset the variables.
 		if(sprite.getY() < screen.GROUND)
 		{
 			sprite.setY(screen.GROUND);
 			speed_current_y = 0f;
-			no_jump = false;
-			height_from_jump = 0f;
+			jump_time_current = 0f;
 		}
 	}
 	
