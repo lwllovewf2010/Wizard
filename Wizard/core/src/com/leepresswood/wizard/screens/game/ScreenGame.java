@@ -23,7 +23,8 @@ public class ScreenGame extends ScreenParent
 	public float WORLD_RIGHT;
 	public float WORLD_TOP;
 	public float WORLD_BOTTOM;
-	public final float WORLD_ZOOM = 0.2f;
+	
+	public final float WORLD_ZOOM = 0.2f;						//Amount added to the world camera's zoom.
 	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
 	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.

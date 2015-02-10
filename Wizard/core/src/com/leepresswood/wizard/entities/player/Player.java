@@ -43,13 +43,33 @@ public class Player
 		System.out.println("Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() + "\n\tWidth: " + sprite.getWidth() + "\n\tHeight: " + sprite.getHeight());
 	}
 	
+	/**
+	 * Player was hit. Take damage and set invincibility frames.
+	 */
+	public void hit()
+	{
+		
+	}
+	
+	/**
+	 * Send player into death animation. At the end, the screen can change.
+	 */
 	public void die()
 	{
 		
 	}
 	
+	/**
+	 * Player clicked on the world with the intention of casting a spell. Cast at or in the direction of that point.
+	 * @param click_point The coordinate in the world that was clicked.
+	 */
 	public void attack(Vector2 click_point)
 	{
+		//Get the selected spell's mana cost and compare it to the player's current mana.
+		
+		
+		//Cast the selected spell if possible.
+		
 		
 	}
 	
