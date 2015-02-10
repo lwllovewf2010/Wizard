@@ -24,6 +24,7 @@ public class Player
 	public float speed_max_x = 3f;
 		
 	public boolean jumping = false;
+	public boolean jump_stop_hop = false;
 	public float jump_start_speed = 6f;
 	public float speed_current_y = 0f;
 	public float jump_time_current = 0f;
@@ -102,18 +103,34 @@ public class Player
 	 */
 	private void calcMovementY(float delta)
 	{
-		//If the jumping variable is true, jump button is being held.  This allows the jump button to be held longer to jump higher. There must be a max jump button time, though.
-		if(jumping && jump_time_current < jump_time_max)
+		//Don't allow multiple hops with the same spacebar press.
+		if(!jump_stop_hop)
 		{
-			speed_current_y = jump_start_speed;
-			
-			//If we've gone over the max time allowed to hold the jump button, make it so that we cannot jump until we land.
-			jump_time_current += delta;
+			//If the jumping variable is true, jump button is being held. This allows the jump button to be held longer to jump higher. There must be a max jump button time, though.
+			if(jumping)
+			{
+				if(jump_time_current < jump_time_max)
+				{
+					speed_current_y = jump_start_speed;
+					jump_time_current += delta;
+				}
+			}
+			else
+			{
+				//Block the player from jumping multiple times within the same jump.
+				if( jump_time_current > 0f)
+				{
+					jump_time_current = jump_time_max;
+				}
+			}
 		}
-		
-		//Block the player from jumping multiple times.
-		if(!jumping && jump_time_current > 0f)
-			jump_time_current = jump_time_max;
+		else
+		{//Allow the player to jump again if they have released the jump button at least once since the flag was set.
+			if(!jumping)
+			{
+				jump_stop_hop = false;
+			}
+		}
 		
 		//Do a fall calculation by simulating gravity.
 		if(sprite.getY() > screen.GROUND)
@@ -122,12 +139,15 @@ public class Player
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
 		
-		//Set a hard limit for how low the player can go. If they pass this limit, they're on . Reset the variables.
+		//Set a hard limit for how low the player can go. If they pass this limit, they're on a solid block. Reset the variables.
 		if(sprite.getY() < screen.GROUND)
 		{
 			sprite.setY(screen.GROUND);
 			speed_current_y = 0f;
 			jump_time_current = 0f;
+			
+			if(jumping)
+				jump_stop_hop = true;
 		}
 	}
 	
