@@ -38,6 +38,9 @@ public class Player
 		this.screen = screen;
 		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
 		sprite.setBounds(x, y, 1, 2);
+		
+		//Display player information.
+		System.out.println("Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() + "\n\tWidth: " + sprite.getWidth() + "\n\tHeight: " + sprite.getHeight());
 	}
 	
 	public void die()

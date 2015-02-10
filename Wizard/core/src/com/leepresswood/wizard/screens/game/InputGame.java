@@ -31,6 +31,8 @@ public class InputGame implements InputProcessor
 				break;
 		}
 		
+		//Display key information.
+		//System.out.println("Key Down: " + Keys.toString(keycode));
 		return true;
 	}
 
@@ -51,7 +53,9 @@ public class InputGame implements InputProcessor
 			default:
 				break;
 		}
-		
+
+		//Display key information.
+		//System.out.println("Key Up: " + Keys.toString(keycode));
 		return true;
 	}
 	

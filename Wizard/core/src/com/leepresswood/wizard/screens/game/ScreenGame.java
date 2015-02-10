@@ -26,8 +26,8 @@ public class ScreenGame extends ScreenParent
 	public final float WORLD_ZOOM = 0.2f;
 	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
-	public float GROUND;
-	public float GRAVITY;
+	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
+	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually.
 	
 	public Player player;
 	
@@ -74,7 +74,7 @@ public class ScreenGame extends ScreenParent
 		//Set the bounds of the camera.
 		camera_game = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
 		camera_game.zoom += WORLD_ZOOM;
-		camera_game.update();System.out.println(camera_game.zoom);
+		camera_game.update();
 		
 		/* Set the bounds of the world.
 		 * These will be used to give the camera cues as to where to position itself.
@@ -96,6 +96,10 @@ public class ScreenGame extends ScreenParent
 		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM;
 		WORLD_LEFT = camera_game.zoom * camera_game.viewportWidth / 2f;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
+		
+		//Display information.
+		System.out.println("World:\n\tGround Level: " + GROUND + "\n\tGravity: " + GRAVITY + "\n\tBlock Size: " + pixel_size);
+		System.out.println("Camera:\n\tPosition: " + camera_game.position + "\n\tWidth: " + camera_game.viewportWidth + "\n\tHeight: " + camera_game.viewportHeight + "\n\tZoom: " + camera_game.zoom);
 	}
 	
 	@Override
