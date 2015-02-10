@@ -94,7 +94,13 @@ public class Player
 		}
 		
 		//Move in the X direction.
-		sprite.translateX(delta * speed_current_x);		
+		sprite.translateX(delta * speed_current_x);
+		
+		//Keep the player within the bounds of the screen in the X direction.
+		if(sprite.getX() < 0f)
+			sprite.setX(0f);
+		else if(sprite.getX() + sprite.getWidth() > screen.WORLD_TOTAL_HORIZONTAL)
+			sprite.setX(screen.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
 	/**
