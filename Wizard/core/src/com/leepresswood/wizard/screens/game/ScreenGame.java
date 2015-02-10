@@ -23,6 +23,8 @@ public class ScreenGame extends ScreenParent
 	public float WORLD_RIGHT;
 	public float WORLD_TOP;
 	public float WORLD_BOTTOM;
+	public final float WORLD_ZOOM = 0.2f;
+	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
 	public float GROUND;
 	public float GRAVITY;
@@ -71,8 +73,8 @@ public class ScreenGame extends ScreenParent
 		
 		//Set the bounds of the camera.
 		camera_game = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
-		camera_game.position.set(camera_game.viewportWidth / 2f, camera_game.viewportHeight / 2f, 0);
-		camera_game.update();
+		camera_game.zoom += WORLD_ZOOM;
+		camera_game.update();System.out.println(camera_game.zoom);
 		
 		/* Set the bounds of the world.
 		 * These will be used to give the camera cues as to where to position itself.
@@ -90,9 +92,9 @@ public class ScreenGame extends ScreenParent
 		WORLD_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
 		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);		
 		
-		WORLD_BOTTOM = camera_game.viewportHeight / 2f;
+		WORLD_BOTTOM = camera_game.zoom * camera_game.viewportHeight / 2f;
 		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM;
-		WORLD_LEFT = camera_game.viewportWidth / 2f;
+		WORLD_LEFT = camera_game.zoom * camera_game.viewportWidth / 2f;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 	}
 	
@@ -119,7 +121,7 @@ public class ScreenGame extends ScreenParent
 	{
 		//First, set the camera to the player's position.
 		camera_game.position.x = player.sprite.getX() + player.sprite.getWidth() / 2f;
-		camera_game.position.y = player.sprite.getY() + player.sprite.getHeight() / 2f;
+		camera_game.position.y = player.sprite.getY() + player.sprite.getHeight() / 2f + camera_game.zoom * camera_game.viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(camera_game.position.x < WORLD_LEFT)
