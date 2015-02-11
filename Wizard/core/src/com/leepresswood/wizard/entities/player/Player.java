@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class Player
@@ -20,7 +21,7 @@ public class Player
 	public boolean moving_right = false;
 	public float speed_current_x = 0f;
 	public float accel_x = 3f;
-	public float decel_x = 3f * accel_x;
+	public float decel_x = 2f * accel_x;
 	public float speed_max_x = 3f;
 		
 	public boolean jumping = false;
@@ -44,11 +45,26 @@ public class Player
 	}
 	
 	/**
-	 * Player was hit. Take damage and set invincibility frames.
+	 * Player was hit. Take damage, do knockback, and set invincibility frames.
+	 * @param enemy The enemy that did the damage.
 	 */
-	public void hit()
+	public void hit(Enemy enemy)
 	{
+		//Get the enemy's location in relation to the player. This will allow us to calculate the knockback.
 		
+		
+		//Get the enemy's damage amount. This allows us to update the player's life.
+		
+		
+		//Check to see if the player has died.
+		if(screen.gui.bar_health.current_bar_value <= 0)
+		{//Dead.
+			
+		}
+		else
+		{//Not dead. Set invincibility frames.
+			
+		}
 	}
 	
 	/**

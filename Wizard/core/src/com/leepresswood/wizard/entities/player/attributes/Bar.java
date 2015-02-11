@@ -6,7 +6,7 @@ public class Bar
 	public float current_bar_value, max_bar_value;	
 	public float x, y, width, height;
 	
-	private float recovery_amount;
+	public float recovery_amount;
 	private final float MAX_BAR_WIDTH;	
 	
 	public Bar(float x, float y, float width, float height, float recovery_amount)
