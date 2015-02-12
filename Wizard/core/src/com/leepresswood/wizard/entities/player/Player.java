@@ -8,10 +8,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
-public class Player
+public class Player extends PersonEntity
 {	
 	protected ScreenGame screen;	
 	
