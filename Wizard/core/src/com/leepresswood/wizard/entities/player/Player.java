@@ -9,47 +9,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
-import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class Player extends PersonEntity
 {	
-	protected ScreenGame screen;	
-	
-	//Direction and movement.
-	public boolean facing_left = false;
-	public boolean moving_left = false;
-	public boolean moving_right = false;
-	public float speed_current_x = 0f;
-	public float accel_x = 3f;
-	public float decel_x = 2f * accel_x;
-	public float speed_max_x = 3f;
-		
-	public boolean jumping = false;
-	public boolean jump_stop_hop = false;
-	public float jump_start_speed = 6f;
-	public float speed_current_y = 0f;
-	public float jump_time_current = 0f;
-	public float jump_time_max = 0.25f;
-	
-	//Sprites and bounds.
-	public Sprite sprite;	
-	
 	public Player(ScreenGame screen, float x, float y)
 	{
-		this.screen = screen;
-		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
-		sprite.setBounds(x, y, 1, 2);
+		super(screen, x, y);
 		
 		//Display player information.
 		System.out.println("Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() + "\n\tWidth: " + sprite.getWidth() + "\n\tHeight: " + sprite.getHeight());
 	}
 	
-	/**
-	 * Player was hit. Take damage, do knockback, and set invincibility frames.
-	 * @param enemy The enemy that did the damage.
-	 */
-	public void hit(Enemy enemy)
+	public void hit(float damage)
 	{
 		//Get the enemy's location in relation to the player. This will allow us to calculate the knockback.
 		
@@ -68,19 +40,7 @@ public class Player extends PersonEntity
 		}
 	}
 	
-	/**
-	 * Send player into death animation. At the end, the screen can change.
-	 */
-	public void die()
-	{
-		
-	}
-	
-	/**
-	 * Player clicked on the world with the intention of casting a spell. Cast at or in the direction of that point.
-	 * @param click_point The coordinate in the world that was clicked.
-	 */
-	public void attack(Vector2 click_point)
+	public void attack(Vector2 point)
 	{
 		//Get the selected spell's mana cost and compare it to the player's current mana.
 		
@@ -89,19 +49,8 @@ public class Player extends PersonEntity
 		
 		
 	}
-	
-	public void update(float delta)
-	{
-		//Movement.
-		calcMovementX(delta);
-		calcMovementY(delta);
-	}
-	
-	/**
-	 * Calculate movement X direction.
-	 * @param delta Change in time.
-	 */
-	private void calcMovementX(float delta)
+
+	protected void calcMovementX(float delta)
 	{
 		//Deceleration check. Decelerate if not moving, if both left and right are pressed at the same time, or if moving in one direction but pressing another.
 		//Note: Simplifying the boolean math. ((A and B) or (!A and !B)) is (A == B)
@@ -143,11 +92,7 @@ public class Player extends PersonEntity
 			sprite.setX(screen.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
-	/**
-	 * Calculate movement in Y direction. Used in jumping or falling. 
-	 * @param delta Change in time.
-	 */
-	private void calcMovementY(float delta)
+	protected void calcMovementY(float delta)
 	{
 		//Don't allow multiple hops with the same spacebar press.
 		if(!jump_stop_hop)
@@ -164,7 +109,7 @@ public class Player extends PersonEntity
 			else
 			{
 				//Block the player from jumping multiple times within the same jump.
-				if( jump_time_current > 0f)
+				if(jump_time_current > 0f)
 				{
 					jump_time_current = jump_time_max;
 				}
@@ -200,5 +145,20 @@ public class Player extends PersonEntity
 	public void draw(SpriteBatch batch)
 	{
 		sprite.draw(batch);
+	}
+
+	@Override
+	protected void setSprites(ScreenGame screen, float x, float y)
+	{
+	}
+
+	@Override
+	protected void setMovementVariables()
+	{
+	}
+
+	@Override
+	public void die()
+	{
 	}
 }
