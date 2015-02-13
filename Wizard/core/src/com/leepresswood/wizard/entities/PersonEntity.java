@@ -14,21 +14,21 @@ public abstract class PersonEntity
 	protected ScreenGame screen;	
 	
 	//Movement and direction.
-	public boolean facing_left = false;
-	public boolean moving_left = false;
-	public boolean moving_right = false;
-	public float speed_current_x = 0f;
-	public float accel_x = 3f;
-	public float decel_x = 2f * accel_x;
-	public float speed_max_x = 3f;
+	public boolean facing_left;
+	public boolean moving_left;
+	public boolean moving_right;
+	public float speed_current_x;
+	public float accel_x;
+	public float decel_x;
+	public float speed_max_x;
 	
 	//Up-down.
-	public boolean jumping = false;
-	public boolean jump_stop_hop = false;
-	public float jump_start_speed = 6f;
-	public float speed_current_y = 0f;
-	public float jump_time_current = 0f;
-	public float jump_time_max = 0.25f;
+	public boolean jumping;
+	public boolean jump_stop_hop;
+	public float jump_start_speed;
+	public float speed_current_y;
+	public float jump_time_current;
+	public float jump_time_max;
 	
 	//Sprites and bounds.
 	public Sprite sprite;
@@ -36,8 +36,6 @@ public abstract class PersonEntity
 	public PersonEntity(ScreenGame screen, float x, float y)
 	{
 		this.screen = screen;
-		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
-		sprite.setBounds(x, y, 1, 2);
 		
 		setSprites(screen, x, y);
 		setMovementVariables();
@@ -73,18 +71,12 @@ public abstract class PersonEntity
 	public abstract void attack(Vector2 point);
 	
 	/**
-	 * Entity was hit. Take damage, do knockback, and set invincibility frames.
-	 * @param damage The damage amount to subtract from the health. If this goes to or below zero, set the dead flag.
-	 */
-	public abstract void hit(float damage);
-	
-	/**
 	 * Send entity into death animation. Also handle what happens afterward within this.
 	 */
 	public abstract void die();
 	
 	/**
-	 * Update timing and movement of sprite.
+	 * Update timing and movement of sprites.
 	 * @param delta Change in time.
 	 */
 	public void update(float delta)

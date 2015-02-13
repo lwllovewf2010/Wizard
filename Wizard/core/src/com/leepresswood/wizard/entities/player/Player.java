@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class Player extends PersonEntity
@@ -21,7 +22,11 @@ public class Player extends PersonEntity
 		System.out.println("Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() + "\n\tWidth: " + sprite.getWidth() + "\n\tHeight: " + sprite.getHeight());
 	}
 	
-	public void hit(float damage)
+	/**
+	 * Entity was hit. Take damage, do knockback, and set invincibility frames.
+	 * @param damage The damage amount to subtract from the health. If this goes to or below zero, set the dead flag.
+	 */
+	public void hit(Enemy enemy)
 	{
 		//Get the enemy's location in relation to the player. This will allow us to calculate the knockback.
 		
@@ -150,15 +155,38 @@ public class Player extends PersonEntity
 	@Override
 	protected void setSprites(ScreenGame screen, float x, float y)
 	{
+		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
+		sprite.setBounds(x, y, 1, 2);
 	}
 
 	@Override
 	protected void setMovementVariables()
 	{
+		//X
+		facing_left = false;
+		moving_left = false;
+		moving_right = false;
+		speed_current_x = 0f;
+		accel_x = 3f;
+		decel_x = 2f * accel_x;
+		speed_max_x = 3f;
+		
+		//Y
+		jumping = false;
+		jump_stop_hop = false;
+		jump_start_speed = 6f;
+		speed_current_y = 0f;
+		jump_time_current = 0f;
+		jump_time_max = 0.25f;
 	}
 
 	@Override
 	public void die()
+	{
+	}
+
+	@Override
+	protected void updateTiming(float delta)
 	{
 	}
 }
