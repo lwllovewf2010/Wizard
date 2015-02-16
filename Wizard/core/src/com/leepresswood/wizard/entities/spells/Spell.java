@@ -13,9 +13,11 @@ public abstract class Spell
 {
 	protected ScreenGame screen;
 	
+	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
 	public boolean active;
 	
+	//Sprite stuff.
 	public Sprite sprite;
 	
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
@@ -32,19 +34,29 @@ public abstract class Spell
 	protected abstract void makeSprite(Vector2 start);
 	
 	/**
+	 * Call the position and collision updates.
+	 * @param delta Change in time.
+	 */
+	public void update(float delta)
+	{
+		updatePosition(delta);
+		updateCollision();
+	}
+	
+	/**
 	 * Update the spell's position over time. Also calls the collision collision detection method.
-	 * @param delta The change in time.
+	 * @param delta Change in time.
 	 */
-	protected abstract void update(float delta);
+	protected abstract void updatePosition(float delta);
 	
 	/**
-	 * Checks the spell's collision with game objects.
+	 * Checks the spell's collision with game objects. Deals with damage and visibility as well.
 	 */
-	protected abstract void collision();
+	protected abstract void updateCollision();
 	
 	/**
-	 * 
-	 * @param batch
+	 * Draw the spell.
+	 * @param batch SpriteBatch for the sprite.
 	 */
 	protected abstract void draw(SpriteBatch batch);
 }

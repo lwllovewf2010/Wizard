@@ -86,7 +86,9 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean mouseMoved(int screenX, int screenY)
 	{
-		return false;
+		
+		
+		return true;
 	}
 	
 	@Override
