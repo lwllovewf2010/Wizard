@@ -21,9 +21,30 @@ public abstract class Spell
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
 	{//Create an active version of this spell.
 		this.screen = screen;
+		
+		makeSprite(from);
 	}
 	
-	protected abstract void makeSprite();
+	/**
+	 * Create the sprite at the passed location.
+	 * @param start The location of the spell. This is the spell's center for most spells.
+	 */
+	protected abstract void makeSprite(Vector2 start);
+	
+	/**
+	 * Update the spell's position over time. Also calls the collision collision detection method.
+	 * @param delta The change in time.
+	 */
 	protected abstract void update(float delta);
+	
+	/**
+	 * Checks the spell's collision with game objects.
+	 */
+	protected abstract void collision();
+	
+	/**
+	 * 
+	 * @param batch
+	 */
 	protected abstract void draw(SpriteBatch batch);
 }

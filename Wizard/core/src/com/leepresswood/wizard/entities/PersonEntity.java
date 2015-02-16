@@ -3,7 +3,6 @@ package com.leepresswood.wizard.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -91,7 +90,7 @@ public abstract class PersonEntity
 	
 	/**
 	 * Update the timed events and set the corresponding flags.
-	 * @param delta
+	 * @param delta The change in time.
 	 */
 	protected abstract void updateTiming(float delta);
 	
