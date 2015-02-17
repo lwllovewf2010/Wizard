@@ -10,7 +10,9 @@ public class Ether extends BoltSpell
 	public Ether(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);
-		MAX_TIME = 5f;
+		TIME_MAX = 5f;
+		
+		System.out.println("\tType: Ether");
 	}
 	
 	@Override
@@ -20,22 +22,20 @@ public class Ether extends BoltSpell
 	}
 
 	@Override
-	protected void setSpeedMax()
+	protected float setSpeedMax()
 	{
-		SPEED_MAX = 8f;
+		return 8f;
 	}
 	
 	@Override
 	protected void updatePosition(float delta)
 	{
-		//Ether doesn't change direction.		
-		//Simply move in the direction.
+		//Ether doesn't change direction. Simply move.
 		sprite.translate(speed_x * delta, speed_y * delta);
 	}
 
 	@Override
 	protected void updateCollision()
-	{
-		//Ether can hit multiple targets, so no real collision is necessary. Time will make it disappear.
+	{//Ether can hit multiple targets and go through walls, so no real collision is necessary. Time will make it disappear.
 	}
 }

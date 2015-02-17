@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.entities.spells.damage.Ether;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class Player extends PersonEntity
@@ -52,7 +52,7 @@ public class Player extends PersonEntity
 		
 		
 		//Cast the selected spell if possible.
-		screen.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+		screen.spells.add(new Ether(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
 	}
 
 	protected void calcMovementX(float delta)

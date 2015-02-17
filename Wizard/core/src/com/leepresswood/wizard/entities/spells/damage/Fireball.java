@@ -23,6 +23,8 @@ public class Fireball extends BoltSpell
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);
+		
+		System.out.println("\tType: Fireball\n\tImpulse: " + IMPULSE + "\n\tMax Bounces:" + MAX_BOUNCES);
 	}
 	
 	@Override
@@ -32,9 +34,9 @@ public class Fireball extends BoltSpell
 	}
 	
 	@Override
-	protected void setSpeedMax()
+	protected float setSpeedMax()
 	{
-		SPEED_MAX = 15f;
+		return 15f;
 	}
 	
 	@Override

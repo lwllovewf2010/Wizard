@@ -16,23 +16,26 @@ public abstract class Spell
 	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
 	public boolean active;
-	public float time;
-	public float MAX_TIME;
+	public float time_current;
+	public float TIME_MAX;
 	
 	//Sprite stuff.
 	public Sprite sprite;
 	
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
-	{//Create an active version of this spell.
+	{
 		this.screen = screen;
 		this.from = from;
 		this.to = to;
 		
+		//Create an active version of this spell.
 		active = true;
 		
 		sprite = new Sprite();
 		makeSpriteTexture();
 		makeSpriteBounds();
+		
+		System.out.println("Spell:\n\tFrom: " + from + "\n\tTo: " + to);
 	}
 	
 	/**
@@ -55,8 +58,12 @@ public abstract class Spell
 		updateCollision();
 		
 		//If time is set, compare it. Above TIME_MAX -> make inactive.
-		if(MAX_TIME > 0f && time >= MAX_TIME)
-			active = false;
+		if(TIME_MAX > 0f)
+		{
+			time_current += delta;
+			if(time_current >= TIME_MAX)
+				active = false;
+		}
 	}
 	
 	/**

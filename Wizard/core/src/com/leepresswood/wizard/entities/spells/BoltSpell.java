@@ -12,24 +12,26 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public abstract class BoltSpell extends Spell
 {
-	protected float speed_x, speed_y;
-	protected float SPEED_MAX;
+	public float speed_x, speed_y;
+	public float SPEED_MAX;
 	
 	public BoltSpell(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);
 		
-		//Determine the initial speeds from the max speed.
-		setSpeedMax();
+		//Determine the initial speeds from the max speed and angle between the vectors.
+		SPEED_MAX = setSpeedMax();
 		float angle = to.sub(from).angle();
 		speed_x = SPEED_MAX * MathUtils.cosDeg(angle);
 		speed_y = SPEED_MAX * MathUtils.sinDeg(angle);
+		
+		System.out.println("\tAngle: " + angle + "\n\tSpeed X: " + speed_y + "\n\tSpeed Y: " + speed_y);
 	}
 	
 	/**
 	 * Set the speed to use in position calculations.
 	 */
-	protected abstract void setSpeedMax();
+	protected abstract float setSpeedMax();
 	
 	@Override
 	protected void makeSpriteBounds()
