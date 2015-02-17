@@ -2,6 +2,9 @@ package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.leepresswood.wizard.entities.spells.damage.Fireball;
 
 
 public class InputGame implements InputProcessor
@@ -74,7 +77,10 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
-		return false;
+		Vector3 touch = screen.camera_game.unproject(new Vector3(screenX, screenY, 0));
+		screen.player.attack(new Vector2(touch.x, touch.y));
+		
+		return true;
 	}
 	
 	@Override

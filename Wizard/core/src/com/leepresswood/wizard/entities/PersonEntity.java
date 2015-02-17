@@ -67,7 +67,7 @@ public abstract class PersonEntity
 	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.
 	 * @param point The coordinate in the world that was clicked.
 	 */
-	public abstract void attack(Vector2 point);
+	public abstract void attack(Vector2 touch);
 	
 	/**
 	 * Send entity into death animation. Also handle what happens afterward within this.

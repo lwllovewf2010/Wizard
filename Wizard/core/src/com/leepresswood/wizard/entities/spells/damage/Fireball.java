@@ -12,7 +12,7 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
 public class Fireball extends Spell
 {
 	private float speed_x, speed_y;
-	private final float SPEED_MAX = 3f;
+	private final float SPEED_MAX = 15f;
 	
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to)
 	{
@@ -52,7 +52,8 @@ public class Fireball extends Spell
 	}	
 	
 	@Override
-	protected void draw(SpriteBatch batch)
+	public void draw(SpriteBatch batch)
 	{
+		sprite.draw(batch);
 	}	
 }

@@ -23,6 +23,8 @@ public abstract class Spell
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
 	{//Create an active version of this spell.
 		this.screen = screen;
+		this.from = from;
+		this.to = to;
 		
 		makeSprite(from);
 	}
@@ -58,5 +60,5 @@ public abstract class Spell
 	 * Draw the spell.
 	 * @param batch SpriteBatch for the sprite.
 	 */
-	protected abstract void draw(SpriteBatch batch);
+	public abstract void draw(SpriteBatch batch);
 }

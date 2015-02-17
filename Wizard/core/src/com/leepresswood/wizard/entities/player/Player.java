@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
+import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class Player extends PersonEntity
@@ -45,14 +46,13 @@ public class Player extends PersonEntity
 		}
 	}
 	
-	public void attack(Vector2 point)
+	public void attack(Vector2 touch)
 	{
 		//Get the selected spell's mana cost and compare it to the player's current mana.
 		
 		
 		//Cast the selected spell if possible.
-		
-		
+		screen.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
 	}
 
 	protected void calcMovementX(float delta)

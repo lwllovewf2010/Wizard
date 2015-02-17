@@ -1,13 +1,18 @@
 package com.leepresswood.wizard.screens.game;
 
+import java.awt.List;
+import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.Array;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.player.Player;
+import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.screens.ScreenParent;
 
 public class ScreenGame extends ScreenParent
@@ -31,6 +36,7 @@ public class ScreenGame extends ScreenParent
 	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually.
 	
 	public Player player;
+	public ArrayList<Spell> spells;
 	
 	public ScreenGame(GameWizard game)
 	{
@@ -38,6 +44,7 @@ public class ScreenGame extends ScreenParent
 		
 		gui = new GUIGame(this);
 		player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
+		spells = new ArrayList<Spell>();
 	}
 
 	@Override
@@ -107,6 +114,7 @@ public class ScreenGame extends ScreenParent
 	public void setUpInput()
 	{
 		Gdx.input.setInputProcessor(new InputGame(this));
+		//Gdx.input.setCursorImage(new Pixmap(Gdx.files.internal("person/textures/hold.png")), 0, 0);
 	}
 
 	@Override
@@ -114,6 +122,10 @@ public class ScreenGame extends ScreenParent
 	{
 		//Player and enemies.
 		player.update(delta);
+		
+		//Spells
+		for(Spell s : spells)
+			s.update(delta);
 		
 		//Camera.
 		setCameraBounds();
@@ -150,6 +162,10 @@ public class ScreenGame extends ScreenParent
 		batch.setProjectionMatrix(camera_game.combined);
 		batch.begin();
 			player.draw(batch);
+			
+			//Spells
+			for(Spell s : spells)
+				s.draw(batch);
 		batch.end();
 		
 		//GUI
