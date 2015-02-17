@@ -1,14 +1,11 @@
 package com.leepresswood.wizard.screens.game;
 
-import java.awt.List;
 import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.utils.Array;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.player.Player;
@@ -129,6 +126,21 @@ public class ScreenGame extends ScreenParent
 		
 		//Camera.
 		setCameraBounds();
+		
+		//Deleting old objects.
+		ArrayList<Spell> remove = null;
+		for(Spell s : spells)
+			if(!s.active)
+			{
+				if(remove == null)
+					remove = new ArrayList<Spell>();
+				
+				remove.add(s);
+			}
+			
+		if(remove != null)
+			for(Spell s : remove)
+				spells.remove(s);
 	}
 
 	/**
@@ -170,7 +182,7 @@ public class ScreenGame extends ScreenParent
 		
 		//GUI
 		batch.setProjectionMatrix(camera_gui.combined);
-		gui.draw(renderer, batch);
+		gui.draw();
 	}
 	
 	@Override

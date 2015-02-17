@@ -2,8 +2,6 @@ package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.entities.player.attributes.Bar;
 
@@ -55,13 +53,13 @@ public class GUIGame
 		bar_mana.updateOverTime(delta);
 	}
 	
-	public void draw(ShapeRenderer renderer, SpriteBatch batch)
+	public void draw()
 	{
-		renderer.begin(ShapeType.Filled);
-			renderer.identity();
-			
-			renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
-			renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
-		renderer.end();
+		screen.renderer.begin(ShapeType.Filled);
+			screen.renderer.identity();
+				
+			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
+			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
+		screen.renderer.end();
 	}
 }

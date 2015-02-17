@@ -13,6 +13,10 @@ public class Fireball extends Spell
 {
 	private float speed_x, speed_y;
 	private final float SPEED_MAX = 15f;
+	private final float IMPULSE = 0.8f;
+	
+	private final int MAX_BOUNCES = 6;
+	private int bounces;
 	
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to)
 	{
@@ -48,7 +52,21 @@ public class Fireball extends Spell
 	@Override
 	protected void updateCollision()
 	{
+		//Check floor for bounce.
+		if(sprite.getY() < screen.GROUND)
+		{
+			bounces++;
+			
+			//Set Y to the ground level.
+			sprite.setY(screen.GROUND);
+			
+			//Flip Y speed and impulse to shorten the bounce.
+			speed_y *= -IMPULSE;
+		}
 		
+		//Stop spell if bouncing has reached its max.
+		if(bounces == MAX_BOUNCES)
+			active = false;
 	}	
 	
 	@Override

@@ -4,8 +4,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
-
 
 public class InputGame implements InputProcessor
 {

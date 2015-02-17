@@ -26,6 +26,8 @@ public abstract class Spell
 		this.from = from;
 		this.to = to;
 		
+		active = true;
+		
 		makeSprite(from);
 	}
 	
