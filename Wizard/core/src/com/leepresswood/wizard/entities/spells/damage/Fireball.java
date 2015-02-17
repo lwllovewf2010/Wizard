@@ -24,7 +24,7 @@ public class Fireball extends BoltSpell
 	{
 		super(screen, from, to);
 		
-		System.out.println("\tType: Fireball\n\tImpulse: " + IMPULSE + "\n\tMax Bounces:" + MAX_BOUNCES);
+		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces:" + MAX_BOUNCES + "\n\tType: Fireball");
 	}
 	
 	@Override

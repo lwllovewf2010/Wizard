@@ -25,7 +25,7 @@ public abstract class BoltSpell extends Spell
 		speed_x = SPEED_MAX * MathUtils.cosDeg(angle);
 		speed_y = SPEED_MAX * MathUtils.sinDeg(angle);
 		
-		System.out.println("\tAngle: " + angle + "\n\tSpeed X: " + speed_y + "\n\tSpeed Y: " + speed_y);
+		System.out.println("\tAngle: " + angle + "\n\tSpeed X: " + speed_x + "\n\tSpeed Y: " + speed_y);
 	}
 	
 	/**

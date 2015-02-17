@@ -12,6 +12,7 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
 public abstract class Spell
 {
 	protected ScreenGame screen;
+	public String NAME;
 	
 	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
