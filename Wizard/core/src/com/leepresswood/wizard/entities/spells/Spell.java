@@ -16,6 +16,8 @@ public abstract class Spell
 	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
 	public boolean active;
+	public float time;
+	public float MAX_TIME;
 	
 	//Sprite stuff.
 	public Sprite sprite;
@@ -28,23 +30,33 @@ public abstract class Spell
 		
 		active = true;
 		
-		makeSprite(from);
+		sprite = new Sprite();
+		makeSpriteTexture();
+		makeSpriteBounds();
 	}
 	
 	/**
-	 * Create the sprite at the passed location.
-	 * @param start The location of the spell. This is the spell's center for most spells.
+	 * Set sprite's texture.
 	 */
-	protected abstract void makeSprite(Vector2 start);
+	protected abstract void makeSpriteTexture();
 	
 	/**
-	 * Call the position and collision updates.
+	 * Create the sprite using the "from" and "to" vectors.
+	 */
+	protected abstract void makeSpriteBounds();
+	
+	/**
+	 * Call the position and collision updates. Also examine the time.
 	 * @param delta Change in time.
 	 */
 	public void update(float delta)
 	{
 		updatePosition(delta);
 		updateCollision();
+		
+		//If time is set, compare it. Above TIME_MAX -> make inactive.
+		if(MAX_TIME > 0f && time >= MAX_TIME)
+			active = false;
 	}
 	
 	/**
