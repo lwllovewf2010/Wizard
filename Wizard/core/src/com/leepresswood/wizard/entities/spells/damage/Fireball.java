@@ -17,8 +17,8 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public class Fireball extends BoltSpell
 {	
-	protected final float IMPULSE = 0.8f;
-	private final int MAX_BOUNCES = 6;
+	protected final float IMPULSE = 0.7f;
+	private final int MAX_BOUNCES = 5;
 	private int bounces;
 	
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to)
@@ -38,7 +38,7 @@ public class Fireball extends BoltSpell
 	@Override
 	protected float setSpeedMax()
 	{
-		return 15f;
+		return 11f;
 	}
 	
 	@Override
