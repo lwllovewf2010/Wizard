@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.entities.spells;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -32,8 +33,7 @@ public abstract class Spell
 		//Create an active version of this spell.
 		active = true;
 		
-		sprite = new Sprite();
-		makeSpriteTexture();
+		sprite = new Sprite(makeSpriteTexture());
 		makeSpriteBounds();
 		
 		System.out.println("Spell:\n\tFrom: " + from + "\n\tTo: " + to);
@@ -42,7 +42,7 @@ public abstract class Spell
 	/**
 	 * Set sprite's texture.
 	 */
-	protected abstract void makeSpriteTexture();
+	protected abstract Texture makeSpriteTexture();
 	
 	/**
 	 * Create the sprite using the "from" and "to" vectors.

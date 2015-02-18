@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.entities.spells.damage;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
@@ -24,13 +25,14 @@ public class Fireball extends BoltSpell
 	{
 		super(screen, from, to);
 		
-		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces:" + MAX_BOUNCES + "\n\tType: Fireball");
+		NAME = "Fireball";
+		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces:" + MAX_BOUNCES + "\n\tType: " + NAME);
 	}
 	
 	@Override
-	protected void makeSpriteTexture()
+	protected Texture makeSpriteTexture()
 	{
-		sprite.setTexture(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
+		return screen.game.assets.getTexture(Assets.TEXTURE_HOLD);
 	}
 	
 	@Override

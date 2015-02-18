@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.entities.spells.damage;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
@@ -10,16 +11,16 @@ public class Aether extends BoltSpell
 	public Aether(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);
-		TIME_MAX = 5f;
+		TIME_MAX = 3f;
 		
 		NAME = "Aether";
 		System.out.println("\tType: " + NAME);
 	}
 	
 	@Override
-	protected void makeSpriteTexture()
+	protected Texture makeSpriteTexture()
 	{
-		sprite.setTexture(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
+		return screen.game.assets.getTexture(Assets.TEXTURE_HOLD);
 	}
 
 	@Override
@@ -31,12 +32,12 @@ public class Aether extends BoltSpell
 	@Override
 	protected void updatePosition(float delta)
 	{
-		//Ether doesn't change direction. Simply move.
+		//Aether doesn't change direction. Simply move.
 		sprite.translate(speed_x * delta, speed_y * delta);
 	}
 
 	@Override
 	protected void updateCollision()
-	{//Ether can hit multiple targets and go through walls, so no real collision is necessary. Time will make it disappear.
+	{//Aether can hit multiple targets and go through walls, so no real collision is necessary. Time will make it disappear.
 	}
 }
