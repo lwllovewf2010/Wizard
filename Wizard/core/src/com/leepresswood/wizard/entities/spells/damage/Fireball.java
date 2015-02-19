@@ -7,13 +7,13 @@ import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
- * Bolt spell that is affected by gravity.<br/>
+ * Bolt spell that is affected by gravity. Explodes on impact.<br/>
  * Type: Fire<br/>
  * Damage: High<br/>
+ * Speed: Medium</br/>
  * Cost: Medium<br/>
- * Recharge Time: High<br/>
+ * Recast Time: High<br/>
  * @author Lee
- *
  */
 public class Fireball extends BoltSpell
 {	

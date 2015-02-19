@@ -6,6 +6,15 @@ import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
+/**
+ * Bolt spell that is not affected by gravity. Goes through walls and floors. No knockback. Hits enemies once.<br/>
+ * Type: Void<br/>
+ * Damage: Low<br/>
+ * Speed: Low</br/>
+ * Cost: Medium<br/>
+ * Recast Time: Low<br/>
+ * @author Lee
+ */
 public class Aether extends BoltSpell
 {	
 	public Aether(ScreenGame screen, Vector2 from, Vector2 to)
@@ -26,7 +35,7 @@ public class Aether extends BoltSpell
 	@Override
 	protected float setSpeedMax()
 	{
-		return 8f;
+		return 6f;
 	}
 	
 	@Override
