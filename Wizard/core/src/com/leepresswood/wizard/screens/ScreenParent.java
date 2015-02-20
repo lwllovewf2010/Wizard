@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.leepresswood.wizard.GameWizard;
@@ -20,8 +19,6 @@ public abstract class ScreenParent extends ScreenAdapter
 	public GameWizard game;	
 	public SpriteBatch batch;
 	public ShapeRenderer renderer;
-	public OrthographicCamera camera_game;
-	public OrthographicCamera camera_gui;
 	
 	protected Color color_background;
 	
@@ -33,7 +30,6 @@ public abstract class ScreenParent extends ScreenAdapter
 		
 		setUpBackgroundColor();
 		setUpInput();
-		setUpCameras();
 	}
 	
 	/**
@@ -45,7 +41,6 @@ public abstract class ScreenParent extends ScreenAdapter
 	{
 		//Update
 		update(delta);
-		camera_game.update();
 		
 		//Draw
 		Gdx.gl.glClearColor(color_background.r, color_background.g, color_background.b, color_background.a);
@@ -55,7 +50,6 @@ public abstract class ScreenParent extends ScreenAdapter
 	
 	public abstract void setUpBackgroundColor();
 	public abstract void setUpInput();
-	public abstract void setUpCameras();
 	public abstract void update(float delta);
 	public abstract void draw();
 }

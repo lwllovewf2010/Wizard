@@ -1,7 +1,3 @@
-/* Class should include all attributes every player will have.
- * This includes health, power, defense, speed, jump height, etc.
- * Body parts included in extended classes to allow different shapes of classes.
- */
 package com.leepresswood.wizard.entities.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -10,10 +6,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
+/**
+ * Class should include all attributes every player will have.
+ * This includes health, power, defense, speed, jump height, etc.
+ * Body parts included in extended classes to allow different shapes of classes.
+ * @author Lee
+ *
+ */
 public class Player extends PersonEntity
 {	
 	public Player(ScreenGame screen, float x, float y)
@@ -53,7 +55,7 @@ public class Player extends PersonEntity
 		
 		
 		//Cast the selected spell if possible.
-		screen.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+		screen.world_game.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
 	}
 
 	protected void calcMovementX(float delta)
@@ -94,8 +96,8 @@ public class Player extends PersonEntity
 		//Keep the player within the bounds of the screen in the X direction.
 		if(sprite.getX() < 0f)
 			sprite.setX(0f);
-		else if(sprite.getX() + sprite.getWidth() > screen.WORLD_TOTAL_HORIZONTAL)
-			sprite.setX(screen.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+		else if(sprite.getX() + sprite.getWidth() > screen.world_game.WORLD_TOTAL_HORIZONTAL)
+			sprite.setX(screen.world_game.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
 	protected void calcMovementY(float delta)
@@ -130,16 +132,16 @@ public class Player extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > screen.GROUND)
-			speed_current_y -= delta * screen.GRAVITY;
+		if(sprite.getY() > screen.world_game.GROUND)
+			speed_current_y -= delta * screen.world_game.GRAVITY;
 
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
 		
 		//Set a hard limit for how low the player can go. If they pass this limit, they're on a solid block. Reset the variables.
-		if(sprite.getY() < screen.GROUND)
+		if(sprite.getY() < screen.world_game.GROUND)
 		{
-			sprite.setY(screen.GROUND);
+			sprite.setY(screen.world_game.GROUND);
 			speed_current_y = 0f;
 			jump_time_current = 0f;
 			

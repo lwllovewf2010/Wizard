@@ -2,26 +2,35 @@ package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.entities.player.attributes.Bar;
 
 public class GUIGame
 {
 	private ScreenGame screen;
+	public OrthographicCamera camera;
 	
 	public Bar bar_health, bar_mana;
 	private Color color_health, color_mana;
 	
 	public GUIGame(ScreenGame screen)
 	{
-		this.screen = screen;		
-		makeBars();
+		this.screen = screen;	
+		
+		//Set up camera. It will never move, so no need to update it again after the constructor.
+		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+		camera.update();
+		
+		//Populate the GUI with the entities.
+		makeStatusBars();
 	}
 	
 	/**
 	 * Create the health and magic bars.
 	 */
-	private void makeBars()
+	private void makeStatusBars()
 	{
 		final float gap = 2f;
 		
@@ -53,6 +62,9 @@ public class GUIGame
 		bar_mana.updateOverTime(delta);
 	}
 	
+	/**
+	 * Draw all parts of the GUI.
+	 */
 	public void draw()
 	{
 		screen.renderer.begin(ShapeType.Filled);
