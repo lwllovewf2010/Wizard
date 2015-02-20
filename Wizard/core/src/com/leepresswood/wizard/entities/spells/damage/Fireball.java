@@ -26,7 +26,7 @@ public class Fireball extends BoltSpell
 		super(screen, from, to);
 		
 		NAME = "Fireball";
-		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces:" + MAX_BOUNCES + "\n\tType: " + NAME);
+		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces: " + MAX_BOUNCES + "\n\tType: " + NAME);
 	}
 	
 	@Override
@@ -38,7 +38,7 @@ public class Fireball extends BoltSpell
 	@Override
 	protected float setSpeedMax()
 	{
-		return 11f;
+		return 13f;
 	}
 	
 	@Override
