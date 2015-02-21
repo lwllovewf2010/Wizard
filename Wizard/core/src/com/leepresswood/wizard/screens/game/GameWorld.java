@@ -28,7 +28,7 @@ public class GameWorld
 	public float WORLD_TOP;
 	public float WORLD_BOTTOM;
 	
-	public final float WORLD_ZOOM = 0.4f;						//Amount added to the world camera's zoom.
+	public final float WORLD_ZOOM = 2.0f;						//Amount added to the world camera's zoom.
 	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
 	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
@@ -41,18 +41,14 @@ public class GameWorld
 	{
 		this.screen = screen;
 		
-		//Set up world.
-		setUpWorldCamera();
-		
-		//Populate world.
-		player = new Player(screen, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
-		spells = new ArrayList<Spell>();
+		setUpWorld();
+		populateWorld();		
 	}
 	
 	/**
-	 * Get the world coordinates from the map to set up the camera.
+	 * GSet up the world by reading information from the map.
 	 */
-	private void setUpWorldCamera()
+	private void setUpWorld()
 	{
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = screen.game.assets.getMap(Assets.MAP_TEST);
@@ -94,6 +90,14 @@ public class GameWorld
 		System.out.println("Camera:\n\tPosition: " + camera.position + "\n\tWidth: " + camera.viewportWidth + "\n\tHeight: " + camera.viewportHeight + "\n\tZoom: " + camera.zoom);
 	}
 	
+	/**
+	 * Add the initial entities to the game world.
+	 */
+	private void populateWorld()
+	{
+		player = new Player(screen, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
+		spells = new ArrayList<Spell>();
+	}
 	
 	/**
 	 * Check the camera's position for correctness. It should not go off the world's bounds.

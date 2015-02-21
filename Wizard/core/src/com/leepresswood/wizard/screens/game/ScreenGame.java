@@ -7,7 +7,7 @@ import com.leepresswood.wizard.screens.ScreenParent;
 
 public class ScreenGame extends ScreenParent
 {
-	public GameWorld world_game;
+	public GameWorld world;
 	public GUIGame gui;	
 	
 	public ScreenGame(GameWizard game)
@@ -15,7 +15,7 @@ public class ScreenGame extends ScreenParent
 		super(game);
 		
 		//The game screen has a world in the background and a GUI in the foreground.
-		world_game = new GameWorld(this);
+		world = new GameWorld(this);
 		gui = new GUIGame(this);
 	}
 
@@ -36,8 +36,8 @@ public class ScreenGame extends ScreenParent
 	public void update(float delta)
 	{
 		//Be sure to update the camera.
-		world_game.update(delta);
-		world_game.camera.update();
+		world.update(delta);
+		world.camera.update();
 		
 		//GUI camera doesn't need to be updated.
 		gui.update(delta);
@@ -46,8 +46,8 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void draw()
 	{
-		batch.setProjectionMatrix(world_game.camera.combined);
-		world_game.draw();
+		batch.setProjectionMatrix(world.camera.combined);
+		world.draw();
 
 		batch.setProjectionMatrix(gui.camera.combined);
 		gui.draw();

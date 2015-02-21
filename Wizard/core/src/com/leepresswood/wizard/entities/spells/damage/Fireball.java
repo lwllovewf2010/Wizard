@@ -38,7 +38,7 @@ public class Fireball extends BoltSpell
 	@Override
 	protected float setSpeedMax()
 	{
-		return 13f;
+		return 23f;
 	}
 	
 	@Override
@@ -46,7 +46,7 @@ public class Fireball extends BoltSpell
 	{
 		//Change the direction of the ball.
 		//X doesn't need to be changed, so only change Y.
-		speed_y -= screen.world_game.GRAVITY * delta;
+		speed_y -= screen.world.GRAVITY * delta;
 		
 		//Move in the direction.
 		sprite.translate(speed_x * delta, speed_y * delta);
@@ -56,12 +56,12 @@ public class Fireball extends BoltSpell
 	protected void updateCollision()
 	{
 		//Check floor for bounce.
-		if(sprite.getY() < screen.world_game.GROUND)
+		if(sprite.getY() < screen.world.GROUND)
 		{
 			bounces++;
 			
 			//Set Y to the ground level.
-			sprite.setY(screen.world_game.GROUND);
+			sprite.setY(screen.world.GROUND);
 			
 			//Flip Y speed and impulse to shorten the bounce.
 			speed_y *= -IMPULSE;

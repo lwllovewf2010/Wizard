@@ -20,13 +20,13 @@ public class InputGame implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.world_game.player.moving_right = true;
+				screen.world.player.moving_right = true;
 				break;
 			case Keys.A:
-				screen.world_game.player.moving_left = true;
+				screen.world.player.moving_left = true;
 				break;
 			case Keys.SPACE:
-				screen.world_game.player.jumping = true;
+				screen.world.player.jumping = true;
 				break;
 			default:
 				break;
@@ -43,13 +43,13 @@ public class InputGame implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.world_game.player.moving_right = false;
+				screen.world.player.moving_right = false;
 				break;
 			case Keys.A:
-				screen.world_game.player.moving_left = false;
+				screen.world.player.moving_left = false;
 				break;
 			case Keys.SPACE:
-				screen.world_game.player.jumping = false;
+				screen.world.player.jumping = false;
 				break;
 			default:
 				break;
@@ -75,8 +75,8 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
-		Vector3 touch = screen.world_game.camera.unproject(new Vector3(screenX, screenY, 0));
-		screen.world_game.player.attack(new Vector2(touch.x, touch.y));
+		Vector3 touch = screen.world.camera.unproject(new Vector3(screenX, screenY, 0));
+		screen.world.player.attack(new Vector2(touch.x, touch.y));
 		
 		return true;
 	}

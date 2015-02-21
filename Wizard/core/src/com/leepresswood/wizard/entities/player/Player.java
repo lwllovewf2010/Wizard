@@ -18,6 +18,9 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public class Player extends PersonEntity
 {	
+	private final float WIDTH = 3f;
+	private final float HEIGHT = WIDTH * 1.618f;
+	
 	public Player(ScreenGame screen, float x, float y)
 	{
 		super(screen, x, y);
@@ -55,7 +58,7 @@ public class Player extends PersonEntity
 		
 		
 		//Cast the selected spell if possible.
-		screen.world_game.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+		screen.world.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
 	}
 
 	protected void calcMovementX(float delta)
@@ -96,8 +99,8 @@ public class Player extends PersonEntity
 		//Keep the player within the bounds of the screen in the X direction.
 		if(sprite.getX() < 0f)
 			sprite.setX(0f);
-		else if(sprite.getX() + sprite.getWidth() > screen.world_game.WORLD_TOTAL_HORIZONTAL)
-			sprite.setX(screen.world_game.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+		else if(sprite.getX() + sprite.getWidth() > screen.world.WORLD_TOTAL_HORIZONTAL)
+			sprite.setX(screen.world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
 	protected void calcMovementY(float delta)
@@ -132,16 +135,16 @@ public class Player extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > screen.world_game.GROUND)
-			speed_current_y -= delta * screen.world_game.GRAVITY;
+		if(sprite.getY() > screen.world.GROUND)
+			speed_current_y -= delta * screen.world.GRAVITY;
 
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
 		
 		//Set a hard limit for how low the player can go. If they pass this limit, they're on a solid block. Reset the variables.
-		if(sprite.getY() < screen.world_game.GROUND)
+		if(sprite.getY() < screen.world.GROUND)
 		{
-			sprite.setY(screen.world_game.GROUND);
+			sprite.setY(screen.world.GROUND);
 			speed_current_y = 0f;
 			jump_time_current = 0f;
 			
@@ -159,7 +162,7 @@ public class Player extends PersonEntity
 	protected void setSprites(ScreenGame screen, float x, float y)
 	{
 		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
-		sprite.setBounds(x, y, 1, 2);
+		sprite.setBounds(x, y, WIDTH, HEIGHT);
 	}
 
 	@Override
@@ -170,14 +173,14 @@ public class Player extends PersonEntity
 		moving_left = false;
 		moving_right = false;
 		speed_current_x = 0f;
-		accel_x = 3f;
+		accel_x = 5f;
 		decel_x = 2f * accel_x;
-		speed_max_x = 3f;
+		speed_max_x = 5f;
 		
 		//Y
 		jumping = false;
 		jump_stop_hop = false;
-		jump_start_speed = 6f;
+		jump_start_speed = 10f;
 		speed_current_y = 0f;
 		jump_time_current = 0f;
 		jump_time_max = 0.25f;
