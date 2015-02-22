@@ -77,10 +77,13 @@ public class GUIGame
 
 	/**
 	 * Player scrolled the mouse wheel. Change the active spell.
-	 * @param amount Amount scrolled. Negative scrolls left, and positive scrolls right.
+	 * @param amount Amount scrolled. Negative scrolls left; positive scrolls right.
 	 */
 	public void changeSpell(int amount)
 	{
-		
+		if(amount < 0)
+			shiftLeft();
+		else if(amount > 0)
+			shiftRight();
 	}
 }
