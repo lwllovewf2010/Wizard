@@ -29,6 +29,8 @@ public class Fireball extends BoltSpell
 		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces: " + MAX_BOUNCES + "\n\tType: " + NAME);
 	}
 	
+	public Fireball(Texture t, float x, float y){super(t, x, y);}
+
 	@Override
 	protected Texture makeSpriteTexture()
 	{

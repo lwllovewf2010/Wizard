@@ -16,7 +16,9 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  * @author Lee
  */
 public class Aether extends BoltSpell
-{	
+{
+	public Aether(Texture t, float x, float y){super(t, x, y);}
+	
 	public Aether(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);

@@ -4,27 +4,43 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.player.attributes.Bar;
+import com.leepresswood.wizard.entities.spells.Spell;
+import com.leepresswood.wizard.entities.spells.damage.Aether;
+import com.leepresswood.wizard.entities.spells.damage.Fireball;
 
 public class GUIGame
 {
 	private ScreenGame screen;
 	public OrthographicCamera camera;
 	
+	//Health/Mana Bars
 	public Bar bar_health, bar_mana;
 	private Color color_health, color_mana;
+	
+	//Spells
+	private final int MAX_SPELLS = 10;
+	private int spell_active = 0;
+	private Spell[] spells;
 	
 	public GUIGame(ScreenGame screen)
 	{
 		this.screen = screen;	
-		
-		//Set up camera. It will never move, so no need to update it again after the constructor.
+				
+		makeCamera();
+		makeStatusBars();
+		makeSpellList();
+	}
+	
+	/**
+	 * Set up camera. It will never move, so no need to update it again after initialization.
+	 */
+	private void makeCamera()
+	{
 		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
 		camera.update();
-		
-		//Populate the GUI with the entities.
-		makeStatusBars();
 	}
 	
 	/**
@@ -53,6 +69,17 @@ public class GUIGame
 	}
 	
 	/**
+	 * Create the spell list.
+	 */
+	private void makeSpellList()
+	{
+		spells = new Spell[MAX_SPELLS];
+		
+		spells[0] = new Fireball(screen.game.assets.getTexture(Assets.TEXTURE_HOLD), 1f, 1f);
+		spells[1] = new Aether(screen.game.assets.getTexture(Assets.TEXTURE_HOLD), 52f, 1f);
+	}
+	
+	/**
 	 * Timed update. This will be used in the recovery of health/mana, any animations, and possibly a game clock with a day/night system.
 	 * @param delta Change in time.
 	 */
@@ -74,6 +101,16 @@ public class GUIGame
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();
 	}
+	
+	/**
+	 * Player pressed a number. Switch to that spell.
+	 * @param count The number pressed.
+	 */
+	public void shiftSpellTo(int count)
+	{//Setting active to the count variable and then shifting down one will be enough.
+		spell_active = count;
+		shiftSpellLeft();
+	}
 
 	/**
 	 * Player scrolled the mouse wheel. Change the active spell.
@@ -82,8 +119,56 @@ public class GUIGame
 	public void changeSpell(int amount)
 	{
 		if(amount < 0)
-			shiftLeft();
+			shiftSpellLeft();
 		else if(amount > 0)
-			shiftRight();
+			shiftSpellRight();
+	}
+	
+	/**
+	 * Shift the active spell left by one.
+	 */
+	private void shiftSpellLeft()
+	{
+		spell_active--;
+		if(spell_active < 0)
+			spell_active = MAX_SPELLS - 1;
+	}
+	
+	/**
+	 * Shift the active spell right by one.
+	 */
+	private void shiftSpellRight()
+	{
+		spell_active++;
+		if(spell_active == MAX_SPELLS)
+			spell_active = 0;
+	}
+	
+	/**
+	 * Get the active spell.
+	 * @return The chosen spell.
+	 */
+	public Spell getActiveSpell()
+	{
+		return spells[spell_active];
+	}
+	
+	/**
+	 * Can the player cast the required spell?
+	 * @param s The spell to examine.
+	 * @return If it is possible to cast the spell.
+	 */
+	public boolean canCast(Spell s)
+	{
+		return bar_mana.current_bar_value >= s.cost;
+	}
+	
+	/**
+	 * Subtract the mana cost from the mana bar.
+	 * @param s The spell whose mana we are examining.
+	 */
+	public void cast(Spell s)
+	{
+		bar_mana.change(-s.cost);
 	}
 }

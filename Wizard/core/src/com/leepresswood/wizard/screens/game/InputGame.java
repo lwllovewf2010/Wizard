@@ -42,6 +42,7 @@ public class InputGame implements InputProcessor
 	{
 		switch(keycode)
 		{
+			//Pass WASD and Spacebar to the player for movement.
 			case Keys.D:
 				screen.world.player.moving_right = false;
 				break;
@@ -50,6 +51,31 @@ public class InputGame implements InputProcessor
 				break;
 			case Keys.SPACE:
 				screen.world.player.jumping = false;
+				break;
+				
+				//Pass Numerical keys into the GUI for spell switching.
+			case Keys.NUM_0:
+			case Keys.NUM_1:
+			case Keys.NUM_2:
+			case Keys.NUM_3:
+			case Keys.NUM_4:
+			case Keys.NUM_5:
+			case Keys.NUM_6:
+			case Keys.NUM_7:
+			case Keys.NUM_8:
+			case Keys.NUM_9:
+			case Keys.NUMPAD_0:
+			case Keys.NUMPAD_1:
+			case Keys.NUMPAD_2:
+			case Keys.NUMPAD_3:
+			case Keys.NUMPAD_4:
+			case Keys.NUMPAD_5:
+			case Keys.NUMPAD_6:
+			case Keys.NUMPAD_7:
+			case Keys.NUMPAD_8:
+			case Keys.NUMPAD_9:
+				String key = Keys.toString(keycode);
+				screen.gui.changeSpell(Integer.parseInt(key.substring(key.length() - 1)));				
 				break;
 			default:
 				break;

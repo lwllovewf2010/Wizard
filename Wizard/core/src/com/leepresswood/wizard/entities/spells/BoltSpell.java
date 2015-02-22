@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.entities.spells;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -14,6 +15,8 @@ public abstract class BoltSpell extends Spell
 {
 	public float speed_x, speed_y;
 	public float SPEED_MAX;
+	
+	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
 	public BoltSpell(ScreenGame screen, Vector2 from, Vector2 to)
 	{
@@ -36,7 +39,7 @@ public abstract class BoltSpell extends Spell
 	@Override
 	protected void makeSpriteBounds()
 	{
-		float width = 1;
+		float width = 2f;
 		float height = width;
 		
 		sprite.setBounds(from.x - width / 2f, from.y - height / 2f, width, height);

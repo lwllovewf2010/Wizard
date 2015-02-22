@@ -24,6 +24,27 @@ public abstract class Spell
 	//Sprite stuff.
 	public Sprite sprite;
 	
+	//Mana
+	public float cost = 4f;
+	
+	/**
+	 * Use this constructor for the spell list on the GUI.
+	 * @param t
+	 * @param x
+	 * @param y
+	 */
+	public Spell(Texture t, float x, float y)
+	{
+		sprite = new Sprite(t);
+		sprite.setBounds(x, y, 50f, 50f);
+	}
+	
+	/**
+	 * Use this constructor to create a spell entity in the world.
+	 * @param screen
+	 * @param from
+	 * @param to
+	 */
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		this.screen = screen;

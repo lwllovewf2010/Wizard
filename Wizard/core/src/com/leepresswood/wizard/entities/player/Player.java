@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
+import com.leepresswood.wizard.entities.spells.Spell;
+import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
@@ -54,11 +56,24 @@ public class Player extends PersonEntity
 	
 	public void attack(Vector2 touch)
 	{
-		//Get the selected spell's mana cost and compare it to the player's current mana.
+		//Get the selected spell from the GUI.
+		Spell s = screen.gui.getActiveSpell();
 		
-		
-		//Cast the selected spell if possible.
-		screen.world.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+		if(s != null)
+		{
+			//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
+			if(screen.gui.canCast(s))
+			{//Cast the selected spell if possible.
+				screen.gui.cast(s);
+					
+				//Parse the type of spell this is.
+				
+					if(s instanceof Fireball)
+						screen.world.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+					else if(s instanceof Aether)
+						screen.world.spells.add(new Aether(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+			}		
+		}
 	}
 
 	protected void calcMovementX(float delta)
