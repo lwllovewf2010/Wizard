@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
 
@@ -35,7 +36,9 @@ public class GameWorld
 	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually.
 	
 	public Player player;
+	public ArrayList<Enemy> enemies;
 	public ArrayList<Spell> spells;
+	public ArrayList<Object> remove;
 	
 	public GameWorld(ScreenGame screen)
 	{
@@ -96,7 +99,22 @@ public class GameWorld
 	private void populateWorld()
 	{
 		player = new Player(screen, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
+		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
+	}
+	
+	public void update(float delta)
+	{
+		//Player and enemies.
+		player.update(delta);
+		
+		//Spells
+		for(Spell s : spells)
+			s.update(delta);
+		
+		//Manage the other items in the world.
+		setCameraBounds();
+		deleteOldObjects();
 	}
 	
 	/**
@@ -111,40 +129,41 @@ public class GameWorld
 		//If this moves off the world's bounds, correct it.
 		if(camera.position.x < WORLD_LEFT)
 			camera.position.x = WORLD_LEFT;
-		if(camera.position.x > WORLD_RIGHT)
+		else if(camera.position.x > WORLD_RIGHT)
 			camera.position.x = WORLD_RIGHT;
-		if(camera.position.y < WORLD_BOTTOM)
+		else if(camera.position.y < WORLD_BOTTOM)
 			camera.position.y = WORLD_BOTTOM;
-		if(camera.position.y > WORLD_TOP)
+		else if(camera.position.y > WORLD_TOP)
 			camera.position.y = WORLD_TOP;
 	}
 	
-	public void update(float delta)
+	/**
+	 * Delete old objects.
+	 */
+	private void deleteOldObjects()
 	{
-		//Player and enemies.
-		player.update(delta);
+		remove = null;
 		
-		//Spells
-		for(Spell s : spells)
-			s.update(delta);
-		
-		//Camera.
-		setCameraBounds();
-		
-		//Deleting old objects.
-		ArrayList<Spell> remove = null;
+		//Delete old spells.
 		for(Spell s : spells)
 			if(!s.active)
 			{
 				if(remove == null)
-					remove = new ArrayList<Spell>();
+					remove = new ArrayList<Object>();
 				
 				remove.add(s);
 			}
 			
+		//Delete old enemies.
+		
+		
+		//Do the actual removal.
 		if(remove != null)
-			for(Spell s : remove)
-				spells.remove(s);
+			for(Object o : remove)
+				if(o instanceof Spell)
+					spells.remove(o);
+				else if(o instanceof Enemy)
+					enemies.remove(o);
 	}
 	
 	public void draw()

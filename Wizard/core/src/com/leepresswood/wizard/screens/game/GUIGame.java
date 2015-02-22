@@ -74,4 +74,13 @@ public class GUIGame
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();
 	}
+
+	/**
+	 * Player scrolled the mouse wheel. Change the active spell.
+	 * @param amount Amount scrolled. Negative scrolls left, and positive scrolls right.
+	 */
+	public void changeSpell(int amount)
+	{
+		
+	}
 }

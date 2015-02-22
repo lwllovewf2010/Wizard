@@ -98,7 +98,8 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean scrolled(int amount)
 	{
-		return false;
+		screen.gui.changeSpell(amount);
+		return true;
 	}
 	
 }
