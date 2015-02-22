@@ -59,21 +59,26 @@ public class Player extends PersonEntity
 		//Get the selected spell from the GUI.
 		Spell s = screen.gui.getActiveSpell();
 		
-		if(s != null)
-		{
-			//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-			if(screen.gui.canCast(s))
-			{//Cast the selected spell if possible.
-				screen.gui.cast(s);
-					
-				//Parse the type of spell this is.
-				
-					if(s instanceof Fireball)
-						screen.world.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
-					else if(s instanceof Aether)
-						screen.world.spells.add(new Aether(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
-			}		
+		//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
+		if(s != null && screen.gui.canCast(s))
+		{//Cast the selected spell
+			screen.gui.cast(s);
+			parseSpell(touch, s);
 		}
+	}
+	
+	/**
+	 * Create the passed spell by determining the type of spell it is.
+	 * @param touch The touch position on the screen.
+	 * @param s The spell to examine.
+	 */
+	private void parseSpell(Vector2 touch, Spell s)
+	{
+		//Parse the type of spell this is.				
+		if(s instanceof Fireball)
+			screen.world.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
+		else if(s instanceof Aether)
+			screen.world.spells.add(new Aether(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
 	}
 
 	protected void calcMovementX(float delta)

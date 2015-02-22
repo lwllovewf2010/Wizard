@@ -22,7 +22,7 @@ public class Aether extends BoltSpell
 	public Aether(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);
-		TIME_MAX = 3f;
+		TIME_MAX = 5f;
 		
 		NAME = "Aether";
 		System.out.println("\tType: " + NAME);
@@ -37,7 +37,7 @@ public class Aether extends BoltSpell
 	@Override
 	protected float setSpeedMax()
 	{
-		return 6f;
+		return 12f;
 	}
 	
 	@Override
