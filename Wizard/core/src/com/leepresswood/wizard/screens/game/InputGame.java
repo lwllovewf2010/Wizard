@@ -42,7 +42,7 @@ public class InputGame implements InputProcessor
 	{
 		switch(keycode)
 		{
-			//Pass WASD and Spacebar to the player for movement.
+			//Use WASD and Spacebar for player movement.
 			case Keys.D:
 				screen.world.player.moving_right = false;
 				break;
@@ -53,7 +53,7 @@ public class InputGame implements InputProcessor
 				screen.world.player.jumping = false;
 				break;
 				
-				//Pass Numerical keys into the GUI for spell switching.
+			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:
 			case Keys.NUM_1:
 			case Keys.NUM_2:
@@ -101,6 +101,9 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
+		//Must determine if it's on the GUI or the game world.
+		
+		
 		Vector3 touch = screen.world.camera.unproject(new Vector3(screenX, screenY, 0));
 		screen.world.player.attack(new Vector2(touch.x, touch.y));
 		

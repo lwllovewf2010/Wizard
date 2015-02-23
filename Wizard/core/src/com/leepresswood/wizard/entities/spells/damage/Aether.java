@@ -22,7 +22,7 @@ public class Aether extends BoltSpell
 	public Aether(ScreenGame screen, Vector2 from, Vector2 to)
 	{
 		super(screen, from, to);
-		TIME_MAX = 5f;
+		TIME_ALIVE_MAX = 5f;
 		
 		NAME = "Aether";
 		System.out.println("\tType: " + NAME);

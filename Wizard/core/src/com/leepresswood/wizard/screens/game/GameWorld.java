@@ -9,6 +9,7 @@ import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
+import com.leepresswood.wizard.entities.spells.SpellFactory;
 
 /**
  * Holds information about the game world. Sets up camera based upon this world.
@@ -37,15 +38,19 @@ public class GameWorld
 	
 	public Player player;
 	public ArrayList<Enemy> enemies;
-	public ArrayList<Spell> spells;
-	public ArrayList<Object> remove;
+	
+	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
+	public ArrayList<Spell> spells;	
+	
+	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
 	
 	public GameWorld(ScreenGame screen)
 	{
 		this.screen = screen;
+		factory_spell = new SpellFactory(screen);
 		
 		setUpWorld();
-		populateWorld();		
+		populateWorld();	
 	}
 	
 	/**

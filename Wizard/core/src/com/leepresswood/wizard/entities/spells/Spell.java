@@ -19,31 +19,16 @@ public abstract class Spell
 	public Vector2 from, to;
 	public boolean active;
 	public float time_current;
-	public float TIME_MAX;
+	public float TIME_ALIVE_MAX;
 	
 	//Sprite stuff.
 	public Sprite sprite;
 	
-	//Mana
+	//Mana cost
 	public float cost = 4f;
 	
 	/**
-	 * Use this constructor for the spell list on the GUI.
-	 * @param t
-	 * @param x
-	 * @param y
-	 */
-	public Spell(Texture t, float x, float y)
-	{
-		sprite = new Sprite(t);
-		sprite.setBounds(x, y, 50f, 50f);
-	}
-	
-	/**
 	 * Use this constructor to create a spell entity in the world.
-	 * @param screen
-	 * @param from
-	 * @param to
 	 */
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
 	{
@@ -58,6 +43,15 @@ public abstract class Spell
 		makeSpriteBounds();
 		
 		System.out.println("Spell:\n\tFrom: " + from + "\n\tTo: " + to);
+	}
+	
+	/**
+	 * Use this constructor for the spell list on the GUI.
+	 */
+	public Spell(Texture t, float x, float y)
+	{
+		sprite = new Sprite(t);
+		sprite.setBounds(x, y, 50f, 50f);
 	}
 	
 	/**
@@ -80,10 +74,10 @@ public abstract class Spell
 		updateCollision();
 		
 		//If time is set, compare it. Above TIME_MAX -> make inactive.
-		if(TIME_MAX > 0f)
+		if(TIME_ALIVE_MAX > 0f)
 		{
 			time_current += delta;
-			if(time_current >= TIME_MAX)
+			if(time_current >= TIME_ALIVE_MAX)
 				active = false;
 		}
 	}

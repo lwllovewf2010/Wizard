@@ -56,29 +56,22 @@ public class Player extends PersonEntity
 	
 	public void attack(Vector2 touch)
 	{
-		//Get the selected spell from the GUI.
-		Spell s = screen.gui.getActiveSpell();
+		//Get the selected spell type from the GUI.
+		Spell spell_type = screen.gui.getActiveSpell();
 		
 		//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-		if(s != null && screen.gui.canCast(s))
-		{//Cast the selected spell
-			screen.gui.cast(s);
-			parseSpell(touch, s);
+		if(spell_type != null && screen.gui.canCast(spell_type))
+		{
+			//Get the spell from the factory.
+			Spell spell = screen.world.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
+			
+			//If this spell is null, we weren't able to instantiate it due to recharge timing.
+			if(spell != null)
+			{
+				//Cast the selected spell
+				screen.gui.cast(spell_type);
+			}
 		}
-	}
-	
-	/**
-	 * Create the passed spell by determining the type of spell it is.
-	 * @param touch The touch position on the screen.
-	 * @param s The spell to examine.
-	 */
-	private void parseSpell(Vector2 touch, Spell s)
-	{
-		//Parse the type of spell this is.				
-		if(s instanceof Fireball)
-			screen.world.spells.add(new Fireball(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
-		else if(s instanceof Aether)
-			screen.world.spells.add(new Aether(screen, new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y)));
 	}
 
 	protected void calcMovementX(float delta)
