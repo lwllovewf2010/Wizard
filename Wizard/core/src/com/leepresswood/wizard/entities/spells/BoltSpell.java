@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -18,9 +19,9 @@ public abstract class BoltSpell extends Spell
 	
 	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
-	public BoltSpell(ScreenGame screen, Vector2 from, Vector2 to)
+	public BoltSpell(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
-		super(screen, from, to);
+		super(screen, from, to, data);
 		
 		//Determine the initial speeds from the max speed and angle between the vectors.
 		SPEED_MAX = setSpeedMax();

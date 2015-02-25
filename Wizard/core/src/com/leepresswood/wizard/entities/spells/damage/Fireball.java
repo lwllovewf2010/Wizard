@@ -2,6 +2,7 @@ package com.leepresswood.wizard.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
@@ -21,9 +22,9 @@ public class Fireball extends BoltSpell
 	private final int MAX_BOUNCES = 5;
 	private int bounces;
 	
-	public Fireball(ScreenGame screen, Vector2 from, Vector2 to)
+	public Fireball(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
-		super(screen, from, to);
+		super(screen, from, to, data);
 		
 		NAME = "Fireball";
 		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces: " + MAX_BOUNCES + "\n\tType: " + NAME);

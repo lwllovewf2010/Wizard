@@ -23,13 +23,8 @@ public class GameWorld
 	public TiledMap map;
 	public OrthogonalTiledMapRenderer map_renderer;	
 	
-	public int WORLD_TOTAL_HORIZONTAL;
-	public int WORLD_TOTAL_VERTICAL;
-	public float WORLD_LEFT;
-	public float WORLD_RIGHT;
-	public float WORLD_TOP;
-	public float WORLD_BOTTOM;
-	
+	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
+	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
 	public final float WORLD_ZOOM = 2.0f;						//Amount added to the world camera's zoom.
 	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
@@ -112,8 +107,10 @@ public class GameWorld
 	{
 		//Player and enemies.
 		player.update(delta);
+		camera.update();
 		
 		//Spells
+		factory_spell.update(delta);
 		for(Spell s : spells)
 			s.update(delta);
 		
@@ -154,8 +151,7 @@ public class GameWorld
 			if(!s.active)
 			{
 				if(remove == null)
-					remove = new ArrayList<Object>();
-				
+					remove = new ArrayList<Object>();				
 				remove.add(s);
 			}
 			
@@ -181,7 +177,6 @@ public class GameWorld
 		screen.batch.begin();
 			player.draw(screen.batch);
 			
-			//Spells
 			for(Spell s : spells)
 				s.draw(screen.batch);
 		screen.batch.end();

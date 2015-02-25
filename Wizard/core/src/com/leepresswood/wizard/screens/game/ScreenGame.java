@@ -35,21 +35,14 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
-		//Be sure to update the camera.
-		world.update(delta);
-		world.camera.update();
-		
-		//GUI camera doesn't need to be updated.
+		world.update(delta);		
 		gui.update(delta);
 	}
 	
 	@Override
 	public void draw()
 	{
-		batch.setProjectionMatrix(world.camera.combined);
 		world.draw();
-
-		batch.setProjectionMatrix(gui.camera.combined);
 		gui.draw();
 	}
 	

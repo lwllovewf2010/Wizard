@@ -7,8 +7,6 @@ import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.entities.spells.damage.Aether;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -68,8 +66,9 @@ public class Player extends PersonEntity
 			//If this spell is null, we weren't able to instantiate it due to recharge timing.
 			if(spell != null)
 			{
-				//Cast the selected spell
-				screen.gui.cast(spell_type);
+				//Create the selected spell.
+				screen.gui.cast(spell);
+				screen.world.spells.add(spell);
 			}
 		}
 	}

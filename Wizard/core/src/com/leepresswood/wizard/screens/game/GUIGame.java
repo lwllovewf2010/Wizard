@@ -94,6 +94,7 @@ public class GUIGame
 	 */
 	public void draw()
 	{
+		screen.batch.setProjectionMatrix(camera.combined);
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
 				

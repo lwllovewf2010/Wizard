@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Spells are listed by their names. They are grouped by their type (damage, defense, support) and then by their element.-->
+<spells>
+	<!--Damage-->
+	<fireball>
+		
+	</fireball>
+	<aether>
+	    
+	</aether>
+	
+	<!--Defense-->
+	
+	
+	<!--Support-->
+	
+</spells>

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -18,8 +19,8 @@ public abstract class Spell
 	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
 	public boolean active;
-	public float time_current;
-	public float TIME_ALIVE_MAX;
+	public float time_alive_current;
+	public float time_alive_max;
 	
 	//Sprite stuff.
 	public Sprite sprite;
@@ -30,7 +31,7 @@ public abstract class Spell
 	/**
 	 * Use this constructor to create a spell entity in the world.
 	 */
-	public Spell(ScreenGame screen, Vector2 from, Vector2 to)
+	public Spell(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
 		this.screen = screen;
 		this.from = from;
@@ -74,10 +75,10 @@ public abstract class Spell
 		updateCollision();
 		
 		//If time is set, compare it. Above TIME_MAX -> make inactive.
-		if(TIME_ALIVE_MAX > 0f)
+		if(time_alive_max > 0f)
 		{
-			time_current += delta;
-			if(time_current >= TIME_ALIVE_MAX)
+			time_alive_current += delta;
+			if(time_alive_current >= time_alive_max)
 				active = false;
 		}
 	}
