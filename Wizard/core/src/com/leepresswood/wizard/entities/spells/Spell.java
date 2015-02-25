@@ -14,20 +14,25 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
 public abstract class Spell
 {
 	protected ScreenGame screen;
-	public String NAME;
+	
+	//Sprite and texture data.
+	private final String TEXTURE_BASE = "person/textures/";
+	private final String TEXTURE_EXTENSION = ".png";
+	public Sprite sprite;
+	
+	//XML data
+	public String name;
+	//public SpellType type;
+	public float mana_cost;
+	public Texture texture;
+	public float recharge;
 	
 	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
 	public boolean active;
 	public float time_alive_current;
 	public float time_alive_max;
-	
-	//Sprite stuff.
-	public Sprite sprite;
-	
-	//Mana cost
-	public float cost = 4f;
-	
+
 	/**
 	 * Use this constructor to create a spell entity in the world.
 	 */
@@ -37,13 +42,19 @@ public abstract class Spell
 		this.from = from;
 		this.to = to;
 		
-		//Create an active version of this spell.
-		active = true;
+		//Read the data from the XML file.
+		name = data.get("name");
+		texture = screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		//type = SpellType.valueOf(data.get("type"));
+		mana_cost = data.getFloat("cost");
+		recharge = data.getFloat("recharge");
 		
-		sprite = new Sprite(makeSpriteTexture());
+		//Create an active version of this spell.
+		active = true;		
+		sprite = new Sprite(texture);
 		makeSpriteBounds();
 		
-		System.out.println("Spell:\n\tFrom: " + from + "\n\tTo: " + to);
+		System.out.println("Spell:\n\tName: " + name + "\n\tFrom: " + from + "\n\tTo: " + to);
 	}
 	
 	/**
@@ -54,11 +65,6 @@ public abstract class Spell
 		sprite = new Sprite(t);
 		sprite.setBounds(x, y, 50f, 50f);
 	}
-	
-	/**
-	 * Set sprite's texture.
-	 */
-	protected abstract Texture makeSpriteTexture();
 	
 	/**
 	 * Create the sprite using the "from" and "to" vectors.

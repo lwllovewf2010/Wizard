@@ -3,7 +3,6 @@ package com.leepresswood.wizard.entities.spells.damage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
@@ -25,20 +24,7 @@ public class Aether extends BoltSpell
 		super(screen, from, to, data);
 		time_alive_max = 5f;
 		
-		NAME = "Aether";
-		System.out.println("\tType: " + NAME);
-	}
-	
-	@Override
-	protected Texture makeSpriteTexture()
-	{
-		return screen.game.assets.getTexture(Assets.TEXTURE_HOLD);
-	}
-
-	@Override
-	protected float setSpeedMax()
-	{
-		return 12f;
+		//System.out.println("\tType: " + name);
 	}
 	
 	@Override

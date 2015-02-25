@@ -3,39 +3,21 @@ package com.leepresswood.wizard.data;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class Assets extends AssetManager
-{
-	public static final int TEXTURE_HOLD = 0;
-	
+{	
 	public static final int MAP_TEST = 0;
 	
 	public Assets()
 	{
-		
 		//Maps
 		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		load("maps/map.tmx", TiledMap.class);
-	}
-	
-	public Texture getTexture(int texture)
-	{
-		Texture t;
-		switch(texture)
-		{
-			case TEXTURE_HOLD:
-				t = new Texture("person/textures/hold.png");
-				break;
-			default:
-				System.out.println("Error: Texture type " + texture + " not found.");
-				return null;
-		}
 		
-		t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		return t;
+		//Textures
+		load("person/textures/hold.png", Texture.class);
 	}
 	
 	public TiledMap getMap(int map)

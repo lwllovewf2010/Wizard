@@ -1,9 +1,9 @@
 package com.leepresswood.wizard.entities.player;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.Spell;
@@ -173,7 +173,7 @@ public class Player extends PersonEntity
 	@Override
 	protected void setSprites(ScreenGame screen, float x, float y)
 	{
-		sprite = new Sprite(screen.game.assets.getTexture(Assets.TEXTURE_HOLD));
+		sprite = new Sprite(screen.game.assets.get("person/textures/hold.png", Texture.class));
 		sprite.setBounds(x, y, WIDTH, HEIGHT);
 	}
 

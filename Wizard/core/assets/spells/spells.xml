@@ -3,10 +3,27 @@
 <spells>
 	<!--Damage-->
 	<fireball>
-		
+	    <name>Fireball</name>
+	    <texture>hold</texture>
+	    <type>Fire</type>
+	    <cost>4.0</cost>
+	    <recharge>0.5</recharge>
+	    
+	    <damage>5.0</damage>	    	    
+	    <speed>23.0</speed>	   
+	     
+		<impulse>0.7</impulse>
+		<bounces>5</bounces>
 	</fireball>
 	<aether>
+	    <name>Aether</name>
+	    <texture>hold</texture>
+	    <type>Void</type>
+	    <cost>2.0</cost>
+	    <recharge>0.5</recharge>
 	    
+	    <damage>2.0</damage>	    
+	    <speed>10.0</speed>
 	</aether>
 	
 	<!--Defense-->

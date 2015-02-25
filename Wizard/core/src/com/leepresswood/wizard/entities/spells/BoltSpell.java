@@ -14,8 +14,10 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public abstract class BoltSpell extends Spell
 {
+	public float damage;
+	
 	public float speed_x, speed_y;
-	public float SPEED_MAX;
+	public float speed_max;
 	
 	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
@@ -23,19 +25,17 @@ public abstract class BoltSpell extends Spell
 	{
 		super(screen, from, to, data);
 		
+		//Read the data from the XML file.
+		damage = data.getFloat("damage");
+		speed_max = data.getFloat("speed");
+		
 		//Determine the initial speeds from the max speed and angle between the vectors.
-		SPEED_MAX = setSpeedMax();
 		float angle = to.sub(from).angle();
-		speed_x = SPEED_MAX * MathUtils.cosDeg(angle);
-		speed_y = SPEED_MAX * MathUtils.sinDeg(angle);
+		speed_x = speed_max * MathUtils.cosDeg(angle);
+		speed_y = speed_max * MathUtils.sinDeg(angle);
 		
 		System.out.println("\tAngle: " + angle + "\n\tSpeed X: " + speed_x + "\n\tSpeed Y: " + speed_y);
 	}
-	
-	/**
-	 * Set the speed to use in position calculations.
-	 */
-	protected abstract float setSpeedMax();
 	
 	@Override
 	protected void makeSpriteBounds()

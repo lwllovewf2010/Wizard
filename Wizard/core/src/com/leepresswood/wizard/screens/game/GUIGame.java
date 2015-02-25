@@ -3,8 +3,8 @@ package com.leepresswood.wizard.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.player.attributes.Bar;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
@@ -75,8 +75,8 @@ public class GUIGame
 	{
 		spells = new Spell[MAX_SPELLS];
 		
-		spells[0] = new Fireball(screen.game.assets.getTexture(Assets.TEXTURE_HOLD), 1f, 1f);
-		spells[1] = new Aether(screen.game.assets.getTexture(Assets.TEXTURE_HOLD), 52f, 1f);
+		spells[0] = new Fireball(screen.game.assets.get("person/textures/hold.png", Texture.class), 1f, 1f);
+		spells[1] = new Aether(screen.game.assets.get("person/textures/hold.png", Texture.class), 52f, 1f);
 	}
 	
 	/**
@@ -161,7 +161,7 @@ public class GUIGame
 	 */
 	public boolean canCast(Spell s)
 	{
-		return bar_mana.current_bar_value >= s.cost;
+		return bar_mana.current_bar_value >= s.mana_cost;
 	}
 	
 	/**
@@ -170,6 +170,6 @@ public class GUIGame
 	 */
 	public void cast(Spell s)
 	{
-		bar_mana.change(-s.cost);
+		bar_mana.change(-s.mana_cost);
 	}
 }

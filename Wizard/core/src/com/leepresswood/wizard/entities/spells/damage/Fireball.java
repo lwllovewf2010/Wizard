@@ -3,7 +3,6 @@ package com.leepresswood.wizard.entities.spells.damage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
@@ -18,32 +17,23 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public class Fireball extends BoltSpell
 {	
-	protected final float IMPULSE = 0.7f;
-	private final int MAX_BOUNCES = 5;
+	private float impulse;
+	private int bounces_max;
 	private int bounces;
 	
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
 		super(screen, from, to, data);
 		
-		NAME = "Fireball";
-		System.out.println("\tImpulse: " + IMPULSE + "\n\tMax Bounces: " + MAX_BOUNCES + "\n\tType: " + NAME);
+		//Read the data from the XML file.
+		impulse = data.getFloat("impulse");
+		bounces_max = data.getInt("bounces");
+
+		System.out.println("\tImpulse: " + impulse + "\n\tMax Bounces: " + bounces_max);// + "\n\tType: " + type);
 	}
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
 
-	@Override
-	protected Texture makeSpriteTexture()
-	{
-		return screen.game.assets.getTexture(Assets.TEXTURE_HOLD);
-	}
-	
-	@Override
-	protected float setSpeedMax()
-	{
-		return 23f;
-	}
-	
 	@Override
 	protected void updatePosition(float delta)
 	{
@@ -67,11 +57,11 @@ public class Fireball extends BoltSpell
 			sprite.setY(screen.world.GROUND);
 			
 			//Flip Y speed and impulse to shorten the bounce.
-			speed_y *= -IMPULSE;
+			speed_y *= -impulse;
 		}
 		
 		//Stop spell if bouncing has reached its max.
-		if(bounces == MAX_BOUNCES)
+		if(bounces == bounces_max)
 			active = false;
 	}
 }
