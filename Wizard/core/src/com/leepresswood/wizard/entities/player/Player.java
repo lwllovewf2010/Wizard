@@ -26,7 +26,11 @@ public class Player extends PersonEntity
 		super(screen, x, y);
 		
 		//Display player information.
-		System.out.println("Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() + "\n\tWidth: " + sprite.getWidth() + "\n\tHeight: " + sprite.getHeight());
+		System.out.println(
+			"Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
+			+ "\n\tWidth: " + sprite.getWidth() 
+			+ "\n\tHeight: " + sprite.getHeight()
+		);
 	}
 	
 	/**

@@ -18,8 +18,6 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
 public class Fireball extends BoltSpell
 {	
 	private float impulse;
-	private int bounces_max;
-	private int bounces;
 	
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
@@ -27,9 +25,10 @@ public class Fireball extends BoltSpell
 		
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
-		bounces_max = data.getInt("bounces");
 
-		System.out.println("\tImpulse: " + impulse + "\n\tMax Bounces: " + bounces_max);// + "\n\tType: " + type);
+		System.out.println(
+			"\tImpulse: " + impulse
+		);// + "\n\tType: " + type);
 	}
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
@@ -50,18 +49,12 @@ public class Fireball extends BoltSpell
 	{
 		//Check floor for bounce.
 		if(sprite.getY() < screen.world.GROUND)
-		{
-			bounces++;
-			
+		{			
 			//Set Y to the ground level.
 			sprite.setY(screen.world.GROUND);
 			
 			//Flip Y speed and impulse to shorten the bounce.
 			speed_y *= -impulse;
 		}
-		
-		//Stop spell if bouncing has reached its max.
-		if(bounces == bounces_max)
-			active = false;
 	}
 }

@@ -22,7 +22,7 @@ public abstract class Spell
 	
 	//XML data
 	public String name;
-	//public SpellType type;
+	public SpellType type;
 	public float mana_cost;
 	public Texture texture;
 	public float recharge;
@@ -45,16 +45,24 @@ public abstract class Spell
 		//Read the data from the XML file.
 		name = data.get("name");
 		texture = screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
-		//type = SpellType.valueOf(data.get("type"));
+		type = SpellType.valueOf(data.get("type").toUpperCase());
 		mana_cost = data.getFloat("cost");
 		recharge = data.getFloat("recharge");
+		time_alive_max = data.getFloat("time_alive");
 		
 		//Create an active version of this spell.
 		active = true;		
 		sprite = new Sprite(texture);
 		makeSpriteBounds();
 		
-		System.out.println("Spell:\n\tName: " + name + "\n\tFrom: " + from + "\n\tTo: " + to);
+		System.out.println(
+			"Spell:\n\tName: " + name
+			+ "\n\tType: " + type
+			+ "\n\tMana Cost: " + mana_cost 
+			+ "\n\tRecharge: " + recharge 
+			+ "\n\tFrom: " + from 
+			+ "\n\tTo: " + to
+		);
 	}
 	
 	/**

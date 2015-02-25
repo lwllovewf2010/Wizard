@@ -30,7 +30,7 @@ public class SpellFactory
 		//Read information about the spells from the XML data file. Stores this information into a data root node that can be used to gather data about each spell.
 		try
 		{
-			data_root = new XmlReader().parse(Gdx.files.internal("spells/spells.xml"));
+			data_root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
 		}
 		catch(IOException e)
 		{
