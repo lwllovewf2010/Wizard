@@ -64,10 +64,10 @@ public class Player extends PersonEntity
 		//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
 		if(spell_type != null && screen.gui.canCast(spell_type))
 		{
-			//Get the spell from the factory.
+			//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
 			Spell spell = screen.world.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
 			
-			//If this spell is null, we weren't able to instantiate it due to recharge timing.
+			//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
 			if(spell != null)
 			{
 				//Create the selected spell.
@@ -80,8 +80,9 @@ public class Player extends PersonEntity
 	protected void calcMovementX(float delta)
 	{
 		//Deceleration check. Decelerate if not moving, if both left and right are pressed at the same time, or if moving in one direction but pressing another.
-		//Note: Simplifying the boolean math. ((A and B) or (!A and !B)) is (A == B)
-		//if(!moving_right && !moving_left || moving_right && moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))
+		/* if(!moving_right && !moving_left || moving_right && moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))
+		 * Note: Simplifying the boolean math. ((A and B) or (!A and !B)) is (A == B)
+		 */		
 		if(moving_right == moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))	
 		{
 			//Move command is no longer pressed. Move to 0 speed over time.
@@ -185,20 +186,12 @@ public class Player extends PersonEntity
 	protected void setMovementVariables()
 	{
 		//X
-		facing_left = false;
-		moving_left = false;
-		moving_right = false;
-		speed_current_x = 0f;
 		accel_x = 5f;
 		decel_x = 2f * accel_x;
 		speed_max_x = 5f;
 		
 		//Y
-		jumping = false;
-		jump_stop_hop = false;
 		jump_start_speed = 10f;
-		speed_current_y = 0f;
-		jump_time_current = 0f;
 		jump_time_max = 0.25f;
 	}
 

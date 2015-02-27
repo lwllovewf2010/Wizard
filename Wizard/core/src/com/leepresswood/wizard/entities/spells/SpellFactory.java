@@ -62,16 +62,15 @@ public class SpellFactory
 		{
 			time_recharge_current = 0f;
 			
-			Spell s;
+			Spell s = null;
 			if(type == Fireball.class)
 				s = new Fireball(screen, from, to, data_root.getChildByName("fireball"));
 			else if(type == Aether.class)
 				s = new Aether(screen, from, to, data_root.getChildByName("aether"));
-			else
-				return null;
 
 			//Set the new recharge time before we go.
-			time_recharge_next = s.recharge;
+			if(s != null)
+				time_recharge_next = s.recharge;
 			return s;
 		}
 		

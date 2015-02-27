@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
+import com.leepresswood.wizard.entities.enemies.EnemyFactory;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.SpellFactory;
@@ -29,9 +30,11 @@ public class GameWorld
 	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
 	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
-	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually.
+	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	
 	public Player player;
+	
+	public EnemyFactory factory_enemy;							//Creates enemies.
 	public ArrayList<Enemy> enemies;
 	
 	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
