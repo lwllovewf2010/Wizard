@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Enemies are listed by their names. They are grouped by their type (ground, air, boss). Afterward, they are sorted by their alphabetical name.-->
 <spells>
-	<!--Damage-->
-	<fireball>
-	    <name>Fireball</name>
-	    <texture>hold</texture>
-	    <type>Fire</type>
-	    <cost>4.0</cost>
-	    <recharge>0.5</recharge>
-	    <time_alive>3.0</time_alive>
+	<!--Ground-->
+	<skeleton>
 	    
-	    <damage>5.0</damage>	    	    
-	    <speed>23.0</speed>	   
-	     
-		<impulse>0.7</impulse>
-		<speed_decay>0.9</speed_decay>
-	</fireball>
-	<aether>
-	    <name>Aether</name>
-	    <texture>hold</texture>
-	    <type>Void</type>
-	    <cost>2.0</cost>
-	    <recharge>0.5</recharge>
-	    <time_alive>3.0</time_alive>
-	    
-	    <damage>2.0</damage>	    
-	    <speed>11.0</speed>
-	</aether>
+	</skeleton>
 	
-	<!--Defense-->
+	<!--Air-->
 	
 	
-	<!--Support-->
+	<!--Boss-->
 	
 </spells>
