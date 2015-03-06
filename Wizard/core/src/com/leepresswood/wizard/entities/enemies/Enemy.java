@@ -8,7 +8,8 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public abstract class Enemy extends PersonEntity
 {
-
+	public boolean do_jump;
+	
 	public Enemy(ScreenGame screen, float x, float y)
 	{
 		super(screen, x, y);

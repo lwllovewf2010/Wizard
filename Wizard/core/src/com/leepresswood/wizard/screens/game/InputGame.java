@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
 
 public class InputGame implements InputProcessor
 {
@@ -28,6 +29,8 @@ public class InputGame implements InputProcessor
 			case Keys.SPACE:
 				screen.world.player.jumping = true;
 				break;
+			case Keys.Q:
+				screen.world.factory_enemy.getEnemy(Skeleton.class, true);
 			default:
 				break;
 		}

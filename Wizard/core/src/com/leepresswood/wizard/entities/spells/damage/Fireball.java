@@ -18,6 +18,7 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
 public class Fireball extends BoltSpell
 {	
 	private float impulse;
+	private float speed_decay;
 	
 	public Fireball(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
@@ -25,6 +26,7 @@ public class Fireball extends BoltSpell
 		
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
+		speed_decay = data.getFloat("speed_decay");
 
 		System.out.println(
 			"\tImpulse: " + impulse
@@ -55,6 +57,9 @@ public class Fireball extends BoltSpell
 			
 			//Flip Y speed and impulse to shorten the bounce.
 			speed_y *= -impulse;
+			
+			//Decay the X speed by the speed decay.
+			speed_x *= speed_decay;
 		}
 	}
 }

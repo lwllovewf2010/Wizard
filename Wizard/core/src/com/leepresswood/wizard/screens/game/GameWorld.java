@@ -46,6 +46,7 @@ public class GameWorld
 	{
 		this.screen = screen;
 		factory_spell = new SpellFactory(screen);
+		factory_enemy = new EnemyFactory(screen);
 		
 		setUpWorld();
 		populateWorld();	

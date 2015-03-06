@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Spells are listed by their names. They are grouped by their type (damage, defense, support). Afterward, they are sorted by their element name and then by their names.-->
+<!--Enemies are listed by their names. They are grouped by their type (ground, air, boss). Afterward, they are sorted by their alphabetical name.-->
 <spells>
 	<!--Damage-->
 	<fireball>

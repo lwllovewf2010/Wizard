@@ -55,16 +55,20 @@ public class EnemyFactory
 	 * @param left Spawn location. True if left. False if right.
 	 * @return An instance of the desired enemy. Will be null if spell can't be summoned at this time due to recharging.
 	 */
-	public Enemy getSpell(Class<?> type, boolean left)
+	public Enemy getEnemy(Class<?> type, boolean left)
 	{
 		//If we're allowed to spawn another enemy. This depends upon the recharge time of the last spawn.
 		if(time_recharge_current >= time_recharge_next)
 		{
 			time_recharge_current = 0f;
 			
+			//Left or right side?
+			float x = left ? 0 : screen.world.WORLD_TOTAL_HORIZONTAL;
+			float y = screen.world.GROUND;
+			
 			Enemy e = null;			
 			if(type == Skeleton.class)
-				e = new Skeleton();			
+				e = new Skeleton(screen, x, y);			
 			return e;
 		}
 		

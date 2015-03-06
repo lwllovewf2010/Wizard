@@ -1,12 +1,56 @@
 package com.leepresswood.wizard.entities.enemies.creeps.ground;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.entities.enemies.Enemy;
+import com.leepresswood.wizard.screens.game.ScreenGame;
 
 
 public class Skeleton extends Enemy
 {
-	
-	public Skeleton()
+
+	public Skeleton(ScreenGame screen, float x, float y)
+	{
+		super(screen, x, y);
+	}
+
+	@Override
+	protected void calcMovementX(float delta)
+	{
+	}
+
+	@Override
+	protected void calcMovementY(float delta)
+	{
+	}
+
+	@Override
+	protected void setSprites(ScreenGame screen, float x, float y)
+	{
+	}
+
+	@Override
+	protected void setMovementVariables()
+	{
+	}
+
+	@Override
+	public void attack(Vector2 touch)
+	{
+	}
+
+	@Override
+	public void die()
+	{
+	}
+
+	@Override
+	protected void updateTiming(float delta)
+	{
+	}
+
+	@Override
+	public void draw(SpriteBatch batch)
 	{
 	}
 	
