@@ -110,6 +110,9 @@ public class GameWorld
 	public void update(float delta)
 	{
 		//Player and enemies.
+		factory_enemy.update(delta);
+		for(Enemy e : enemies)
+			e.update(delta);
 		player.update(delta);
 		camera.update();
 		
@@ -183,6 +186,8 @@ public class GameWorld
 			
 			for(Spell s : spells)
 				s.draw(screen.batch);
+			for(Enemy e : enemies)
+				e.draw(screen.batch);
 		screen.batch.end();
 	}
 }

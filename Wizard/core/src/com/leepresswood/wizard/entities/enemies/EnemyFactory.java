@@ -68,7 +68,7 @@ public class EnemyFactory
 			
 			Enemy e = null;			
 			if(type == Skeleton.class)
-				e = new Skeleton(screen, x, y, data_root.getChildByName("skeleton"));			
+				e = new Skeleton(screen, x, y, data_root.getChildByName("skeleton"));
 			return e;
 		}
 		

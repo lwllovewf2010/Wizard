@@ -30,7 +30,7 @@ public class InputGame implements InputProcessor
 				screen.world.player.jumping = true;
 				break;
 			case Keys.Q:
-				screen.world.factory_enemy.getEnemy(Skeleton.class, true);
+				screen.world.enemies.add(screen.world.factory_enemy.getEnemy(Skeleton.class, true));
 			default:
 				break;
 		}

@@ -3,7 +3,8 @@
 <spells>
 	<!--Ground-->
 	<skeleton>
-	    
+	    <name>Skeleton</name>
+	    <texture>hold</texture>
 	</skeleton>
 	
 	<!--Air-->

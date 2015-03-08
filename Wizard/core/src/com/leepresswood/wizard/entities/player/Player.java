@@ -48,7 +48,7 @@ public class Player extends PersonEntity
 		//Check to see if the player has died.
 		if(screen.gui.bar_health.current_bar_value <= 0)
 		{//Dead.
-			
+			die();
 		}
 		else
 		{//Not dead. Set invincibility frames.

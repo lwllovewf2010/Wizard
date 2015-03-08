@@ -17,21 +17,8 @@ public abstract class GroundEnemy extends Enemy
 	}
 
 	@Override
-	protected void calcMovementX(float delta)
-	{
-		//Enemy wants to move toward the center of the map.
-		if(sprite.getX() > screen.world.WORLD_TOTAL_HORIZONTAL / 2f)
-			speed_current_x -= accel_x;
-		else
-			speed_current_x += accel_x;
-			
-			sprite.translateX(speed_current_x * delta);
-		
-	}
-
-	@Override
 	protected void calcMovementY(float delta)
-	{
+	{//Ground enemies are affected by gravity.
 		//If we asked the enemy to jump, do a jump calculation.
 		if(do_jump)
 		{
@@ -56,20 +43,5 @@ public abstract class GroundEnemy extends Enemy
 			if(jumping)
 				jump_stop_hop = true;
 		}
-	}
-
-	@Override
-	protected void setSprites(ScreenGame screen, float x, float y)
-	{
-	}
-
-	@Override
-	public void die()
-	{
-	}
-
-	@Override
-	protected void updateTiming(float delta)
-	{
 	}
 }
