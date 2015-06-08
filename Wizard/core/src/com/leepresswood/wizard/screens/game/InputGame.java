@@ -31,31 +31,6 @@ public class InputGame implements InputProcessor
 				break;
 			case Keys.Q:
 				screen.world.enemies.add(screen.world.factory_enemy.getEnemy(Skeleton.class, true));
-			default:
-				break;
-		}
-		
-		//Display key information.
-		//System.out.println("Key Down: " + Keys.toString(keycode));
-		return true;
-	}
-
-	@Override
-	public boolean keyUp(int keycode)
-	{
-		switch(keycode)
-		{
-			//Use WASD and Spacebar for player movement.
-			case Keys.D:
-				screen.world.player.moving_right = false;
-				break;
-			case Keys.A:
-				screen.world.player.moving_left = false;
-				break;
-			case Keys.SPACE:
-				screen.world.player.jumping = false;
-				break;
-				
 			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:
 			case Keys.NUM_1:
@@ -79,6 +54,30 @@ public class InputGame implements InputProcessor
 			case Keys.NUMPAD_9:
 				String key = Keys.toString(keycode);
 				screen.gui.changeSpell(Integer.parseInt(key.substring(key.length() - 1)));				
+				break;
+			default:
+				break;
+		}
+		
+		//Display key information.
+		//System.out.println("Key Down: " + Keys.toString(keycode));
+		return true;
+	}
+
+	@Override
+	public boolean keyUp(int keycode)
+	{
+		switch(keycode)
+		{
+			//Use WASD and Spacebar for player movement.
+			case Keys.D:
+				screen.world.player.moving_right = false;
+				break;
+			case Keys.A:
+				screen.world.player.moving_left = false;
+				break;
+			case Keys.SPACE:
+				screen.world.player.jumping = false;
 				break;
 			default:
 				break;

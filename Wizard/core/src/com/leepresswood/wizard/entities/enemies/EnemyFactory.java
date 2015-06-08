@@ -2,13 +2,9 @@ package com.leepresswood.wizard.entities.enemies;
 
 import java.io.IOException;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
-import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.entities.spells.damage.Aether;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -63,7 +59,7 @@ public class EnemyFactory
 			time_recharge_current = 0f;
 			
 			//Left or right side?
-			float x = left ? 0 : screen.world.WORLD_TOTAL_HORIZONTAL;
+			float x = left ? 0f : screen.world.WORLD_TOTAL_HORIZONTAL;
 			float y = screen.world.GROUND;
 			
 			Enemy e = null;			
