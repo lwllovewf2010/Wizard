@@ -40,7 +40,7 @@ public class SpellFactory
 	
 	/**
 	 * Update the timing to see if it's possible to cast another spell.
-	 * @param delta
+	 * @param delta Change in time.
 	 */
 	public void update(float delta)
 	{//If time to recharge is above the max, we can cast the spell again. We want to limit this value to avoid a potential overflow (in a few billion seconds).

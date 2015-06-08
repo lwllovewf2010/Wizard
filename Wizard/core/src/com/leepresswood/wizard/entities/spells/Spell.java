@@ -8,7 +8,8 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
- * The Spell class is a parent to the various spells in the game. All spells will have a cast-to position, a cast-from position, a mana cost, a delay, and an animation. 
+ * The Spell class is a parent to the various spells in the game. All spells will have a cast-to position, 
+ * a cast-from position, a mana cost, a delay, and an animation. 
  * @author Lee
  */
 public abstract class Spell
@@ -35,6 +36,10 @@ public abstract class Spell
 
 	/**
 	 * Use this constructor to create a spell entity in the world.
+	 * @param screen Reference to the screen.
+	 * @param from Player's starting location.
+	 * @param to Click point.
+	 * @param data Spell data.
 	 */
 	public Spell(ScreenGame screen, Vector2 from, Vector2 to, Element data)
 	{
@@ -88,7 +93,7 @@ public abstract class Spell
 		updatePosition(delta);
 		updateCollision();
 		
-		//If time is set, compare it. Above TIME_MAX -> make inactive.
+		//If time is set, compare it. Above TIME_MAX -> make inactive. Note that a negative time alive will make endless as far as time is concerned.
 		if(time_alive_max > 0f)
 		{
 			time_alive_current += delta;

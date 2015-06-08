@@ -15,14 +15,12 @@ public class Bar
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.recovery_amount = recovery_amount;
 		
 		//This is the return value for the width. You will come here if current_bar_value = max_bar_value.
 		MAX_BAR_WIDTH = width;
-		
 		max_bar_value = 100f;
 		current_bar_value = max_bar_value;
-		
-		this.recovery_amount = recovery_amount;
 	}
 	
 	/**

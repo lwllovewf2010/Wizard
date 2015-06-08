@@ -27,8 +27,7 @@ public class GameWorld
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
 	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
 	public final float WORLD_ZOOM = 2.0f;						//Amount added to the world camera's zoom.
-	public final float WORLD_PLAYER_Y_SKEW = 4f;				//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
-	
+	public final float WORLD_PLAYER_Y_SKEW = 4.0f;			//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
 	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	
@@ -105,6 +104,7 @@ public class GameWorld
 		player = new Player(screen, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
+		remove = new ArrayList<Object>();
 	}
 	
 	public void update(float delta)
@@ -114,7 +114,6 @@ public class GameWorld
 		for(Enemy e : enemies)
 			e.update(delta);
 		player.update(delta);
-		camera.update();
 		
 		//Spells
 		factory_spell.update(delta);
@@ -144,6 +143,8 @@ public class GameWorld
 			camera.position.y = WORLD_BOTTOM;
 		else if(camera.position.y > WORLD_TOP)
 			camera.position.y = WORLD_TOP;
+		
+		camera.update();
 	}
 	
 	/**
@@ -151,22 +152,18 @@ public class GameWorld
 	 */
 	private void deleteOldObjects()
 	{
-		remove = null;
+		remove.clear();
 		
 		//Delete old spells.
 		for(Spell s : spells)
-			if(!s.active)
-			{
-				if(remove == null)
-					remove = new ArrayList<Object>();				
+			if(!s.active)				
 				remove.add(s);
-			}
 			
 		//Delete old enemies.
 		
 		
 		//Do the actual removal.
-		if(remove != null)
+		if(!remove.isEmpty())
 			for(Object o : remove)
 				if(o instanceof Spell)
 					spells.remove(o);
@@ -181,13 +178,12 @@ public class GameWorld
 		
 		//Game objects
 		screen.batch.setProjectionMatrix(camera.combined);
-		screen.batch.begin();
-			player.draw(screen.batch);
-			
+		screen.batch.begin();			
 			for(Spell s : spells)
 				s.draw(screen.batch);
 			for(Enemy e : enemies)
 				e.draw(screen.batch);
+			player.draw(screen.batch);
 		screen.batch.end();
 	}
 }
