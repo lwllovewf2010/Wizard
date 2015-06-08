@@ -53,11 +53,12 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
-		//Enemy wants to move toward the center of the map.
 		if(sprite.getX() > screen.world.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x;
-		else
+		else if(sprite.getX() < screen.world.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
 			speed_current_x += accel_x;
+		else
+			speed_current_x = 0f;
 		
 		//Limit speed by max.
 		if(Math.abs(speed_current_x) > speed_max_x)
