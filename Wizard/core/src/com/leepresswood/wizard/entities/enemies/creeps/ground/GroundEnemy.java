@@ -1,5 +1,10 @@
 package com.leepresswood.wizard.entities.enemies.creeps.ground;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.Spell;
@@ -12,9 +17,16 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public abstract class GroundEnemy extends Enemy
 {
+	public HashMap<String, Boolean> spell_list;
+	public boolean being_knocked_back;
+	public float knockback_time_final = 0.5f;
+	public float knockback_time_current;
+	
 	public GroundEnemy(ScreenGame screen, float x, float y, Element element)
 	{
 		super(screen, x, y, element);
+		
+		spell_list = new HashMap<String, Boolean>();
 	}
 
 	@Override
@@ -53,12 +65,20 @@ public abstract class GroundEnemy extends Enemy
 	public void hit(Spell s)
 	{
 		//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
+		if(spell_list.containsKey(s.toString()))
+		{
+			float angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
 		
-		
-		//Get the damage amount. This allows us to update the life.
-		
-		
-		//Check to see if the enemy has died.
-		
+			//The angle of the knockback will be the flipped version of this angle. 
+			angle += 180f;
+			System.out.println(angle);
+			
+			//Do the knockback and set invincibility to this particular spell.
+			float knockback_speed = 1f * Gdx.graphics.getDeltaTime();
+			
+			spell_list.put(s.toString(), true);
+			
+			//Check to see if the enemy has died.
+		}
 	}
 }
