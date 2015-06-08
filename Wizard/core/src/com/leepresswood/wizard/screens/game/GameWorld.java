@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.screens.game;
 
 import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.EnemyFactory;
+import com.leepresswood.wizard.entities.enemies.creeps.ground.GroundEnemy;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.SpellFactory;
@@ -119,6 +121,27 @@ public class GameWorld
 		factory_spell.update(delta);
 		for(Spell s : spells)
 			s.update(delta);
+		
+		//Movement is finished, so do collision detection.
+		for(Enemy e : enemies)
+		{
+			if(player.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
+			{
+				player.hit(e);
+				break;
+			}
+			
+			if(e instanceof GroundEnemy)
+			{
+				for(Spell s : spells)
+				{
+					if(e.sprite.getBoundingRectangle().overlaps(s.sprite.getBoundingRectangle()))
+					{
+						((GroundEnemy) e).hit(s);
+					}
+				}
+			}
+		}
 		
 		//Manage the other items in the world.
 		setCameraBounds();

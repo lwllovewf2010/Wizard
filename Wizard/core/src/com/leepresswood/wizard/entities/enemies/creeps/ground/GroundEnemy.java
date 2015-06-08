@@ -2,6 +2,7 @@ package com.leepresswood.wizard.entities.enemies.creeps.ground;
 
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.Enemy;
+import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -43,5 +44,21 @@ public abstract class GroundEnemy extends Enemy
 			if(jumping)
 				jump_stop_hop = true;
 		}
+	}
+	
+	/**
+	 * Entity was hit. Take damage and do knockback.
+	 * @param damage The damage amount to subtract from the health. If this goes to or below zero, set the dead flag.
+	 */
+	public void hit(Spell s)
+	{
+		//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
+		
+		
+		//Get the damage amount. This allows us to update the life.
+		
+		
+		//Check to see if the enemy has died.
+		
 	}
 }
