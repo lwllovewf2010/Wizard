@@ -58,7 +58,11 @@ public abstract class Enemy extends PersonEntity
 			speed_current_x -= accel_x;
 		else
 			speed_current_x += accel_x;
-			
+		
+		//Limit speed by max.
+		if(Math.abs(speed_current_x) > speed_max_x)
+			speed_current_x = speed_max_x * Math.signum(speed_current_x);
+		
 		sprite.translateX(speed_current_x * delta);
 	}
 	

@@ -29,7 +29,7 @@ public abstract class GroundEnemy extends Enemy
 		//Do a fall calculation by simulating gravity.
 		if(sprite.getY() > screen.world.GROUND)
 			speed_current_y -= delta * screen.world.GRAVITY;
-
+		
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
 		

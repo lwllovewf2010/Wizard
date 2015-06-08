@@ -31,6 +31,7 @@ public class InputGame implements InputProcessor
 				break;
 			case Keys.Q:
 				screen.world.enemies.add(screen.world.factory_enemy.getEnemy(Skeleton.class, true));
+				break;
 			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:
 			case Keys.NUM_1:

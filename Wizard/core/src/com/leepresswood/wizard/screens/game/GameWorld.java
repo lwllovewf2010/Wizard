@@ -143,7 +143,6 @@ public class GameWorld
 			camera.position.y = WORLD_BOTTOM;
 		else if(camera.position.y > WORLD_TOP)
 			camera.position.y = WORLD_TOP;
-		
 		camera.update();
 	}
 	
