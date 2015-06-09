@@ -116,6 +116,9 @@ public abstract class PersonEntity
 		}
 		
 		sprite.translate(speed_current_x * delta, speed_current_y * delta);
+		
+		//Reset the bounds.
+		bounds[0] = sprite.getBoundingRectangle();
 	}
 	
 	/**
@@ -123,7 +126,7 @@ public abstract class PersonEntity
 	 * @param screen Screen for gathering any necessary data.
 	 * @param x Left side of the sprite.
 	 * @param y Bottom side of the sprite.
-	 * @return 
+	 * @return Rectangles of the sprites.
 	 */
 	protected abstract Rectangle[] setSprites(float x, float y);
 	

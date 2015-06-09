@@ -71,12 +71,12 @@ public abstract class Enemy extends PersonEntity
 	{
 		for(Spell s : world.spells)
 		{
-			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
-			if(25f  * world.pixel_size * world.pixel_size > Vector2.dst2(sprite.getY() + sprite.getHeight() / 2f, s.sprite.getY() + s.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f))
+			for(Rectangle r : s.bounds)
 			{
-				for(Rectangle r : s.bounds)
+				for(Rectangle r2 : this.bounds)
 				{
-					for(Rectangle r2 : this.bounds)
+					//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
+					if(25f > Vector2.dst2(r.x + r.width, r.y + r.height, r2.x + r2.width, r2.y + r.height))
 					{
 						if(r2.overlaps(r))
 						{
@@ -95,8 +95,6 @@ public abstract class Enemy extends PersonEntity
 					}
 				}
 			}
-			//else
-			//	System.out.println(Vector2.dst(sprite.getY() + sprite.getHeight() / 2f, s.sprite.getY() + s.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f));
 		}
 	}
 	

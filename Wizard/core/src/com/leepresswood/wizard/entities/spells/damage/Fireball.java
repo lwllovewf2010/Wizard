@@ -44,6 +44,9 @@ public class Fireball extends BoltSpell
 		
 		//Move in the direction.
 		sprite.translate(speed_x * delta, speed_y * delta);
+		
+		//Reset the bounds.
+		bounds[0] = sprite.getBoundingRectangle();
 	}
 	
 	@Override

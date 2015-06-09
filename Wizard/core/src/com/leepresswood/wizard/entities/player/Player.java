@@ -181,12 +181,12 @@ public class Player extends PersonEntity
 	{
 		for(Enemy e : world.enemies)
 		{
-			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are within a certain radius.
-			if(25f * world.pixel_size * world.pixel_size > Vector2.dst2(sprite.getY() + sprite.getHeight() / 2f, e.sprite.getY() + e.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f))
+			for(Rectangle r : e.bounds)
 			{
-				for(Rectangle r : e.bounds)
+				for(Rectangle r2 : this.bounds)
 				{
-					for(Rectangle r2 : this.bounds)
+					//To make this horrible O(n^3) function faster, we're only going to check the enemies that are within a certain radius.
+					if(25f > Vector2.dst2(r.x + r.width, r.y + r.height, r2.x + r2.width, r2.y + r.height))
 					{
 						if(r2.overlaps(r))
 						{
@@ -205,6 +205,8 @@ public class Player extends PersonEntity
 					}
 				}
 			}
+			//else
+			//	System.out.println(Vector2.dst(e.sprite.getY() + e.sprite.getHeight() / 2f, sprite.getY() + sprite.getHeight() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f, sprite.getX() + sprite.getWidth() / 2f));
 		}
 	}
 
