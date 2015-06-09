@@ -1,6 +1,5 @@
 package com.leepresswood.wizard.entities.enemies.creeps.ground;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
@@ -21,6 +20,8 @@ public abstract class GroundEnemy extends Enemy
 	public boolean being_knocked_back;
 	public float knockback_time_final = 0.5f;
 	public float knockback_time_current;
+	public float knockback_speed = 10f * Gdx.graphics.getDeltaTime();
+	public float knockback_angle;
 	
 	public GroundEnemy(ScreenGame screen, float x, float y, Element element)
 	{
@@ -32,19 +33,33 @@ public abstract class GroundEnemy extends Enemy
 	@Override
 	protected void calcMovementY(float delta)
 	{//Ground enemies are affected by gravity.
-		//If we asked the enemy to jump, do a jump calculation.
-		if(do_jump)
+		//The enemy is stunned during a knockback. All other motion is locked.
+		if(being_knocked_back)
 		{
-			do_jump = false;
-			speed_current_y += jump_start_speed;
+			knockback_time_current += delta;
+			if(knockback_time_current >= knockback_time_final)
+			{
+				being_knocked_back = false;
+			}
+			
+			sprite.translate(knockback_speed * MathUtils.cosDeg(knockback_angle), knockback_speed * MathUtils.sinDeg(knockback_angle));
 		}
-		
-		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > screen.world.GROUND)
-			speed_current_y -= delta * screen.world.GRAVITY;
-		
-		//Move in the Y direction.
-		sprite.translateY(speed_current_y * delta);
+		else
+		{
+			//If we asked the enemy to jump, do a jump calculation.
+			if(do_jump)
+			{
+				do_jump = false;
+				speed_current_y += jump_start_speed;
+			}
+			
+			//Do a fall calculation by simulating gravity.
+			if(sprite.getY() > screen.world.GROUND)
+				speed_current_y -= delta * screen.world.GRAVITY;
+			
+			//Move in the Y direction.
+			sprite.translateY(speed_current_y * delta);
+		}
 		
 		//Set a hard limit for how low the entity can go. If they pass this limit, they're on a solid block. Reset the variables.
 		if(sprite.getY() < screen.world.GROUND)
@@ -64,21 +79,24 @@ public abstract class GroundEnemy extends Enemy
 	 */
 	public void hit(Spell s)
 	{
-		//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
-		if(spell_list.containsKey(s.toString()))
+		if(!spell_list.containsKey(s.toString()))
 		{
-			float angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
-		
-			//The angle of the knockback will be the flipped version of this angle. 
-			angle += 180f;
-			System.out.println(angle);
-			
-			//Do the knockback and set invincibility to this particular spell.
-			float knockback_speed = 1f * Gdx.graphics.getDeltaTime();
-			
-			spell_list.put(s.toString(), true);
+			//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
+	
 			
 			//Check to see if the enemy has died.
+			
+			
+			//Get the angle between the enemy and the attack.
+			knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+		
+			//The angle of the knockback will be the flipped version of this angle. 
+			knockback_angle += 180f;
+			
+			//Do the knockback and set invincibility to this particular spell.
+			being_knocked_back = true;
+			knockback_time_current = 0f;
+			spell_list.put(s.toString(), true);
 		}
 	}
 }
