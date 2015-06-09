@@ -33,6 +33,8 @@ public abstract class Enemy extends PersonEntity
 		System.out.println("Enemy:\n\tName: " + name);
 	}
 	
+	
+	
 	@Override
 	public void draw(SpriteBatch batch)
 	{
@@ -43,9 +45,9 @@ public abstract class Enemy extends PersonEntity
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
 		if(sprite.getX() > world.screen.world.WORLD_TOTAL_HORIZONTAL / 2f)
-			speed_current_x -= accel_x;
+			speed_current_x -= accel_x * delta;
 		else if(sprite.getX() < world.screen.world.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
-			speed_current_x += accel_x;
+			speed_current_x += accel_x * delta;
 		else
 			speed_current_x = 0f;
 		
@@ -86,7 +88,7 @@ public abstract class Enemy extends PersonEntity
 							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
 							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
 							knockback_angle += 180f;
-							
+							System.out.println(knockback_angle);
 							//Get damage.
 							
 							

@@ -12,7 +12,7 @@
 		
 		<damage>2.0</damage>	    
 		<speed>11.0</speed>
-		<knockback>30.0</knockback>
+		<knockback>0.0</knockback>
 	</aether>
 	<fireball>
 	    <name>Fireball</name>
@@ -24,7 +24,7 @@
 	    
 	    <damage>5.0</damage>	    
 	    <speed>23.0</speed>
-	    <knockback>100.0</knockback>
+	    <knockback>10.0</knockback>
 	     
 		<impulse>0.7</impulse>
 		<speed_decay>0.9</speed_decay>
