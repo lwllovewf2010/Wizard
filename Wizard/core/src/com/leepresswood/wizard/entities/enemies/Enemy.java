@@ -1,6 +1,5 @@
 package com.leepresswood.wizard.entities.enemies;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -14,7 +13,6 @@ import com.leepresswood.wizard.screens.game.GameWorld;
 public abstract class Enemy extends PersonEntity
 {
 	public String name;
-	public Sprite sprite;
 	
 	public boolean do_jump;
 	

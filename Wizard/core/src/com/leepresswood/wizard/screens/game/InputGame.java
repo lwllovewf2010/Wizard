@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
 
 public class InputGame implements InputProcessor
@@ -30,7 +31,9 @@ public class InputGame implements InputProcessor
 				screen.world.player.jumping = true;
 				break;
 			case Keys.Q:
-				screen.world.enemies.add(screen.world.factory_enemy.getEnemy(Skeleton.class, true));
+				Enemy e = screen.world.factory_enemy.getEnemy(Skeleton.class, true);
+				if(e != null)
+					screen.world.enemies.add(e);
 				break;
 			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:

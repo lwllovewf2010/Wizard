@@ -104,8 +104,8 @@ public class Player extends PersonEntity
 		//Keep the player within the bounds of the screen in the X direction.
 		if(sprite.getX() < 0f)
 			sprite.setX(0f);
-		else if(sprite.getX() + sprite.getWidth() > world.screen.world.WORLD_TOTAL_HORIZONTAL)
-			sprite.setX(world.screen.world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+		else if(sprite.getX() + sprite.getWidth() > world.WORLD_TOTAL_HORIZONTAL)
+			sprite.setX(world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
 	protected void calcMovementY(float delta)
@@ -140,16 +140,16 @@ public class Player extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > world.screen.world.GROUND)
-			speed_current_y -= delta * world.screen.world.GRAVITY;
+		if(sprite.getY() > world.GROUND)
+			speed_current_y -= delta * world.GRAVITY;
 
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
 		
 		//Set a hard limit for how low the player can go. If they pass this limit, they're on a solid block. Reset the variables.
-		if(sprite.getY() < world.screen.world.GROUND)
+		if(sprite.getY() < world.GROUND)
 		{
-			sprite.setY(world.screen.world.GROUND);
+			sprite.setY(world.GROUND);
 			speed_current_y = 0f;
 			jump_time_current = 0f;
 			
@@ -181,19 +181,29 @@ public class Player extends PersonEntity
 	{
 		for(Enemy e : world.enemies)
 		{
-			if(sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
+			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are within a certain radius.
+			if(25f > Vector2.dst2(sprite.getY() + sprite.getHeight() / 2f, e.sprite.getY() + e.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f))
 			{
-				//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-				knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(e.sprite.getY() + e.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
-				knockback_angle += 180f;
-				
-				//Get damage.
-				
-				
-				//Set the knockback and invincibility.
-				is_being_knocked_back = true;
-				is_invincible = true;
-				invincible_time_current = 0f;
+				for(Rectangle r : e.bounds)
+				{
+					for(Rectangle r2 : this.bounds)
+					{
+						if(r2.overlaps(r))
+						{
+							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
+							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(e.sprite.getY() + e.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+							knockback_angle += 180f;
+							
+							//Get damage.
+							
+							
+							//Set the knockback and invincibility.
+							is_being_knocked_back = true;
+							is_invincible = true;
+							invincible_time_current = 0f;
+						}
+					}
+				}
 			}
 		}
 	}
