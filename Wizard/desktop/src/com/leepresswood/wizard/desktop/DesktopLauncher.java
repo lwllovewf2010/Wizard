@@ -25,7 +25,9 @@ public class DesktopLauncher
 	 * be appended to the version number.
 	 * 
 	 * Goals for 0.3:
-	 * 
+	 * Enemy knockback
+	 * Helper implementation
+	 * Solid block collision
 	 */
 	public static final String GAME_VERSION = "0.3 Alpha";
 	
