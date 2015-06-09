@@ -2,6 +2,7 @@ package com.leepresswood.wizard.entities.enemies.creeps.ground;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.GameWorld;
@@ -14,10 +15,12 @@ public class Skeleton extends GroundEnemy
 	}
 	
 	@Override
-	protected void setSprites(float x, float y)
+	protected Rectangle[] setSprites(float x, float y)
 	{
 		sprite = new Sprite(world.screen.game.assets.get("person/textures/hold.png", Texture.class));
 		sprite.setBounds(x, y, 3f, 3f);
+		
+		return new Rectangle[]{sprite.getBoundingRectangle()};
 	}
 	
 	@Override

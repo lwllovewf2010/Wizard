@@ -35,15 +35,6 @@ public abstract class Enemy extends PersonEntity
 	{
 		sprite.draw(batch);
 	}
-	
-	@Override
-	protected void move(float delta)
-	{
-		
-		
-		
-		sprite.translate(speed_current_x * delta, speed_current_y * delta);
-	}
 
 	@Override
 	protected void calcMovementX(float delta)
@@ -78,22 +69,19 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	protected void enemyCollision()
 	{
-		if(!is_invincible)
+		for(Spell s : world.spells)
 		{
-			for(Spell s : world.spells)
-			{
-				//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-				knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
-				knockback_angle += 180f;
-				
-				//Get damage.
-				
-				
-				//Set the knockback and invincibility.
-				is_being_knocked_back = true;
-				is_invincible = true;
-				invincible_time_current = 0f;
-			}
+			//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
+			knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+			knockback_angle += 180f;
+			
+			//Get damage.
+			
+			
+			//Set the knockback and invincibility.
+			is_being_knocked_back = true;
+			is_invincible = true;
+			invincible_time_current = 0f;
 		}
 	}
 	
