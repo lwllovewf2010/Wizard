@@ -2,8 +2,10 @@ package com.leepresswood.wizard.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.PersonEntity;
+import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -16,11 +18,19 @@ public abstract class Enemy extends PersonEntity
 	
 	public boolean do_jump;
 	
+	//Dying.
+	public boolean is_dead;
+	private boolean dying;
+	private final float DIE_TIME_MAX = 1f;
+	private float die_time_current;
+	
 	public Enemy(ScreenGame screen, float x, float y, Element data)
 	{
 		super(screen, x, y);
-		
+			
 		name = data.get("name");
+		
+		System.out.println("Enemy:\n\tName: " + name);
 	}
 	
 	@Override
@@ -29,6 +39,15 @@ public abstract class Enemy extends PersonEntity
 		sprite.draw(batch);
 	}
 	
+	@Override
+	protected void move(float delta)
+	{
+		
+		
+		
+		sprite.translate(speed_current_x * delta, speed_current_y * delta);
+	}
+
 	@Override
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
@@ -42,12 +61,86 @@ public abstract class Enemy extends PersonEntity
 		//Limit speed by max.
 		if(Math.abs(speed_current_x) > speed_max_x)
 			speed_current_x = speed_max_x * Math.signum(speed_current_x);
-		
-		sprite.translateX(speed_current_x * delta);
 	}
 	
 	@Override
-	public void die()
+	protected void calcMovementY(float delta)
+	{//Ground enemies are affected by gravity.
+		//If we asked the enemy to jump, do a jump calculation.
+		if(do_jump)
+		{
+			do_jump = false;
+			speed_current_y += jump_start_speed;
+		}
+		
+		//Do a fall calculation by simulating gravity.
+		if(sprite.getY() > screen.world.GROUND)
+			speed_current_y -= delta * screen.world.GRAVITY;
+		
+		//Move in the Y direction.
+		
+	
+		
+	}
+	
+	@Override
+	protected void enemyCollision()
 	{
+		
+	}
+	
+	@Override
+	protected void blockCollision()
+	{
+		//Set a hard limit for how low the entity can go. If they pass this limit, they're on a solid block. Reset the variables.
+		if(sprite.getY() < screen.world.GROUND)
+		{
+			sprite.setY(screen.world.GROUND);
+			speed_current_y = 0f;
+			jump_time_current = 0f;
+			
+			if(jumping)
+				jump_stop_hop = true;
+		}
+	}
+	
+	@Override
+	protected void enemyCollision()
+	{
+		if(is_invincible)
+		{
+			//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
+	
+			
+			//Damage enemy and see if the enemy has died.
+			
+			
+			//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
+			knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+			knockback_angle += 180f;
+			
+			//Set the knockback and invincibility.
+			is_being_knocked_back = true;
+			is_invincible = true;
+			invincible_time_current = 0f;
+		}
+	}
+	
+	@Override
+	public void die(float delta)
+	{
+		if(dying)
+		{
+			//Update the timing and change the alpha.
+			die_time_current += delta;
+			if(die_time_current >= DIE_TIME_MAX)
+			{
+				dying = false;
+				is_dead = true;
+				die_time_current = DIE_TIME_MAX;
+			}
+
+			sprite.setAlpha(die_time_current / DIE_TIME_MAX);
+		}
 	}
 }

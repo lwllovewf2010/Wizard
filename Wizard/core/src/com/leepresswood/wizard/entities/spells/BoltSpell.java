@@ -15,9 +15,9 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
 public abstract class BoltSpell extends Spell
 {
 	public float damage;
-	
 	public float speed_x, speed_y;
 	public float speed_max;
+	public float knockback;
 	
 	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
@@ -28,6 +28,7 @@ public abstract class BoltSpell extends Spell
 		//Read the data from the XML file.
 		damage = data.getFloat("damage");
 		speed_max = data.getFloat("speed");
+		knockback = data.getFloat("knockback");
 		
 		//Determine the initial speeds from the max speed and angle between the vectors.
 		float angle = to.sub(from).angle();
@@ -38,6 +39,7 @@ public abstract class BoltSpell extends Spell
 			"\tAngle: " + angle 
 			+ "\n\tSpeed X: " + speed_x 
 			+ "\n\tSpeed Y: " + speed_y
+			+ "\n\tKnockback: " + knockback
 		);
 	}
 	

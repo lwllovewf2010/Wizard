@@ -2,6 +2,7 @@ package com.leepresswood.wizard.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
@@ -20,6 +21,14 @@ public abstract class PersonEntity
 	public float accel_x;
 	public float decel_x;
 	public float speed_max_x;
+	
+	//Knockback.
+	private boolean is_invincible;
+	private boolean is_being_knocked_back;
+	private float invincible_time_max = 0.25f;
+	private float invincible_time_current;
+	public float knockback_speed;
+	public float knockback_angle;
 	
 	//Up-down.
 	public boolean jumping;
@@ -43,11 +52,23 @@ public abstract class PersonEntity
 	/**
 	 * Determine left-right movement.
 	 */
-	protected abstract void calcMovementX(float delta);
+	protected void move(float delta)
+	{
+		//The enemy is stunned during a knockback. All AI motion is locked.
+		if(is_being_knocked_back)
+		{
+			is_being_knocked_back = false;			
+			speed_current_x = knockback_speed * MathUtils.cosDeg(knockback_angle);
+			speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
+		}
+		else
+		{
+			calcMovementX(delta);
+			calcMovementY(delta);
+		}
+	}
 	
-	/**
-	 * Determine up-down movement.
-	 */
+	protected abstract void calcMovementX(float delta);
 	protected abstract void calcMovementY(float delta);
 	
 	/**
@@ -70,9 +91,19 @@ public abstract class PersonEntity
 	public abstract void attack(Vector2 touch);
 	
 	/**
+	 * Collision with enemies to this entity.
+	 */
+	protected abstract void enemyCollision();
+	
+	/**
+	 * Collision with the game world.
+	 */
+	protected abstract void blockCollision();
+	
+	/**
 	 * Send entity into death animation. Also handle what happens afterward within this.
 	 */
-	public abstract void die();
+	public abstract void die(float delta);
 	
 	/**
 	 * Update timing and movement of sprites.
@@ -80,19 +111,33 @@ public abstract class PersonEntity
 	 */
 	public void update(float delta)
 	{
-		//Timing.
-		updateTiming(delta);
+		if(is_invincible)
+		{
+			invincible_time_current += delta;
+			if(invincible_time_current >= invincible_time_max)
+			{
+				is_invincible = false;
+			}
+		}//The enemy is stunned during a knockback. All AI motion is locked.
+		if(is_being_knocked_back)
+		{
+			is_being_knocked_back = false;			
+			speed_current_x = knockback_speed * MathUtils.cosDeg(knockback_angle);
+			speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
+		}
+		else
+		{
+			calcMovementX(delta);
+			calcMovementY(delta);
+			
+		}
 		
-		//Movement.
-		calcMovementX(delta);
-		calcMovementY(delta);
+		move(delta);
+		enemyCollision();
+		blockCollision();
+		//health();
+		die(delta);
 	}
-	
-	/**
-	 * Update the timed events and set the corresponding flags.
-	 * @param delta The change in time.
-	 */
-	protected abstract void updateTiming(float delta);
 	
 	/**
 	 * Draw the sprites in the correct order.

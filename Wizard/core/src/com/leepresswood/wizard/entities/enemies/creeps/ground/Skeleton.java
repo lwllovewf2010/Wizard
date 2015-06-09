@@ -38,9 +38,4 @@ public class Skeleton extends GroundEnemy
 	public void attack(Vector2 touch)
 	{
 	}
-	
-	@Override
-	protected void updateTiming(float delta)
-	{
-	}
 }
