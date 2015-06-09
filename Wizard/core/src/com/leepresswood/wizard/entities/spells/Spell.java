@@ -3,6 +3,7 @@ package com.leepresswood.wizard.entities.spells;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.GameWorld;
@@ -20,6 +21,7 @@ public abstract class Spell
 	private final String TEXTURE_BASE = "person/textures/";
 	private final String TEXTURE_EXTENSION = ".png";
 	public Sprite sprite;
+	public Rectangle[] bounds;
 	
 	//XML data
 	public String name;
@@ -58,7 +60,7 @@ public abstract class Spell
 		//Create an active version of this spell.
 		active = true;		
 		sprite = new Sprite(texture);
-		makeSpriteBounds();
+		bounds = makeSprites();
 		
 		System.out.println(
 			"Spell:\n\tName: " + name
@@ -81,8 +83,9 @@ public abstract class Spell
 	
 	/**
 	 * Create the sprite using the "from" and "to" vectors.
+	 * @return 
 	 */
-	protected abstract void makeSpriteBounds();
+	protected abstract Rectangle[] makeSprites();
 	
 	/**
 	 * Call the position and collision updates. Also examine the time.

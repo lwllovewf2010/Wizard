@@ -31,6 +31,7 @@ public class GameWorld
 	public final float WORLD_PLAYER_Y_SKEW = 4.0f;			//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
 	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
+	public float pixel_size;
 	
 	public Player player;
 	
@@ -59,7 +60,7 @@ public class GameWorld
 	{
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
 		map = screen.game.assets.getMap(Assets.MAP_TEST);
-		float pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
+		pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
 		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
 		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
 		

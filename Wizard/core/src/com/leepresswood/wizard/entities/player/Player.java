@@ -182,7 +182,7 @@ public class Player extends PersonEntity
 		for(Enemy e : world.enemies)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are within a certain radius.
-			if(25f > Vector2.dst2(sprite.getY() + sprite.getHeight() / 2f, e.sprite.getY() + e.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f))
+			if(25f * world.pixel_size * world.pixel_size > Vector2.dst2(sprite.getY() + sprite.getHeight() / 2f, e.sprite.getY() + e.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f))
 			{
 				for(Rectangle r : e.bounds)
 				{
@@ -206,11 +206,6 @@ public class Player extends PersonEntity
 				}
 			}
 		}
-	}
-
-	@Override
-	protected void blockCollision()
-	{
 	}
 
 	@Override

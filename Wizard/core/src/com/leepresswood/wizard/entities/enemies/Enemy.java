@@ -2,6 +2,8 @@ package com.leepresswood.wizard.entities.enemies;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.spells.Spell;
@@ -69,17 +71,32 @@ public abstract class Enemy extends PersonEntity
 	{
 		for(Spell s : world.spells)
 		{
-			//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-			knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
-			knockback_angle += 180f;
-			
-			//Get damage.
-			
-			
-			//Set the knockback and invincibility.
-			is_being_knocked_back = true;
-			is_invincible = true;
-			invincible_time_current = 0f;
+			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
+			if(25f  * world.pixel_size * world.pixel_size > Vector2.dst2(sprite.getY() + sprite.getHeight() / 2f, s.sprite.getY() + s.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f))
+			{
+				for(Rectangle r : s.bounds)
+				{
+					for(Rectangle r2 : this.bounds)
+					{
+						if(r2.overlaps(r))
+						{
+							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
+							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+							knockback_angle += 180f;
+							
+							//Get damage.
+							
+							
+							//Set the knockback and invincibility.
+							is_being_knocked_back = true;
+							is_invincible = true;
+							invincible_time_current = 0f;
+						}
+					}
+				}
+			}
+			//else
+			//	System.out.println(Vector2.dst(sprite.getY() + sprite.getHeight() / 2f, s.sprite.getY() + s.sprite.getHeight() / 2f, sprite.getX() + sprite.getWidth() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f));
 		}
 	}
 	

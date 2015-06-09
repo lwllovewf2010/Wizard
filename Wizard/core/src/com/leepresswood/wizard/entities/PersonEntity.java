@@ -81,11 +81,10 @@ public abstract class PersonEntity
 		//Nothing else needs to be done if we're dead.
 		if(!dying)
 		{
-			move(delta);			
+			move(delta);
 			if(!is_invincible)
 				enemyCollision();			
 			blockCollision();
-			//health();
 		}
 		
 		die(delta);

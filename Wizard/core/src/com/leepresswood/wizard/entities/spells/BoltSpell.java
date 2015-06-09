@@ -3,6 +3,7 @@ package com.leepresswood.wizard.entities.spells;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.GameWorld;
@@ -44,12 +45,14 @@ public abstract class BoltSpell extends Spell
 	}
 	
 	@Override
-	protected void makeSpriteBounds()
+	protected Rectangle[] makeSprites()
 	{
 		float width = 2f;
 		float height = width;
 		
 		sprite.setBounds(from.x - width / 2f, from.y - height / 2f, width, height);
+		
+		return new Rectangle[]{sprite.getBoundingRectangle()};
 	}
 	
 	@Override
