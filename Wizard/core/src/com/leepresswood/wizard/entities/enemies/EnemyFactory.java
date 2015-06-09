@@ -69,7 +69,7 @@ public class EnemyFactory
 	{
 		//If we're allowed to spawn another enemy. This depends upon the recharge time of the last spawn.
 		if(time_recharge_current >= time_recharge_next)
-		{System.out.println(left);
+		{
 			time_recharge_current = 0f;
 			
 			//Left or right side?
