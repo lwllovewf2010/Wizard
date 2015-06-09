@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Parent class to both the players and the enemies. 
  */
 public abstract class PersonEntity
 {
-	protected ScreenGame screen;	
+	protected GameWorld world;	
 	
 	//Movement and direction.
 	public boolean facing_left;
@@ -23,10 +23,10 @@ public abstract class PersonEntity
 	public float speed_max_x;
 	
 	//Knockback.
-	private boolean is_invincible;
-	private boolean is_being_knocked_back;
-	private float invincible_time_max = 0.25f;
-	private float invincible_time_current;
+	public boolean is_invincible;
+	public boolean is_being_knocked_back;
+	public float invincible_time_max = 0.25f;
+	public float invincible_time_current;
 	public float knockback_speed;
 	public float knockback_angle;
 	
@@ -41,11 +41,11 @@ public abstract class PersonEntity
 	//Sprites and bounds.
 	public Sprite sprite;
 	
-	public PersonEntity(ScreenGame screen, float x, float y)
+	public PersonEntity(GameWorld world, float x, float y)
 	{
-		this.screen = screen;
+		this.world = world;
 		
-		setSprites(screen, x, y);
+		setSprites(x, y);
 		setMovementVariables();
 	}
 	
@@ -77,7 +77,7 @@ public abstract class PersonEntity
 	 * @param x Left side of the sprite.
 	 * @param y Bottom side of the sprite.
 	 */
-	protected abstract void setSprites(ScreenGame screen, float x, float y);
+	protected abstract void setSprites(float x, float y);
 	
 	/**
 	 * Set movement variables to their initial values.
@@ -98,7 +98,19 @@ public abstract class PersonEntity
 	/**
 	 * Collision with the game world.
 	 */
-	protected abstract void blockCollision();
+	protected void blockCollision()
+	{
+		//Set a hard limit for how low the entity can go. If they pass this limit, they're on a solid block. Reset the variables.
+		if(sprite.getY() < world.screen.world.GROUND)
+		{
+			sprite.setY(world.screen.world.GROUND);
+			speed_current_y = 0f;
+			jump_time_current = 0f;
+			
+			if(jumping)
+				jump_stop_hop = true;
+		}
+	}
 	
 	/**
 	 * Send entity into death animation. Also handle what happens afterward within this.

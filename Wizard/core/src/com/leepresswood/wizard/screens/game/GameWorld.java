@@ -9,7 +9,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.EnemyFactory;
-import com.leepresswood.wizard.entities.enemies.creeps.ground.GroundEnemy;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.SpellFactory;
@@ -94,8 +93,15 @@ public class GameWorld
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
 		//Display information.
-		System.out.println("World:\n\tGround Level: " + GROUND + "\n\tGravity: " + GRAVITY + "\n\tBlock Size: " + pixel_size);
-		System.out.println("Camera:\n\tPosition: " + camera.position + "\n\tWidth: " + camera.viewportWidth + "\n\tHeight: " + camera.viewportHeight + "\n\tZoom: " + camera.zoom);
+		System.out.println(
+				"World:\n\tGround Level: " + GROUND 
+				+ "\n\tGravity: " + GRAVITY 
+				+ "\n\tBlock Size: " + pixel_size);
+		System.out.println(
+				"Camera:\n\tPosition: " + camera.position 
+				+ "\n\tWidth: " + camera.viewportWidth 
+				+ "\n\tHeight: " + camera.viewportHeight 
+				+ "\n\tZoom: " + camera.zoom);
 	}
 	
 	/**
@@ -103,7 +109,7 @@ public class GameWorld
 	 */
 	private void populateWorld()
 	{
-		player = new Player(screen, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
+		player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
 		remove = new ArrayList<Object>();
@@ -121,27 +127,6 @@ public class GameWorld
 		factory_spell.update(delta);
 		for(Spell s : spells)
 			s.update(delta);
-		
-		//Movement is finished, so do collision detection.
-		for(Enemy e : enemies)
-		{
-			if(player.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
-			{
-				player.hit(e);
-				break;
-			}
-			
-			if(e instanceof GroundEnemy)
-			{
-				for(Spell s : spells)
-				{
-					if(e.sprite.getBoundingRectangle().overlaps(s.sprite.getBoundingRectangle()))
-					{
-						((GroundEnemy) e).hit(s);
-					}
-				}
-			}
-		}
 		
 		//Manage the other items in the world.
 		setCameraBounds();
@@ -182,7 +167,9 @@ public class GameWorld
 				remove.add(s);
 			
 		//Delete old enemies.
-		
+		for(Enemy e : enemies)
+			if(e.is_dead)
+				remove.add(e);
 		
 		//Do the actual removal.
 		if(!remove.isEmpty())

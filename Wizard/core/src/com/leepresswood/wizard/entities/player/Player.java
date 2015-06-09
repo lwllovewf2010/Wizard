@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.entities.player;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Class should include all attributes every player will have.
@@ -21,9 +22,9 @@ public class Player extends PersonEntity
 	private final float WIDTH = 3f;
 	private final float HEIGHT = WIDTH * 1.618f;
 	
-	public Player(ScreenGame screen, float x, float y)
+	public Player(GameWorld world, float x, float y)
 	{
-		super(screen, x, y);
+		super(world, x, y);
 		
 		//Display player information.
 		System.out.println(
@@ -33,46 +34,23 @@ public class Player extends PersonEntity
 		);
 	}
 	
-	/**
-	 * Entity was hit. Take damage, do knockback, and set invincibility frames.
-	 * @param damage The damage amount to subtract from the health. If this goes to or below zero, set the dead flag.
-	 */
-	public void hit(Enemy enemy)
-	{
-		//Get the enemy's location in relation to the player. This will allow us to calculate the knockback.
-		
-		
-		//Get the enemy's damage amount. This allows us to update the player's life.
-		
-		
-		//Check to see if the player has died.
-		if(screen.gui.bar_health.current_bar_value <= 0)
-		{//Dead.
-			die();
-		}
-		else
-		{//Not dead. Set invincibility frames.
-			
-		}
-	}
-	
 	public void attack(Vector2 touch)
 	{
 		//Get the selected spell type from the GUI.
-		Spell spell_type = screen.gui.getActiveSpell();
+		Spell spell_type = world.screen.gui.getActiveSpell();
 		
 		//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-		if(spell_type != null && screen.gui.canCast(spell_type))
+		if(spell_type != null && world.screen.gui.canCast(spell_type))
 		{
 			//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
-			Spell spell = screen.world.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
+			Spell spell = world.screen.world.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
 			
 			//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
 			if(spell != null)
 			{
 				//Create the selected spell.
-				screen.gui.cast(spell);
-				screen.world.spells.add(spell);
+				world.screen.gui.cast(spell);
+				world.screen.world.spells.add(spell);
 			}
 		}
 	}
@@ -116,8 +94,8 @@ public class Player extends PersonEntity
 		//Keep the player within the bounds of the screen in the X direction.
 		if(sprite.getX() < 0f)
 			sprite.setX(0f);
-		else if(sprite.getX() + sprite.getWidth() > screen.world.WORLD_TOTAL_HORIZONTAL)
-			sprite.setX(screen.world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+		else if(sprite.getX() + sprite.getWidth() > world.screen.world.WORLD_TOTAL_HORIZONTAL)
+			sprite.setX(world.screen.world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
 	protected void calcMovementY(float delta)
@@ -152,16 +130,16 @@ public class Player extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > screen.world.GROUND)
-			speed_current_y -= delta * screen.world.GRAVITY;
+		if(sprite.getY() > world.screen.world.GROUND)
+			speed_current_y -= delta * world.screen.world.GRAVITY;
 
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
 		
 		//Set a hard limit for how low the player can go. If they pass this limit, they're on a solid block. Reset the variables.
-		if(sprite.getY() < screen.world.GROUND)
+		if(sprite.getY() < world.screen.world.GROUND)
 		{
-			sprite.setY(screen.world.GROUND);
+			sprite.setY(world.screen.world.GROUND);
 			speed_current_y = 0f;
 			jump_time_current = 0f;
 			
@@ -173,13 +151,6 @@ public class Player extends PersonEntity
 	public void draw(SpriteBatch batch)
 	{
 		sprite.draw(batch);
-	}
-
-	@Override
-	protected void setSprites(ScreenGame screen, float x, float y)
-	{
-		sprite = new Sprite(screen.game.assets.get("person/textures/hold.png", Texture.class));
-		sprite.setBounds(x, y, WIDTH, HEIGHT);
 	}
 
 	@Override
@@ -196,12 +167,38 @@ public class Player extends PersonEntity
 	}
 
 	@Override
-	public void die()
+	protected void setSprites(float x, float y)
+	{
+		sprite = new Sprite(world.screen.game.assets.get("person/textures/hold.png", Texture.class));
+		sprite.setBounds(x, y, WIDTH, HEIGHT);
+	}
+
+	@Override
+	protected void enemyCollision()
+	{
+		if(!is_invincible)
+		{
+			for(Enemy e : world.enemies)
+			{
+				if(sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
+				{
+					//Get the enemy's location in relation to the player. This will allow us to calculate the knockback.
+					
+					
+					//Get the enemy's damage amount. This allows us to update the player's life.
+					
+				}
+			}	
+		}
+	}
+
+	@Override
+	protected void blockCollision()
 	{
 	}
 
 	@Override
-	protected void updateTiming(float delta)
+	public void die(float delta)
 	{
 	}
 }

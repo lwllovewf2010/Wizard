@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Parent to all the enemy types.
@@ -24,9 +24,9 @@ public abstract class Enemy extends PersonEntity
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	public Enemy(ScreenGame screen, float x, float y, Element data)
+	public Enemy(GameWorld world, float x, float y, Element data)
 	{
-		super(screen, x, y);
+		super(world, x, y);
 			
 		name = data.get("name");
 		
@@ -51,9 +51,9 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
-		if(sprite.getX() > screen.world.WORLD_TOTAL_HORIZONTAL / 2f)
+		if(sprite.getX() > world.screen.world.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x;
-		else if(sprite.getX() < screen.world.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
+		else if(sprite.getX() < world.screen.world.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
 			speed_current_x += accel_x;
 		else
 			speed_current_x = 0f;
@@ -74,8 +74,8 @@ public abstract class Enemy extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > screen.world.GROUND)
-			speed_current_y -= delta * screen.world.GRAVITY;
+		if(sprite.getY() > world.screen.world.GROUND)
+			speed_current_y -= delta * world.screen.world.GRAVITY;
 		
 		//Move in the Y direction.
 		
@@ -86,29 +86,9 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	protected void enemyCollision()
 	{
-		
-	}
-	
-	@Override
-	protected void blockCollision()
-	{
-		//Set a hard limit for how low the entity can go. If they pass this limit, they're on a solid block. Reset the variables.
-		if(sprite.getY() < screen.world.GROUND)
+		if(!is_invincible)
 		{
-			sprite.setY(screen.world.GROUND);
-			speed_current_y = 0f;
-			jump_time_current = 0f;
-			
-			if(jumping)
-				jump_stop_hop = true;
-		}
-	}
-	
-	@Override
-	protected void enemyCollision()
-	{
-		if(is_invincible)
-		{
+			for(Spell s : world.spells)
 			//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
 	
 			
