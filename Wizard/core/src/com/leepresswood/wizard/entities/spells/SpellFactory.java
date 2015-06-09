@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.screens.game.GameWorld;
-import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
  * Creates and manages spell spawning.

@@ -34,6 +34,13 @@ public class Player extends PersonEntity
 		);
 	}
 	
+	@Override
+	protected void setSprites(float x, float y)
+	{
+		sprite = new Sprite(world.screen.game.assets.get("person/textures/hold.png", Texture.class));
+		sprite.setBounds(x, y, WIDTH, HEIGHT);
+	}
+	
 	public void attack(Vector2 touch)
 	{
 		//Get the selected spell type from the GUI.
@@ -165,14 +172,7 @@ public class Player extends PersonEntity
 		jump_start_speed = 10f;
 		jump_time_max = 0.25f;
 	}
-
-	@Override
-	protected void setSprites(float x, float y)
-	{
-		sprite = new Sprite(world.screen.game.assets.get("person/textures/hold.png", Texture.class));
-		sprite.setBounds(x, y, WIDTH, HEIGHT);
-	}
-
+	
 	@Override
 	protected void enemyCollision()
 	{

@@ -30,7 +30,11 @@ public abstract class PersonEntity
 	public float knockback_speed;
 	public float knockback_angle;
 	
-	//Up-down.
+	//Dying.
+	public boolean is_dead;
+	public boolean dying;
+	
+	//Jumping.
 	public boolean jumping;
 	public boolean jump_stop_hop;
 	public float jump_start_speed;
@@ -48,28 +52,6 @@ public abstract class PersonEntity
 		setSprites(x, y);
 		setMovementVariables();
 	}
-	
-	/**
-	 * Determine left-right movement.
-	 */
-	protected void move(float delta)
-	{
-		//The enemy is stunned during a knockback. All AI motion is locked.
-		if(is_being_knocked_back)
-		{
-			is_being_knocked_back = false;			
-			speed_current_x = knockback_speed * MathUtils.cosDeg(knockback_angle);
-			speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
-		}
-		else
-		{
-			calcMovementX(delta);
-			calcMovementY(delta);
-		}
-	}
-	
-	protected abstract void calcMovementX(float delta);
-	protected abstract void calcMovementY(float delta);
 	
 	/**
 	 * Set sprites to their initial values.
@@ -115,7 +97,7 @@ public abstract class PersonEntity
 	/**
 	 * Send entity into death animation. Also handle what happens afterward within this.
 	 */
-	public abstract void die(float delta);
+	protected abstract void die(float delta);
 	
 	/**
 	 * Update timing and movement of sprites.
@@ -123,14 +105,45 @@ public abstract class PersonEntity
 	 */
 	public void update(float delta)
 	{
-		if(is_invincible)
+		//Nothing else needs to be done if we're dead.
+		if(!dying)
 		{
-			invincible_time_current += delta;
-			if(invincible_time_current >= invincible_time_max)
+			if(is_invincible)
 			{
-				is_invincible = false;
+				invincible_time_current += delta;
+				if(invincible_time_current >= invincible_time_max)
+				{
+					is_invincible = false;
+				}
+			}//The enemy is stunned during a knockback. All AI motion is locked.
+			if(is_being_knocked_back)
+			{
+				is_being_knocked_back = false;			
+				speed_current_x = knockback_speed * MathUtils.cosDeg(knockback_angle);
+				speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
 			}
-		}//The enemy is stunned during a knockback. All AI motion is locked.
+			else
+			{
+				calcMovementX(delta);
+				calcMovementY(delta);
+				
+			}
+			
+			move(delta);
+			enemyCollision();
+			blockCollision();
+			//health();
+		}
+		
+		die(delta);
+	}
+	
+	/**
+	 * Determine left-right movement.
+	 */
+	protected void move(float delta)
+	{
+		//The enemy is stunned during a knockback. All AI motion is locked.
 		if(is_being_knocked_back)
 		{
 			is_being_knocked_back = false;			
@@ -141,15 +154,13 @@ public abstract class PersonEntity
 		{
 			calcMovementX(delta);
 			calcMovementY(delta);
-			
 		}
 		
-		move(delta);
-		enemyCollision();
-		blockCollision();
-		//health();
-		die(delta);
+		sprite.translate(speed_current_x * delta, speed_current_y * delta);
 	}
+	
+	protected abstract void calcMovementX(float delta);
+	protected abstract void calcMovementY(float delta);
 	
 	/**
 	 * Draw the sprites in the correct order.

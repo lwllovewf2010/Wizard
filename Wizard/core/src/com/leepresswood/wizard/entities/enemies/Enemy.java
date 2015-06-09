@@ -18,9 +18,6 @@ public abstract class Enemy extends PersonEntity
 	
 	public boolean do_jump;
 	
-	//Dying.
-	public boolean is_dead;
-	private boolean dying;
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
@@ -76,11 +73,6 @@ public abstract class Enemy extends PersonEntity
 		//Do a fall calculation by simulating gravity.
 		if(sprite.getY() > world.screen.world.GROUND)
 			speed_current_y -= delta * world.screen.world.GRAVITY;
-		
-		//Move in the Y direction.
-		
-	
-		
 	}
 	
 	@Override

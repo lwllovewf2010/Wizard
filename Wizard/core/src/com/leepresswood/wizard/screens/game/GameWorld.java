@@ -64,7 +64,7 @@ public class GameWorld
 		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
 		
 		//Get the map renderer from this data.
-		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);									//Passed float number is the the inverse of the pixels per unit.		
+		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);				//Passed float number is the the inverse of the pixels per unit.		
 		
 		//Set the bounds of the camera.
 		camera = new OrthographicCamera(Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);

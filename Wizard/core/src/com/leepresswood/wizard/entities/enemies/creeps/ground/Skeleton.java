@@ -17,7 +17,7 @@ public class Skeleton extends GroundEnemy
 	protected void setSprites(float x, float y)
 	{
 		sprite = new Sprite(world.screen.game.assets.get("person/textures/hold.png", Texture.class));
-		sprite.setBounds(x, y, 3, 3);
+		sprite.setBounds(x, y, 3f, 3f);
 	}
 	
 	@Override
