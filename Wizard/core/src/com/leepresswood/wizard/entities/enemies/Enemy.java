@@ -79,19 +79,19 @@ public abstract class Enemy extends PersonEntity
 				for(Rectangle r2 : this.bounds)
 				{
 					//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
-					if(25f > Vector2.dst2(r.x + r.width, r.y + r.height, r2.x + r2.width, r2.y + r.height))
+					if(25f > Vector2.dst2(r.x + r.width / 2f, r.y + r.height / 2f, r2.x + r2.width / 2f, r2.y + r.height / 2f))
 					{
 						if(r2.overlaps(r))
 						{
 							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
 							knockback_angle += 180f;
 							
 							//Get damage.
 							
 							
 							//Set the knockback and invincibility.
-							knockback_speed = ((BoltSpell) s).knockback;System.out.println(2);
+							knockback_speed = ((BoltSpell) s).knockback;
 							is_being_knocked_back = true;
 							is_invincible = true;
 							invincible_time_current = 0f;

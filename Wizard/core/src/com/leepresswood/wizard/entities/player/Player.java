@@ -186,7 +186,7 @@ public class Player extends PersonEntity
 				for(Rectangle r2 : this.bounds)
 				{
 					//To make this horrible O(n^3) function faster, we're only going to check the enemies that are within a certain radius.
-					if(25f > Vector2.dst2(r.x + r.width, r.y + r.height, r2.x + r2.width, r2.y + r.height))
+					if(25f > Vector2.dst2(r.x + r.width / 2f, r.y + r.height / 2f, r2.x + r2.width / 2f, r2.y + r.height / 2f))
 					{
 						if(r2.overlaps(r))
 						{
