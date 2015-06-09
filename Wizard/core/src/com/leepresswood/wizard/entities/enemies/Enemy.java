@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.PersonEntity;
+import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
@@ -20,6 +21,8 @@ public abstract class Enemy extends PersonEntity
 	
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
+	
+	public float knockback_on_bump = 10f;
 	
 	public Enemy(GameWorld world, float x, float y, Element data)
 	{
@@ -88,6 +91,7 @@ public abstract class Enemy extends PersonEntity
 							
 							
 							//Set the knockback and invincibility.
+							knockback_speed = ((BoltSpell) s).knockback;System.out.println(2);
 							is_being_knocked_back = true;
 							is_invincible = true;
 							invincible_time_current = 0f;

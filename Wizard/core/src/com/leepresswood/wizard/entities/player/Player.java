@@ -198,6 +198,7 @@ public class Player extends PersonEntity
 							
 							
 							//Set the knockback and invincibility.
+							knockback_speed = e.knockback_on_bump;
 							is_being_knocked_back = true;
 							is_invincible = true;
 							invincible_time_current = 0f;

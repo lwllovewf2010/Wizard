@@ -26,7 +26,7 @@ public abstract class PersonEntity
 	//Knockback.
 	public boolean is_invincible;
 	public boolean is_being_knocked_back;
-	public float invincible_time_max = 0.25f;
+	public float invincible_time_max = 0.55f;
 	public float invincible_time_current;
 	public float knockback_speed;
 	public float knockback_angle;
