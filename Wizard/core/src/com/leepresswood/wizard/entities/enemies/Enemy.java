@@ -33,8 +33,6 @@ public abstract class Enemy extends PersonEntity
 		System.out.println("Enemy:\n\tName: " + name);
 	}
 	
-	
-	
 	@Override
 	public void draw(SpriteBatch batch)
 	{
@@ -76,19 +74,19 @@ public abstract class Enemy extends PersonEntity
 	{
 		for(Spell s : world.spells)
 		{
-			for(Rectangle r : s.bounds)
+			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
+			if(25f > Vector2.dst2(s.bounds[0].x + s.bounds[0].width / 2f, s.bounds[0].y + s.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))
 			{
-				for(Rectangle r2 : this.bounds)
+				for(Rectangle r : s.bounds)
 				{
-					//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
-					if(25f > Vector2.dst2(r.x + r.width / 2f, r.y + r.height / 2f, r2.x + r2.width / 2f, r2.y + r.height / 2f))
+					for(Rectangle r2 : this.bounds)
 					{
 						if(r2.overlaps(r))
 						{
 							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
 							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
 							knockback_angle += 180f;
-							System.out.println(knockback_angle);
+							
 							//Get damage.
 							
 							

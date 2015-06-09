@@ -106,7 +106,7 @@ public abstract class PersonEntity
 		if(is_being_knocked_back)
 		{
 			is_being_knocked_back = false;			
-			speed_current_x = knockback_speed * MathUtils.cosDeg(knockback_angle);
+			speed_current_x += knockback_speed * MathUtils.cosDeg(knockback_angle);
 			speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
 		}
 		else
