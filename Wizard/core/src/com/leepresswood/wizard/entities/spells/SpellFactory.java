@@ -1,12 +1,14 @@
 package com.leepresswood.wizard.entities.spells;
 
 import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.screens.game.GameWorld;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
@@ -16,16 +18,16 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public class SpellFactory
 {
-	private ScreenGame screen;
+	private GameWorld world;
 	private Element data_root;
 	
 	//Recharge set by casting a spell.
 	public float time_recharge_next;
 	public float time_recharge_current;	
 	
-	public SpellFactory(ScreenGame screen)
+	public SpellFactory(GameWorld world)
 	{
-		this.screen = screen;
+		this.world = world;
 
 		//Read information about the spells from the XML data file. Stores this information into a data root node that can be used to gather data about each spell.
 		try
@@ -64,9 +66,9 @@ public class SpellFactory
 			
 			Spell s = null;
 			if(type == Fireball.class)
-				s = new Fireball(screen, from, to, data_root.getChildByName("fireball"));
+				s = new Fireball(world, from, to, data_root.getChildByName("fireball"));
 			else if(type == Aether.class)
-				s = new Aether(screen, from, to, data_root.getChildByName("aether"));
+				s = new Aether(world, from, to, data_root.getChildByName("aether"));
 
 			//Set the new recharge time before we go.
 			if(s != null)

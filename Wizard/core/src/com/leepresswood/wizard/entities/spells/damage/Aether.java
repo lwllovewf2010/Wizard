@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Bolt spell that is not affected by gravity. Goes through walls and floors. No knockback. Hits enemies once.<br/>
@@ -19,9 +19,9 @@ public class Aether extends BoltSpell
 {
 	public Aether(Texture t, float x, float y){super(t, x, y);}
 	
-	public Aether(ScreenGame screen, Vector2 from, Vector2 to, Element data)
+	public Aether(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
-		super(screen, from, to, data);
+		super(world, from, to, data);
 		time_alive_max = 5f;
 		
 		//System.out.println("\tType: " + name);

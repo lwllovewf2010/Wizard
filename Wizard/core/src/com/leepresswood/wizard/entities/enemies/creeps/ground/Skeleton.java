@@ -4,14 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.screens.game.ScreenGame;
-
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 public class Skeleton extends GroundEnemy
 {
-	public Skeleton(ScreenGame screen, float x, float y, Element element)
+	public Skeleton(GameWorld world, float x, float y, Element element)
 	{
-		super(screen, x, y, element);
+		super(world, x, y, element);
 	}
 	
 	@Override

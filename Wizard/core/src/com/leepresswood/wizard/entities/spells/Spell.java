@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * The Spell class is a parent to the various spells in the game. All spells will have a cast-to position, 
@@ -14,7 +14,7 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public abstract class Spell
 {
-	protected ScreenGame screen;
+	protected GameWorld world;
 	
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "person/textures/";
@@ -36,20 +36,20 @@ public abstract class Spell
 
 	/**
 	 * Use this constructor to create a spell entity in the world.
-	 * @param screen Reference to the screen.
+	 * @param world Reference to the screen.
 	 * @param from Player's starting location.
 	 * @param to Click point.
 	 * @param data Spell data.
 	 */
-	public Spell(ScreenGame screen, Vector2 from, Vector2 to, Element data)
+	public Spell(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
-		this.screen = screen;
+		this.world = world;
 		this.from = from;
 		this.to = to;
 		
 		//Read the data from the XML file.
 		name = data.get("name");
-		texture = screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		type = SpellType.valueOf(data.get("type").toUpperCase());
 		mana_cost = data.getFloat("cost");
 		recharge = data.getFloat("recharge");

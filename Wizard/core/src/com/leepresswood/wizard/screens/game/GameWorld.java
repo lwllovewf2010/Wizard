@@ -45,8 +45,8 @@ public class GameWorld
 	public GameWorld(ScreenGame screen)
 	{
 		this.screen = screen;
-		factory_spell = new SpellFactory(screen);
-		factory_enemy = new EnemyFactory(screen);
+		factory_spell = new SpellFactory(this);
+		factory_enemy = new EnemyFactory(this);
 		
 		setUpWorld();
 		populateWorld();	

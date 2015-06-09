@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Bolt spell that is affected by gravity. Explodes on impact.<br/>
@@ -20,9 +20,9 @@ public class Fireball extends BoltSpell
 	private float impulse;
 	private float speed_decay;
 	
-	public Fireball(ScreenGame screen, Vector2 from, Vector2 to, Element data)
+	public Fireball(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
-		super(screen, from, to, data);
+		super(world, from, to, data);
 		
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
@@ -40,7 +40,7 @@ public class Fireball extends BoltSpell
 	{
 		//Change the direction of the ball.
 		//X doesn't need to be changed, so only change Y.
-		speed_y -= screen.world.GRAVITY * delta;
+		speed_y -= world.GRAVITY * delta;
 		
 		//Move in the direction.
 		sprite.translate(speed_x * delta, speed_y * delta);
@@ -50,10 +50,10 @@ public class Fireball extends BoltSpell
 	protected void updateCollision()
 	{
 		//Check floor for bounce.
-		if(sprite.getY() < screen.world.GROUND)
+		if(sprite.getY() < world.GROUND)
 		{			
 			//Set Y to the ground level.
-			sprite.setY(screen.world.GROUND);
+			sprite.setY(world.GROUND);
 			
 			//Flip Y speed and impulse to shorten the bounce.
 			speed_y *= -impulse;

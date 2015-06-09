@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Bolt Spells are a type of spell characterized by a single cast per click. One sprite to this type of spell.
@@ -21,9 +21,9 @@ public abstract class BoltSpell extends Spell
 	
 	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
-	public BoltSpell(ScreenGame screen, Vector2 from, Vector2 to, Element data)
+	public BoltSpell(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
-		super(screen, from, to, data);
+		super(world, from, to, data);
 		
 		//Read the data from the XML file.
 		damage = data.getFloat("damage");

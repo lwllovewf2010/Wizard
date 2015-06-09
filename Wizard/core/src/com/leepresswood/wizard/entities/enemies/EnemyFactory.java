@@ -1,11 +1,12 @@
 package com.leepresswood.wizard.entities.enemies;
 
 import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
  * Creates and manages enemy spawning.
@@ -14,15 +15,15 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public class EnemyFactory
 {
-	private ScreenGame screen;
+	private GameWorld world;
 	private Element data_root;
 	
 	public float time_recharge_next;
 	public float time_recharge_current;	
 	
-	public EnemyFactory(ScreenGame screen)
+	public EnemyFactory(GameWorld world)
 	{
-		this.screen = screen;
+		this.world = world;
 
 		//Read information about the enemies from the XML data file. Stores this information into a data root node that can be used to gather data about each enemy.
 		try
@@ -59,12 +60,12 @@ public class EnemyFactory
 			time_recharge_current = 0f;
 			
 			//Left or right side?
-			float x = left ? 0f : screen.world.WORLD_TOTAL_HORIZONTAL;
-			float y = screen.world.GROUND;
+			float x = left ? 0f : world.WORLD_TOTAL_HORIZONTAL;
+			float y = world.GROUND;
 			
 			Enemy e = null;			
 			if(type == Skeleton.class)
-				e = new Skeleton(screen, x, y, data_root.getChildByName("skeleton"));
+				e = new Skeleton(world, x, y, data_root.getChildByName("skeleton"));
 			return e;
 		}
 		
