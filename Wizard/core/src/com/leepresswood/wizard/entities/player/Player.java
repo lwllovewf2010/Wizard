@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
@@ -182,11 +183,17 @@ public class Player extends PersonEntity
 			{
 				if(sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
 				{
-					//Get the enemy's location in relation to the player. This will allow us to calculate the knockback.
+					//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
+					knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(e.sprite.getY() + e.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+					knockback_angle += 180f;
+					
+					//Get damage.
 					
 					
-					//Get the enemy's damage amount. This allows us to update the player's life.
-					
+					//Set the knockback and invincibility.
+					is_being_knocked_back = true;
+					is_invincible = true;
+					invincible_time_current = 0f;
 				}
 			}	
 		}

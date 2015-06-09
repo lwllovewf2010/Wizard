@@ -89,20 +89,19 @@ public abstract class Enemy extends PersonEntity
 		if(!is_invincible)
 		{
 			for(Spell s : world.spells)
-			//Get the enemy's location in relation to the attack. This will allow us to calculate the knockback.
-	
-			
-			//Damage enemy and see if the enemy has died.
-			
-			
-			//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-			knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
-			knockback_angle += 180f;
-			
-			//Set the knockback and invincibility.
-			is_being_knocked_back = true;
-			is_invincible = true;
-			invincible_time_current = 0f;
+			{
+				//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
+				knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(s.sprite.getY() + s.sprite.getHeight() / 2f - sprite.getY() - sprite.getHeight() / 2f, s.sprite.getX() + s.sprite.getWidth() / 2f - sprite.getX() - sprite.getWidth() / 2f);
+				knockback_angle += 180f;
+				
+				//Get damage.
+				
+				
+				//Set the knockback and invincibility.
+				is_being_knocked_back = true;
+				is_invincible = true;
+				invincible_time_current = 0f;
+			}
 		}
 	}
 	
