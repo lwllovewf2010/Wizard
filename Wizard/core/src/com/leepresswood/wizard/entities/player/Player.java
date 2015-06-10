@@ -198,7 +198,7 @@ public class Player extends PersonEntity
 							e.hit(this);
 							
 							//Set the knockback and invincibility.
-							knockback_speed = e.knockback_on_bump;
+							knockback_speed = e.knockback_force;
 							is_being_knocked_back = true;
 							is_invincible = true;
 							invincible_time_current = 0f;
@@ -206,8 +206,6 @@ public class Player extends PersonEntity
 					}
 				}
 			}
-			//else
-			//	System.out.println(Vector2.dst(e.sprite.getY() + e.sprite.getHeight() / 2f, sprite.getY() + sprite.getHeight() / 2f, e.sprite.getX() + e.sprite.getWidth() / 2f, sprite.getX() + sprite.getWidth() / 2f));
 		}
 	}
 

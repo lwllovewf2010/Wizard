@@ -5,6 +5,11 @@
 	<skeleton>
 	    <name>Skeleton</name>
 	    <texture>hold</texture>
+	    <speed>5.0</speed>
+	    <acceleration>5.0</acceleration>
+	    <deceleration>10.0</deceleration>
+	    <knockback_force>10.0</knockback_force>
+	    <knockback_damage>10.0</knockback_damage>
 	</skeleton>
 	
 	<!--Air-->

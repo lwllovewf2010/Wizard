@@ -23,15 +23,21 @@ public abstract class Enemy extends PersonEntity
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	public float knockback_on_bump = 10f;
+	public float knockback_force;
+	public float knockback_damage;
 	
 	public Enemy(GameWorld world, float x, float y, Element data)
 	{
 		super(world, x, y);
 			
 		name = data.get("name");
+		knockback_force = data.getFloat("knockback_force");
+		knockback_damage = data.getFloat("knockback_damage");
 		
-		System.out.println("Enemy:\n\tName: " + name);
+		System.out.println(
+				"Enemy:\n\tName: " + name
+				+ "\n\tKnockback Force: " + knockback_force
+				+ "\n\tKnockback Damage: " + knockback_damage);
 	}
 	
 	@Override
