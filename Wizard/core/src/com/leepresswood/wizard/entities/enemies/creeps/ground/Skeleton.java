@@ -19,7 +19,7 @@ public class Skeleton extends Enemy
 	}
 
 	@Override
-	public void hit(Player player)
+	public void doHit(Player player)
 	{
 		
 	}

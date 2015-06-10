@@ -34,7 +34,7 @@ public class EntityHandler
 		
 		try
 		{
-			Element root = new XmlReader().parse(Gdx.files.internal("player/data/wizards.xml")).getChildByName("fire");
+			Element root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName("fire");
 			player = new Player(world, world.WORLD_TOTAL_HORIZONTAL / 2f, world.GROUND, root);
 		}
 		catch (IOException e)

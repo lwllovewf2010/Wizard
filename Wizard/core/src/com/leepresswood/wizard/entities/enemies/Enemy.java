@@ -129,5 +129,13 @@ public abstract class Enemy extends PersonEntity
 	 * Enemy hit the passed player. Do any damage/effects.
 	 * @param player The player that was hit.
 	 */
-	public abstract void hit(Player player);
+	public abstract void doHit(Player player);
+
+	/**
+	 * The passed player bumped into this enemy. If there is an effect on the player's body (like a fire cloak), hit the enemy with it.
+	 * @param player The player that was hit.
+	 */
+	public void hitBy(Player player)
+	{
+	}
 }

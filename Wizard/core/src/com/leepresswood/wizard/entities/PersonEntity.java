@@ -3,7 +3,6 @@ package com.leepresswood.wizard.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -35,7 +34,6 @@ public abstract class PersonEntity
 	public boolean moving_right;
 	public float speed_current_x;
 	public float knockback_speed;
-	
 	
 	//Knockback.
 	public boolean is_invincible;
@@ -156,9 +154,7 @@ public abstract class PersonEntity
 	protected void blockCollision()
 	{
 		//Bottom
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
+		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
 		{
 			sprite.setY((int) (sprite.getY() + 1));
 			speed_current_y = 0f;
@@ -169,27 +165,21 @@ public abstract class PersonEntity
 		}
 		
 		//Top
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setY((int) (sprite.getY()));
 			speed_current_y = 0f;
 		}
 		
 		//Left
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
-			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setX((int) (sprite.getX() + 1));
 			speed_current_x = 0f;
 		}
 		
 		//Right
-		if(world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setX((int) (sprite.getX()));
 			speed_current_x = 0f;

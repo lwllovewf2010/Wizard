@@ -165,7 +165,8 @@ public class Player extends PersonEntity
 							knockback_angle += 180f;
 							
 							//Get damage/effects.
-							e.hit(this);
+							e.doHit(this);
+							e.hitBy(this);
 							
 							//Set the knockback and invincibility.
 							knockback_speed = e.knockback_force;
