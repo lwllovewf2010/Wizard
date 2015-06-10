@@ -19,7 +19,7 @@ public abstract class Spell
 	protected GameWorld world;
 	
 	//Sprite and texture data.
-	private final String TEXTURE_BASE = "person/textures/";
+	private final String TEXTURE_BASE = "player/textures/";
 	private final String TEXTURE_EXTENSION = ".png";
 	public Sprite sprite;
 	public Rectangle[] bounds;

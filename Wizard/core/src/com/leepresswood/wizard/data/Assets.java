@@ -18,7 +18,7 @@ public class Assets extends AssetManager
 		
 		//Textures
 		load("enemies/textures/hold.png", Texture.class);
-		load("person/textures/hold.png", Texture.class);
+		load("player/textures/hold.png", Texture.class);
 	}
 	
 	public TiledMap getMap(int map)

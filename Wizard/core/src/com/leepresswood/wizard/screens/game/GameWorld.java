@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.EnemyFactory;
@@ -116,7 +117,8 @@ public class GameWorld
 	{
 		try
 		{
-			player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND, new XmlReader().parse(Gdx.files.internal("player/data/wizards.xml")));
+			Element root = new XmlReader().parse(Gdx.files.internal("player/data/wizards.xml")).getChildByName("fire");
+			player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND, root);
 		}
 		catch (IOException e)
 		{

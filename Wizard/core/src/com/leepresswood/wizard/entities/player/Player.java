@@ -19,7 +19,7 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  */
 public class Player extends PersonEntity
 {	
-	private final String TEXTURE_BASE = "person/textures/";
+	private final String TEXTURE_BASE = "player/textures/";
 	private final String TEXTURE_EXTENSION = ".png";
 	
 	private final float WIDTH = 3f;
