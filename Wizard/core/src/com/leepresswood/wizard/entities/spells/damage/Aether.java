@@ -3,6 +3,7 @@ package com.leepresswood.wizard.entities.spells.damage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
@@ -37,5 +38,11 @@ public class Aether extends BoltSpell
 	@Override
 	protected void updateCollision()
 	{//Aether can hit multiple targets and go through walls, so no real collision is necessary. Time will make it disappear.
+	}
+
+	@Override
+	public void hit(Enemy enemy)
+	{
+		//Nothing needs to happen.
 	}
 }

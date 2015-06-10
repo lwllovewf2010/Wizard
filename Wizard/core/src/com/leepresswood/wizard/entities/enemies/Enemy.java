@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.PersonEntity;
+import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.screens.game.GameWorld;
@@ -87,8 +88,8 @@ public abstract class Enemy extends PersonEntity
 							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
 							knockback_angle += 180f;
 							
-							//Get damage.
-							
+							//Get damage/effects.
+							s.hit(this);							
 							
 							//Set the knockback and invincibility.
 							knockback_speed = ((BoltSpell) s).knockback;
@@ -119,4 +120,10 @@ public abstract class Enemy extends PersonEntity
 			sprite.setAlpha(die_time_current / DIE_TIME_MAX);
 		}
 	}
+
+	/**
+	 * Enemy hit the passed player. Do any damage/effects.
+	 * @param player The player that was hit.
+	 */
+	public abstract void hit(Player player);
 }

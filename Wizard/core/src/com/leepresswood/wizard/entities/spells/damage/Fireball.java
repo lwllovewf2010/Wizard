@@ -3,6 +3,7 @@ package com.leepresswood.wizard.entities.spells.damage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.BoltSpell;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
@@ -64,5 +65,12 @@ public class Fireball extends BoltSpell
 			//Decay the X speed by the speed decay.
 			speed_x *= speed_decay;
 		}
+	}
+
+	@Override
+	public void hit(Enemy enemy)
+	{
+		//Destroy this bolt.
+		active = false;
 	}
 }

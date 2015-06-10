@@ -194,8 +194,8 @@ public class Player extends PersonEntity
 							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
 							knockback_angle += 180f;
 							
-							//Get damage.
-							
+							//Get damage/effects.
+							e.hit(this);
 							
 							//Set the knockback and invincibility.
 							knockback_speed = e.knockback_on_bump;

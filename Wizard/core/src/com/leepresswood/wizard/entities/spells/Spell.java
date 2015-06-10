@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
@@ -121,4 +122,10 @@ public abstract class Spell
 	 * @param batch SpriteBatch for the sprite.
 	 */
 	public abstract void draw(SpriteBatch batch);
+
+	/**
+	 * This spell made contact with the passed enemy. Do any damage/effects that may be required.
+	 * @param enemy Enemy that was hit.
+	 */
+	public abstract void hit(Enemy enemy);
 }
