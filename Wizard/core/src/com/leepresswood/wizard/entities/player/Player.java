@@ -18,15 +18,13 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  * @author Lee
  *
  */
-public class Player extends PersonEntity
+public class Player
 {	
 	private final float WIDTH = 3f;
 	private final float HEIGHT = WIDTH * 1.618f;
 	
 	public Player(GameWorld world, float x, float y)
-	{
-		super(world, x, y);
-		
+	{		
 		setMovementVariables();
 		
 		//Display player information.
@@ -174,7 +172,7 @@ public class Player extends PersonEntity
 		speed_max_x = 5f;
 		
 		//Y
-		jump_start_speed = 10f;
+		jump_start_speed = 7.5f;
 	}
 	
 	@Override

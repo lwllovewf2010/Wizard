@@ -1,5 +1,7 @@
 package com.leepresswood.wizard.entities.enemies;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,7 +18,16 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  */
 public abstract class Enemy extends PersonEntity
 {
+	//Sprite and texture data.
+	private final String TEXTURE_BASE = "person/textures/";
+	private final String TEXTURE_EXTENSION = ".png";
+	
+	//XML Data
 	public String name;
+	public Texture texture;
+	
+	
+	
 	
 	public boolean do_jump;
 	
@@ -31,12 +42,17 @@ public abstract class Enemy extends PersonEntity
 		super(world, x, y);
 			
 		name = data.get("name");
+		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
-		accel_x = data.getFloat("knockback_force");
-		decel_x = data.getFloat("knockback_force");
-		speed_max_x = data.getFloat("knockback_force");
+		accel_x = data.getFloat("acceleration");
+		decel_x = data.getFloat("deceleration");
+		speed_max_x = data.getFloat("speed");
 		jump_start_speed = data.getFloat("knockback_force");
+		
+		//Make Sprite.
+		sprite = new Sprite(texture);
+		
 		
 		System.out.println(
 				"Enemy:"
@@ -46,8 +62,8 @@ public abstract class Enemy extends PersonEntity
 				+ "\n\tHeight: " + sprite.getHeight()
 				+ "\n\tMax Speed: " + speed_max_x
 				+ "\n\tJump Speed: " + jump_start_speed
-				+ "\n\tHorizontal Acceleration" + accel_x
-				+ "\n\tHorizontal Deceleration" + decel_x
+				+ "\n\tHorizontal Acceleration: " + accel_x
+				+ "\n\tHorizontal Deceleration: " + decel_x
 				+ "\n\tKnockback Force: " + knockback_force
 				+ "\n\tKnockback Damage: " + knockback_damage
 		);

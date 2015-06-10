@@ -5,6 +5,7 @@
 	<skeleton>
 	    <name>Skeleton</name>
 	    <texture>hold</texture>
+	    <jump_speed>7.5</jump_speed>
 	    <speed>5.0</speed>
 	    <acceleration>5.0</acceleration>
 	    <deceleration>10.0</deceleration>
