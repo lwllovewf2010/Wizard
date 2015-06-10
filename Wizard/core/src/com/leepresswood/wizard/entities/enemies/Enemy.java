@@ -77,7 +77,7 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	protected void enemyCollision()
 	{
-		for(Spell s : world.spells)
+		for(Spell s : world.entity_handler.spells)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
 			if(25f > Vector2.dst2(s.bounds[0].x + s.bounds[0].width / 2f, s.bounds[0].y + s.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))

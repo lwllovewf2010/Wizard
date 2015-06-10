@@ -22,18 +22,18 @@ public class InputGame implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.world.player.moving_right = true;
+				screen.world.entity_handler.player.moving_right = true;
 				break;
 			case Keys.A:
-				screen.world.player.moving_left = true;
+				screen.world.entity_handler.player.moving_left = true;
 				break;
 			case Keys.SPACE:
-				screen.world.player.jumping = true;
+				screen.world.entity_handler.player.jumping = true;
 				break;
 			case Keys.Q:
-				Enemy e = screen.world.factory_enemy.getEnemy(Skeleton.class);
+				Enemy e = screen.world.entity_handler.factory_enemy.getEnemy(Skeleton.class);
 				if(e != null)
-					screen.world.enemies.add(e);
+					screen.world.entity_handler.enemies.add(e);
 				break;
 			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:
@@ -75,13 +75,13 @@ public class InputGame implements InputProcessor
 		{
 			//Use WASD and Spacebar for player movement.
 			case Keys.D:
-				screen.world.player.moving_right = false;
+				screen.world.entity_handler.player.moving_right = false;
 				break;
 			case Keys.A:
-				screen.world.player.moving_left = false;
+				screen.world.entity_handler.player.moving_left = false;
 				break;
 			case Keys.SPACE:
-				screen.world.player.jumping = false;
+				screen.world.entity_handler.player.jumping = false;
 				break;
 			default:
 				break;
@@ -111,7 +111,7 @@ public class InputGame implements InputProcessor
 		
 		
 		Vector3 touch = screen.world.camera.unproject(new Vector3(screenX, screenY, 0));
-		screen.world.player.attack(new Vector2(touch.x, touch.y));
+		screen.world.entity_handler.player.attack(new Vector2(touch.x, touch.y));
 		
 		return true;
 	}

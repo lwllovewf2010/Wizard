@@ -1,20 +1,13 @@
 package com.leepresswood.wizard.screens.game;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.utils.XmlReader;
-import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.enemies.EnemyFactory;
-import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.entities.spells.SpellFactory;
+import com.leepresswood.wizard.handlers.EntityHandler;
 
 /**
  * Holds information about the game world. Sets up camera based upon this world.
@@ -36,24 +29,15 @@ public class GameWorld
 	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;
 	
-	public Player player;
-	
-	public EnemyFactory factory_enemy;							//Creates enemies.
-	public ArrayList<Enemy> enemies;
-	
-	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
-	public ArrayList<Spell> spells;	
-	
-	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
+	//Handlers
+	public EntityHandler entity_handler;
 	
 	public GameWorld(ScreenGame screen)
 	{
 		this.screen = screen;
-		factory_spell = new SpellFactory(this);
-		factory_enemy = new EnemyFactory(this);
 		
 		setUpWorld();
-		populateWorld();	
+		entity_handler = new EntityHandler(this);
 	}
 	
 	/**
@@ -110,42 +94,13 @@ public class GameWorld
 		);
 	}
 	
-	/**
-	 * Add the initial entities to the game world.
-	 */
-	private void populateWorld()
-	{
-		try
-		{
-			Element root = new XmlReader().parse(Gdx.files.internal("player/data/wizards.xml")).getChildByName("fire");
-			player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND, root);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		enemies = new ArrayList<Enemy>();
-		spells = new ArrayList<Spell>();
-		remove = new ArrayList<Object>();
-	}
+	
+	
 	
 	public void update(float delta)
 	{
-		//Player and enemies.
-		factory_enemy.update(delta);
-		for(Enemy e : enemies)
-			e.update(delta);
-		player.update(delta);
-		
-		//Spells
-		factory_spell.update(delta);
-		for(Spell s : spells)
-			s.update(delta);
-		
-		//Manage the other items in the world.
+		entity_handler.update(delta);
 		setCameraBounds();
-		deleteOldObjects();
 	}
 	
 	/**
@@ -154,8 +109,8 @@ public class GameWorld
 	private void setCameraBounds()
 	{
 		//First, set the camera to the player's position.
-		camera.position.x = player.sprite.getX() + player.sprite.getWidth() / 2f;
-		camera.position.y = player.sprite.getY() + player.sprite.getHeight() / 2f + camera.zoom * camera.viewportHeight / WORLD_PLAYER_Y_SKEW;
+		camera.position.x = entity_handler.player.sprite.getX() + entity_handler.player.sprite.getWidth() / 2f;
+		camera.position.y = entity_handler.player.sprite.getY() + entity_handler.player.sprite.getHeight() / 2f + camera.zoom * camera.viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(camera.position.x < WORLD_LEFT)
@@ -169,31 +124,7 @@ public class GameWorld
 		camera.update();
 	}
 	
-	/**
-	 * Delete old objects.
-	 */
-	private void deleteOldObjects()
-	{
-		remove.clear();
-		
-		//Delete old spells.
-		for(Spell s : spells)
-			if(!s.active)				
-				remove.add(s);
-			
-		//Delete old enemies.
-		for(Enemy e : enemies)
-			if(e.is_dead)
-				remove.add(e);
-		
-		//Do the actual removal.
-		if(!remove.isEmpty())
-			for(Object o : remove)
-				if(o instanceof Spell)
-					spells.remove(o);
-				else if(o instanceof Enemy)
-					enemies.remove(o);
-	}
+	
 	
 	public void draw()
 	{
@@ -203,11 +134,11 @@ public class GameWorld
 		//Game objects
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();			
-			for(Spell s : spells)
+			for(Spell s : entity_handler.spells)
 				s.draw(screen.batch);
-			for(Enemy e : enemies)
+			for(Enemy e : entity_handler.enemies)
 				e.draw(screen.batch);
-			player.draw(screen.batch);
+			entity_handler.player.draw(screen.batch);
 		screen.batch.end();
 	}
 }
