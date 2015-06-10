@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.Enemy;
+import com.leepresswood.wizard.enums.SpellType;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**

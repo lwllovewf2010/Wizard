@@ -5,8 +5,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
-import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.handlers.EntityHandler;
 
 /**
@@ -41,7 +39,7 @@ public class GameWorld
 	}
 	
 	/**
-	 * GSet up the world by reading information from the map.
+	 * Set up the world by reading information from the map.
 	 */
 	private void setUpWorld()
 	{
@@ -94,9 +92,6 @@ public class GameWorld
 		);
 	}
 	
-	
-	
-	
 	public void update(float delta)
 	{
 		entity_handler.update(delta);
@@ -124,21 +119,10 @@ public class GameWorld
 		camera.update();
 	}
 	
-	
-	
 	public void draw()
 	{
 		map_renderer.setView(camera);
-		map_renderer.render();
-		
-		//Game objects
-		screen.batch.setProjectionMatrix(camera.combined);
-		screen.batch.begin();			
-			for(Spell s : entity_handler.spells)
-				s.draw(screen.batch);
-			for(Enemy e : entity_handler.enemies)
-				e.draw(screen.batch);
-			entity_handler.player.draw(screen.batch);
-		screen.batch.end();
+		map_renderer.render();		
+		entity_handler.draw();
 	}
 }

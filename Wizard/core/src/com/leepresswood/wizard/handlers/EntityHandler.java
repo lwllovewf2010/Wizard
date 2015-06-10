@@ -63,6 +63,18 @@ public class EntityHandler
 		deleteOldObjects();
 	}
 	
+	public void draw()
+	{
+		world.screen.batch.setProjectionMatrix(world.camera.combined);
+		world.screen.batch.begin();			
+			for(Spell s : spells)
+				s.draw(world.screen.batch);
+			for(Enemy e : enemies)
+				e.draw(world.screen.batch);
+			player.draw(world.screen.batch);
+		world.screen.batch.end();
+	}
+	
 	/**
 	 * Delete old objects.
 	 */
