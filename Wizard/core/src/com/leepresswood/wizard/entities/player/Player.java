@@ -25,8 +25,24 @@ public class Player extends PersonEntity
 	public Player(GameWorld world, float x, float y, Element data)
 	{
 		super(world, x, y, data);
+	}
+	
+	@Override
+	protected void blockCollision()
+	{
+		super.blockCollision();
 		
-		
+		//On top of the normal block collision, we want our player to be stuck within the bounds of the stage.
+		if(sprite.getX() < 0f)
+		{
+			sprite.setX(0f);
+			speed_current_x = 0f;
+		}
+		else if(sprite.getX() + sprite.getWidth() > world.WORLD_TOTAL_HORIZONTAL)
+		{
+			sprite.setX(world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+			speed_current_x = 0f;
+		}
 	}
 	
 	public void attack(Vector2 touch)
@@ -58,7 +74,7 @@ public class Player extends PersonEntity
 		 */		
 		if(moving_right == moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))	
 		{
-			//Move command is no longer pressed. Move to 0 speed over time.
+			//Move command is no longer pressed. Decay to 0 speed over time.
 			if(speed_current_x < 0f)
 				speed_current_x += decel_x * delta;
 			else if(speed_current_x > 0f)
@@ -85,12 +101,6 @@ public class Player extends PersonEntity
 		
 		//Move in the X direction.
 		sprite.translateX(delta * speed_current_x);
-		
-		//Keep the player within the bounds of the screen in the X direction.
-		if(sprite.getX() < 0f)
-			sprite.setX(0f);
-		else if(sprite.getX() + sprite.getWidth() > world.WORLD_TOTAL_HORIZONTAL)
-			sprite.setX(world.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 	}
 	
 	protected void calcMovementY(float delta)
@@ -125,22 +135,10 @@ public class Player extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > world.GROUND)
-			speed_current_y -= delta * world.GRAVITY;
+		speed_current_y -= delta * world.GRAVITY;
 
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);
-		
-		//Set a hard limit for how low the player can go. If they pass this limit, they're on a solid block. Reset the variables.
-		if(sprite.getY() < world.GROUND)
-		{
-			sprite.setY(world.GROUND);
-			speed_current_y = 0f;
-			jump_time_current = 0f;
-			
-			if(jumping)
-				jump_stop_hop = true;
-		}
 	}
 	
 	public void draw(SpriteBatch batch)

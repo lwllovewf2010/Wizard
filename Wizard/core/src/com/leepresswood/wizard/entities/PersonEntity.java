@@ -102,52 +102,6 @@ public abstract class PersonEntity
 	}
 	
 	/**
-	 * Collision with the game world.
-	 */
-	protected void blockCollision()
-	{
-		//Bottom
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
-		{
-			sprite.setY((int) (sprite.getY() + 1));
-			speed_current_y = 0f;
-			jump_time_current = 0f;
-			
-			if(jumping)
-				jump_stop_hop = true;
-		}
-		
-		//Top
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			sprite.setY((int) (sprite.getY()));
-			speed_current_y = 0f;
-		}
-		
-		//Left
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
-			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			sprite.setX((int) (sprite.getX() + 1));
-			speed_current_x = 0f;
-		}
-		
-		//Right
-		if(world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
-			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			sprite.setX((int) (sprite.getX()));
-			speed_current_x = 0f;
-		}
-	}
-	
-	/**
 	 * Update timing and movement of sprites.
 	 * @param delta Change in time.
 	 */
@@ -195,6 +149,52 @@ public abstract class PersonEntity
 		//Reset the bounds.
 		bounds[0] = sprite.getBoundingRectangle();
 	}
+	
+	/**
+	 * Collision with the game world.
+	 */
+	protected void blockCollision()
+	{
+		//Bottom
+		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
+		{
+			sprite.setY((int) (sprite.getY() + 1));
+			speed_current_y = 0f;
+			jump_time_current = 0f;
+			
+			if(jumping)
+				jump_stop_hop = true;
+		}
+		
+		//Top
+		if(world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		{
+			sprite.setY((int) (sprite.getY()));
+			speed_current_y = 0f;
+		}
+		
+		//Left
+		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
+			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
+			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
+		{
+			sprite.setX((int) (sprite.getX() + 1));
+			speed_current_x = 0f;
+		}
+		
+		//Right
+		if(world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		{
+			sprite.setX((int) (sprite.getX()));
+			speed_current_x = 0f;
+		}
+	}
 		
 	/**
 	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.
@@ -205,8 +205,7 @@ public abstract class PersonEntity
 	/**
 	 * Collision with enemies to this entity.
 	 */
-	protected abstract void enemyCollision();
-	
+	protected abstract void enemyCollision();	
 	protected abstract void calcMovementX(float delta);
 	protected abstract void calcMovementY(float delta);
 	
