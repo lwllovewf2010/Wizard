@@ -27,9 +27,12 @@ public class Player extends PersonEntity
 	{
 		super(world, x, y);
 		
+		setMovementVariables();
+		
 		//Display player information.
 		System.out.println(
-			"Player:\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
+			"Player:"
+			+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
 			+ "\n\tWidth: " + sprite.getWidth() 
 			+ "\n\tHeight: " + sprite.getHeight()
 		);
@@ -116,7 +119,7 @@ public class Player extends PersonEntity
 			//If the jumping variable is true, jump button is being held. This allows the jump button to be held longer to jump higher. There must be a max jump button time, though.
 			if(jumping)
 			{
-				if(jump_time_current < jump_time_max)
+				if(jump_time_current < JUMP_TIME_MAX)
 				{
 					speed_current_y = jump_start_speed;
 					jump_time_current += delta;
@@ -127,7 +130,7 @@ public class Player extends PersonEntity
 				//Block the player from jumping multiple times within the same jump.
 				if(jump_time_current > 0f)
 				{
-					jump_time_current = jump_time_max;
+					jump_time_current = JUMP_TIME_MAX;
 				}
 			}
 		}
@@ -163,8 +166,7 @@ public class Player extends PersonEntity
 		sprite.draw(batch);
 	}
 
-	@Override
-	protected void setMovementVariables()
+	private void setMovementVariables()
 	{
 		//X
 		accel_x = 5f;
@@ -173,7 +175,6 @@ public class Player extends PersonEntity
 		
 		//Y
 		jump_start_speed = 10f;
-		jump_time_max = 0.25f;
 	}
 	
 	@Override

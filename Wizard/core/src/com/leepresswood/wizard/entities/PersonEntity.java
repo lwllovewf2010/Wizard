@@ -41,7 +41,7 @@ public abstract class PersonEntity
 	public float jump_start_speed;
 	public float speed_current_y;
 	public float jump_time_current;
-	public float jump_time_max;
+	public final float JUMP_TIME_MAX = 0.25f;
 	
 	//Sprites and bounds.
 	public Sprite sprite;
@@ -52,7 +52,6 @@ public abstract class PersonEntity
 		this.world = world;
 		
 		bounds = setSprites(x, y);
-		setMovementVariables();
 	}
 	
 	/**
@@ -129,11 +128,6 @@ public abstract class PersonEntity
 	 * @return Rectangles of the sprites.
 	 */
 	protected abstract Rectangle[] setSprites(float x, float y);
-	
-	/**
-	 * Set movement variables to their initial values.
-	 */
-	protected abstract void setMovementVariables();
 	
 	/**
 	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.

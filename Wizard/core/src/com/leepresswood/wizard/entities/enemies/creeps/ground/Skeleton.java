@@ -25,19 +25,6 @@ public class Skeleton extends GroundEnemy
 	}
 	
 	@Override
-	protected void setMovementVariables()
-	{
-		//X
-		accel_x = 5f;
-		decel_x = 2f * accel_x;
-		speed_max_x = 5f;
-		
-		//Y
-		jump_start_speed = 10f;
-		jump_time_max = 0.25f;
-	}
-	
-	@Override
 	public void attack(Vector2 touch)
 	{
 	}
