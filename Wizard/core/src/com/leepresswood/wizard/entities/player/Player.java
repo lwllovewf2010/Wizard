@@ -26,18 +26,7 @@ public class Player extends PersonEntity
 	{
 		super(world, x, y, data);
 		
-		//Display player information.
-		System.out.println(
-				"Player:"
-				+ "\n\tName: " + name
-				+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
-				+ "\n\tWidth: " + sprite.getWidth() 
-				+ "\n\tHeight: " + sprite.getHeight()
-				+ "\n\tMax Speed: " + speed_max_x
-				+ "\n\tJump Speed: " + jump_start_speed
-				+ "\n\tHorizontal Acceleration: " + accel_x
-				+ "\n\tHorizontal Deceleration: " + decel_x
-		);
+		
 	}
 	
 	public void attack(Vector2 touch)

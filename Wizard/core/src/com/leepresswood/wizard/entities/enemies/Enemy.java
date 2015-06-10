@@ -33,16 +33,7 @@ public abstract class Enemy extends PersonEntity
 		knockback_damage = data.getFloat("knockback_damage");
 		
 		System.out.println(
-				"Enemy:"
-				+ "\n\tName: " + name
-				+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
-				+ "\n\tWidth: " + sprite.getWidth() 
-				+ "\n\tHeight: " + sprite.getHeight()
-				+ "\n\tMax Speed: " + speed_max_x
-				+ "\n\tJump Speed: " + jump_start_speed
-				+ "\n\tHorizontal Acceleration: " + accel_x
-				+ "\n\tHorizontal Deceleration: " + decel_x
-				+ "\n\tKnockback Force: " + knockback_force
+				"\tKnockback Force: " + knockback_force
 				+ "\n\tKnockback Damage: " + knockback_damage
 		);
 	}

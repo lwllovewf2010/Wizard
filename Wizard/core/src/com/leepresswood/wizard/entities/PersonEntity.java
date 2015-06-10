@@ -69,6 +69,18 @@ public abstract class PersonEntity
 		jump_start_speed = data.getFloat("jump_speed");
 		
 		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
+		
+		System.out.println(
+				"PersonEntity:"
+				+ "\n\tName: " + name
+				+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
+				+ "\n\tWidth: " + sprite.getWidth() 
+				+ "\n\tHeight: " + sprite.getHeight()
+				+ "\n\tMax Speed: " + speed_max_x
+				+ "\n\tJump Speed: " + jump_start_speed
+				+ "\n\tHorizontal Acceleration: " + accel_x
+				+ "\n\tHorizontal Deceleration: " + decel_x
+		);
 	}
 	
 	/**

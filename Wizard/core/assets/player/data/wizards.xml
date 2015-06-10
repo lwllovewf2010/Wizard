@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wizards>
-	<!--Ground-->
 	<fire>
 	    <name>Fire Wizard</name>
 	    <texture>hold</texture>
@@ -11,10 +10,4 @@
 	    <acceleration>5.0</acceleration>
 	    <deceleration>10.0</deceleration>
 	</fire>
-	
-	<!--Air-->
-	
-	
-	<!--Boss-->
-	
 </<wizards>>

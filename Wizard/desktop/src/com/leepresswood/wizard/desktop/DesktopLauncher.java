@@ -24,12 +24,15 @@ public class DesktopLauncher
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Goals for 0.3:
-	 * Enemy knockback
+	 * Current Goals:
+	 * UI
 	 * Helper implementation
 	 * Solid block collision
+	 * Level up
+	 * Damage given/taken
+	 * Elemental types on wizards
 	 */
-	public static final String GAME_VERSION = "0.3 Alpha";
+	public static final String GAME_VERSION = "0.4 Alpha";
 	
 	/**
 	 * Game width will be a constant. Game height will be directly
