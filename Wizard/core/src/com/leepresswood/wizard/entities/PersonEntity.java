@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
@@ -13,7 +14,11 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  */
 public abstract class PersonEntity
 {
-	protected GameWorld world;	
+	protected GameWorld world;
+	
+	//Sprite and texture data.
+	private final String TEXTURE_BASE = "textures/";
+	private final String TEXTURE_EXTENSION = ".png";
 	
 	//XML Data
 	public String name;
@@ -52,9 +57,18 @@ public abstract class PersonEntity
 	public Sprite sprite;
 	public Rectangle[] bounds;
 	
-	public PersonEntity(GameWorld world)
+	public PersonEntity(GameWorld world, float x, float y, Element data)
 	{
 		this.world = world;
+		
+		name = data.get("name");
+		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		accel_x = data.getFloat("acceleration");
+		decel_x = data.getFloat("deceleration");
+		speed_max_x = data.getFloat("speed");
+		jump_start_speed = data.getFloat("jump_speed");
+		
+		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
 	}
 	
 	/**

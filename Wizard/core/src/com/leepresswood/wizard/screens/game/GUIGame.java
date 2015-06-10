@@ -75,8 +75,8 @@ public class GUIGame
 	{
 		spells = new Spell[MAX_SPELLS];
 		
-		spells[0] = new Fireball(screen.game.assets.get("player/textures/hold.png", Texture.class), 1f, 1f);
-		spells[1] = new Aether(screen.game.assets.get("player/textures/hold.png", Texture.class), 52f, 1f);
+		spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 1f, 1f);
+		spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 52f, 1f);
 	}
 	
 	/**

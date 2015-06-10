@@ -18,28 +18,13 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  *
  */
 public class Player extends PersonEntity
-{	
-	private final String TEXTURE_BASE = "player/textures/";
-	private final String TEXTURE_EXTENSION = ".png";
-	
-	private final float WIDTH = 3f;
-	private final float HEIGHT = WIDTH * 1.618f;
-
+{
 	public final float JUMP_TIME_MAX = 0.25f;
 	public boolean jump_stop_hop;
 	
 	public Player(GameWorld world, float x, float y, Element data)
 	{
-		super(world);
-		
-		name = data.get("name");
-		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
-		accel_x = data.getFloat("acceleration");
-		decel_x = data.getFloat("deceleration");
-		speed_max_x = data.getFloat("speed");
-		jump_start_speed = data.getFloat("jump_speed");
-		
-		bounds = setSprites(texture, x, y, WIDTH, HEIGHT);
+		super(world, x, y, data);
 		
 		//Display player information.
 		System.out.println(

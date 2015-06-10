@@ -1,7 +1,5 @@
 package com.leepresswood.wizard.entities.enemies;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -17,39 +15,22 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  * Parent to all the enemy types.
  */
 public abstract class Enemy extends PersonEntity
-{
-	//Sprite and texture data.
-	private final String TEXTURE_BASE = "enemies/textures/";
-	private final String TEXTURE_EXTENSION = ".png";
-	
+{	
 	//XML Data
 	public float knockback_damage;
 	public float knockback_force;
-	
-	
 	
 	public boolean do_jump;
 	
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	
-	
 	public Enemy(GameWorld world, float x, float y, Element data)
 	{
-		super(world);
-			
-		name = data.get("name");
-		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
-		accel_x = data.getFloat("acceleration");
-		decel_x = data.getFloat("deceleration");
-		speed_max_x = data.getFloat("speed");
-		jump_start_speed = data.getFloat("jump_speed");
+		super(world, x, y, data);
+		
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
-		
-		//Make Sprite.
-		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
 		
 		System.out.println(
 				"Enemy:"

@@ -17,8 +17,8 @@ public class Assets extends AssetManager
 		load("maps/map.tmx", TiledMap.class);
 		
 		//Textures
-		load("enemies/textures/hold.png", Texture.class);
-		load("player/textures/hold.png", Texture.class);
+		load("textures/hold.png", Texture.class);
+		load("textures/hold.png", Texture.class);
 	}
 	
 	public TiledMap getMap(int map)
