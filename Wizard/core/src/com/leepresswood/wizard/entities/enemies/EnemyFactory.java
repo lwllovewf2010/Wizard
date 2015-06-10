@@ -1,8 +1,6 @@
 package com.leepresswood.wizard.entities.enemies;
 
 import java.io.IOException;
-import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader;

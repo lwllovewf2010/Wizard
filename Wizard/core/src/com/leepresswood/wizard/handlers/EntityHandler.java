@@ -17,18 +17,18 @@ public class EntityHandler
 {
 	public GameWorld world;
 	
-	public Player player;
-	
-	public EnemyFactory factory_enemy;							//Creates enemies.
-	public ArrayList<Enemy> enemies;
-	
 	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
-	public ArrayList<Spell> spells;	
+	public EnemyFactory factory_enemy;							//Creates enemies.
 	
+	public Player player;
+	public ArrayList<Enemy> enemies;
+	public ArrayList<Spell> spells;	
 	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
 	
 	public EntityHandler(GameWorld world)
 	{
+		this.world = world;
+		
 		factory_spell = new SpellFactory(world);
 		factory_enemy = new EnemyFactory(world);
 		
@@ -60,6 +60,7 @@ public class EntityHandler
 		for(Spell s : spells)
 			s.update(delta);
 		
+		//Delete old objects.
 		deleteOldObjects();
 	}
 	

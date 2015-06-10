@@ -31,7 +31,8 @@ public class Fireball extends BoltSpell
 
 		System.out.println(
 			"\tImpulse: " + impulse
-		);// + "\n\tType: " + type);
+			+ "\n\tSpeed Decay: " + speed_decay
+		);
 	}
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}

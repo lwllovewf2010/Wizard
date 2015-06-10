@@ -3,6 +3,7 @@ package com.leepresswood.wizard.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.handlers.EntityHandler;
@@ -17,6 +18,7 @@ public class GameWorld
 	public ScreenGame screen;
 	public OrthographicCamera camera;
 	public TiledMap map;
+	public TiledMapTileLayer collision_layer;
 	public OrthogonalTiledMapRenderer map_renderer;	
 	
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
@@ -48,6 +50,7 @@ public class GameWorld
 		pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
 		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
 		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
+		collision_layer = (TiledMapTileLayer) map.getLayers().get(0);
 		
 		//Get the map renderer from this data.
 		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);				//Passed float number is the the inverse of the pixels per unit.		
