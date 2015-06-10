@@ -128,5 +128,13 @@ public abstract class Spell
 	 * This spell made contact with the passed enemy. Do any damage/effects that may be required.
 	 * @param enemy Enemy that was hit.
 	 */
-	public abstract void hit(Enemy enemy);
+	public abstract void doHit(Enemy enemy);
+
+	/**
+	 * I don't know why this could be needed, but it's here just in case.
+	 * @param enemy
+	 */
+	public void hitBy(Enemy enemy)
+	{
+	}
 }

@@ -93,7 +93,8 @@ public abstract class Enemy extends PersonEntity
 							knockback_angle += 180f;
 							
 							//Get damage/effects.
-							s.hit(this);							
+							s.doHit(this);
+							s.hitBy(this);
 							
 							//Set the knockback and invincibility.
 							knockback_speed = ((BoltSpell) s).knockback;

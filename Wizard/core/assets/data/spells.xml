@@ -20,14 +20,14 @@
 	    <type>Fire</type>
 	    <cost>4.0</cost>
 	    <recharge>0.5</recharge>
-	    <time_alive>3.0</time_alive>
+	    <time_alive>5.0</time_alive>
 	    
 	    <damage>5.0</damage>	    
-	    <speed>23.0</speed>
+	    <speed>27.0</speed>
 	    <knockback>10.0</knockback>
 	     
-		<impulse>0.7</impulse>
-		<speed_decay>0.9</speed_decay>
+		<impulse>0.75</impulse>
+		<speed_decay>0.95</speed_decay>
 	</fireball>
 	
 	<!--Defense-->

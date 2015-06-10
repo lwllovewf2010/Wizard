@@ -41,8 +41,8 @@ public class Aether extends BoltSpell
 	}
 
 	@Override
-	public void hit(Enemy enemy)
+	public void doHit(Enemy enemy)
 	{
-		//Nothing needs to happen.
+		
 	}
 }

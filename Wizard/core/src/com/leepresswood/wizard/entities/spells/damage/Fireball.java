@@ -109,8 +109,11 @@ public class Fireball extends BoltSpell
 	}
 
 	@Override
-	public void hit(Enemy enemy)
+	public void doHit(Enemy enemy)
 	{
+		//Remove life.
+		
+		
 		//Destroy this bolt.
 		active = false;
 	}
