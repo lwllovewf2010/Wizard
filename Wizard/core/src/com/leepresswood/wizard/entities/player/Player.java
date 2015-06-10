@@ -1,11 +1,10 @@
 package com.leepresswood.wizard.entities.player;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.PersonEntity;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.spells.Spell;
@@ -18,31 +17,42 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  * @author Lee
  *
  */
-public class Player
+public class Player extends PersonEntity
 {	
+	private final String TEXTURE_BASE = "person/textures/";
+	private final String TEXTURE_EXTENSION = ".png";
+	
 	private final float WIDTH = 3f;
 	private final float HEIGHT = WIDTH * 1.618f;
+
+	public final float JUMP_TIME_MAX = 0.25f;
+	public boolean jump_stop_hop;
 	
-	public Player(GameWorld world, float x, float y)
-	{		
-		setMovementVariables();
+	public Player(GameWorld world, float x, float y, Element data)
+	{
+		super(world);
+		
+		name = data.get("name");
+		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		accel_x = data.getFloat("acceleration");
+		decel_x = data.getFloat("deceleration");
+		speed_max_x = data.getFloat("speed");
+		jump_start_speed = data.getFloat("jump_speed");
+		
+		bounds = setSprites(texture, x, y, WIDTH, HEIGHT);
 		
 		//Display player information.
 		System.out.println(
-			"Player:"
-			+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
-			+ "\n\tWidth: " + sprite.getWidth() 
-			+ "\n\tHeight: " + sprite.getHeight()
+				"Player:"
+				+ "\n\tName: " + name
+				+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
+				+ "\n\tWidth: " + sprite.getWidth() 
+				+ "\n\tHeight: " + sprite.getHeight()
+				+ "\n\tMax Speed: " + speed_max_x
+				+ "\n\tJump Speed: " + jump_start_speed
+				+ "\n\tHorizontal Acceleration: " + accel_x
+				+ "\n\tHorizontal Deceleration: " + decel_x
 		);
-	}
-	
-	@Override
-	protected Rectangle[] setSprites(float x, float y)
-	{
-		sprite = new Sprite(world.screen.game.assets.get("person/textures/hold.png", Texture.class));
-		sprite.setBounds(x, y, WIDTH, HEIGHT);
-		
-		return new Rectangle[]{sprite.getBoundingRectangle()};
 	}
 	
 	public void attack(Vector2 touch)
@@ -162,17 +172,6 @@ public class Player
 	public void draw(SpriteBatch batch)
 	{
 		sprite.draw(batch);
-	}
-
-	private void setMovementVariables()
-	{
-		//X
-		accel_x = 5f;
-		decel_x = 2f * accel_x;
-		speed_max_x = 5f;
-		
-		//Y
-		jump_start_speed = 7.5f;
 	}
 	
 	@Override

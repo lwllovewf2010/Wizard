@@ -44,7 +44,7 @@ public abstract class Enemy extends PersonEntity
 		accel_x = data.getFloat("acceleration");
 		decel_x = data.getFloat("deceleration");
 		speed_max_x = data.getFloat("speed");
-		jump_start_speed = data.getFloat("knockback_force");
+		jump_start_speed = data.getFloat("jump_speed");
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
 		

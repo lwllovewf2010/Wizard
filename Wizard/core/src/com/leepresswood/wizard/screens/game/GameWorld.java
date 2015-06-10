@@ -1,11 +1,13 @@
 package com.leepresswood.wizard.screens.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.XmlReader;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.EnemyFactory;
@@ -97,12 +99,14 @@ public class GameWorld
 		System.out.println(
 				"World:\n\tGround Level: " + GROUND 
 				+ "\n\tGravity: " + GRAVITY 
-				+ "\n\tBlock Size: " + pixel_size);
+				+ "\n\tBlock Size: " + pixel_size
+		);
 		System.out.println(
 				"Camera:\n\tPosition: " + camera.position 
 				+ "\n\tWidth: " + camera.viewportWidth 
 				+ "\n\tHeight: " + camera.viewportHeight 
-				+ "\n\tZoom: " + camera.zoom);
+				+ "\n\tZoom: " + camera.zoom
+		);
 	}
 	
 	/**
@@ -110,7 +114,15 @@ public class GameWorld
 	 */
 	private void populateWorld()
 	{
-		player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND);
+		try
+		{
+			player = new Player(this, WORLD_TOTAL_HORIZONTAL / 2f, GROUND, new XmlReader().parse(Gdx.files.internal("player/data/wizards.xml")));
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
 		remove = new ArrayList<Object>();
