@@ -19,13 +19,12 @@ import com.leepresswood.wizard.screens.game.GameWorld;
 public abstract class Enemy extends PersonEntity
 {
 	//Sprite and texture data.
-	private final String TEXTURE_BASE = "person/textures/";
+	private final String TEXTURE_BASE = "enemies/textures/";
 	private final String TEXTURE_EXTENSION = ".png";
 	
 	//XML Data
-	public String name;
-	public Texture texture;
-	
+	public float knockback_damage;
+	public float knockback_force;
 	
 	
 	
@@ -34,25 +33,23 @@ public abstract class Enemy extends PersonEntity
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	public float knockback_force;
-	public float knockback_damage;
+	
 	
 	public Enemy(GameWorld world, float x, float y, Element data)
 	{
-		super(world, x, y);
+		super(world);
 			
 		name = data.get("name");
 		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
-		knockback_force = data.getFloat("knockback_force");
-		knockback_damage = data.getFloat("knockback_damage");
 		accel_x = data.getFloat("acceleration");
 		decel_x = data.getFloat("deceleration");
 		speed_max_x = data.getFloat("speed");
 		jump_start_speed = data.getFloat("knockback_force");
+		knockback_force = data.getFloat("knockback_force");
+		knockback_damage = data.getFloat("knockback_damage");
 		
 		//Make Sprite.
-		sprite = new Sprite(texture);
-		
+		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
 		
 		System.out.println(
 				"Enemy:"

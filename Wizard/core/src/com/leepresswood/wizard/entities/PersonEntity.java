@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.entities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,21 +15,27 @@ public abstract class PersonEntity
 {
 	protected GameWorld world;	
 	
+	//XML Data
+	public String name;
+	public Texture texture;
+	public float speed_max_x;
+	public float accel_x;
+	public float decel_x;
+	public float jump_start_speed;
+	
 	//Movement and direction.
 	public boolean facing_left;
 	public boolean moving_left;
 	public boolean moving_right;
 	public float speed_current_x;
-	public float accel_x;
-	public float decel_x;
-	public float speed_max_x;
+	public float knockback_speed;
+	
 	
 	//Knockback.
 	public boolean is_invincible;
 	public boolean is_being_knocked_back;
 	public float invincible_time_max = 0.5f;
 	public float invincible_time_current;
-	public float knockback_speed;
 	public float knockback_angle;
 	
 	//Dying.
@@ -36,22 +43,35 @@ public abstract class PersonEntity
 	public boolean dying;
 	
 	//Jumping.
-	public boolean jumping;
-	public boolean jump_stop_hop;
-	public float jump_start_speed;
-	public float speed_current_y;
 	public float jump_time_current;
-	public final float JUMP_TIME_MAX = 0.25f;
+	public boolean jumping;
+	public float speed_current_y;
+	public boolean jump_stop_hop;
 	
 	//Sprites and bounds.
 	public Sprite sprite;
 	public Rectangle[] bounds;
 	
-	public PersonEntity(GameWorld world, float x, float y)
+	public PersonEntity(GameWorld world)
 	{
 		this.world = world;
+	}
+	
+	/**
+	 * Set sprites to their initial values.
+	 * @param texture
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 * @return Bounds of all the sprites.
+	 */
+	protected Rectangle[] setSprites(Texture texture, float x, float y, float width, float height)
+	{
+		sprite = new Sprite(texture);
+		sprite.setBounds(x, y, width, height);
 		
-		bounds = setSprites(x, y);
+		return new Rectangle[]{sprite.getBoundingRectangle()};
 	}
 	
 	/**
@@ -92,7 +112,7 @@ public abstract class PersonEntity
 	/**
 	 * Determine left-right movement.
 	 */
-	protected void move(float delta)
+	private void move(float delta)
 	{
 		if(is_invincible)
 		{
@@ -119,16 +139,7 @@ public abstract class PersonEntity
 		//Reset the bounds.
 		bounds[0] = sprite.getBoundingRectangle();
 	}
-	
-	/**
-	 * Set sprites to their initial values.
-	 * @param screen Screen for gathering any necessary data.
-	 * @param x Left side of the sprite.
-	 * @param y Bottom side of the sprite.
-	 * @return Rectangles of the sprites.
-	 */
-	protected abstract Rectangle[] setSprites(float x, float y);
-	
+		
 	/**
 	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.
 	 * @param point The coordinate in the world that was clicked.
