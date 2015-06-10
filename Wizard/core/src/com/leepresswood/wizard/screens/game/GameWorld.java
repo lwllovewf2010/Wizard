@@ -30,8 +30,8 @@ public class GameWorld
 	
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
 	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
-	public final float WORLD_ZOOM = 2.0f;						//Amount added to the world camera's zoom.
-	public final float WORLD_PLAYER_Y_SKEW = 4.0f;			//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
+	public final float WORLD_ZOOM = 3.0f;						//Amount added to the world camera's zoom.
+	public final float WORLD_PLAYER_Y_SKEW = 4.5f;			//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
 	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;
