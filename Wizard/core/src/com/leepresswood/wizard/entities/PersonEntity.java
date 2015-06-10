@@ -138,9 +138,9 @@ public abstract class PersonEntity
 		}
 		
 		//Right
-		if(world.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null 
-			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
-			|| world.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null 
+			|| world.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setX((int) (sprite.getX()));
 			speed_current_x = 0f;
