@@ -29,10 +29,4 @@ public class Skeleton extends Enemy
 	public void hitBy(Player player)
 	{
 	}
-
-	@Override
-	public void damage(float amount)
-	{//Skeletons don't have armor, so all damage is pure.
-		health -= amount;
-	}
 }

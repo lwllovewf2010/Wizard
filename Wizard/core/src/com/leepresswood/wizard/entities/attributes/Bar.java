@@ -1,5 +1,5 @@
 //For use in the health or mana bars.
-package com.leepresswood.wizard.entities.player.attributes;
+package com.leepresswood.wizard.entities.attributes;
 
 public class Bar
 {	

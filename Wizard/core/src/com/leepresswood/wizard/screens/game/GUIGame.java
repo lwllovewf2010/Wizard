@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.leepresswood.wizard.entities.player.attributes.Bar;
+import com.leepresswood.wizard.entities.attributes.Bar;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
