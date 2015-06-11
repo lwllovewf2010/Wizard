@@ -16,6 +16,7 @@ public class Skeleton extends Enemy
 	@Override
 	public void attack(Vector2 touch)
 	{
+		//Skeletons are dumb. They don't have any attacks. Their only damage happens by bumping into things.
 	}
 
 	@Override

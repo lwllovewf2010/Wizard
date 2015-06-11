@@ -25,14 +25,15 @@ public class DesktopLauncher
 	 * be appended to the version number.
 	 * 
 	 * Current Goals:
-	 * UI
-	 * Helper implementation
-	 * Solid block collision
-	 * Level up
-	 * Damage given/taken
 	 * Elemental types on wizards
+	 * Enemy graphics
+	 * Level up
+	 * Player graphics
+	 * Spell graphics
+	 * UI
+	 * Waves of enemies
 	 */
-	public static final String GAME_VERSION = "0.4 Alpha";
+	public static final String GAME_VERSION = "0.5 Alpha";
 	
 	/**
 	 * Game width will be a constant. Game height will be directly
