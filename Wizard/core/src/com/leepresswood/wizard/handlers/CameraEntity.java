@@ -2,6 +2,7 @@ package com.leepresswood.wizard.handlers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
@@ -11,27 +12,35 @@ public class CameraEntity extends OrthographicCamera
 {
 	public GameWorld world;
 	
+	//Map rendering.
+	public TiledMap map;
+	public TiledMapTileLayer collision_layer;
+	public OrthogonalTiledMapRenderer map_renderer;	
+	
+	//Camera properties.
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
 	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
-	public final float WORLD_ZOOM = 3.0f;						//Amount added to the world camera's zoom.
-	public final float WORLD_PLAYER_Y_SKEW = 4.5f;			//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
-	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
-	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
-	public float pixel_size;
+	public final float WORLD_ZOOM = 3.0f;										//Amount added to the world camera's zoom.
+	public final float WORLD_PLAYER_Y_SKEW = 4.5f;							//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
+	
+	//Others.
+	public float GROUND;																//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
+	public float GRAVITY;															//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
+	public float pixel_size;														//Width/Height of each block.
 	
 	public CameraEntity(GameWorld world)
 	{
 		this.world = world;
 		
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
-		world.map = world.screen.game.assets.getMap(Assets.MAP_TEST);
-		pixel_size = new Float(world.map.getProperties().get("tilewidth", Integer.class));
-		GROUND = Float.parseFloat((String) (world.map.getProperties().get("ground")));
-		GRAVITY =  Float.parseFloat((String) (world.map.getProperties().get("gravity")));
-		world.collision_layer = (TiledMapTileLayer) world.map.getLayers().get(0);
+		map = world.screen.game.assets.getMap(Assets.MAP_TEST);
+		pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
+		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
+		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
+		collision_layer = (TiledMapTileLayer) map.getLayers().get(0);
 		
 		//Get the map renderer from this data.
-		world.map_renderer = new OrthogonalTiledMapRenderer(world.map, 1f / pixel_size);				//Passed float number is the the inverse of the pixels per unit.		
+		map_renderer = new OrthogonalTiledMapRenderer(map, 1f / pixel_size);				//Passed float number is the the inverse of the pixels per unit.		
 		
 		//Set the bounds of the camera.
 		setToOrtho(false, Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
@@ -51,8 +60,8 @@ public class CameraEntity extends OrthographicCamera
 		 * WORLD_BOTTOM will be the lowest Y value of the camera before it stops moving downward.
 		 * Extend this to the others.
 		 */
-		WORLD_TOTAL_HORIZONTAL =world.map.getProperties().get("width", Integer.class);
-		WORLD_TOTAL_VERTICAL = world.map.getProperties().get("height", Integer.class);		
+		WORLD_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
+		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);		
 		
 		WORLD_BOTTOM = zoom * viewportHeight / 2f;
 		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM;

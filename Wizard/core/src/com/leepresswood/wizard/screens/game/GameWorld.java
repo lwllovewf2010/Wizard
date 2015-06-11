@@ -1,8 +1,5 @@
 package com.leepresswood.wizard.screens.game;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.handlers.CameraEntity;
 import com.leepresswood.wizard.handlers.EntityHandler;
 
@@ -14,9 +11,6 @@ import com.leepresswood.wizard.handlers.EntityHandler;
 public class GameWorld
 {
 	public ScreenGame screen;
-	public TiledMap map;
-	public TiledMapTileLayer collision_layer;
-	public OrthogonalTiledMapRenderer map_renderer;	
 	
 	//Handlers
 	public EntityHandler entity_handler;
@@ -38,8 +32,8 @@ public class GameWorld
 	
 	public void draw()
 	{
-		map_renderer.setView(camera);
-		map_renderer.render();		
+		camera.map_renderer.setView(camera);
+		camera.map_renderer.render();		
 		entity_handler.draw();
 	}
 }
