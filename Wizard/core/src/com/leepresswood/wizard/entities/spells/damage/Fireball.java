@@ -42,7 +42,7 @@ public class Fireball extends BoltSpell
 	{
 		//Change the direction of the ball.
 		//X doesn't need to be changed, so only change Y.
-		speed_y -= world.camera.GRAVITY * delta;
+		speed_y -= world.map_camera_handler.GRAVITY * delta;
 		
 		//Move in the direction.
 		sprite.translate(speed_x * delta, speed_y * delta);
@@ -56,7 +56,7 @@ public class Fireball extends BoltSpell
 	{
 		//Check blocks for bounce.
 		//Bottom
-		if(world.camera.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
+		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
 		{			
 			//Set Y to the block level.
 			sprite.setY((int) (sprite.getY() + 1));
@@ -69,7 +69,7 @@ public class Fireball extends BoltSpell
 		}
 		
 		//Top
-		if(world.camera.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			//Set Y to the block level.
 			sprite.setY((int) (sprite.getY()));
@@ -82,7 +82,7 @@ public class Fireball extends BoltSpell
 		}
 		
 		//Left
-		if(world.camera.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.camera.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.camera.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			//Set X to the block level.
 			sprite.setX((int) (sprite.getX() + 1));
@@ -95,7 +95,7 @@ public class Fireball extends BoltSpell
 		}
 		
 		//Right
-		if(world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.camera.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			//Set X to the block level.
 			sprite.setX((int) (sprite.getX()));

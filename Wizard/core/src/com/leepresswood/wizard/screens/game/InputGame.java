@@ -110,7 +110,7 @@ public class InputGame implements InputProcessor
 		//Must determine if it's on the GUI or the game world.
 		
 		
-		Vector3 touch = screen.world.camera.unproject(new Vector3(screenX, screenY, 0));
+		Vector3 touch = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
 		screen.world.entity_handler.player.attack(new Vector2(touch.x, touch.y));
 		
 		return true;

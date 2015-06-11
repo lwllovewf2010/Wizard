@@ -50,9 +50,9 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
-		if(sprite.getX() > world.screen.world.camera.WORLD_TOTAL_HORIZONTAL / 2f)
+		if(sprite.getX() > world.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x * delta;
-		else if(sprite.getX() < world.screen.world.camera.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
+		else if(sprite.getX() < world.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
 			speed_current_x += accel_x * delta;
 		else
 			speed_current_x = 0f;
@@ -73,8 +73,8 @@ public abstract class Enemy extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > world.screen.world.camera.GROUND)
-			speed_current_y -= delta * world.screen.world.camera.GRAVITY;
+		if(sprite.getY() > world.screen.world.map_camera_handler.GROUND)
+			speed_current_y -= delta * world.screen.world.map_camera_handler.GRAVITY;
 	}
 	
 	@Override

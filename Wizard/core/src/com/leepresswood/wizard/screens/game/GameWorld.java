@@ -1,6 +1,6 @@
 package com.leepresswood.wizard.screens.game;
 
-import com.leepresswood.wizard.handlers.CameraEntity;
+import com.leepresswood.wizard.handlers.MapCameraEntity;
 import com.leepresswood.wizard.handlers.EntityHandler;
 
 /**
@@ -14,26 +14,26 @@ public class GameWorld
 	
 	//Handlers
 	public EntityHandler entity_handler;
-	public CameraEntity camera;
+	public MapCameraEntity map_camera_handler;
 	
 	public GameWorld(ScreenGame screen)
 	{
 		this.screen = screen;
 		
-		camera = new CameraEntity(this);
+		map_camera_handler = new MapCameraEntity(this);
 		entity_handler = new EntityHandler(this);
 	}
 	
 	public void update(float delta)
 	{
 		entity_handler.update(delta);
-		camera.setCameraBounds();
+		map_camera_handler.setCameraBounds();
 	}
 	
 	public void draw()
 	{
-		camera.map_renderer.setView(camera);
-		camera.map_renderer.render();		
+		map_camera_handler.map_renderer.setView(map_camera_handler);
+		map_camera_handler.map_renderer.render();		
 		entity_handler.draw();
 	}
 }

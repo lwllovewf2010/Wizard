@@ -50,9 +50,9 @@ public abstract class Player extends PersonEntity
 			sprite.setX(0f);
 			speed_current_x = 0f;
 		}
-		else if(sprite.getX() + sprite.getWidth() > world.camera.WORLD_TOTAL_HORIZONTAL)
+		else if(sprite.getX() + sprite.getWidth() > world.map_camera_handler.WORLD_TOTAL_HORIZONTAL)
 		{
-			sprite.setX(world.camera.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+			sprite.setX(world.map_camera_handler.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 			speed_current_x = 0f;
 		}
 	}
@@ -147,7 +147,7 @@ public abstract class Player extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		speed_current_y -= delta * world.camera.GRAVITY;
+		speed_current_y -= delta * world.map_camera_handler.GRAVITY;
 
 		//Move in the Y direction.
 		sprite.translateY(speed_current_y * delta);

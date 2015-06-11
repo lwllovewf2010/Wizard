@@ -57,7 +57,7 @@ public class EntityHandler
 			switch(type)
 			{
 				case AIR:
-					player = new AirWizard(world, world.camera.WORLD_TOTAL_HORIZONTAL / 2f, world.camera.GROUND, root);
+					player = new AirWizard(world, world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, world.map_camera_handler.GROUND, root);
 					break;
 			}
 		}
@@ -91,7 +91,7 @@ public class EntityHandler
 	
 	public void draw()
 	{
-		world.screen.batch.setProjectionMatrix(world.camera.combined);
+		world.screen.batch.setProjectionMatrix(world.map_camera_handler.combined);
 		world.screen.batch.begin();			
 			for(Spell s : spells)
 				s.draw(world.screen.batch);
