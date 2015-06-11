@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.enums.SpellType;
+import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
@@ -27,7 +27,7 @@ public abstract class Spell
 	
 	//XML data
 	public String name;
-	public SpellType type;
+	public MagicType type;
 	public float mana_cost;
 	public Texture texture;
 	public float recharge;
@@ -54,7 +54,7 @@ public abstract class Spell
 		//Read the data from the XML file.
 		name = data.get("name");
 		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
-		type = SpellType.valueOf(data.get("type").toUpperCase());
+		type = MagicType.valueOf(data.get("type").toUpperCase());
 		mana_cost = data.getFloat("cost");
 		recharge = data.getFloat("recharge");
 		time_alive_max = data.getFloat("time_alive");

@@ -12,7 +12,7 @@ import com.leepresswood.wizard.entities.player.AirWizard;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.SpellFactory;
-import com.leepresswood.wizard.enums.SpellType;
+import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 public class EntityHandler
@@ -22,7 +22,7 @@ public class EntityHandler
 	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
 	public EnemyFactory factory_enemy;							//Creates enemies.
 	
-	public SpellType type;											//The type of magic the player has.
+	public MagicType type;											//The type of magic the player has.
 	public Player player;											//Reference to playable character.
 	
 	public ArrayList<Enemy> enemies;								//List of enemies.
@@ -33,14 +33,14 @@ public class EntityHandler
 	 * Debug constructor.
 	 * @param world Reference to world.
 	 */
-	public EntityHandler(GameWorld world){this(world, SpellType.AIR);}
+	public EntityHandler(GameWorld world){this(world, MagicType.AIR);}
 	
 	/**
 	 * Spawn player of the given magic type.
 	 * @param world Reference to world.
 	 * @param type Magic type to spawn.
 	 */
-	public EntityHandler(GameWorld world, SpellType type)
+	public EntityHandler(GameWorld world, MagicType type)
 	{
 		this.world = world;
 		this.type = type;
