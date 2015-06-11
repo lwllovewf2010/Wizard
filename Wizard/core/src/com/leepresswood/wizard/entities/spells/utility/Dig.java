@@ -12,11 +12,17 @@ import com.leepresswood.wizard.screens.game.GameWorld;
 
 public class Dig extends Spell
 {
+	private int dig_width;
+	private int dig_height;
+	
 	public Dig(Texture t, float x, float y){super(t, x, y);}
 	
 	public Dig(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
 		super(world, from, to, data);
+		
+		dig_width = data.getInt("dig_width");
+		dig_height = data.getInt("dig_height");
 	}
 
 	@Override
@@ -34,8 +40,10 @@ public class Dig extends Spell
 
 	@Override
 	protected void updateCollision()
-	{//At this point, remove the block and kill the spell.
-		world.map_camera_handler.collision_layer.setCell((int) to.x, (int) to.y, null);
+	{//At this point, remove the X blocks and kill the spell.
+		for(int j = 0; j < dig_height; j++)
+			for(int i = 0; i < dig_width; i++)
+				world.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
 		active = false;
 	}
 
