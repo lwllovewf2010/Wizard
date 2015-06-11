@@ -9,7 +9,7 @@ public class Bar
 	public float recovery_amount;
 	private final float MAX_BAR_WIDTH;	
 	
-	public Bar(float x, float y, float width, float height, float recovery_amount)
+	public Bar(float x, float y, float width, float height, float max_bar_value, float recovery_amount)
 	{		
 		this.x = x;
 		this.y = y;
@@ -19,8 +19,20 @@ public class Bar
 		
 		//This is the return value for the width. You will come here if current_bar_value = max_bar_value.
 		MAX_BAR_WIDTH = width;
-		max_bar_value = 100f;
+		this.max_bar_value = max_bar_value;
 		current_bar_value = max_bar_value;
+	}
+	
+	/**
+	 * Set the max bar value to the given amount. Change current bar value as necessary.
+	 * @param amount New amount.
+	 */
+	public void setMaxValue(float amount)
+	{
+		//We need to update the current value as well as the max bar value. Set current to a percentage of the new value.
+		float new_percent = getHealthAsPercent();
+		max_bar_value = amount;
+		current_bar_value = new_percent * amount;
 	}
 	
 	/**

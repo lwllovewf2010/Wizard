@@ -60,8 +60,8 @@ public class GUIGame
 		final float recovery_mana = 0.3f;
 		
 		//Set bars
-		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, recovery_health);
-		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, recovery_mana);
+		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health, recovery_health);
+		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, 100f, recovery_mana);
 
 		//Set colors
 		color_health = new Color(Color.valueOf("AA3C39FF"));
@@ -95,7 +95,7 @@ public class GUIGame
 	{
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-			for(int i = 0; i < spells.length; i++)
+			for(int i = 0; i < MAX_SPELLS; i++)
 			{
 				if(spells[i] != null)
 					spells[i].sprite.draw(screen.batch);
@@ -104,7 +104,6 @@ public class GUIGame
 		
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
-				
 			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();

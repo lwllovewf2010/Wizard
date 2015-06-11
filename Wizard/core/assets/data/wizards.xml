@@ -6,6 +6,7 @@
 	    <width>3.0</width>
 	    <height>4.0</height>
 	    <health>10.0</health>
+	    <mana>100.0</mana>
 	    <defense>1.0</defense>
 	    <jump_speed>15.0</jump_speed>
 	    <speed>8.0</speed>
@@ -18,6 +19,7 @@
 	    <width>3.0</width>
 	    <height>4.0</height>
 	    <health>10.0</health>
+	    <mana>100.0</mana>
 	    <defense>2.0</defense>
 	    <jump_speed>7.5</jump_speed>
 	    <speed>5.0</speed>
