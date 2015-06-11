@@ -42,7 +42,7 @@
 	    <recharge>0.0</recharge>
 	    <time_alive>0.0</time_alive>
 	    
-	    <dig_width>2</dig_width>
-	    <dig_height>2</dig_height>
+	    <dig_width>3</dig_width>
+	    <dig_height>3</dig_height>
 	</dig>
 </spells>

@@ -41,8 +41,8 @@ public class Dig extends Spell
 	@Override
 	protected void updateCollision()
 	{//At this point, remove the X blocks and kill the spell.
-		for(int j = 0; j < dig_height; j++)
-			for(int i = 0; i < dig_width; i++)
+		for(int j = (int) (-dig_height / 2f); j < (dig_height / 2f); j++)
+			for(int i = (int) (-dig_width / 2f); i < (dig_width / 2f); i++)
 				world.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
 		active = false;
 	}
