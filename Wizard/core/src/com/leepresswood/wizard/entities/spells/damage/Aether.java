@@ -33,6 +33,9 @@ public class Aether extends BoltSpell
 	{
 		//Aether doesn't change direction. Simply move.
 		sprite.translate(speed_x * delta, speed_y * delta);
+		
+		//Reset the bounds.
+		bounds[0] = sprite.getBoundingRectangle();
 	}
 
 	@Override
