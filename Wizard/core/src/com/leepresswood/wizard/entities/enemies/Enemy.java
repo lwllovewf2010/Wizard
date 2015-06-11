@@ -20,7 +20,6 @@ public abstract class Enemy extends PersonEntity
 	//XML Data
 	public float knockback_damage;
 	public float knockback_force;
-	public float health;
 	
 	public boolean do_jump;
 	

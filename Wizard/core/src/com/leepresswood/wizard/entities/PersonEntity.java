@@ -23,6 +23,7 @@ public abstract class PersonEntity
 	//XML Data
 	public String name;
 	public Texture texture;
+	public float health;
 	public float defense;
 	public float speed_max_x;
 	public float accel_x;

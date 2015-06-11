@@ -73,8 +73,7 @@ public class GUIGame
 	 */
 	private void makeSpellList()
 	{
-		spells = new Spell[MAX_SPELLS];
-		
+		spells = new Spell[MAX_SPELLS];		
 		spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 1f, 1f);
 		spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 52f, 1f);
 	}
@@ -95,6 +94,14 @@ public class GUIGame
 	public void draw()
 	{
 		screen.batch.setProjectionMatrix(camera.combined);
+		screen.batch.begin();
+			for(int i = 0; i < spells.length; i++)
+			{
+				if(spells[i] != null)
+					spells[i].sprite.draw(screen.batch);
+			}
+		screen.batch.end();
+		
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
 				

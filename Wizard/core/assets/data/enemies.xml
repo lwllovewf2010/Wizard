@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Enemies are listed by their names. They are grouped by their type (ground, air, boss). Afterward, they are sorted by their alphabetical name.-->
+<!--Enemies are grouped by their type (ground, air, boss). Afterward, they are sorted by their alphabetical name.-->
 <spells>
 	<!--Ground-->
 	<skeleton>
-	    <name>Skeleton</name>
-	    <texture>hold</texture>
-	    <width>2.0</width>
-	    <height>2.0</height>
-	    <defense>0.0</defense>
-	    <jump_speed>7.5</jump_speed>
-	    <speed>5.0</speed>
-	    <acceleration>5.0</acceleration>
-	    <deceleration>10.0</deceleration>
-	    <knockback_force>10.0</knockback_force>
-	    <knockback_damage>10.0</knockback_damage>
-	    <health>10.0</health>
+		<name>Skeleton</name>
+		<texture>hold</texture>
+		<width>2.0</width>
+		<height>2.0</height>
+		<health>10.0</health>
+		<defense>0.0</defense>
+		<jump_speed>7.5</jump_speed>
+		<speed>5.0</speed>
+		<acceleration>5.0</acceleration>
+		<deceleration>10.0</deceleration>
+		
+		<knockback_force>10.0</knockback_force>
+		<knockback_damage>10.0</knockback_damage>
 	</skeleton>
 	
 	<!--Air-->

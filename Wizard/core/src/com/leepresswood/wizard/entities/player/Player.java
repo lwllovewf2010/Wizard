@@ -26,6 +26,9 @@ public abstract class Player extends PersonEntity
 	public Player(GameWorld world, float x, float y, Element data)
 	{
 		super(world, x, y, data);
+		
+		//Grab the health.
+		health = data.getFloat("health");
 	}
 	
 	@Override
