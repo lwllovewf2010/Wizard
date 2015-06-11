@@ -57,7 +57,7 @@ public class EntityHandler
 			switch(type)
 			{
 				case AIR:
-					player = new AirWizard(world, world.WORLD_TOTAL_HORIZONTAL / 2f, world.GROUND, root);
+					player = new AirWizard(world, world.camera.WORLD_TOTAL_HORIZONTAL / 2f, world.camera.GROUND, root);
 					break;
 			}
 		}

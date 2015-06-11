@@ -71,8 +71,8 @@ public class EnemyFactory
 			time_recharge_current = 0f;
 			
 			//Left or right side?
-			float x = left ? -3f : world.WORLD_TOTAL_HORIZONTAL;
-			float y = world.GROUND;
+			float x = left ? -3f : world.camera.WORLD_TOTAL_HORIZONTAL;
+			float y = world.camera.GROUND;
 			
 			Enemy e = null;			
 			if(type == Skeleton.class)

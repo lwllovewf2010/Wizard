@@ -1,0 +1,96 @@
+package com.leepresswood.wizard.handlers;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.screens.game.GameWorld;
+
+public class CameraEntity extends OrthographicCamera
+{
+	public GameWorld world;
+	
+	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
+	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
+	public final float WORLD_ZOOM = 3.0f;						//Amount added to the world camera's zoom.
+	public final float WORLD_PLAYER_Y_SKEW = 4.5f;			//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
+	public float GROUND;												//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
+	public float GRAVITY;											//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
+	public float pixel_size;
+	
+	public CameraEntity(GameWorld world)
+	{
+		this.world = world;
+		
+		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
+		world.map = world.screen.game.assets.getMap(Assets.MAP_TEST);
+		pixel_size = new Float(world.map.getProperties().get("tilewidth", Integer.class));
+		GROUND = Float.parseFloat((String) (world.map.getProperties().get("ground")));
+		GRAVITY =  Float.parseFloat((String) (world.map.getProperties().get("gravity")));
+		world.collision_layer = (TiledMapTileLayer) world.map.getLayers().get(0);
+		
+		//Get the map renderer from this data.
+		world.map_renderer = new OrthogonalTiledMapRenderer(world.map, 1f / pixel_size);				//Passed float number is the the inverse of the pixels per unit.		
+		
+		//Set the bounds of the camera.
+		setToOrtho(false, Gdx.graphics.getWidth() / pixel_size, Gdx.graphics.getHeight() / pixel_size);
+		zoom += WORLD_ZOOM;
+		update();
+		
+		/* Set the bounds of the world.
+		 * These will be used to give the camera cues as to where to position itself.
+		 * For example, the camera will normally follow the player.
+		 * However, if the camera's bounds would go outside the world, 
+		 * the camera should snap to the world's edge until the player
+		 * returns to a location that allows the camera to move more freely.
+		 * Think about reaching one of the ends of the world in Terraria as an example. 
+		 * 
+		 * The positions are not the edges of the world -- that would be a waste of space and time.
+		 * Rather, they are the bounds of where the camera can move.
+		 * WORLD_BOTTOM will be the lowest Y value of the camera before it stops moving downward.
+		 * Extend this to the others.
+		 */
+		WORLD_TOTAL_HORIZONTAL =world.map.getProperties().get("width", Integer.class);
+		WORLD_TOTAL_VERTICAL = world.map.getProperties().get("height", Integer.class);		
+		
+		WORLD_BOTTOM = zoom * viewportHeight / 2f;
+		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM;
+		WORLD_LEFT = zoom * viewportWidth / 2f;
+		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
+		
+		//Display information.
+		System.out.println(
+				"World:\n\tGround Level: " + GROUND 
+				+ "\n\tGravity: " + GRAVITY 
+				+ "\n\tBlock Size: " + pixel_size
+		);
+		System.out.println(
+				"Camera:\n\tPosition: " + position 
+				+ "\n\tWidth: " + viewportWidth 
+				+ "\n\tHeight: " + viewportHeight 
+				+ "\n\tZoom: " + zoom
+		);
+	}
+	
+	/**
+	 * Check the camera's position for correctness. It should not go off the world's bounds.
+	 */
+	public void setCameraBounds()
+	{
+		//First, set the camera to the player's position.
+		position.x = world.entity_handler.player.sprite.getX() + world.entity_handler.player.sprite.getWidth() / 2f;
+		position.y = world.entity_handler.player.sprite.getY() + world.entity_handler.player.sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
+		
+		//If this moves off the world's bounds, correct it.
+		if(position.x < WORLD_LEFT)
+			position.x = WORLD_LEFT;
+		else if(position.x > WORLD_RIGHT)
+			position.x = WORLD_RIGHT;
+		else if(position.y < WORLD_BOTTOM)
+			position.y = WORLD_BOTTOM;
+		else if(position.y > WORLD_TOP)
+			position.y = WORLD_TOP;
+		update();
+	}
+}
