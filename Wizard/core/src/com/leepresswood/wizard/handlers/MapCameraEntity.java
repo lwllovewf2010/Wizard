@@ -12,6 +12,12 @@ public class MapCameraEntity extends OrthographicCamera
 {
 	public GameWorld world;
 	
+	
+	
+	//http://www.cokeandcode.com/main/tutorials/path-finding/
+	
+	
+	
 	//Map rendering.
 	public TiledMap map;
 	public TiledMapTileLayer collision_layer;

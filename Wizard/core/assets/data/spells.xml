@@ -18,7 +18,7 @@
 	    <name>Fireball</name>
 	    <texture>hold</texture>
 	    <type>Fire</type>
-	    <cost>27.0</cost>
+	    <cost>5.0</cost>
 	    <recharge>0.5</recharge>
 	    <time_alive>5.0</time_alive>
 	    
@@ -34,5 +34,12 @@
 	
 	
 	<!--Utility-->
-	
+	<dig>
+		<name>Dig</name>
+	    <texture>hold</texture>
+	    <type>Utility</type>
+	    <cost>0.0</cost>
+	    <recharge>0.0</recharge>
+	    <time_alive>0.0</time_alive>
+	</dig>
 </spells>

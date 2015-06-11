@@ -13,6 +13,7 @@ import com.leepresswood.wizard.entities.attributes.Bar;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.entities.spells.utility.Dig;
 
 public class GUIGame
 {
@@ -84,9 +85,11 @@ public class GUIGame
 			
 			spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 1f, 1f);
 			spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 52f, 1f);
+			spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 103f, 1f);
 			
 			spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
 			spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
+			spells[2].mana_cost = root.getChildByName("dig").getFloat("cost");
 		}
 		catch (IOException e)
 		{

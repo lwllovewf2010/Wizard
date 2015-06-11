@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.entities.spells.utility.Dig;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 /**
@@ -68,6 +69,8 @@ public class SpellFactory
 				s = new Fireball(world, from, to, data_root.getChildByName("fireball"));
 			else if(type == Aether.class)
 				s = new Aether(world, from, to, data_root.getChildByName("aether"));
+			else if(type == Dig.class)
+				s = new Dig(world, from, to, data_root.getChildByName("dig"));
 
 			//Set the new recharge time before we go.
 			if(s != null)

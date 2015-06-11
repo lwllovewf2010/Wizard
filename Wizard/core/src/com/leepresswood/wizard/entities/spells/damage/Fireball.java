@@ -21,6 +21,8 @@ public class Fireball extends BoltSpell
 	private float impulse;
 	private float speed_decay;
 	
+	public Fireball(Texture t, float x, float y){super(t, x, y);}
+	
 	public Fireball(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
 		super(world, from, to, data);
@@ -34,8 +36,6 @@ public class Fireball extends BoltSpell
 			+ "\n\tSpeed Decay: " + speed_decay
 		);
 	}
-	
-	public Fireball(Texture t, float x, float y){super(t, x, y);}
 
 	@Override
 	protected void updatePosition(float delta)
