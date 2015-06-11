@@ -61,7 +61,7 @@ public class GUIGame
 		
 		//Set bars
 		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health, recovery_health);
-		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, 100f, recovery_mana);
+		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana, recovery_mana);
 
 		//Set colors
 		color_health = new Color(Color.valueOf("AA3C39FF"));
@@ -86,6 +86,8 @@ public class GUIGame
 	{
 		bar_health.updateOverTime(delta);
 		bar_mana.updateOverTime(delta);
+		
+		//Update player health and mana to this new value.
 	}
 	
 	/**

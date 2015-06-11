@@ -24,6 +24,7 @@ public abstract class PersonEntity
 	public String name;
 	public Texture texture;
 	public float health;
+	public float mana;
 	public float defense;
 	public float speed_max_x;
 	public float accel_x;

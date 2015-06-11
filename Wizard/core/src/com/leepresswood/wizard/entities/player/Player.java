@@ -29,6 +29,7 @@ public abstract class Player extends PersonEntity
 		
 		//Grab the health.
 		health = data.getFloat("health");
+		mana = data.getFloat("mana");
 	}
 	
 	@Override
