@@ -17,7 +17,7 @@ import com.leepresswood.wizard.screens.game.GameWorld;
  * @author Lee
  *
  */
-public class Player extends PersonEntity
+public abstract class Player extends PersonEntity
 {
 	public final float JUMP_TIME_MAX = 0.25f;
 	public boolean jump_stop_hop;

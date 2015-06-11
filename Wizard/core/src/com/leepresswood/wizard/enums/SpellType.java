@@ -3,5 +3,5 @@ package com.leepresswood.wizard.enums;
 
 public enum SpellType
 {
-	FIRE, VOID
+	AIR, EARTH, FIRE, POISON, SUPPORT, UTILITY, VOID, WATER
 }

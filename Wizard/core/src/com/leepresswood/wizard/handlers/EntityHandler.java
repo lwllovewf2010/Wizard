@@ -8,9 +8,11 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.EnemyFactory;
+import com.leepresswood.wizard.entities.player.AirWizard;
 import com.leepresswood.wizard.entities.player.Player;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.SpellFactory;
+import com.leepresswood.wizard.enums.SpellType;
 import com.leepresswood.wizard.screens.game.GameWorld;
 
 public class EntityHandler
@@ -20,28 +22,51 @@ public class EntityHandler
 	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
 	public EnemyFactory factory_enemy;							//Creates enemies.
 	
-	public Player player;
-	public ArrayList<Enemy> enemies;
-	public ArrayList<Spell> spells;	
+	public SpellType type;											//The type of magic the player has.
+	public Player player;											//Reference to playable character.
+	
+	public ArrayList<Enemy> enemies;								//List of enemies.
+	public ArrayList<Spell> spells;								//List of spells.
 	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
 	
-	public EntityHandler(GameWorld world)
+	/**
+	 * Debug constructor.
+	 * @param world Reference to world.
+	 */
+	public EntityHandler(GameWorld world){this(world, SpellType.AIR);}
+	
+	/**
+	 * Spawn player of the given magic type.
+	 * @param world Reference to world.
+	 * @param type Magic type to spawn.
+	 */
+	public EntityHandler(GameWorld world, SpellType type)
 	{
 		this.world = world;
+		this.type = type;
 		
+		//The factories are used to create new game items.
 		factory_spell = new SpellFactory(world);
 		factory_enemy = new EnemyFactory(world);
 		
+		//Get a reference to the player from the given type.
 		try
 		{
-			Element root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName("air");
-			player = new Player(world, world.WORLD_TOTAL_HORIZONTAL / 2f, world.GROUND, root);
+			Element root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName(type.toString().toLowerCase());
+			
+			switch(type)
+			{
+				case AIR:
+					player = new AirWizard(world, world.WORLD_TOTAL_HORIZONTAL / 2f, world.GROUND, root);
+					break;
+			}
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 		
+		//Initialize the lists.
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
 		remove = new ArrayList<Object>();
