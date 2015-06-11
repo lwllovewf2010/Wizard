@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wizards>
+	<air>
+		<name>Air Wizard</name>
+	    <texture>hold</texture>
+	    <width>3.0</width>
+	    <height>4.0</height>
+	    <jump_speed>15.0</jump_speed>
+	    <speed>8.0</speed>
+	    <acceleration>5.0</acceleration>
+	    <deceleration>10.0</deceleration>
+	</air>
 	<fire>
 	    <name>Fire Wizard</name>
 	    <texture>hold</texture>

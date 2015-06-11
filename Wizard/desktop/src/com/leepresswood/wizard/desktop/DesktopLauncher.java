@@ -18,8 +18,7 @@ public class DesktopLauncher
 	 * number only when a major feature addition has been made.
 	 * Version number should be 0 until first working version
 	 * of the game has been produced. Another name for this is "Alpha".
-	 * Also note that "1.1" and "1.10" are different versions despite
-	 * what the rule of mathematics may say.
+	 * Also note that "1.1" and "1.10" are different versions.
 	 * 
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.

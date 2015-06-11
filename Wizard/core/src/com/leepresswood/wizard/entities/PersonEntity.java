@@ -123,12 +123,6 @@ public abstract class PersonEntity
 	}
 	
 	/**
-	 * Is this entity dead?
-	 * @return True if dead. False otherwise.
-	 */
-	protected abstract boolean getDeathStatus();
-	
-	/**
 	 * Determine left-right movement.
 	 */
 	private void move(float delta)
@@ -204,10 +198,26 @@ public abstract class PersonEntity
 	public abstract void attack(Vector2 touch);
 	
 	/**
+	 * Is this entity dead?
+	 * @return True if dead. False otherwise.
+	 */
+	protected abstract boolean getDeathStatus();
+	
+	/**
 	 * Collision with enemies to this entity.
 	 */
-	protected abstract void enemyCollision();	
+	protected abstract void enemyCollision();
+	
+	/**
+	 * Calculate movement in the X direction.
+	 * @param delta Change in time.
+	 */
 	protected abstract void calcMovementX(float delta);
+	
+	/**
+	 * Calculate movement in the Y direction.
+	 * @param delta Change in time.
+	 */
 	protected abstract void calcMovementY(float delta);
 	
 	/**
