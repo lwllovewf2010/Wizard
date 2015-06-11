@@ -28,6 +28,12 @@ public abstract class Player extends PersonEntity
 	}
 	
 	@Override
+	public void damage(float amount)
+	{
+		world.screen.gui.bar_health.change(-amount);
+	}
+	
+	@Override
 	protected void blockCollision()
 	{
 		super.blockCollision();
@@ -181,13 +187,13 @@ public abstract class Player extends PersonEntity
 	}
 
 	@Override
-	public void die(float delta)
-	{
-	}
-
-	@Override
 	protected boolean getDeathStatus()
 	{
 		return world.screen.gui.bar_health.current_bar_value <= 0f;
+	}
+	
+	@Override
+	public void die(float delta)
+	{
 	}
 }

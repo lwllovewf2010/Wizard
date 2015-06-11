@@ -198,10 +198,10 @@ public abstract class PersonEntity
 	public abstract void attack(Vector2 touch);
 	
 	/**
-	 * Is this entity dead?
-	 * @return True if dead. False otherwise.
+	 * Damage was taken. Do the correct action.
+	 * @param amount Amount of damage taken.
 	 */
-	protected abstract boolean getDeathStatus();
+	public abstract void damage(float amount);
 	
 	/**
 	 * Collision with enemies to this entity.
@@ -225,6 +225,12 @@ public abstract class PersonEntity
 	 * @param batch The SpriteBatch for the sprites of this entity.
 	 */
 	public abstract void draw(SpriteBatch batch);
+	
+	/**
+	 * Is this entity dead?
+	 * @return True if dead. False otherwise.
+	 */
+	protected abstract boolean getDeathStatus();
 	
 	/**
 	 * Send entity into death animation. Also handle what happens afterward within this.

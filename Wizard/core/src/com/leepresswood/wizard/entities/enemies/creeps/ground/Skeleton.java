@@ -16,12 +16,23 @@ public class Skeleton extends Enemy
 	@Override
 	public void attack(Vector2 touch)
 	{
-		//Skeletons are dumb. They don't have any attacks. Their only damage happens by bumping into things.
+		//Skeletons don't have any attacks. Their only damage happens by bumping into things.
 	}
 
 	@Override
 	public void doHit(Player player)
 	{
-		world.screen.gui.bar_health.change(-knockback_damage);
+		player.damage(knockback_damage);
+	}
+
+	@Override
+	public void hitBy(Player player)
+	{
+	}
+
+	@Override
+	public void damage(float amount)
+	{//Skeletons don't have armor, so all damage is pure.
+		health -= amount;
 	}
 }

@@ -112,7 +112,7 @@ public class Fireball extends BoltSpell
 	public void doHit(Enemy enemy)
 	{
 		//Remove life.
-		enemy.health -= damage;
+		enemy.damage(damage);
 		
 		//Destroy this bolt.
 		active = false;
