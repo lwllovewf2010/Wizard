@@ -151,8 +151,8 @@ public class Player extends PersonEntity
 	{
 		for(Enemy e : world.entity_handler.enemies)
 		{
-			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are within a certain radius.
-			if(25f > Vector2.dst2(e.bounds[0].x + e.bounds[0].width / 2f, e.bounds[0].y + e.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))
+			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are alive and within a certain radius.
+			if(e.dying == false && 25f > Vector2.dst2(e.bounds[0].x + e.bounds[0].width / 2f, e.bounds[0].y + e.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))
 			{
 				for(Rectangle r : e.bounds)
 				{

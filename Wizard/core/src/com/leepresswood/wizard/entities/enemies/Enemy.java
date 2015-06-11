@@ -128,7 +128,7 @@ public abstract class Enemy extends PersonEntity
 			die_time_current = DIE_TIME_MAX;
 		}
 
-		sprite.setAlpha(die_time_current / DIE_TIME_MAX);
+		sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
 	}
 
 	/**
