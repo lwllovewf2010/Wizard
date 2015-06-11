@@ -5,6 +5,7 @@
 	    <texture>hold</texture>
 	    <width>3.0</width>
 	    <height>4.0</height>
+	    <defense>1.0</defense>
 	    <jump_speed>15.0</jump_speed>
 	    <speed>8.0</speed>
 	    <acceleration>5.0</acceleration>
@@ -15,6 +16,7 @@
 	    <texture>hold</texture>
 	    <width>3.0</width>
 	    <height>4.0</height>
+	    <defense>2.0</defense>
 	    <jump_speed>7.5</jump_speed>
 	    <speed>5.0</speed>
 	    <acceleration>5.0</acceleration>

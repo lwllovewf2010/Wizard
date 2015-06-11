@@ -23,6 +23,7 @@ public abstract class PersonEntity
 	//XML Data
 	public String name;
 	public Texture texture;
+	public float defense;
 	public float speed_max_x;
 	public float accel_x;
 	public float decel_x;
@@ -62,9 +63,10 @@ public abstract class PersonEntity
 		
 		name = data.get("name");
 		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		defense = data.getFloat("defense");
+		speed_max_x = data.getFloat("speed");
 		accel_x = data.getFloat("acceleration");
 		decel_x = data.getFloat("deceleration");
-		speed_max_x = data.getFloat("speed");
 		jump_start_speed = data.getFloat("jump_speed");
 		
 		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
@@ -75,6 +77,7 @@ public abstract class PersonEntity
 				+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
 				+ "\n\tWidth: " + sprite.getWidth() 
 				+ "\n\tHeight: " + sprite.getHeight()
+				+ "\n\tDefense: " + defense
 				+ "\n\tMax Speed: " + speed_max_x
 				+ "\n\tJump Speed: " + jump_start_speed
 				+ "\n\tHorizontal Acceleration: " + accel_x
