@@ -13,6 +13,7 @@
 	    <deceleration>10.0</deceleration>
 	    <knockback_force>10.0</knockback_force>
 	    <knockback_damage>10.0</knockback_damage>
+	    <health>10.0</health>
 	</skeleton>
 	
 	<!--Air-->

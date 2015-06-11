@@ -40,6 +40,7 @@ public abstract class BoltSpell extends Spell
 			"\tAngle: " + angle 
 			+ "\n\tSpeed X: " + speed_x 
 			+ "\n\tSpeed Y: " + speed_y
+			+ "\n\tDamage: " + damage
 			+ "\n\tKnockback: " + knockback
 		);
 	}

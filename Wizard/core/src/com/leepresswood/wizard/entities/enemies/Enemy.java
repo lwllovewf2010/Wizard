@@ -19,6 +19,7 @@ public abstract class Enemy extends PersonEntity
 	//XML Data
 	public float knockback_damage;
 	public float knockback_force;
+	public float health;
 	
 	public boolean do_jump;
 	
@@ -31,10 +32,12 @@ public abstract class Enemy extends PersonEntity
 		
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
+		health = data.getFloat("health");
 		
 		System.out.println(
 				"\tKnockback Force: " + knockback_force
 				+ "\n\tKnockback Damage: " + knockback_damage
+				+ "\n\tHealth: " + health
 		);
 	}
 	
@@ -109,21 +112,23 @@ public abstract class Enemy extends PersonEntity
 	}
 	
 	@Override
-	public void die(float delta)
+	protected boolean getDeathStatus()
 	{
-		if(dying)
+		return health <= 0f;
+	}
+	
+	@Override
+	public void die(float delta)
+	{//New note: This is only called after it has been determined that the entity is dying. No need to check for dying.
+		//Update the timing and change the alpha.
+		die_time_current += delta;
+		if(die_time_current >= DIE_TIME_MAX)
 		{
-			//Update the timing and change the alpha.
-			die_time_current += delta;
-			if(die_time_current >= DIE_TIME_MAX)
-			{
-				dying = false;
-				is_dead = true;
-				die_time_current = DIE_TIME_MAX;
-			}
-
-			sprite.setAlpha(die_time_current / DIE_TIME_MAX);
+			is_dead = true;
+			die_time_current = DIE_TIME_MAX;
 		}
+
+		sprite.setAlpha(die_time_current / DIE_TIME_MAX);
 	}
 
 	/**

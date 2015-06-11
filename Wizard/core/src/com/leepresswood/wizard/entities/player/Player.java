@@ -184,4 +184,10 @@ public class Player extends PersonEntity
 	public void die(float delta)
 	{
 	}
+
+	@Override
+	protected boolean getDeathStatus()
+	{
+		return world.screen.gui.bar_health.current_bar_value <= 0f;
+	}
 }

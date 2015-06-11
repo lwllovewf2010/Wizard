@@ -28,7 +28,7 @@ public class Fireball extends BoltSpell
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
 		speed_decay = data.getFloat("speed_decay");
-
+		
 		System.out.println(
 			"\tImpulse: " + impulse
 			+ "\n\tSpeed Decay: " + speed_decay
@@ -112,7 +112,7 @@ public class Fireball extends BoltSpell
 	public void doHit(Enemy enemy)
 	{
 		//Remove life.
-		
+		enemy.health -= damage;
 		
 		//Destroy this bolt.
 		active = false;

@@ -114,8 +114,19 @@ public abstract class PersonEntity
 			blockCollision();
 		}
 		
-		die(delta);
+		//Die in accordance with the type of enemy this is.
+		if(dying || getDeathStatus())
+		{
+			dying = true;
+			die(delta);
+		}
 	}
+	
+	/**
+	 * Is this entity dead?
+	 * @return True if dead. False otherwise.
+	 */
+	protected abstract boolean getDeathStatus();
 	
 	/**
 	 * Determine left-right movement.
