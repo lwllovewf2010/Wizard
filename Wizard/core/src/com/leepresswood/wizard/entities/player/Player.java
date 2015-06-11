@@ -66,14 +66,14 @@ public abstract class Player extends PersonEntity
 		if(spell_type != null && world.screen.gui.canCast(spell_type))
 		{
 			//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
-			Spell spell = world.screen.world.entity_handler.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
+			Spell spell = world.entity_handler.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
 			
 			//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
 			if(spell != null)
 			{
 				//Create the selected spell.
 				world.screen.gui.cast(spell);
-				world.screen.world.entity_handler.spells.add(spell);
+				world.entity_handler.spells.add(spell);
 			}
 		}
 	}

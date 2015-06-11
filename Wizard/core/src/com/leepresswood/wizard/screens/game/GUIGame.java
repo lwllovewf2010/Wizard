@@ -1,10 +1,14 @@
 package com.leepresswood.wizard.screens.game;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.attributes.Bar;
 import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
@@ -62,7 +66,7 @@ public class GUIGame
 		//Set bars
 		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health, recovery_health);
 		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana, recovery_mana);
-
+		
 		//Set colors
 		color_health = new Color(Color.valueOf("AA3C39FF"));
 		color_mana = new Color(Color.valueOf("2E4372FF"));
@@ -73,9 +77,21 @@ public class GUIGame
 	 */
 	private void makeSpellList()
 	{
-		spells = new Spell[MAX_SPELLS];		
-		spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 1f, 1f);
-		spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 52f, 1f);
+		try
+		{
+			Element root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
+			spells = new Spell[MAX_SPELLS];
+			
+			spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 1f, 1f);
+			spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 52f, 1f);
+			
+			spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
+			spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -86,8 +102,6 @@ public class GUIGame
 	{
 		bar_health.updateOverTime(delta);
 		bar_mana.updateOverTime(delta);
-		
-		//Update player health and mana to this new value.
 	}
 	
 	/**
@@ -98,10 +112,8 @@ public class GUIGame
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			for(int i = 0; i < MAX_SPELLS; i++)
-			{
 				if(spells[i] != null)
 					spells[i].sprite.draw(screen.batch);
-			}
 		screen.batch.end();
 		
 		screen.renderer.begin(ShapeType.Filled);
