@@ -23,9 +23,6 @@ public class Aether extends BoltSpell
 	public Aether(GameWorld world, Vector2 from, Vector2 to, Element data)
 	{
 		super(world, from, to, data);
-		time_alive_max = 5f;
-		
-		//System.out.println("\tType: " + name);
 	}
 	
 	@Override

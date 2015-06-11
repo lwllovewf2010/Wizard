@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Spells are listed by their names. They are grouped by their type (damage, defense, support). Afterward, they are sorted by their names.-->
+<!--Spells are grouped by their type (damage, defense, support). Afterward, they are sorted by their names.-->
 <spells>
 	<!--Damage-->
 	<aether>

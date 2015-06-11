@@ -71,6 +71,7 @@ public abstract class Spell
 			+ "\n\tRecharge: " + recharge 
 			+ "\n\tFrom: " + from 
 			+ "\n\tTo: " + to
+			+ "\n\tTime Alive: " + time_alive_max
 		);
 	}
 	

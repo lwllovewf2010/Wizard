@@ -21,6 +21,6 @@ public class Skeleton extends Enemy
 	@Override
 	public void doHit(Player player)
 	{
-		
+		world.screen.gui.bar_health.change(-knockback_damage);
 	}
 }
