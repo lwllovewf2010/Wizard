@@ -73,8 +73,7 @@ public abstract class Enemy extends PersonEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		if(sprite.getY() > world.screen.world.map_camera_handler.GROUND)
-			speed_current_y -= delta * world.screen.world.map_camera_handler.GRAVITY;
+		speed_current_y -= delta * world.screen.world.map_camera_handler.GRAVITY;
 	}
 	
 	@Override
