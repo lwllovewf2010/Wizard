@@ -9,6 +9,7 @@ public class ScreenGame extends ScreenParent
 {
 	public GameWorld world;
 	public GUIGame gui;	
+	public InputGame input;
 	
 	public ScreenGame(GameWizard game)
 	{
@@ -28,7 +29,8 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void setUpInput()
 	{
-		Gdx.input.setInputProcessor(new InputGame(this));
+		input = new InputGame(this);
+		Gdx.input.setInputProcessor(input);
 		//Gdx.input.setCursorImage(new Pixmap(Gdx.files.internal("person/textures/hold.png")), 0, 0);
 	}
 

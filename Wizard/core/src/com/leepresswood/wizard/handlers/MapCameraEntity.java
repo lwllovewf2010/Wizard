@@ -76,16 +76,17 @@ public class MapCameraEntity extends OrthographicCamera
 		WORLD_LEFT = zoom * viewportWidth / 2f;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
-		//Make the map rectangles.
+		//Make the map rectangles. These can be used to get the tile that is being highlighted.
 		map_rectangles = new Rectangle[WORLD_TOTAL_VERTICAL][WORLD_TOTAL_HORIZONTAL];
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 			{
-				map_rectangles[j][i].x = i * pixel_size;
-				map_rectangles[j][i].y = j * pixel_size;
-				map_rectangles[j][i].x = pixel_size;
-				map_rectangles[j][i].x = pixel_size;
+				map_rectangles[j][i] = new Rectangle();
+				map_rectangles[j][i].x = i * pixel_size / WORLD_ZOOM;
+				map_rectangles[j][i].y = j * pixel_size / WORLD_ZOOM;
+				map_rectangles[j][i].width = pixel_size / WORLD_ZOOM;
+				map_rectangles[j][i].height = pixel_size / WORLD_ZOOM;
 			}
 		}
 				

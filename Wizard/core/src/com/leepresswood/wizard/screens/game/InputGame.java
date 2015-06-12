@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.screens.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
@@ -11,13 +12,13 @@ public class InputGame implements InputProcessor
 {
 	private ScreenGame screen;
 	
-	public Vector3 mouse_position;
+	public Vector2 mouse_position;
 	
 	public InputGame(ScreenGame screen)
 	{
 		this.screen = screen;
 		
-		mouse_position = new Vector3();
+		mouse_position = new Vector2();
 	}
 
 	@Override
@@ -130,7 +131,7 @@ public class InputGame implements InputProcessor
 	public boolean mouseMoved(int screenX, int screenY)
 	{
 		mouse_position.x = screenX;
-		mouse_position.y = screenY;// = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
+		mouse_position.y = Gdx.graphics.getHeight() - screenY;
 		
 		return true;
 	}
