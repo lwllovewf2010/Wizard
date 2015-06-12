@@ -83,9 +83,9 @@ public class GUIGame
 			Element root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
 			spells = new Spell[MAX_SPELLS];
 			
-			spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 1f, 1f);
-			spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 52f, 1f);
-			spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 103f, 1f);
+			spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
+			spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
+			spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);
 			
 			spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
 			spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
@@ -112,6 +112,7 @@ public class GUIGame
 	 */
 	public void draw()
 	{
+		//Spells.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			for(int i = 0; i < MAX_SPELLS; i++)
@@ -119,11 +120,24 @@ public class GUIGame
 					spells[i].sprite.draw(screen.batch);
 		screen.batch.end();
 		
+		//Health/Mana bars.
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
 			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();
+		
+		//Spell outlines.
+		screen.renderer.begin(ShapeType.Line);
+		screen.renderer.identity();
+		for(int i = 0; i < MAX_SPELLS; i++)
+			if(spells[i] != null)
+				if(i == spell_active)
+					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
+				else
+					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
+		screen.renderer.end();
+
 	}
 	
 	/**
