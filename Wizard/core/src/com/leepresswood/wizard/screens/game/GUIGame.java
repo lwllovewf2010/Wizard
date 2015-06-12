@@ -129,15 +129,21 @@ public class GUIGame
 		
 		//Spell outlines.
 		screen.renderer.begin(ShapeType.Line);
-		screen.renderer.identity();
-		for(int i = 0; i < MAX_SPELLS; i++)
-			if(spells[i] != null)
-				if(i == spell_active)
-					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
-				else
-					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
+			screen.renderer.identity();
+			for(int i = 0; i < MAX_SPELLS; i++)
+				if(spells[i] != null)
+					if(i == spell_active)
+						screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
+					else
+						screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
 		screen.renderer.end();
 
+		//Mouse position outline.
+		screen.renderer.setColor(Color.WHITE);
+		screen.renderer.begin(ShapeType.Line);
+			screen.renderer.identity();
+			screen.renderer.rect(((InputGame) Gdx.input.getInputProcessor()).mouse_position.x, 100, 100, 100);
+		screen.renderer.end();
 	}
 	
 	/**

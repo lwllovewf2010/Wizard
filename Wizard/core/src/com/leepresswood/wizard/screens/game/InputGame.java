@@ -11,9 +11,13 @@ public class InputGame implements InputProcessor
 {
 	private ScreenGame screen;
 	
+	public Vector3 mouse_position;
+	
 	public InputGame(ScreenGame screen)
 	{
 		this.screen = screen;
+		
+		mouse_position = new Vector3();
 	}
 
 	@Override
@@ -125,7 +129,8 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean mouseMoved(int screenX, int screenY)
 	{
-		
+		mouse_position.x = screenX;
+		mouse_position.y = screenY;// = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
 		
 		return true;
 	}

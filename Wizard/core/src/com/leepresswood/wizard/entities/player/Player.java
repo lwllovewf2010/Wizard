@@ -59,21 +59,24 @@ public abstract class Player extends PersonEntity
 	
 	public void attack(Vector2 touch)
 	{
-		//Get the selected spell type from the GUI.
-		Spell spell_type = world.screen.gui.getActiveSpell();
-		
-		//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-		if(spell_type != null && world.screen.gui.canCast(spell_type))
+		if(!is_dead)
 		{
-			//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
-			Spell spell = world.entity_handler.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
+			//Get the selected spell type from the GUI.
+			Spell spell_type = world.screen.gui.getActiveSpell();
 			
-			//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
-			if(spell != null)
+			//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
+			if(spell_type != null && world.screen.gui.canCast(spell_type))
 			{
-				//Create the selected spell.
-				world.screen.gui.cast(spell);
-				world.entity_handler.spells.add(spell);
+				//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
+				Spell spell = world.entity_handler.factory_spell.getSpell(spell_type.getClass(), new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
+				
+				//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
+				if(spell != null)
+				{
+					//Create the selected spell.
+					world.screen.gui.cast(spell);
+					world.entity_handler.spells.add(spell);
+				}
 			}
 		}
 	}
