@@ -83,10 +83,10 @@ public class MapCameraEntity extends OrthographicCamera
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 			{
 				map_rectangles[j][i] = new Rectangle();
-				map_rectangles[j][i].x = i * pixel_size / WORLD_ZOOM;
-				map_rectangles[j][i].y = j * pixel_size / WORLD_ZOOM;
-				map_rectangles[j][i].width = pixel_size / WORLD_ZOOM;
-				map_rectangles[j][i].height = pixel_size / WORLD_ZOOM;
+				map_rectangles[j][i].x = i * pixel_size;
+				map_rectangles[j][i].y = j * pixel_size;
+				map_rectangles[j][i].width = pixel_size;
+				map_rectangles[j][i].height = pixel_size;
 			}
 		}
 				
