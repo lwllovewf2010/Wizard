@@ -21,6 +21,9 @@ public class GUIGame
 	private ScreenGame screen;
 	public OrthographicCamera camera;
 	
+	//Buttons
+	
+	
 	//Health/Mana Bars
 	public Bar bar_health, bar_mana;
 	private Color color_health, color_mana;
@@ -37,6 +40,7 @@ public class GUIGame
 		makeCamera();
 		makeStatusBars();
 		makeSpellList();
+		makeButtons();
 	}
 	
 	/**
@@ -96,6 +100,14 @@ public class GUIGame
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Make the clickable buttons.
+	 */
+	private void makeButtons()
+	{
+		
 	}
 	
 	/**
