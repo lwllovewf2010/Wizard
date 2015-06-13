@@ -166,7 +166,10 @@ public class InputGame implements InputProcessor
 				screen.gui.shiftSpellTo(i);
 				return true;
 			}
-		}		
+		}
+		
+		//Check menu icons.
+		
 		
 		//Otherwise, there was no GUI touch.
 		return false;
