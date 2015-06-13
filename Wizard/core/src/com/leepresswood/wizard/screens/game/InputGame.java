@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
+import com.leepresswood.wizard.entities.spells.Spell;
 
 public class InputGame implements InputProcessor
 {
@@ -106,21 +107,22 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
-		return false;
+		//Must determine if it's on the GUI or the game world.
+		if(!guiTouchCheck(screenX, screenY))
+		{//Touch was not on GUI, so push it into the game world.
+			Vector3 touch = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
+			screen.world.entity_handler.player.attack(new Vector2(touch.x, touch.y));
+		}	
+		
+		return true;
 	}
 	
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
-		//Must determine if it's on the GUI or the game world.
-		
-		
-		Vector3 touch = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
-		screen.world.entity_handler.player.attack(new Vector2(touch.x, touch.y));
-		
-		return true;
+		return false;
 	}
-	
+
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer)
 	{
@@ -145,4 +147,28 @@ public class InputGame implements InputProcessor
 		return true;
 	}
 	
+	/**
+	 * Determine if the touch was done on the GUI. Do the touch if it was.
+	 * @param screenX X click.
+	 * @param screenY Y click.
+	 * @return True if touch was done on GUI. False otherwise.
+	 */
+	private boolean guiTouchCheck(int screenX, int screenY)
+	{
+		//ScreenY will be flipped for no reason. Flip it back.
+		screenY = Gdx.graphics.getHeight() - screenY;
+		
+		//Check spell icons.
+		for(int i = 0; i < screen.gui.spells.length; i++)
+		{
+			if(screen.gui.spells[i] != null && screen.gui.spells[i].sprite.getBoundingRectangle().contains(screenX, screenY))
+			{
+				screen.gui.shiftSpellTo(i);
+				return true;
+			}
+		}		
+		
+		//Otherwise, there was no GUI touch.
+		return false;
+	}
 }

@@ -28,7 +28,7 @@ public class GUIGame
 	//Spells
 	private final int MAX_SPELLS = 10;
 	private int spell_active = 0;
-	private Spell[] spells;
+	public Spell[] spells;
 	
 	public GUIGame(ScreenGame screen)
 	{
@@ -181,9 +181,15 @@ public class GUIGame
 	public void changeSpell(int amount)
 	{
 		if(amount < 0)
+		{
+			spell_active--;
 			shiftSpellLeft();
+		}
 		else if(amount > 0)
+		{
+			spell_active++;
 			shiftSpellRight();
+		}
 	}
 	
 	/**
@@ -191,7 +197,6 @@ public class GUIGame
 	 */
 	private void shiftSpellLeft()
 	{
-		spell_active--;
 		if(spell_active < 0)
 			spell_active = MAX_SPELLS - 1;
 	}
@@ -201,7 +206,6 @@ public class GUIGame
 	 */
 	private void shiftSpellRight()
 	{
-		spell_active++;
 		if(spell_active == MAX_SPELLS)
 			spell_active = 0;
 	}

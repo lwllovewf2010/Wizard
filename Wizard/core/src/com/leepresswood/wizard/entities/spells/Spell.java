@@ -39,6 +39,15 @@ public abstract class Spell
 	public float time_alive_max;
 
 	/**
+	 * Use this constructor for the spell list on the GUI.
+	 */
+	public Spell(Texture t, float x, float y)
+	{
+		sprite = new Sprite(t);
+		sprite.setBounds(x, y, 50f, 50f);
+	}
+	
+	/**
 	 * Use this constructor to create a spell entity in the world.
 	 * @param world Reference to the screen.
 	 * @param from Player's starting location.
@@ -73,15 +82,6 @@ public abstract class Spell
 			+ "\n\tTo: " + to
 			+ "\n\tTime Alive: " + time_alive_max
 		);
-	}
-	
-	/**
-	 * Use this constructor for the spell list on the GUI.
-	 */
-	public Spell(Texture t, float x, float y)
-	{
-		sprite = new Sprite(t);
-		sprite.setBounds(x, y, 50f, 50f);
 	}
 	
 	/**
