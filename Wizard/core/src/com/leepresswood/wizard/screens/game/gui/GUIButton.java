@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
-public class GUIButton
+public abstract class GUIButton
 {
 	public ScreenGame screen;
 	
@@ -22,13 +22,12 @@ public class GUIButton
 		is_active = true;
 	}
 	
-	public void update(float delta)
-	{
-		
-	}
-	
 	public void draw(SpriteBatch batch)
 	{
-		sprite.draw(batch);
+		if(is_active)
+			sprite.draw(batch);
 	}
+	
+	public abstract void update(float delta);
+	public abstract void doClick();
 }

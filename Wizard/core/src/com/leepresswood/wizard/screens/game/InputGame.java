@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
-import com.leepresswood.wizard.entities.spells.Spell;
 
 public class InputGame implements InputProcessor
 {
@@ -168,8 +167,12 @@ public class InputGame implements InputProcessor
 			}
 		}
 		
-		//Check menu icons.
-		
+		//Check menu buttons. Note: The click can't happen if the button isn't active.
+		if(screen.gui.button_level_store.sprite.getBoundingRectangle().contains(screenX, screenY) && screen.gui.button_level_store.is_active)
+		{
+			screen.gui.button_level_store.doClick();
+			return true;
+		}
 		
 		//Otherwise, there was no GUI touch.
 		return false;

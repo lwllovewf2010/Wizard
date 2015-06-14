@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.entities.attributes.Bar;
@@ -15,6 +14,8 @@ import com.leepresswood.wizard.entities.spells.Spell;
 import com.leepresswood.wizard.entities.spells.damage.Aether;
 import com.leepresswood.wizard.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.entities.spells.utility.Dig;
+import com.leepresswood.wizard.screens.game.gui.GUIButton;
+import com.leepresswood.wizard.screens.game.gui.GUIButtonLevelClass;
 
 public class GUIGame
 {
@@ -22,7 +23,7 @@ public class GUIGame
 	public OrthographicCamera camera;
 	
 	//Buttons
-	
+	public GUIButton button_level_store;
 	
 	//Health/Mana Bars
 	public Bar bar_health, bar_mana;
@@ -107,7 +108,7 @@ public class GUIGame
 	 */
 	private void makeButtons()
 	{
-		
+		button_level_store = new GUIButtonLevelClass(screen, screen.game.assets.get("textures/hold.png", Texture.class), Gdx.graphics.getWidth() - 26f, Gdx.graphics.getHeight() - 26f, 25f, 25f);
 	}
 	
 	/**
@@ -125,9 +126,12 @@ public class GUIGame
 	 */
 	public void draw()
 	{
-		//Spells.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
+			//Buttons.
+			button_level_store.draw(screen.batch);
+		
+		//Spells.
 			for(int i = 0; i < MAX_SPELLS; i++)
 				if(spells[i] != null)
 					spells[i].sprite.draw(screen.batch);
