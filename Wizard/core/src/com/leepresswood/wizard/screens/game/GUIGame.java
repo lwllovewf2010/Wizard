@@ -26,11 +26,11 @@ public class GUIGame
 	
 	//Health/Mana Bars
 	public Bar bar_health, bar_mana;
-	private Color color_health, color_mana;
+	public Color color_health, color_mana;
 	
 	//Spells
-	private final int MAX_SPELLS = 10;
-	private int spell_active = 0;
+	public final int MAX_SPELLS = 10;
+	public int spell_active = 0;
 	public Spell[] spells;
 	
 	public GUIGame(ScreenGame screen)
