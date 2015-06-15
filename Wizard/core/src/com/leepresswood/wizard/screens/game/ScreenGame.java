@@ -3,7 +3,10 @@ package com.leepresswood.wizard.screens.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.GameWizard;
+import com.leepresswood.wizard.input.InputGame;
 import com.leepresswood.wizard.screens.ScreenParent;
+import com.leepresswood.wizard.screens.game.gui.GUIGame;
+import com.leepresswood.wizard.world.GameWorld;
 
 public class ScreenGame extends ScreenParent
 {

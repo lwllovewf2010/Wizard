@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.screens.game;
+package com.leepresswood.wizard.screens.game.gui;
 
 import java.io.IOException;
 
@@ -9,13 +9,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.attributes.Bar;
-import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.entities.spells.damage.Aether;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
-import com.leepresswood.wizard.entities.spells.utility.Dig;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
-import com.leepresswood.wizard.screens.game.gui.GUIButtonLevelClass;
+import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.world.entities.attributes.Bar;
+import com.leepresswood.wizard.world.entities.spells.Spell;
+import com.leepresswood.wizard.world.entities.spells.damage.Aether;
+import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 
 public class GUIGame
 {

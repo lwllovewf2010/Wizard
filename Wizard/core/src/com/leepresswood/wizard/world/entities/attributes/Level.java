@@ -1,6 +1,6 @@
-package com.leepresswood.wizard.entities.attributes;
+package com.leepresswood.wizard.world.entities.attributes;
 
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
 
 /**
  * Level manager for the player.

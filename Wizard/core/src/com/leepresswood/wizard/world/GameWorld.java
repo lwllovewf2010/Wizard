@@ -1,7 +1,8 @@
-package com.leepresswood.wizard.screens.game;
+package com.leepresswood.wizard.world;
 
 import com.leepresswood.wizard.handlers.MapCameraEntity;
 import com.leepresswood.wizard.handlers.EntityHandler;
+import com.leepresswood.wizard.screens.game.ScreenGame;
 
 /**
  * Holds information about the game world. Sets up camera based upon this world.

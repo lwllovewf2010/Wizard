@@ -1,15 +1,15 @@
-package com.leepresswood.wizard.entities.player;
+package com.leepresswood.wizard.world.entities.player;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.PersonEntity;
-import com.leepresswood.wizard.entities.attributes.Defense;
-import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.PersonEntity;
+import com.leepresswood.wizard.world.entities.attributes.Defense;
+import com.leepresswood.wizard.world.entities.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.spells.Spell;
 
 /**
  * Class should include all attributes every player will have.

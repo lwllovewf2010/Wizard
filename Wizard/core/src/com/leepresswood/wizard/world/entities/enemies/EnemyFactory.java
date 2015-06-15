@@ -1,12 +1,13 @@
-package com.leepresswood.wizard.entities.enemies;
+package com.leepresswood.wizard.world.entities.enemies;
 
 import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.enemies.creeps.ground.Skeleton;
 
 /**
  * Creates and manages enemy spawning.

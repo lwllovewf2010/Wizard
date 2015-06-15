@@ -1,12 +1,13 @@
-package com.leepresswood.wizard.screens.game;
+package com.leepresswood.wizard.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.enemies.creeps.ground.Skeleton;
+import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.world.entities.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.enemies.creeps.ground.Skeleton;
 
 public class InputGame implements InputProcessor
 {

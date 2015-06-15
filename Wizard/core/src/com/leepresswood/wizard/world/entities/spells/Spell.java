@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.entities.spells;
+package com.leepresswood.wizard.world.entities.spells;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.enemies.Enemy;
 import com.leepresswood.wizard.enums.MagicType;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.enemies.Enemy;
 
 /**
  * The Spell class is a parent to the various spells in the game. All spells will have a cast-to position, 

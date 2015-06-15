@@ -1,7 +1,7 @@
-package com.leepresswood.wizard.entities.player;
+package com.leepresswood.wizard.world.entities.player;
 
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
 
 public class AirWizard extends Player
 {

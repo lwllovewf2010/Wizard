@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.entities.spells;
+package com.leepresswood.wizard.world.entities.spells;
 
 import java.io.IOException;
 
@@ -6,10 +6,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.spells.damage.Aether;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
-import com.leepresswood.wizard.entities.spells.utility.Dig;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.spells.damage.Aether;
+import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 
 /**
  * Creates and manages spell spawning.

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.enemies.EnemyFactory;
-import com.leepresswood.wizard.entities.player.AirWizard;
-import com.leepresswood.wizard.entities.player.Player;
-import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.entities.spells.SpellFactory;
 import com.leepresswood.wizard.enums.MagicType;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.enemies.EnemyFactory;
+import com.leepresswood.wizard.world.entities.player.AirWizard;
+import com.leepresswood.wizard.world.entities.player.Player;
+import com.leepresswood.wizard.world.entities.spells.Spell;
+import com.leepresswood.wizard.world.entities.spells.SpellFactory;
 
 public class EntityHandler
 {
