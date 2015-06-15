@@ -26,6 +26,6 @@ public class GUIButtonLevelClass extends GUIButton
 	public void doClick()
 	{
 		//Replace the current screen with the shop screen.
-		
+		System.out.println(1);
 	}
 }
