@@ -20,12 +20,18 @@ public class GUIButtonLevelClass extends GUIButton
 	{
 		//This button will not be active during the wave.
 		//if(screen.world.mid_wave)
+		//is_active = false;
+		//else
+		//is_active = true;
 	}
 	
 	@Override
 	public void doClick()
 	{
 		//Replace the current screen with the shop screen.
-		
+		if(is_active)
+		{
+			
+		}
 	}
 }
