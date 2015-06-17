@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.screens.game;
+package com.leepresswood.wizard.screens.game.gui;
 
 import java.io.IOException;
 
@@ -9,13 +9,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.attributes.Bar;
-import com.leepresswood.wizard.entities.spells.Spell;
-import com.leepresswood.wizard.entities.spells.damage.Aether;
-import com.leepresswood.wizard.entities.spells.damage.Fireball;
-import com.leepresswood.wizard.entities.spells.utility.Dig;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
-import com.leepresswood.wizard.screens.game.gui.GUIButtonLevelClass;
+import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.world.entities.attributes.Bar;
+import com.leepresswood.wizard.world.entities.spells.Spell;
+import com.leepresswood.wizard.world.entities.spells.damage.Aether;
+import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 
 public class GUIGame
 {
@@ -23,7 +22,8 @@ public class GUIGame
 	public OrthographicCamera camera;
 	
 	//Buttons
-	public GUIButton button_level_store;
+	public final int MAX_BUTTONS = 1;
+	public GUIButton[] button_array;
 	
 	//Health/Mana Bars
 	public Bar bar_health, bar_mana;
@@ -108,7 +108,8 @@ public class GUIGame
 	 */
 	private void makeButtons()
 	{
-		button_level_store = new GUIButtonLevelClass(screen, screen.game.assets.get("textures/hold.png", Texture.class), Gdx.graphics.getWidth() - 26f, Gdx.graphics.getHeight() - 26f, 25f, 25f);
+		button_array = new GUIButton[MAX_BUTTONS];
+		button_array[0] = new GUIButtonLevelClass(screen, screen.game.assets.get("textures/hold.png", Texture.class), Gdx.graphics.getWidth() - 26f, Gdx.graphics.getHeight() - 26f, 25f, 25f);
 	}
 	
 	/**
@@ -129,9 +130,10 @@ public class GUIGame
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			//Buttons.
-			button_level_store.draw(screen.batch);
+			for(GUIButton b : button_array)
+				b.draw(screen.batch);
 		
-		//Spells.
+			//Spells.
 			for(int i = 0; i < MAX_SPELLS; i++)
 				if(spells[i] != null)
 					spells[i].sprite.draw(screen.batch);

@@ -1,10 +1,10 @@
-package com.leepresswood.wizard.entities.enemies.creeps.ground;
+package com.leepresswood.wizard.world.entities.enemies.creeps.ground;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.entities.enemies.Enemy;
-import com.leepresswood.wizard.entities.player.Player;
-import com.leepresswood.wizard.screens.game.GameWorld;
+import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.player.Player;
 
 public class Skeleton extends Enemy
 {
