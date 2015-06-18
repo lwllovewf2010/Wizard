@@ -118,6 +118,9 @@ public class GUIGame
 	 */
 	public void update(float delta)
 	{
+		for(GUIButton b : button_array)
+			b.update(delta);
+		
 		bar_health.updateOverTime(delta);
 		bar_mana.updateOverTime(delta);
 	}

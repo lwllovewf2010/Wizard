@@ -16,6 +16,8 @@ public class GameWorld
 	//Handlers
 	public EntityHandler entity_handler;
 	public MapCameraEntity map_camera_handler;
+
+	public boolean mid_wave;
 	
 	public GameWorld(ScreenGame screen)
 	{
