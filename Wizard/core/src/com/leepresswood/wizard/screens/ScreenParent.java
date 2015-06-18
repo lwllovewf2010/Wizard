@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,6 +22,7 @@ public abstract class ScreenParent extends ScreenAdapter
 	public ShapeRenderer renderer;
 	
 	protected Color color_background;
+	protected InputProcessor input;
 	
 	public ScreenParent(GameWizard game)
 	{
@@ -30,6 +32,7 @@ public abstract class ScreenParent extends ScreenAdapter
 		
 		setUpBackgroundColor();
 		setUpInput();
+		input = Gdx.input.getInputProcessor();
 	}
 	
 	/**
@@ -46,6 +49,12 @@ public abstract class ScreenParent extends ScreenAdapter
 		Gdx.gl.glClearColor(color_background.r, color_background.g, color_background.b, color_background.a);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		draw();
+	}
+	
+	@Override
+	public void show()
+	{//Replace the current InputProcessor with this screen's version. This will be useful for switching between the game screen and the derivative menus.
+		Gdx.input.setInputProcessor(input);
 	}
 	
 	public abstract void setUpBackgroundColor();
