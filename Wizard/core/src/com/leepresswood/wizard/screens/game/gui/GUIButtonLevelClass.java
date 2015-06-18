@@ -2,6 +2,7 @@ package com.leepresswood.wizard.screens.game.gui;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
 /**
  * The button that opens the level shop. 
@@ -31,7 +32,7 @@ public class GUIButtonLevelClass extends GUIButton
 		//Replace the current screen with the shop screen.
 		if(is_active)
 		{
-			
+			screen.game.setScreen(new ScreenLevelStore(screen.game, screen));
 		}
 	}
 }

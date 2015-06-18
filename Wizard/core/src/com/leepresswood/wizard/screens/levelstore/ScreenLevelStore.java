@@ -1,5 +1,8 @@
 package com.leepresswood.wizard.screens.levelstore;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
@@ -30,11 +33,65 @@ public class ScreenLevelStore extends ScreenParent
 	@Override
 	public void setUpBackgroundColor()
 	{
+		color_background = Color.BLACK;
 	}
 
 	@Override
 	public void setUpInput()
 	{
+		Gdx.input.setInputProcessor(new InputProcessor()
+		{
+			
+			@Override
+			public boolean touchUp(int screenX, int screenY, int pointer, int button)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean touchDragged(int screenX, int screenY, int pointer)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean touchDown(int screenX, int screenY, int pointer, int button)
+			{
+				game.setScreen(game_screen);
+				
+				return true;
+			}
+			
+			@Override
+			public boolean scrolled(int amount)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean mouseMoved(int screenX, int screenY)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean keyUp(int keycode)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean keyTyped(char character)
+			{
+				return false;
+			}
+			
+			@Override
+			public boolean keyDown(int keycode)
+			{
+				return false;
+			}
+		});
 	}
 
 	@Override
