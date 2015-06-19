@@ -186,7 +186,7 @@ public class GUIGame
 	}
 	
 	/**
-	 * Player pressed a number. Switch to that spell.
+	 * Player requested a switch to a particular spell in the spell list.
 	 * @param count The number pressed.
 	 */
 	public void shiftSpellTo(int count)
@@ -214,7 +214,7 @@ public class GUIGame
 	}
 	
 	/**
-	 * Shift the active spell left by one.
+	 * Correct the selected spell after a shift of the active spell left by one.
 	 */
 	private void shiftSpellLeft()
 	{
@@ -223,7 +223,7 @@ public class GUIGame
 	}
 	
 	/**
-	 * Shift the active spell right by one.
+	 * Correct the selected spell after a shift of the active spell right by one.
 	 */
 	private void shiftSpellRight()
 	{
