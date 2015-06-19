@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.GameWizard;
+import com.leepresswood.wizard.gui.elements.GUIButton;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
 
 /**
  * This is the store that may be used for leveling up between rounds. We'll be lazy here and put everything in this class

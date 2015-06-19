@@ -1,7 +1,7 @@
-package com.leepresswood.wizard.screens.game.gui;
+package com.leepresswood.wizard.screens.game;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.gui.elements.GUIButton;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
 /**
@@ -9,9 +9,9 @@ import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
  * @author Lee
  *
  */
-public class GUIButtonLevelClass extends GUIButton
+public class LevelGUIButton extends GUIButton
 {
-	public GUIButtonLevelClass(ScreenGame screen, Texture t, float x, float y, float width, float height)
+	public LevelGUIButton(ScreenGame screen, Texture t, float x, float y, float width, float height)
 	{
 		super(screen, t, x, y, width, height);
 	}

@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.screens.game.gui;
+package com.leepresswood.wizard.gui;
 
 import java.io.IOException;
 
@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.gui.elements.GUIButton;
+import com.leepresswood.wizard.screens.game.LevelGUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.world.entities.attributes.Bar;
 import com.leepresswood.wizard.world.entities.spells.Spell;
@@ -109,7 +111,7 @@ public class GUIGame
 	private void makeButtons()
 	{
 		button_array = new GUIButton[MAX_BUTTONS];
-		button_array[0] = new GUIButtonLevelClass(screen, screen.game.assets.get("textures/hold.png", Texture.class), Gdx.graphics.getWidth() - 26f, Gdx.graphics.getHeight() - 26f, 25f, 25f);
+		button_array[0] = new LevelGUIButton(screen, screen.game.assets.get("textures/hold.png", Texture.class), Gdx.graphics.getWidth() - 26f, Gdx.graphics.getHeight() - 26f, 25f, 25f);
 	}
 	
 	/**
@@ -132,11 +134,9 @@ public class GUIGame
 	{
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-			//Buttons.
 			for(GUIButton b : button_array)
 				b.draw(screen.batch);
-		
-			//Spells.
+			
 			for(int i = 0; i < MAX_SPELLS; i++)
 				if(spells[i] != null)
 					spells[i].sprite.draw(screen.batch);

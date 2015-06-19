@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.screens.game.gui;
+package com.leepresswood.wizard.gui.elements;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
