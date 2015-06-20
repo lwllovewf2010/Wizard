@@ -187,7 +187,7 @@ public class GUIGame
 	
 	/**
 	 * Player requested a switch to a particular spell in the spell list.
-	 * @param count The number pressed.
+	 * @param count The number requested from the spell list.
 	 */
 	public void shiftSpellTo(int count)
 	{//Setting active to the count variable and then shifting down one will be enough.
