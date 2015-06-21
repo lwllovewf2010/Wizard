@@ -1,13 +1,14 @@
 package com.leepresswood.wizard.world.attributes;
 
 import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.wave.WaveHandler;
 
 /**
  * Level manager for the player.
  *
  * @author Lee
  */
-public class Level
+public class LevelHandler
 {
 	public GameWorld world;
 	
@@ -15,9 +16,7 @@ public class Level
 	public int points_spent;
 	public int points_available;
 	
-	public boolean mid_wave;
-	
-	public Level(GameWorld world, int level)
+	public LevelHandler(GameWorld world, int level)
 	{
 		this.world = world;
 		this.level = level;

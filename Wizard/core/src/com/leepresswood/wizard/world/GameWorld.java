@@ -3,7 +3,8 @@ package com.leepresswood.wizard.world;
 import com.leepresswood.wizard.handlers.MapCameraEntity;
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.world.attributes.Level;
+import com.leepresswood.wizard.world.attributes.LevelHandler;
+import com.leepresswood.wizard.world.wave.WaveHandler;
 
 /**
  * Holds information about the game world. Sets up camera based upon this world.
@@ -17,7 +18,8 @@ public class GameWorld
 	//Handlers
 	public EntityHandler entity_handler;
 	public MapCameraEntity map_camera_handler;
-	public Level level_handler;
+	public LevelHandler level_handler;
+	public WaveHandler wave_handler;
 	
 	public GameWorld(ScreenGame screen)
 	{
@@ -25,7 +27,7 @@ public class GameWorld
 		
 		map_camera_handler = new MapCameraEntity(this);
 		entity_handler = new EntityHandler(this);
-		level_handler = new Level(this, 1);
+		level_handler = new LevelHandler(this, 1);
 	}
 	
 	public void update(float delta)
