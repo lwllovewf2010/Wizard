@@ -43,7 +43,7 @@ public class InputGame implements InputProcessor
 					screen.world.entity_handler.enemies.add(e);
 				break;
 			case Keys.SHIFT_LEFT:
-				screen.world.mid_wave = !screen.world.mid_wave;
+				screen.world.wave_handler.mid_wave = !screen.world.wave_handler.mid_wave;
 				break;
 			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:

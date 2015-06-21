@@ -1,7 +1,6 @@
 package com.leepresswood.wizard.world.attributes;
 
 import com.leepresswood.wizard.world.GameWorld;
-import com.leepresswood.wizard.world.wave.WaveHandler;
 
 /**
  * Level manager for the player.
@@ -12,30 +11,21 @@ public class LevelHandler
 {
 	public GameWorld world;
 	
-	public int level;
-	public int points_spent;
-	public int points_available;
+	public int level;							//Total points available.
+	public int points_spent;				//Points that have been spent on leveling.
+	public int points_available;			//Points available to be spent.
 	
 	public LevelHandler(GameWorld world, int level)
 	{
 		this.world = world;
 		this.level = level;
 	}
-	
+
 	/**
-	 * Wave began. Do the correct steps.
+	 * Do all required actions upon leveling up.
 	 */
-	public void waveBegin()
+	public void levelUp()
 	{
-		mid_wave = true;
-	}
-	
-	/**
-	 * Wave ended. Do the correct steps.
-	 */
-	public void waveEnd()
-	{
-		mid_wave = false;
 		level++;
 		points_available = level - points_spent;
 	}

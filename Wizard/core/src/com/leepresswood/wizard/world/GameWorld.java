@@ -28,6 +28,7 @@ public class GameWorld
 		map_camera_handler = new MapCameraEntity(this);
 		entity_handler = new EntityHandler(this);
 		level_handler = new LevelHandler(this, 1);
+		wave_handler = new WaveHandler(this);
 	}
 	
 	public void update(float delta)
