@@ -17,12 +17,12 @@ public class Level
 	
 	public boolean mid_wave;
 	
-	public Level(GameWorld world)
+	public Level(GameWorld world, int level)
 	{
 		this.world = world;
 		
 		//Player will start at level 1.
-		level = 1;
+		this.level = level;
 	}
 	
 	/**
