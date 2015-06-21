@@ -52,12 +52,29 @@ public class EntityHandler
 		//Get a reference to the player from the given type.
 		try
 		{
+			//Read the root of the wizard file and gather the requested type of wizard. 
 			Element root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName(type.toString().toLowerCase());
 			
 			switch(type)
 			{
 				case AIR:
 					player = new AirWizard(world, world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, world.map_camera_handler.GROUND, root);
+					break;
+				case EARTH:
+					break;
+				case FIRE:
+					break;
+				case POISON:
+					break;
+				case SUPPORT:
+					break;
+				case UTILITY:
+					break;
+				case VOID:
+					break;
+				case WATER:
+					break;
+				default:
 					break;
 			}
 		}

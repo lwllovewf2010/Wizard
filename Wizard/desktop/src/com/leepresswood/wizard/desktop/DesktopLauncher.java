@@ -23,7 +23,7 @@ public class DesktopLauncher
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Current Goals:
+	 * Version 0.5 Goals:
 	 * Elemental types on wizards
 	 * Enemy graphics
 	 * Level up
