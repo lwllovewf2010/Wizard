@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.gui.elements.GUIButton;
 import com.leepresswood.wizard.screens.game.LevelGUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.world.entities.attributes.Bar;
+import com.leepresswood.wizard.world.attributes.Bar;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 import com.leepresswood.wizard.world.entities.spells.damage.Aether;
 import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
@@ -38,8 +38,9 @@ public class GUIGame
 	
 	public GUIGame(ScreenGame screen)
 	{
-		this.screen = screen;	
-				
+		this.screen = screen;
+		
+		//Set up parts of the GUI.
 		makeCamera();
 		makeStatusBars();
 		makeSpellList();

@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.attributes;
+package com.leepresswood.wizard.world.attributes;
 
 /**
  * Defense will directly affect the amount of damage the player takes.

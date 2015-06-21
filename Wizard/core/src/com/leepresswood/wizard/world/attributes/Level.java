@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.attributes;
+package com.leepresswood.wizard.world.attributes;
 
 import com.leepresswood.wizard.world.GameWorld;
 
