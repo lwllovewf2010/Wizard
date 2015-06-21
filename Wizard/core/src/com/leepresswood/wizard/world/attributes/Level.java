@@ -20,8 +20,6 @@ public class Level
 	public Level(GameWorld world, int level)
 	{
 		this.world = world;
-		
-		//Player will start at level 1.
 		this.level = level;
 	}
 	
