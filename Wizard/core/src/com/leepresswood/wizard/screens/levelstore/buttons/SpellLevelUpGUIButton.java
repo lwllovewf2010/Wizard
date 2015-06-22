@@ -1,7 +1,7 @@
 package com.leepresswood.wizard.screens.levelstore.buttons;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.gui.GUIButton;
 
 /**
@@ -13,7 +13,7 @@ public class SpellLevelUpGUIButton extends GUIButton
 	private final int MAX = 5;
 	public int current = 0;
 	
-	public SpellLevelUpGUIButton(ScreenGame screen, Texture t, float x, float y, float width, float height)
+	public SpellLevelUpGUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
 	{
 		super(screen, t, x, y, width, height);
 	}

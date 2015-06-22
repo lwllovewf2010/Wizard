@@ -3,16 +3,16 @@ package com.leepresswood.wizard.screens.game.gui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.ScreenParent;
 
 public abstract class GUIButton
 {
-	public ScreenGame screen;
+	public ScreenParent screen;
 	
 	public Sprite sprite;
 	public boolean is_active;
 	
-	public GUIButton(ScreenGame screen, Texture t, float x, float y, float width, float height)
+	public GUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
 	{
 		this.screen = screen;
 		

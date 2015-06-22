@@ -8,13 +8,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.screens.game.buttons.LevelGUIButton;
 import com.leepresswood.wizard.screens.game.gui.GUIButton;
+import com.leepresswood.wizard.screens.levelstore.buttons.SpellLevelUpGUIButton;
 
 /**
  * This is the store that may be used for leveling up between rounds. We'll be lazy here and put everything in this class
- * due to the simplicity of the screen..
- *
+ * due to the simplicity of the screen.
  * @author Lee
  */
 public class ScreenLevelStore extends ScreenParent
@@ -43,13 +42,13 @@ public class ScreenLevelStore extends ScreenParent
 		
 		//Set up the level-up buttons.
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
-		button_array[0] = new LevelGUIButton(this, game.assets.get("textures/hold.png", Texture.class),1f, 1f, 25f, 25f);
+		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 100f, 25f, 25f);
 	}
 
 	@Override
 	public void setUpBackgroundColor()
 	{
-		color_background = Color.BLACK;
+		color_background = new Color(Color.BLACK);
 	}
 
 	@Override
@@ -57,7 +56,6 @@ public class ScreenLevelStore extends ScreenParent
 	{
 		Gdx.input.setInputProcessor(new InputProcessor()
 		{
-			
 			@Override
 			public boolean touchUp(int screenX, int screenY, int pointer, int button)
 			{
@@ -73,9 +71,11 @@ public class ScreenLevelStore extends ScreenParent
 			@Override
 			public boolean touchDown(int screenX, int screenY, int pointer, int button)
 			{
-				//game.setScreen(game_screen);
+				for(GUIButton b : button_array)
+					if(b.is_active && b.sprite.getBoundingRectangle().contains(screenX, screenY))
+						b.doClick();
 				
-				return false;//return true;
+				return true;
 			}
 			
 			@Override
@@ -121,11 +121,11 @@ public class ScreenLevelStore extends ScreenParent
 	public void draw()
 	{
 		batch.begin();
+			//Background.
+			//batch.draw(background, 0f, 0f);
+			
 			for(GUIButton b : button_array)
 				b.draw(batch);
-		
-			//Background.
-			batch.draw(background, 0f, 0f);
 		batch.end();
 	}
 }
