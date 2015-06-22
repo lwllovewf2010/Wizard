@@ -2,7 +2,7 @@ package com.leepresswood.wizard.screens.game.buttons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.leepresswood.wizard.gui.elements.GUIButton;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
