@@ -92,10 +92,12 @@ public class GUIGame
 			Element root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
 			spells = new Spell[MAX_SPELLS];
 			
+			//Initialize each spell
 			spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
 			spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
 			spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);
 			
+			//Because of the way these spells are initialized, we will not be able to get the initial mana. Let's get that now.
 			spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
 			spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
 			spells[2].mana_cost = root.getChildByName("dig").getFloat("cost");
