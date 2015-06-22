@@ -3,10 +3,12 @@ package com.leepresswood.wizard.screens.levelstore;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.buttons.LevelGUIButton;
 import com.leepresswood.wizard.screens.game.gui.GUIButton;
 
 /**
@@ -22,6 +24,7 @@ public class ScreenLevelStore extends ScreenParent
 	
 	private TextureRegion background;
 	
+	private final int NUMBER_OF_BUTTONS = 1;
 	private GUIButton[] button_array;
 	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
@@ -35,6 +38,12 @@ public class ScreenLevelStore extends ScreenParent
 		//We want to draw the frame buffer as the background to the level screen.
 		this.background = background;
 		
+		//Blur this background.
+		
+		
+		//Set up the level-up buttons.
+		button_array = new GUIButton[NUMBER_OF_BUTTONS];
+		button_array[0] = new LevelGUIButton(this, game.assets.get("textures/hold.png", Texture.class),1f, 1f, 25f, 25f);
 	}
 
 	@Override
@@ -104,12 +113,18 @@ public class ScreenLevelStore extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
+		for(GUIButton b : button_array)
+			b.update(delta);
 	}
 
 	@Override
 	public void draw()
 	{
 		batch.begin();
+			for(GUIButton b : button_array)
+				b.draw(batch);
+		
+			//Background.
 			batch.draw(background, 0f, 0f);
 		batch.end();
 	}

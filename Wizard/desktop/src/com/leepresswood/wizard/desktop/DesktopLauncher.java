@@ -41,7 +41,7 @@ public class DesktopLauncher
 	public static final int GAME_WIDTH = 800;
 	public static final int GAME_HEIGHT = (int) (((float) GAME_WIDTH) / 1.618f);
 	
-	public static void main (String[] arg) 
+	public static void main(String[] arg) 
 	{
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
