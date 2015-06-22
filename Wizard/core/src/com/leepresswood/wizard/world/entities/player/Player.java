@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.GameWorld;
-import com.leepresswood.wizard.world.attributes.Defense;
 import com.leepresswood.wizard.world.entities.PersonEntity;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.Spell;
@@ -36,7 +36,7 @@ public abstract class Player extends PersonEntity
 	public void damage(float amount)
 	{
 		//Damage was done, but defense must be taken into consideration.
-		world.screen.gui.bar_health.change(-Defense.damageAfterDefense(amount, defense));
+		world.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
 	}
 	
 	@Override

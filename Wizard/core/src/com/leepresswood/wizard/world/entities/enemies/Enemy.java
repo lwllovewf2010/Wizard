@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.GameWorld;
-import com.leepresswood.wizard.world.attributes.Defense;
 import com.leepresswood.wizard.world.entities.PersonEntity;
 import com.leepresswood.wizard.world.entities.player.Player;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
@@ -113,7 +113,7 @@ public abstract class Enemy extends PersonEntity
 	@Override
 	public void damage(float amount)
 	{
-		health -= Defense.damageAfterDefense(amount, defense);
+		health -= DefenseCalculator.damageAfterDefense(amount, defense);
 	}
 	
 	@Override

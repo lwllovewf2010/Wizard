@@ -1,11 +1,11 @@
-package com.leepresswood.wizard.world.attributes;
+package com.leepresswood.wizard.handlers.calculators;
 
 /**
  * Defense will directly affect the amount of damage the player takes.
  *
  * @author Lee
  */
-public class Defense
+public class DefenseCalculator
 {
 	/**
 	 * Damage was dealt to an entity with a certain defense. Do the correct damage amount.

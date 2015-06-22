@@ -1,9 +1,9 @@
 package com.leepresswood.wizard.world;
 
+import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.handlers.MapCameraEntity;
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.world.attributes.LevelHandler;
 import com.leepresswood.wizard.world.wave.WaveHandler;
 
 /**
