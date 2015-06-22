@@ -4,9 +4,7 @@ import com.leepresswood.wizard.world.GameWorld;
 
 /**
  * Handles the beginning and ending of waves.
- * 
  * @author Lee
- *
  */
 public class WaveHandler
 {

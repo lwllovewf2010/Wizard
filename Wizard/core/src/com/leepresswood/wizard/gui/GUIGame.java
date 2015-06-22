@@ -10,14 +10,18 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.gui.elements.GUIButton;
-import com.leepresswood.wizard.screens.game.LevelGUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.buttons.LevelGUIButton;
 import com.leepresswood.wizard.world.attributes.Bar;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 import com.leepresswood.wizard.world.entities.spells.damage.Aether;
 import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
 import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 
+/**
+ * The GUI for the game.
+ * @author Lee
+ */
 public class GUIGame
 {
 	private ScreenGame screen;
@@ -32,7 +36,7 @@ public class GUIGame
 	public Color color_health, color_mana;
 	
 	//Spells
-	public final int MAX_SPELLS = 10;
+	public final int MAX_SPELLS = 3;
 	public int spell_active = 0;
 	public Spell[] spells;
 	
@@ -40,7 +44,6 @@ public class GUIGame
 	{
 		this.screen = screen;
 		
-		//Set up parts of the GUI.
 		makeCamera();
 		makeStatusBars();
 		makeSpellList();
@@ -63,21 +66,18 @@ public class GUIGame
 	private void makeStatusBars()
 	{
 		final float gap = 2f;
-		
 		final float bar_width = Gdx.graphics.getWidth() * 0.3f;
 		final float bar_height = Gdx.graphics.getHeight() * 0.02f;
-		
 		final float bar_x = gap;
 		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
-		
 		final float recovery_health = 0.75f;
 		final float recovery_mana = 0.3f;
 		
-		//Set bars
+		//Set bars.
 		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health, recovery_health);
 		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana, recovery_mana);
 		
-		//Set colors
+		//Set colors.
 		color_health = new Color(Color.valueOf("AA3C39FF"));
 		color_mana = new Color(Color.valueOf("2E4372FF"));
 	}
@@ -141,8 +141,7 @@ public class GUIGame
 				b.draw(screen.batch);
 			
 			for(int i = 0; i < MAX_SPELLS; i++)
-				if(spells[i] != null)
-					spells[i].sprite.draw(screen.batch);
+				spells[i].sprite.draw(screen.batch);
 		screen.batch.end();
 		
 		//Health/Mana bars.
@@ -156,11 +155,10 @@ public class GUIGame
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
 			for(int i = 0; i < MAX_SPELLS; i++)
-				if(spells[i] != null)
-					if(i == spell_active)
-						screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
-					else
-						screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
+				if(i == spell_active)
+					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
+				else
+					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
 		screen.renderer.end();
 
 		//Mouse position outline.
@@ -193,7 +191,7 @@ public class GUIGame
 	 * @param count The number requested from the spell list.
 	 */
 	public void shiftSpellTo(int count)
-	{//Setting active to the count variable and then shifting down one will be enough.
+	{
 		spell_active = count;
 		shiftSpellLeft();
 	}

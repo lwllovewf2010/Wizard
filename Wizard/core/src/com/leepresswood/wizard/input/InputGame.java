@@ -67,14 +67,12 @@ public class InputGame implements InputProcessor
 			case Keys.NUMPAD_8:
 			case Keys.NUMPAD_9:
 				String key = Keys.toString(keycode);
-				screen.gui.changeSpell(Integer.parseInt(key.substring(key.length() - 1)));				
+				screen.gui.changeSpell(Character.getNumericValue((key.charAt(key.length() - 1))));				
 				break;
 			default:
 				break;
 		}
 		
-		//Display key information.
-		//System.out.println("Key Down: " + Keys.toString(keycode));
 		return true;
 	}
 
@@ -83,7 +81,6 @@ public class InputGame implements InputProcessor
 	{
 		switch(keycode)
 		{
-			//Use WASD and Spacebar for player movement.
 			case Keys.D:
 				screen.world.entity_handler.player.moving_right = false;
 				break;
@@ -96,9 +93,7 @@ public class InputGame implements InputProcessor
 			default:
 				break;
 		}
-
-		//Display key information.
-		//System.out.println("Key Up: " + Keys.toString(keycode));
+		
 		return true;
 	}
 	
@@ -111,7 +106,6 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
-		//Must determine if it's on the GUI or the game world.
 		if(!guiTouchCheck(screenX, screenY))
 		{//Touch was not on GUI, so push it into the game world.
 			Vector3 touch = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
@@ -141,7 +135,7 @@ public class InputGame implements InputProcessor
 		
 		//mouse_position = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0f));
 		
-		return true;
+		return false;
 	}
 	
 	@Override
@@ -165,7 +159,7 @@ public class InputGame implements InputProcessor
 		//Check spell icons.
 		for(int i = 0; i < screen.gui.spells.length; i++)
 		{
-			if(screen.gui.spells[i] != null && screen.gui.spells[i].sprite.getBoundingRectangle().contains(screenX, screenY))
+			if(screen.gui.spells[i].sprite.getBoundingRectangle().contains(screenX, screenY))
 			{
 				screen.gui.shiftSpellTo(i);
 				return true;
@@ -174,11 +168,13 @@ public class InputGame implements InputProcessor
 		
 		//Check menu buttons. Note: The click can't happen if the button isn't active.
 		for(GUIButton b : screen.gui.button_array)
+		{
 			if(b.sprite.getBoundingRectangle().contains(screenX, screenY) && b.is_active)
 			{
 				b.doClick();
 				return true;
 			}
+		}
 		
 		//Otherwise, there was no GUI touch.
 		return false;

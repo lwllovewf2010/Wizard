@@ -4,7 +4,6 @@ import com.leepresswood.wizard.world.GameWorld;
 
 /**
  * Level manager for the player.
- *
  * @author Lee
  */
 public class LevelHandler

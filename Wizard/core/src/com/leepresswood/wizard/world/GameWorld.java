@@ -9,7 +9,6 @@ import com.leepresswood.wizard.world.wave.WaveHandler;
 /**
  * Holds information about the game world. Sets up camera based upon this world.
  * @author Lee
- *
  */
 public class GameWorld
 {
