@@ -20,6 +20,8 @@ public class ScreenLevelStore extends ScreenParent
 	private GameWizard game;
 	private ScreenGame game_screen;
 	
+	private TextureRegion background;
+	
 	private GUIButton[] button_array;
 	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
@@ -30,7 +32,9 @@ public class ScreenLevelStore extends ScreenParent
 		this.game = game;
 		this.game_screen = game_screen;
 		
-		//We want to draw the frame buffer as the background to 
+		//We want to draw the frame buffer as the background to the level screen.
+		this.background = background;
+		
 	}
 
 	@Override
@@ -105,6 +109,8 @@ public class ScreenLevelStore extends ScreenParent
 	@Override
 	public void draw()
 	{
-		
+		batch.begin();
+			batch.draw(background, 0f, 0f);
+		batch.end();
 	}
 }
