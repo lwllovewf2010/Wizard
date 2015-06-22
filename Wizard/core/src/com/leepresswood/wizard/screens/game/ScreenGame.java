@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.leepresswood.wizard.GameWizard;
-import com.leepresswood.wizard.gui.GUIGame;
 import com.leepresswood.wizard.input.InputGame;
 import com.leepresswood.wizard.screens.ScreenParent;
+import com.leepresswood.wizard.screens.game.gui.GUIGame;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 import com.leepresswood.wizard.world.GameWorld;
 

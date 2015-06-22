@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.enemies.creeps.ground;
+package com.leepresswood.wizard.world.entities.enemies.creeps;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;

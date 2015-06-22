@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.gui;
+package com.leepresswood.wizard.screens.game.gui;
 
 import java.io.IOException;
 

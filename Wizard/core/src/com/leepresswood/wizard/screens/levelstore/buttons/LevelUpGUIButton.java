@@ -1,8 +1,8 @@
 package com.leepresswood.wizard.screens.levelstore.buttons;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.gui.GUIButton;
 
 /**
  * There will be multiple level-up buttons on the level store screen. Each will

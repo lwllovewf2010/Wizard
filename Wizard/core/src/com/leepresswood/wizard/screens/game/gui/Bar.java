@@ -1,5 +1,5 @@
 //For use in the health or mana bars.
-package com.leepresswood.wizard.gui;
+package com.leepresswood.wizard.screens.game.gui;
 
 public class Bar
 {	
