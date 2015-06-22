@@ -3,6 +3,7 @@ package com.leepresswood.wizard.screens.levelstore;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.gui.elements.GUIButton;
 import com.leepresswood.wizard.screens.ScreenParent;
@@ -21,13 +22,15 @@ public class ScreenLevelStore extends ScreenParent
 	
 	private GUIButton[] button_array;
 	
-	public ScreenLevelStore(GameWizard game, ScreenGame game_screen)
+	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
 	{
 		super(game);
 		
-		//We have collected a reference to the previous scree so that we can return to it later.
+		//We have collected a reference to the previous screen so we can return to it later.
 		this.game = game;
 		this.game_screen = game_screen;
+		
+		//We want to draw the frame buffer as the background to 
 	}
 
 	@Override

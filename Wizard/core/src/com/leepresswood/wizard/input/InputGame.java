@@ -14,13 +14,13 @@ public class InputGame implements InputProcessor
 {
 	private ScreenGame screen;
 	
-	public Vector3 mouse_position;
+	//public Vector3 mouse_position;
 	
 	public InputGame(ScreenGame screen)
 	{
 		this.screen = screen;
 		
-		mouse_position = new Vector3();
+		//mouse_position = new Vector3();
 	}
 
 	@Override
@@ -45,7 +45,6 @@ public class InputGame implements InputProcessor
 			case Keys.SHIFT_LEFT:
 				screen.world.wave_handler.mid_wave = !screen.world.wave_handler.mid_wave;
 				break;
-			//Pass Numerical keys into the GUI for spell switching.
 			case Keys.NUM_0:
 			case Keys.NUM_1:
 			case Keys.NUM_2:

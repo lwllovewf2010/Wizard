@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.screens.game.buttons;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.leepresswood.wizard.gui.elements.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
@@ -30,7 +31,7 @@ public class LevelGUIButton extends GUIButton
 	@Override
 	public void doClick()
 	{
-		//Replace the current screen with the shop screen.
-		screen.game.setScreen(new ScreenLevelStore(screen.game, screen));
+		//Replace the current screen with the shop screen. Pauses the game in the process.
+		screen.game.setScreen(new ScreenLevelStore(screen.game, screen, ScreenUtils.getFrameBufferTexture()));
 	}
 }
