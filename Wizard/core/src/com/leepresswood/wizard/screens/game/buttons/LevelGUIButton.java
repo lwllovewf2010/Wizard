@@ -32,6 +32,7 @@ public class LevelGUIButton extends GUIButton
 	public void doClick()
 	{
 		//Replace the current screen with the shop screen. Pauses the game in the process.
-		screen.game.setScreen(new ScreenLevelStore(screen.game, screen, ScreenUtils.getFrameBufferTexture()));
+		//screen.game.setScreen(new ScreenLevelStore(screen.game, screen, ScreenUtils.getFrameBufferTexture()));
+		screen.go_to_level_store = true;
 	}
 }

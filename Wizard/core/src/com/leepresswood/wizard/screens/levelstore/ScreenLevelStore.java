@@ -64,9 +64,9 @@ public class ScreenLevelStore extends ScreenParent
 			@Override
 			public boolean touchDown(int screenX, int screenY, int pointer, int button)
 			{
-				game.setScreen(game_screen);
+				//game.setScreen(game_screen);
 				
-				return true;
+				return false;//return true;
 			}
 			
 			@Override
