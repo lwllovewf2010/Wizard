@@ -169,7 +169,7 @@ public class InputGame implements InputProcessor
 		//Check menu buttons. Note: The click can't happen if the button isn't active.
 		for(GUIButton b : screen.gui.button_array)
 		{
-			if(b.sprite.getBoundingRectangle().contains(screenX, screenY) && b.is_active)
+			if(b.is_active && b.sprite.getBoundingRectangle().contains(screenX, screenY))
 			{
 				b.doClick();
 				return true;

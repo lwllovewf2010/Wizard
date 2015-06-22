@@ -202,12 +202,12 @@ public class GUIGame
 	 */
 	public void changeSpell(int amount)
 	{
-		if(amount < 0)
+		if(amount == -1)
 		{
 			spell_active--;
 			shiftSpellLeft();
 		}
-		else if(amount > 0)
+		else
 		{
 			spell_active++;
 			shiftSpellRight();

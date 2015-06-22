@@ -31,9 +31,6 @@ public class LevelGUIButton extends GUIButton
 	public void doClick()
 	{
 		//Replace the current screen with the shop screen.
-		if(is_active)
-		{
-			screen.game.setScreen(new ScreenLevelStore(screen.game, screen));
-		}
+		screen.game.setScreen(new ScreenLevelStore(screen.game, screen));
 	}
 }
