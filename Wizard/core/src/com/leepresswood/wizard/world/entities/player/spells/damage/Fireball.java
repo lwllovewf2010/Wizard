@@ -1,11 +1,11 @@
-package com.leepresswood.wizard.world.entities.spells.damage;
+package com.leepresswood.wizard.world.entities.player.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.spells.BoltSpell;
+import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 
 /**
  * Bolt spell that is affected by gravity. Explodes on impact.<br/>

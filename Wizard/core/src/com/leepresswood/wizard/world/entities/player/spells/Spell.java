@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.spells;
+package com.leepresswood.wizard.world.entities.player.spells;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;

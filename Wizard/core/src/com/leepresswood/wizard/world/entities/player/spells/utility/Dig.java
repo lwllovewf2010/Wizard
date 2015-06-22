@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.spells.utility;
+package com.leepresswood.wizard.world.entities.player.spells.utility;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.spells.Spell;
+import com.leepresswood.wizard.world.entities.player.spells.Spell;
 
 public class Dig extends Spell
 {

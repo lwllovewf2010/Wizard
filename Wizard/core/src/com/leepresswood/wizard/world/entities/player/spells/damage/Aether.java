@@ -1,11 +1,11 @@
-package com.leepresswood.wizard.world.entities.spells.damage;
+package com.leepresswood.wizard.world.entities.player.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.spells.BoltSpell;
+import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 
 /**
  * Bolt spell that is not affected by gravity. Goes through walls and floors. No knockback. Hits enemies once.<br/>

@@ -11,10 +11,10 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.game.buttons.LevelGUIButton;
-import com.leepresswood.wizard.world.entities.spells.Spell;
-import com.leepresswood.wizard.world.entities.spells.damage.Aether;
-import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
-import com.leepresswood.wizard.world.entities.spells.utility.Dig;
+import com.leepresswood.wizard.world.entities.player.spells.Spell;
+import com.leepresswood.wizard.world.entities.player.spells.damage.Aether;
+import com.leepresswood.wizard.world.entities.player.spells.damage.Fireball;
+import com.leepresswood.wizard.world.entities.player.spells.utility.Dig;
 
 /**
  * The GUI for the game.

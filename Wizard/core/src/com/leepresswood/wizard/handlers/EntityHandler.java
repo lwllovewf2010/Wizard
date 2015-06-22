@@ -12,8 +12,8 @@ import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.enemies.EnemyFactory;
 import com.leepresswood.wizard.world.entities.player.AirWizard;
 import com.leepresswood.wizard.world.entities.player.Player;
-import com.leepresswood.wizard.world.entities.spells.Spell;
-import com.leepresswood.wizard.world.entities.spells.SpellFactory;
+import com.leepresswood.wizard.world.entities.player.spells.Spell;
+import com.leepresswood.wizard.world.entities.player.spells.SpellFactory;
 
 public class EntityHandler
 {

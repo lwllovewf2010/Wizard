@@ -9,7 +9,7 @@ import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.PersonEntity;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.spells.Spell;
+import com.leepresswood.wizard.world.entities.player.spells.Spell;
 
 /**
  * Class should include all attributes every player will have.
