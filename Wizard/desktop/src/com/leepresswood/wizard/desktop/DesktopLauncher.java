@@ -24,12 +24,9 @@ public class DesktopLauncher
 	 * be appended to the version number.
 	 * 
 	 * Version 0.5 Goals:
-	 * Elemental types on wizards
 	 * Enemy graphics
-	 * Level up
 	 * Player graphics
 	 * Spell graphics
-	 * UI
 	 * Waves of enemies
 	 */
 	public static final String GAME_VERSION = "0.5 Alpha";
