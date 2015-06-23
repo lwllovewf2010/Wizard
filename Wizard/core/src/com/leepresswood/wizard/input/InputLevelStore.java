@@ -2,7 +2,7 @@ package com.leepresswood.wizard.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
 public class InputLevelStore implements InputProcessor
@@ -37,15 +37,9 @@ public class InputLevelStore implements InputProcessor
 	{
 		//Correct screenY before doing the touch.
 		screenY = Gdx.graphics.getHeight() - screenY;
-		
 		for(GUIButton b : screen.button_array)
-		{	
 			if(b.is_active && b.sprite.getBoundingRectangle().contains(screenX, screenY))
-			{
 				b.doClick();
-			}
-		}
-		
 		return true;
 	}
 

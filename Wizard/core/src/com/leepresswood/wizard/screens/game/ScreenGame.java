@@ -28,16 +28,16 @@ public class ScreenGame extends ScreenParent
 	}
 
 	@Override
-	public void setUpBackgroundColor()
+	public Color setUpBackgroundColor()
 	{
-		color_background = new Color(Color.CYAN);
+		return new Color(Color.CYAN);
 	}
 	
 	@Override
 	public InputProcessor setUpInput()
 	{
-		return new InputGame(this);
 		//Gdx.input.setCursorImage(new Pixmap(Gdx.files.internal("person/textures/hold.png")), 0, 0);
+		return new InputGame(this);
 	}
 
 	@Override

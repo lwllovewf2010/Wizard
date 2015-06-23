@@ -1,9 +1,9 @@
-package com.leepresswood.wizard.screens.game.buttons;
+package com.leepresswood.wizard.screens.game.gui;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
 
 /**
  * The button that opens the level shop. 

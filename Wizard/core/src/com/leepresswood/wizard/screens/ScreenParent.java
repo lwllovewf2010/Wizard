@@ -30,7 +30,7 @@ public abstract class ScreenParent extends ScreenAdapter
 		this.batch = new SpriteBatch();
 		this.renderer = new ShapeRenderer();
 		
-		setUpBackgroundColor();
+		color_background = setUpBackgroundColor();
 		input = setUpInput();
 	}
 	
@@ -56,7 +56,7 @@ public abstract class ScreenParent extends ScreenAdapter
 		Gdx.input.setInputProcessor(input);
 	}
 	
-	public abstract void setUpBackgroundColor();
+	public abstract Color setUpBackgroundColor();
 	public abstract InputProcessor setUpInput();
 	public abstract void update(float delta);
 	public abstract void draw();

@@ -1,8 +1,8 @@
-package com.leepresswood.wizard.screens.levelstore.buttons;
+package com.leepresswood.wizard.screens.levelstore.gui;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.ScreenParent;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
 /**

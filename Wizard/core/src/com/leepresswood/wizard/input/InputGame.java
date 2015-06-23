@@ -5,8 +5,8 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
 

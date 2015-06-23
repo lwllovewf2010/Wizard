@@ -1,8 +1,8 @@
-package com.leepresswood.wizard.screens.levelstore.buttons;
+package com.leepresswood.wizard.screens.levelstore.gui;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.screens.ScreenParent;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
 
 /**
  * The button that increases the number of spells available. 
@@ -20,7 +20,7 @@ public class SpellLevelUpGUIButton extends GUIButton
 
 	@Override
 	public void update(float delta)
-	{System.out.println(current);
+	{
 	}
 
 	@Override

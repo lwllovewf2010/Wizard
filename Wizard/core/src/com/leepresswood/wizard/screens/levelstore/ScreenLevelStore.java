@@ -6,12 +6,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.leepresswood.wizard.GameWizard;
+import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.screens.game.gui.GUIButton;
-import com.leepresswood.wizard.screens.levelstore.buttons.ReturnToGameGUIButton;
-import com.leepresswood.wizard.screens.levelstore.buttons.SpellLevelUpGUIButton;
+import com.leepresswood.wizard.screens.game.gui.LevelGUIButton;
+import com.leepresswood.wizard.screens.levelstore.gui.ReturnToGameGUIButton;
+import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 
 /**
  * This is the store that may be used for leveling up between rounds. We'll be lazy here and put everything in this class
@@ -42,16 +43,24 @@ public class ScreenLevelStore extends ScreenParent
 		//Blur this background.
 		
 		
-		//Set up the buttons.
+		//Make elements of the screen.
+		makeButtons();
+	}
+	
+	/**
+	 * Make the clickable buttons.
+	 */
+	private void makeButtons()
+	{
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
 		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 100f, 25f, 25f);
 		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
 	}
 
 	@Override
-	public void setUpBackgroundColor()
+	public Color setUpBackgroundColor()
 	{
-		color_background = new Color(Color.BLACK);
+		return new Color(Color.BLACK);
 	}
 
 	@Override
