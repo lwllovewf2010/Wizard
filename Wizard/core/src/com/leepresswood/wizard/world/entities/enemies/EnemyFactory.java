@@ -45,7 +45,7 @@ public class EnemyFactory
 	 */
 	public void update(float delta)
 	{//If time to recharge is above the max, we can spawn again. We want to limit this value to avoid a potential overflow (in a few billion seconds).
-		if(time_recharge_current < time_recharge_next)
+		if(!isReady())
 			time_recharge_current += delta;
 	}
 	
@@ -56,48 +56,6 @@ public class EnemyFactory
 	 */
 	public Enemy getEnemy(String type)
 	{
-		return getEnemy(Enemies.valueOf(type), MathUtils.randomBoolean());
-	}
-	
-	/**
-	 * Create a new enemy with the given data.
-	 * @param type The type of enemy to create.
-	 * @param left Spawn location. True if left. False if right.
-	 * @return An instance of the desired enemy. Will be null if enemy can't be summoned at this time due to recharging.
-	 */
-	public Enemy getEnemy(Enemies type, boolean left)
-	{
-		//If we're allowed to spawn another enemy. This depends upon the recharge time of the last spawn.
-		if(time_recharge_current >= time_recharge_next)
-		{
-			time_recharge_current = 0f;
-			
-			//Left or right side?
-			float x = left ? -3f : world.map_camera_handler.WORLD_TOTAL_HORIZONTAL;
-			float y = world.map_camera_handler.GROUND;
-			
-			Enemy e = null;			
-			switch(type)
-			{
-				case SKELETON:
-					e = new Skeleton(world, x, y, data_root.getChildByName("skeleton"));
-					break;
-			}
-				
-			return e;
-		}
-		
-		//This will happen if the player is not ready to cast.
-		return null;
-	}
-	
-	/**
-	 * Create a new enemy. Spawns at a random side.
-	 * @param type The type of enemy to create.
-	 * @return An instance of the desired enemy. Will be null if enemy can't be summoned at this time due to recharging.
-	 */
-	public Enemy getEnemy(Class<?> type)
-	{
 		return getEnemy(type, MathUtils.randomBoolean());
 	}
 	
@@ -107,25 +65,24 @@ public class EnemyFactory
 	 * @param left Spawn location. True if left. False if right.
 	 * @return An instance of the desired enemy. Will be null if enemy can't be summoned at this time due to recharging.
 	 */
-	public Enemy getEnemy(Class<?> type, boolean left)
+	public Enemy getEnemy(String type, boolean left)
 	{
-		//If we're allowed to spawn another enemy. This depends upon the recharge time of the last spawn.
-		if(time_recharge_current >= time_recharge_next)
-		{
-			time_recharge_current = 0f;
-			
-			//Left or right side?
-			float x = left ? -3f : world.map_camera_handler.WORLD_TOTAL_HORIZONTAL;
-			float y = world.map_camera_handler.GROUND;
-			
-			Enemy e = null;			
-			if(type == Skeleton.class)
-				e = new Skeleton(world, x, y, data_root.getChildByName("skeleton"));
-			return e;
-		}
+		Enemies enemy_enum = Enemies.valueOf(type);
+		time_recharge_current = 0f;
 		
-		//This will happen if the player is not ready to cast.
-		return null;
+		//Left or right side?
+		float x = left ? -3f : world.map_camera_handler.WORLD_TOTAL_HORIZONTAL;
+		float y = world.map_camera_handler.GROUND;
+		
+		Enemy e = null;			
+		switch(enemy_enum)
+		{
+			case SKELETON:
+				e = new Skeleton(world, x, y, data_root.getChildByName("skeleton"));
+				break;
+		}
+			
+		return e;
 	}
 	
 	public boolean isReady()

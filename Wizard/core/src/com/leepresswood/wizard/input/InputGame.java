@@ -7,8 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.leepresswood.wizard.guielements.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
 
 public class InputGame implements InputProcessor
 {
@@ -36,11 +34,6 @@ public class InputGame implements InputProcessor
 				break;
 			case Keys.SPACE:
 				screen.world.entity_handler.player.jumping = true;
-				break;
-			case Keys.Q:
-				Enemy e = screen.world.entity_handler.factory_enemy.getEnemy(Skeleton.class);
-				if(e != null)
-					screen.world.entity_handler.enemies.add(e);
 				break;
 			case Keys.SHIFT_LEFT:
 				screen.world.entity_handler.spawnWave();
