@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.leepresswood.wizard.GameWizard;
+import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.game.gui.GUIButton;
@@ -18,13 +19,13 @@ import com.leepresswood.wizard.screens.levelstore.buttons.SpellLevelUpGUIButton;
  */
 public class ScreenLevelStore extends ScreenParent
 {
-	private GameWizard game;
-	private ScreenGame game_screen;
+	public GameWizard game;
+	public ScreenGame game_screen;
 	
-	private TextureRegion background;
+	public TextureRegion background;
 	
-	private final int NUMBER_OF_BUTTONS = 1;
-	private GUIButton[] button_array;
+	public final int NUMBER_OF_BUTTONS = 1;
+	public GUIButton[] button_array;
 	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
 	{
@@ -54,60 +55,7 @@ public class ScreenLevelStore extends ScreenParent
 	@Override
 	public void setUpInput()
 	{
-		Gdx.input.setInputProcessor(new InputProcessor()
-		{
-			@Override
-			public boolean touchUp(int screenX, int screenY, int pointer, int button)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean touchDragged(int screenX, int screenY, int pointer)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean touchDown(int screenX, int screenY, int pointer, int button)
-			{
-				for(GUIButton b : button_array)
-					if(b.is_active && b.sprite.getBoundingRectangle().contains(screenX, screenY))
-						b.doClick();
-				
-				return true;
-			}
-			
-			@Override
-			public boolean scrolled(int amount)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean mouseMoved(int screenX, int screenY)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean keyUp(int keycode)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean keyTyped(char character)
-			{
-				return false;
-			}
-			
-			@Override
-			public boolean keyDown(int keycode)
-			{
-				return false;
-			}
-		});
+		Gdx.input.setInputProcessor(new InputLevelStore(this));
 	}
 
 	@Override
