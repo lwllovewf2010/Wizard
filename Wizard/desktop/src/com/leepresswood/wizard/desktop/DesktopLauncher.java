@@ -23,15 +23,13 @@ public class DesktopLauncher
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Version 0.6 Goals:
-	 * Level up to affect the character
-	 * Read the leveled up attributes and change player's world actions.
+	 * Version 0.7 Goals:
+	 * Waves of enemies
 	 * 
 	 * Future Goals:
 	 * Enemy graphics
 	 * Player graphics
 	 * Spell graphics
-	 * Waves of enemies
 	 */
 	public static final String GAME_VERSION = "0.6 Alpha";
 	
