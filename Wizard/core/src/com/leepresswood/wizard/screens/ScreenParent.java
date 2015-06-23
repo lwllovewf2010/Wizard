@@ -31,8 +31,7 @@ public abstract class ScreenParent extends ScreenAdapter
 		this.renderer = new ShapeRenderer();
 		
 		setUpBackgroundColor();
-		setUpInput();
-		input = Gdx.input.getInputProcessor();
+		input = setUpInput();
 	}
 	
 	/**
@@ -58,7 +57,7 @@ public abstract class ScreenParent extends ScreenAdapter
 	}
 	
 	public abstract void setUpBackgroundColor();
-	public abstract void setUpInput();
+	public abstract InputProcessor setUpInput();
 	public abstract void update(float delta);
 	public abstract void draw();
 }

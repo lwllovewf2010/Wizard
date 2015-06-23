@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.screens.levelstore;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -44,7 +45,7 @@ public class ScreenLevelStore extends ScreenParent
 		//Set up the buttons.
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
 		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 100f, 25f, 25f);
-		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 50f, 50f, 25f, 25f);
+		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
 	}
 
 	@Override
@@ -54,9 +55,9 @@ public class ScreenLevelStore extends ScreenParent
 	}
 
 	@Override
-	public void setUpInput()
+	public InputProcessor setUpInput()
 	{
-		Gdx.input.setInputProcessor(new InputLevelStore(this));
+		return new InputLevelStore(this);
 	}
 
 	@Override

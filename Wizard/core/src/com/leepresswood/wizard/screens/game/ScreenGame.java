@@ -1,6 +1,6 @@
 package com.leepresswood.wizard.screens.game;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.leepresswood.wizard.GameWizard;
@@ -14,8 +14,9 @@ public class ScreenGame extends ScreenParent
 {
 	public GameWorld world;
 	public GUIGame gui;	
-	public InputGame input;
-	public boolean go_to_level_store;
+	
+	public boolean go_to_level_store;				//Flag is set when the player requested to visit the level store.
+	public ScreenLevelStore screen_level_store;	//Reference to the level store.
 	
 	public ScreenGame(GameWizard game)
 	{
@@ -33,10 +34,9 @@ public class ScreenGame extends ScreenParent
 	}
 	
 	@Override
-	public void setUpInput()
+	public InputProcessor setUpInput()
 	{
-		input = new InputGame(this);
-		Gdx.input.setInputProcessor(input);
+		return new InputGame(this);
 		//Gdx.input.setCursorImage(new Pixmap(Gdx.files.internal("person/textures/hold.png")), 0, 0);
 	}
 
@@ -46,7 +46,10 @@ public class ScreenGame extends ScreenParent
 		//Determine if we have to go to the level store. If so, replace the current screen with the shop screen. Pauses the game in the process.
 		if(go_to_level_store)
 		{
-			game.setScreen(new ScreenLevelStore(game, this, ScreenUtils.getFrameBufferTexture()));
+			//First time we visit the store will require loading.
+			if(screen_level_store == null)
+				screen_level_store = new ScreenLevelStore(game, this, ScreenUtils.getFrameBufferTexture());
+			game.setScreen(screen_level_store);
 			go_to_level_store = false;
 		}
 		else
