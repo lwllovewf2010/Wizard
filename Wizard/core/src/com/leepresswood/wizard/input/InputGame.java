@@ -155,15 +155,16 @@ public class InputGame implements InputProcessor
 		//ScreenY will be flipped for no reason. Flip it back.
 		screenY = Gdx.graphics.getHeight() - screenY;
 		
-		//Check spell icons.
-		for(int i = 0; i < screen.gui.spells.length; i++)
-		{
-			if(screen.gui.spells[i].sprite.getBoundingRectangle().contains(screenX, screenY))
+		//Check spell icons if spells exist.
+		if(screen.gui.spells != null)
+			for(int i = 0; i < screen.gui.spells.length; i++)
 			{
-				screen.gui.shiftSpellTo(i);
-				return true;
+				if(screen.gui.spells[i].sprite.getBoundingRectangle().contains(screenX, screenY))
+				{
+					screen.gui.shiftSpellTo(i);
+					return true;
+				}
 			}
-		}
 		
 		//Check menu buttons. Note: The click can't happen if the button isn't active.
 		for(GUIButton b : screen.gui.button_array)

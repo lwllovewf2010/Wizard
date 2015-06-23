@@ -59,7 +59,7 @@ public abstract class Player extends PersonEntity
 	
 	public void attack(Vector2 touch)
 	{
-		if(!is_dead)
+		if(!is_dead && world.screen.gui.spells != null)
 		{
 			//Get the selected spell type from the GUI.
 			Spell spell_type = world.screen.gui.getActiveSpell();

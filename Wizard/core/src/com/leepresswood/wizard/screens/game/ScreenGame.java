@@ -8,6 +8,7 @@ import com.leepresswood.wizard.input.InputGame;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.gui.GUIGame;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
+import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 import com.leepresswood.wizard.world.GameWorld;
 
 public class ScreenGame extends ScreenParent
@@ -64,6 +65,19 @@ public class ScreenGame extends ScreenParent
 	{
 		world.draw();
 		gui.draw();
+	}
+	
+	@Override
+	public void show()
+	{
+		super.show();
+		
+		//On top of setting the input, we want to read the current state of the player's level from the level store.
+		if(screen_level_store != null)
+		{
+			gui.spell_number_unlocked = ((SpellLevelUpGUIButton) screen_level_store.button_array[0]).current;
+			gui.refreshSpellList();
+		}
 	}
 	
 	@Override

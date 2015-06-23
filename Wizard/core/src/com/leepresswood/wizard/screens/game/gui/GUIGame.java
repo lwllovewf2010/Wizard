@@ -34,7 +34,8 @@ public class GUIGame
 	public Color color_health, color_mana;
 	
 	//Spells
-	public final int MAX_SPELLS = 3;
+	public final int SPELL_NUMBER_MAX = 3;
+	public int spell_number_unlocked;
 	public int spell_active = 0;
 	public Spell[] spells;
 	
@@ -46,6 +47,16 @@ public class GUIGame
 		makeStatusBars();
 		makeSpellList();
 		makeButtons();
+	}
+	
+	/**
+	 * Remake the spell list upon returning from the level store.
+	 */
+	public void refreshSpellList()
+	{
+		if(spell_number_unlocked > SPELL_NUMBER_MAX)
+			spell_number_unlocked = SPELL_NUMBER_MAX;
+		makeSpellList();
 	}
 	
 	/**
@@ -85,25 +96,26 @@ public class GUIGame
 	 */
 	private void makeSpellList()
 	{
-		try
-		{
-			Element root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
-			spells = new Spell[MAX_SPELLS];
-			
-			//Initialize each spell
-			spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
-			spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
-			spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);
-			
-			//Because of the way these spells are initialized, we will not be able to get the initial mana. Let's get that now.
-			spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
-			spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
-			spells[2].mana_cost = root.getChildByName("dig").getFloat("cost");
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		if(spell_number_unlocked > 0)
+			try
+			{
+				Element root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
+				spells = new Spell[spell_number_unlocked];
+				
+				//Initialize each spell
+				spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
+				/*spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
+				spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);*/
+				
+				//Because of the way these spells are initialized, we will not be able to get the initial mana. Let's get that now.
+				spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
+				/*spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
+				spells[2].mana_cost = root.getChildByName("dig").getFloat("cost");*/
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 	}
 	
 	/**
@@ -138,7 +150,7 @@ public class GUIGame
 			for(GUIButton b : button_array)
 				b.draw(screen.batch);
 			
-			for(int i = 0; i < MAX_SPELLS; i++)
+			for(int i = 0; i < spell_number_unlocked; i++)
 				spells[i].sprite.draw(screen.batch);
 		screen.batch.end();
 		
@@ -152,7 +164,7 @@ public class GUIGame
 		//Spell outlines.
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
-			for(int i = 0; i < MAX_SPELLS; i++)
+			for(int i = 0; i < spell_number_unlocked; i++)
 				if(i == spell_active)
 					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
 				else
@@ -218,7 +230,7 @@ public class GUIGame
 	private void shiftSpellLeft()
 	{
 		if(spell_active < 0)
-			spell_active = MAX_SPELLS - 1;
+			spell_active = spell_number_unlocked - 1;
 	}
 	
 	/**
@@ -226,7 +238,7 @@ public class GUIGame
 	 */
 	private void shiftSpellRight()
 	{
-		if(spell_active == MAX_SPELLS)
+		if(spell_active == spell_number_unlocked)
 			spell_active = 0;
 	}
 	
