@@ -58,7 +58,7 @@ public class GUIGame
 		//Avoid this method if we didn't update the number of spells.
 		if(this.spell_number_unlocked != spell_number_unlocked)
 		{
-			this.spell_number_unlocked = spell_number_unlocked > SPELL_NUMBER_MAX ? spell_number_unlocked : SPELL_NUMBER_MAX;
+			this.spell_number_unlocked = spell_number_unlocked > SPELL_NUMBER_MAX ? SPELL_NUMBER_MAX : spell_number_unlocked;
 			makeSpellList();
 		}
 	}
