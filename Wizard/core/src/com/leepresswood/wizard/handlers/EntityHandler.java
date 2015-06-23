@@ -29,6 +29,8 @@ public class EntityHandler
 	public ArrayList<Spell> spells;								//List of spells.
 	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
 	
+	public Element player_root;
+	
 	/**
 	 * Debug constructor.
 	 * @param world Reference to world.
@@ -53,12 +55,12 @@ public class EntityHandler
 		try
 		{
 			//Read the root of the wizard file and gather the requested type of wizard. 
-			Element root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName(type.toString().toLowerCase());
+			player_root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName(type.toString().toLowerCase());
 			
 			switch(type)
 			{
 				case AIR:
-					player = new AirWizard(world, world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, world.map_camera_handler.GROUND, root);
+					player = new AirWizard(world, world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, world.map_camera_handler.GROUND, player_root);
 					break;
 				case EARTH:
 					break;

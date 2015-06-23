@@ -99,23 +99,35 @@ public class GUIGame
 		if(spell_number_unlocked > 0)
 			try
 			{
-				Element root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
 				spells = new Spell[spell_number_unlocked];
 				
-				//Initialize each spell
-				spells[0] = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
-				/*spells[1] = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
-				spells[2] = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);*/
-				
-				//Because of the way these spells are initialized, we will not be able to get the initial mana. Let's get that now.
-				spells[0].mana_cost = root.getChildByName("fireball").getFloat("cost");
-				/*spells[1].mana_cost = root.getChildByName("aether").getFloat("cost");
-				spells[2].mana_cost = root.getChildByName("dig").getFloat("cost");*/
+				//Initialize each spell. We will be reading from the player's list of spells.
+				Element spell_root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
+				Element spell_list = screen.world.entity_handler.player_root.getChildByName("spell_list");
+				for(int i = 0; i < spell_number_unlocked; i++)
+					spells[i] = parseSpell(spell_root, spell_list.getChild(i).getText());
 			}
 			catch (IOException e)
 			{
 				e.printStackTrace();
 			}
+	}
+	
+	private Spell parseSpell(Element spell_root, String spell_name)
+	{
+		Spell s = null;
+		
+		//Parse name.
+		if(spell_name.equalsIgnoreCase("dig"))
+			s = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);
+		else if(spell_name.equalsIgnoreCase("aether"))
+			s = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
+		else if(spell_name.equalsIgnoreCase("fireball"))
+			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
+		
+		//Get mana cost of this spell.
+		s.mana_cost = spell_root.getChildByName(spell_name).getFloat("cost");
+		return s;
 	}
 	
 	/**

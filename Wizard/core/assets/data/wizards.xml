@@ -12,6 +12,11 @@
 	    <speed>8.0</speed>
 	    <acceleration>5.0</acceleration>
 	    <deceleration>10.0</deceleration>
+	    <spell_list>
+	    	<spell>dig</spell>
+	    	<spell>aether</spell>
+	    	<spell>fireball</spell>
+	    </spell_list>
 	</air>
 	<fire>
 	    <name>Fire Wizard</name>
