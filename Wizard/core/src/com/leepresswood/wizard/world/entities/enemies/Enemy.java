@@ -110,6 +110,12 @@ public abstract class Enemy extends PersonEntity
 		}
 	}
 	
+	/**
+	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.
+	 * @param point The coordinate in the world that was clicked.
+	 */
+	public abstract void attack(Vector2 touch);
+	
 	@Override
 	public void damage(float amount)
 	{

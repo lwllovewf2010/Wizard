@@ -109,8 +109,8 @@ public class SpellFactory
 		}
 
 		//Set the new recharge time before we go.
-		if(s != null)
-			time_recharge_next = s.recharge;
+		time_recharge_next = s.recharge;
+		
 		return s;
 	}
 	
