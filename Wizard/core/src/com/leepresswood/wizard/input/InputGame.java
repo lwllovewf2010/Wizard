@@ -43,7 +43,7 @@ public class InputGame implements InputProcessor
 					screen.world.entity_handler.enemies.add(e);
 				break;
 			case Keys.SHIFT_LEFT:
-				screen.world.wave_handler.mid_wave = !screen.world.wave_handler.mid_wave;
+				screen.world.entity_handler.spawnWave();
 				break;
 			case Keys.NUM_0:
 			case Keys.NUM_1:

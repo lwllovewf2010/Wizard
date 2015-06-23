@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.enums.Enemies;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
 
@@ -53,6 +54,48 @@ public class EnemyFactory
 	 * @param type The type of enemy to create.
 	 * @return An instance of the desired enemy. Will be null if enemy can't be summoned at this time due to recharging.
 	 */
+	public Enemy getEnemy(String type)
+	{
+		return getEnemy(Enemies.valueOf(type), MathUtils.randomBoolean());
+	}
+	
+	/**
+	 * Create a new enemy with the given data.
+	 * @param type The type of enemy to create.
+	 * @param left Spawn location. True if left. False if right.
+	 * @return An instance of the desired enemy. Will be null if enemy can't be summoned at this time due to recharging.
+	 */
+	public Enemy getEnemy(Enemies type, boolean left)
+	{
+		//If we're allowed to spawn another enemy. This depends upon the recharge time of the last spawn.
+		if(time_recharge_current >= time_recharge_next)
+		{
+			time_recharge_current = 0f;
+			
+			//Left or right side?
+			float x = left ? -3f : world.map_camera_handler.WORLD_TOTAL_HORIZONTAL;
+			float y = world.map_camera_handler.GROUND;
+			
+			Enemy e = null;			
+			switch(type)
+			{
+				case SKELETON:
+					e = new Skeleton(world, x, y, data_root.getChildByName("skeleton"));
+					break;
+			}
+				
+			return e;
+		}
+		
+		//This will happen if the player is not ready to cast.
+		return null;
+	}
+	
+	/**
+	 * Create a new enemy. Spawns at a random side.
+	 * @param type The type of enemy to create.
+	 * @return An instance of the desired enemy. Will be null if enemy can't be summoned at this time due to recharging.
+	 */
 	public Enemy getEnemy(Class<?> type)
 	{
 		return getEnemy(type, MathUtils.randomBoolean());
@@ -85,4 +128,8 @@ public class EnemyFactory
 		return null;
 	}
 	
+	public boolean isReady()
+	{
+		return time_recharge_current >= time_recharge_next;
+	}
 }

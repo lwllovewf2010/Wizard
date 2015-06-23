@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<waves>
+	<wave>
+		<enemy>
+			<name>skeleton</name>
+			<number>10</number>
+		</enemy>
+	</wave>
+</waves>

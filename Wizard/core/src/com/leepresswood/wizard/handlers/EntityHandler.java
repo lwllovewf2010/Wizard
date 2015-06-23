@@ -2,6 +2,8 @@ package com.leepresswood.wizard.handlers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.XmlReader;
@@ -29,6 +31,10 @@ public class EntityHandler
 	public ArrayList<Enemy> enemies;								//List of enemies.
 	public ArrayList<Spell> spells;								//List of spells.
 	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
+	
+	public Element wave_root;
+	public int wave;
+	public Queue<String> enemy_queue;
 	
 	/**
 	 * Debug constructor.
@@ -88,6 +94,33 @@ public class EntityHandler
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
 		remove = new ArrayList<Object>();
+		
+		//Initialize wave data.
+		try
+		{
+			wave_root = new XmlReader().parse(Gdx.files.internal("data/waves.xml"));
+			wave = 1;
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Next wave is starting.
+	 */
+	public void spawnWave()
+	{
+		//Get wave.
+		Element current_wave_data = wave_root.getChild(wave - 1);
+		
+		//Add all these enemies to the list of spawning enemies.
+		enemy_queue = new LinkedList<String>();
+		for(int i = 0; i < current_wave_data.getChildCount(); i++)
+			for(int j = 0; j < current_wave_data.getChild(i).getInt("number"); j++)
+				enemy_queue.add(current_wave_data.getChild(i).get("name"));
+		
 	}
 	
 	public void update(float delta)
@@ -102,6 +135,10 @@ public class EntityHandler
 		factory_spell.update(delta);
 		for(Spell s : spells)
 			s.update(delta);
+		
+		//Spawn new enemies if we're ready for them.
+		if(!enemy_queue.isEmpty() && factory_enemy.isReady())
+			factory_enemy.getEnemy(enemy_queue.remove());
 		
 		//Delete old objects.
 		deleteOldObjects();

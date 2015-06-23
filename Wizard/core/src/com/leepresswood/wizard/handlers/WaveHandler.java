@@ -10,11 +10,14 @@ public class WaveHandler
 {
 	public GameWorld world;
 	
+	public int wave_number;
 	public boolean mid_wave;				//Are we currently within a wave?
 	
 	public WaveHandler(GameWorld world)
 	{
 		this.world = world;
+		
+		wave_number = 1;
 	}
 	
 	/**
@@ -30,6 +33,7 @@ public class WaveHandler
 	 */
 	public void waveEnd()
 	{
+		wave_number++;
 		mid_wave = false;
 		world.level_handler.levelUp();
 	}
