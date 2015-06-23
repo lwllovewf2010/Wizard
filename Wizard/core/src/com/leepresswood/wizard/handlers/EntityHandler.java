@@ -122,7 +122,7 @@ public class EntityHandler
 			if(world.screen.gui.canCast(spell_type))
 			{
 				//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
-				Spell spell = world.entity_handler.factory_spell.getSpell(spell_type.getClass(), new Vector2(player.sprite.getX() + player.sprite.getWidth() / 2f, player.sprite.getY() + player.sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
+				Spell spell = world.entity_handler.factory_spell.getSpell(spell_type.getClass().getSimpleName().toUpperCase(), new Vector2(player.sprite.getX() + player.sprite.getWidth() / 2f, player.sprite.getY() + player.sprite.getHeight() / 2f), new Vector2(touch.x, touch.y));
 				
 				//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
 				if(spell != null)

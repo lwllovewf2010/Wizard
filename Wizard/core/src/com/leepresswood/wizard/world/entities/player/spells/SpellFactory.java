@@ -35,14 +35,20 @@ public class SpellFactory
 		try
 		{
 			data_root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
+			time_recharge = new HashMap<Spells, Float>();
+			time_max = new HashMap<Spells, Float>();
+			
+			//Set the times for all spells.
+			for(Spells s : Spells.values())
+			{
+				time_recharge.put(s, 0f);
+				time_max.put(s, data_root.getChildByName(s.toString().toLowerCase()).getFloat("recharge"));
+			}
 		}
 		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
-		
-		time_recharge = new HashMap<Spells, Float>();
-		time_max = new HashMap<Spells, Float>();
 	}
 	
 	/**
@@ -66,22 +72,23 @@ public class SpellFactory
 	public Spell getSpell(String type, Vector2 from, Vector2 to)
 	{
 		Spells spell_type = Spells.valueOf(type);
+		Spell s = null;
 		
 		if(time_recharge.get(spell_type) >= time_max.get(spell_type))
-			time_recharge.put(spell_type, 0f);
-			
-		Spell s = null;
-		switch(spell_type)
 		{
-			case FIREBALL:
-				s = new Fireball(world, from, to, data_root.getChildByName("fireball"));
-				break;
-			case AETHER:
-				s = new Aether(world, from, to, data_root.getChildByName("aether"));
-				break;
-			case DIG:
-				s = new Dig(world, from, to, data_root.getChildByName("dig"));
-				break;
+			time_recharge.put(spell_type, 0f);
+			switch(spell_type)
+			{
+				case FIREBALL:
+					s = new Fireball(world, from, to, data_root.getChildByName("fireball"));
+					break;
+				case AETHER:
+					s = new Aether(world, from, to, data_root.getChildByName("aether"));
+					break;
+				case DIG:
+					s = new Dig(world, from, to, data_root.getChildByName("dig"));
+					break;
+			}
 		}
 		
 		return s;
