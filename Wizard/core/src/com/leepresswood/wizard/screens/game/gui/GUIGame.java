@@ -35,7 +35,7 @@ public class GUIGame
 	
 	//Spells
 	public final int SPELL_NUMBER_MAX = 3;
-	public int spell_number_unlocked;
+	public int spell_number_unlocked = 1;
 	public int spell_active = 0;
 	public Spell[] spells;
 	
@@ -96,34 +96,30 @@ public class GUIGame
 	 */
 	private void makeSpellList()
 	{
-		if(spell_number_unlocked > 0)
-			try
-			{
-				spells = new Spell[spell_number_unlocked];
-				
-				//Initialize each spell. We will be reading from the player's list of spells.
-				Element spell_root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
-				Element spell_list = screen.world.entity_handler.player_root.getChildByName("spell_list");
-				for(int i = 0; i < spell_number_unlocked; i++)
-					spells[i] = parseSpell(spell_root, spell_list.getChild(i).getText());
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+		try
+		{
+			//Initialize each spell. We will be reading from the player's list of spells.
+			spells = new Spell[spell_number_unlocked];
+			for(int i = 0; i < spell_number_unlocked; i++)
+				spells[i] = parseSpell(new XmlReader().parse(Gdx.files.internal("data/spells.xml")), screen.world.entity_handler.player_root.getChildByName("spell_list").getChild(i).getText(), i);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
-	private Spell parseSpell(Element spell_root, String spell_name)
+	private Spell parseSpell(Element spell_root, String spell_name, int position)
 	{
 		Spell s = null;
 		
 		//Parse name.
 		if(spell_name.equalsIgnoreCase("dig"))
-			s = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 109f, 1f);
+			s = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
 		else if(spell_name.equalsIgnoreCase("aether"))
-			s = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 56f, 1f);
+			s = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
 		else if(spell_name.equalsIgnoreCase("fireball"))
-			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 1f);
+			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
 		
 		//Get mana cost of this spell.
 		s.mana_cost = spell_root.getChildByName(spell_name).getFloat("cost");
@@ -224,7 +220,7 @@ public class GUIGame
 	 */
 	public void changeSpell(int amount)
 	{
-		if(amount == -1)
+		if(amount == 1)
 		{
 			spell_active--;
 			shiftSpellLeft();
