@@ -140,10 +140,8 @@ public class EntityHandler
 	 */
 	public void spawnWave()
 	{
-		//Get wave.
-		Element current_wave_data = wave_root.getChild(wave - 1);
-		
 		//Add all these enemies to the list of spawning enemies.
+		Element current_wave_data = wave_root.getChild(wave - 1);
 		enemy_queue = new LinkedList<String>();
 		for(int i = 0; i < current_wave_data.getChildCount(); i++)
 			for(int j = 0; j < current_wave_data.getChild(i).getInt("number"); j++)
@@ -174,12 +172,12 @@ public class EntityHandler
 	public void draw()
 	{
 		world.screen.batch.setProjectionMatrix(world.map_camera_handler.combined);
-		world.screen.batch.begin();			
-			for(Spell s : spells)
-				s.draw(world.screen.batch);
+		world.screen.batch.begin();
 			for(Enemy e : enemies)
 				e.draw(world.screen.batch);
 			player.draw(world.screen.batch);
+			for(Spell s : spells)
+				s.draw(world.screen.batch);
 		world.screen.batch.end();
 	}
 	
