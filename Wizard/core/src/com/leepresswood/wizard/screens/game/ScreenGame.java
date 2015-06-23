@@ -75,7 +75,7 @@ public class ScreenGame extends ScreenParent
 		//On top of setting the input, we want to read the current state of the player's level from the level store.
 		if(screen_level_store != null)
 		{
-			gui.spell_number_unlocked = ((SpellLevelUpGUIButton) screen_level_store.button_array[0]).current;
+			gui.spell_number_unlocked = ((SpellLevelUpGUIButton) screen_level_store.button_array[0]).current + 1;
 			gui.refreshSpellList();
 		}
 	}
