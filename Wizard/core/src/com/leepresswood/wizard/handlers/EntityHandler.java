@@ -137,8 +137,8 @@ public class EntityHandler
 			s.update(delta);
 		
 		//Spawn new enemies if we're ready for them.
-		if(!enemy_queue.isEmpty() && factory_enemy.isReady())
-			factory_enemy.getEnemy(enemy_queue.remove());
+		if(enemy_queue != null && !enemy_queue.isEmpty() && factory_enemy.isReady())
+			enemies.add(factory_enemy.getEnemy(enemy_queue.remove().toUpperCase()));
 		
 		//Delete old objects.
 		deleteOldObjects();
