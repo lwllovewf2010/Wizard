@@ -51,12 +51,16 @@ public class GUIGame
 	
 	/**
 	 * Remake the spell list upon returning from the level store.
+	 * @param spell_number_unlocked New number from the level store.
 	 */
-	public void refreshSpellList()
+	public void refreshSpellList(int spell_number_unlocked)
 	{
-		if(spell_number_unlocked > SPELL_NUMBER_MAX)
-			spell_number_unlocked = SPELL_NUMBER_MAX;
-		makeSpellList();
+		//Avoid this method if we didn't update the number of spells.
+		if(this.spell_number_unlocked != spell_number_unlocked)
+		{
+			this.spell_number_unlocked = spell_number_unlocked > SPELL_NUMBER_MAX ? spell_number_unlocked : SPELL_NUMBER_MAX;
+			makeSpellList();
+		}
 	}
 	
 	/**
