@@ -186,8 +186,6 @@ public class EntityHandler
 	 */
 	private void deleteOldObjects()
 	{
-		remove.clear();
-		
 		//Delete old spells.
 		for(Spell s : spells)
 			if(!s.active)				
@@ -198,12 +196,12 @@ public class EntityHandler
 			if(e.is_dead)
 				remove.add(e);
 		
-		//Do the actual removal.
-		if(!remove.isEmpty())
-			for(Object o : remove)
-				if(o instanceof Spell)
-					spells.remove(o);
-				else if(o instanceof Enemy)
-					enemies.remove(o);
+		//Do the removal.
+		for(Object o : remove)
+			if(o instanceof Spell)
+				spells.remove(o);
+			else if(o instanceof Enemy)
+				enemies.remove(o);
+		remove.clear();
 	}
 }
