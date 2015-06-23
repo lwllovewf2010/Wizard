@@ -35,7 +35,7 @@ public class InputLevelStore implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
-		//Corrent screenY before doing the touch.
+		//Correct screenY before doing the touch.
 		screenY = Gdx.graphics.getHeight() - screenY;
 		
 		for(GUIButton b : screen.button_array)

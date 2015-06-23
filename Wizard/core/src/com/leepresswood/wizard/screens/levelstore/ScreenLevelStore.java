@@ -9,6 +9,7 @@ import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.game.gui.GUIButton;
+import com.leepresswood.wizard.screens.levelstore.buttons.ReturnToGameGUIButton;
 import com.leepresswood.wizard.screens.levelstore.buttons.SpellLevelUpGUIButton;
 
 /**
@@ -23,7 +24,7 @@ public class ScreenLevelStore extends ScreenParent
 	
 	public TextureRegion background;
 	
-	public final int NUMBER_OF_BUTTONS = 1;
+	public final int NUMBER_OF_BUTTONS = 2;
 	public GUIButton[] button_array;
 	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
@@ -40,9 +41,10 @@ public class ScreenLevelStore extends ScreenParent
 		//Blur this background.
 		
 		
-		//Set up the level-up buttons.
+		//Set up the buttons.
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
 		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 100f, 25f, 25f);
+		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 50f, 50f, 25f, 25f);
 	}
 
 	@Override

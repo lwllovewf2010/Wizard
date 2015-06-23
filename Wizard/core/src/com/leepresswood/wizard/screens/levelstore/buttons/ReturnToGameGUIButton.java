@@ -3,33 +3,28 @@ package com.leepresswood.wizard.screens.levelstore.buttons;
 import com.badlogic.gdx.graphics.Texture;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.gui.GUIButton;
+import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
 /**
- * The button that increases the number of spells available. 
+ * From the level store, go back to the game screen.
+ *
  * @author Lee
  */
-public class SpellLevelUpGUIButton extends GUIButton
+public class ReturnToGameGUIButton extends GUIButton
 {
-	private final int MAX = 5;
-	public int current = 0;
-	
-	public SpellLevelUpGUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
+	public ReturnToGameGUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
 	{
 		super(screen, t, x, y, width, height);
 	}
 
 	@Override
 	public void update(float delta)
-	{System.out.println(current);
+	{
 	}
 
 	@Override
 	public void doClick()
 	{
-		if(++current >= MAX)
-		{
-			current = MAX;
-			is_active = false;
-		}
+		screen.game.setScreen(((ScreenLevelStore) screen).game_screen);
 	}
 }
