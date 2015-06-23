@@ -1,6 +1,5 @@
 package com.leepresswood.wizard.screens.levelstore;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,7 +9,6 @@ import com.leepresswood.wizard.gui.GUIButton;
 import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.screens.game.gui.LevelGUIButton;
 import com.leepresswood.wizard.screens.levelstore.gui.ReturnToGameGUIButton;
 import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 
