@@ -34,6 +34,7 @@ public class GameWorld
 	{
 		entity_handler.update(delta);
 		map_camera_handler.setCameraBounds();
+		wave_handler.update();
 	}
 	
 	public void draw()

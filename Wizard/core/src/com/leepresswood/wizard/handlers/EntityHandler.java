@@ -108,6 +108,14 @@ public class EntityHandler
 	}
 	
 	/**
+	 * Player requested to cast a spell. Manage this here.
+	 */
+	public void addSpell()
+	{
+		
+	}
+	
+	/**
 	 * Next wave is starting.
 	 */
 	public void spawnWave()
@@ -120,7 +128,6 @@ public class EntityHandler
 		for(int i = 0; i < current_wave_data.getChildCount(); i++)
 			for(int j = 0; j < current_wave_data.getChild(i).getInt("number"); j++)
 				enemy_queue.add(current_wave_data.getChild(i).get("name"));
-		
 	}
 	
 	public void update(float delta)

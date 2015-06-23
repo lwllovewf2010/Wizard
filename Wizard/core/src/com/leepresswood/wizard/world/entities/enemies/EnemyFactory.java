@@ -67,7 +67,6 @@ public class EnemyFactory
 	 */
 	public Enemy getEnemy(String type, boolean left)
 	{
-		Enemies enemy_enum = Enemies.valueOf(type);
 		time_recharge_current = 0f;
 		
 		//Left or right side?
@@ -75,7 +74,7 @@ public class EnemyFactory
 		float y = world.map_camera_handler.GROUND;
 		
 		Enemy e = null;			
-		switch(enemy_enum)
+		switch(Enemies.valueOf(type))
 		{
 			case SKELETON:
 				e = new Skeleton(world, x, y, data_root.getChildByName("skeleton"));

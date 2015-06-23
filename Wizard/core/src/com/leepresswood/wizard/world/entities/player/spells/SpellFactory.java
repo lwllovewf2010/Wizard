@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.enums.Spells;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.player.spells.damage.Aether;
 import com.leepresswood.wizard.world.entities.player.spells.damage.Fireball;
@@ -80,5 +81,41 @@ public class SpellFactory
 		
 		//This will happen if the player is not ready to cast.
 		return null;
+	}
+	
+	/**
+	 * Create a new spell with the given data.
+	 * @param type The type of spell to create.
+	 * @param from The start location of the spell. Typically the player's center.
+	 * @param to The end location of the spell. Typically where the player aimed.
+	 * @return An instance of the desired spell. Will be null if spell can't be summoned at this time due to recharging.
+	 */
+	public Spell getSpell(String type, Vector2 from, Vector2 to)
+	{
+		time_recharge_current = 0f;
+			
+		Spell s = null;
+		switch(Spells.valueOf(type))
+		{
+			case FIREBALL:
+				s = new Fireball(world, from, to, data_root.getChildByName("fireball"));
+				break;
+			case AETHER:
+				s = new Aether(world, from, to, data_root.getChildByName("aether"));
+				break;
+			case DIG:
+				s = new Dig(world, from, to, data_root.getChildByName("dig"));
+				break;
+		}
+
+		//Set the new recharge time before we go.
+		if(s != null)
+			time_recharge_next = s.recharge;
+		return s;
+	}
+	
+	public boolean isReady()
+	{
+		return time_recharge_current >= time_recharge_next;
 	}
 }

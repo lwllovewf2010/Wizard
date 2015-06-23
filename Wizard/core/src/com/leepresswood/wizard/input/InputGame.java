@@ -36,7 +36,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.jumping = true;
 				break;
 			case Keys.SHIFT_LEFT:
-				screen.world.entity_handler.spawnWave();
+				screen.world.wave_handler.start_wave = true;
 				break;
 			case Keys.NUM_0:
 			case Keys.NUM_1:
