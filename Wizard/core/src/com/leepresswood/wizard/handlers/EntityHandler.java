@@ -24,12 +24,11 @@ public class EntityHandler
 	
 	public MagicType type;											//The type of magic the player has.
 	public Player player;											//Reference to playable character.
+	public Element player_root;									//Data root of the player. Used in gathering the spell list.
 	
 	public ArrayList<Enemy> enemies;								//List of enemies.
 	public ArrayList<Spell> spells;								//List of spells.
 	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
-	
-	public Element player_root;
 	
 	/**
 	 * Debug constructor.

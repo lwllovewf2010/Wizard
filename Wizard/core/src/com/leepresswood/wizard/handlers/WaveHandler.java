@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.wave;
+package com.leepresswood.wizard.handlers;
 
 import com.leepresswood.wizard.world.GameWorld;
 

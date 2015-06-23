@@ -1,7 +1,7 @@
 package com.leepresswood.wizard.screens.levelstore.gui;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.leepresswood.wizard.gui.GUIButton;
+import com.leepresswood.wizard.guielements.GUIButton;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 

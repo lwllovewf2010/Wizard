@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.leepresswood.wizard.GameWizard;
-import com.leepresswood.wizard.gui.GUIButton;
+import com.leepresswood.wizard.guielements.GUIButton;
 import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;

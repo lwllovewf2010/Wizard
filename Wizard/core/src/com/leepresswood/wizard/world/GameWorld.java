@@ -3,8 +3,8 @@ package com.leepresswood.wizard.world;
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.handlers.MapCameraEntity;
+import com.leepresswood.wizard.handlers.WaveHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.world.wave.WaveHandler;
 
 /**
  * Holds information about the game world. Sets up camera based upon this world.
