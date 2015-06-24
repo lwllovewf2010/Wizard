@@ -20,9 +20,9 @@ public class Aether extends BoltSpell
 {
 	public Aether(Texture t, float x, float y){super(t, x, y);}
 	
-	public Aether(GameWorld world, Vector2 from, Vector2 to, Element data)
+	public Aether(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data);
+		super(world, from, to, data, level);
 	}
 	
 	@Override

@@ -70,7 +70,7 @@ public class SpellFactory
 	 * @param to The end location of the spell. Typically where the player aimed.
 	 * @return An instance of the desired spell. Will be null if spell can't be summoned at this time due to recharging.
 	 */
-	public Spell getSpell(String type, Vector2 from, Vector2 to)
+	public Spell getSpell(String type, Vector2 from, Vector2 to, int level)
 	{
 		Spells spell_type = Spells.valueOf(type);
 		Spell s = null;
@@ -81,13 +81,13 @@ public class SpellFactory
 			switch(spell_type)
 			{
 				case FIREBALL:
-					s = new Fireball(world, from, to, data_root.getChildByName("fireball"));
+					s = new Fireball(world, from, to, data_root.getChildByName("fireball"), level);
 					break;
 				case AETHER:
-					s = new Aether(world, from, to, data_root.getChildByName("aether"));
+					s = new Aether(world, from, to, data_root.getChildByName("aether"), level);
 					break;
 				case DIG:
-					s = new Dig(world, from, to, data_root.getChildByName("dig"));
+					s = new Dig(world, from, to, data_root.getChildByName("dig"), level);
 					break;
 			}
 		}

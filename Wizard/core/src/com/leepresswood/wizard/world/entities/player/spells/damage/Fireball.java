@@ -23,9 +23,9 @@ public class Fireball extends BoltSpell
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
 	
-	public Fireball(GameWorld world, Vector2 from, Vector2 to, Element data)
+	public Fireball(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data);
+		super(world, from, to, data, level);
 		
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");

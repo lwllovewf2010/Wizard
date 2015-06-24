@@ -16,9 +16,9 @@ public class Dig extends Spell
 	
 	public Dig(Texture t, float x, float y){super(t, x, y);}
 	
-	public Dig(GameWorld world, Vector2 from, Vector2 to, Element data)
+	public Dig(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data);
+		super(world, from, to, data, level);
 		
 		dig_width = data.getInt("dig_width");
 		dig_height = data.getInt("dig_height");

@@ -37,6 +37,9 @@ public abstract class Spell
 	public boolean active;
 	public float time_alive_current;
 	public float time_alive_max;
+	
+	//Level information.
+	public int level;
 
 	/**
 	 * Use this constructor for the spell list on the GUI.
@@ -59,12 +62,13 @@ public abstract class Spell
 		this.world = world;
 		this.from = from;
 		this.to = to;
+		this.level = level;
 		
 		//Read the data from the XML file.
 		name = data.get("name");
 		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		type = MagicType.valueOf(data.get("type").toUpperCase());
-		mana_cost = data.getFloat("cost");
+		mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");
 		recharge = data.getFloat("recharge");
 		time_alive_max = data.getFloat("time_alive");
 		
@@ -75,6 +79,7 @@ public abstract class Spell
 		
 		System.out.println(
 			"Spell:\n\tName: " + name
+			+ "\n\tLevel: " + level
 			+ "\n\tType: " + type
 			+ "\n\tMana Cost: " + mana_cost 
 			+ "\n\tRecharge: " + recharge 
