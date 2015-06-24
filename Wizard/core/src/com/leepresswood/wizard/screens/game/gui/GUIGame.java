@@ -126,7 +126,6 @@ public class GUIGame
 			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
 		
 		//Get mana cost of this spell.
-		System.out.println(screen.world.level_handler.spell_levels[position]);
 		s.mana_cost = spell_root.getChildByName(spell_name).getChildrenByName("level").get(screen.world.level_handler.spell_levels[position]).getFloat("cost");
 		return s;
 	}

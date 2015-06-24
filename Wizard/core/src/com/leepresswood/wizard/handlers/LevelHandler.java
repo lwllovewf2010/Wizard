@@ -26,7 +26,7 @@ public class LevelHandler
 		spells_available = 1;
 		spell_levels = new int[spells_available];
 		for(int i : spell_levels)
-			spell_levels[i] = 1;
+			spell_levels[i] = 0;
 	}
 
 	/**
@@ -57,14 +57,14 @@ public class LevelHandler
 			
 			//Everything remaining will be initialized to level 1.
 			for(int i = spells_available; i < new_spells_available; i++)
-				new_spell_levels[i] = 1;
+				new_spell_levels[i] = 0;
 			
 			//Change the pointer to the new array.
 			spell_levels = new_spell_levels;
 		}
 		
-		
 		//Using all this new data, we can create the spell list.
-		world.screen.gui.refreshSpellList(new_spells_available);
+		spells_available = new_spells_available;
+		world.screen.gui.refreshSpellList(spells_available);
 	}
 }
