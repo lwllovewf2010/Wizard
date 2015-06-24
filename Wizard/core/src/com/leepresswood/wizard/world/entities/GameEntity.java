@@ -5,14 +5,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.GameWorld;
 
 /**
  * Parent class to both the players and the enemies. 
  */
-public abstract class PersonEntity
+public abstract class GameEntity
 {
 	protected GameWorld world;
 	
@@ -59,7 +58,7 @@ public abstract class PersonEntity
 	public Sprite sprite;
 	public Rectangle[] bounds;
 	
-	public PersonEntity(GameWorld world, float x, float y, Element data)
+	public GameEntity(GameWorld world, float x, float y, Element data)
 	{
 		this.world = world;
 		

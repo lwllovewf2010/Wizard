@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.GameWorld;
-import com.leepresswood.wizard.world.entities.PersonEntity;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.spells.Spell;
 
@@ -18,7 +18,7 @@ import com.leepresswood.wizard.world.entities.player.spells.Spell;
  * @author Lee
  *
  */
-public abstract class Player extends PersonEntity
+public abstract class Player extends GameEntity
 {
 	public final float JUMP_TIME_MAX = 0.25f;
 	public boolean jump_stop_hop;

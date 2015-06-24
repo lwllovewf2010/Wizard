@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.GameWorld;
-import com.leepresswood.wizard.world.entities.PersonEntity;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.player.Player;
 import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 import com.leepresswood.wizard.world.entities.player.spells.Spell;
@@ -15,7 +15,7 @@ import com.leepresswood.wizard.world.entities.player.spells.Spell;
 /**
  * Parent to all the enemy types.
  */
-public abstract class Enemy extends PersonEntity
+public abstract class Enemy extends GameEntity
 {	
 	//XML Data
 	public float knockback_damage;
