@@ -79,7 +79,7 @@ public abstract class Spell
 		
 		System.out.println(
 			"Spell:\n\tName: " + name
-			+ "\n\tLevel: " + level
+			+ "\n\tLevel: " + (level + 1)
 			+ "\n\tType: " + type
 			+ "\n\tMana Cost: " + mana_cost 
 			+ "\n\tRecharge: " + recharge 

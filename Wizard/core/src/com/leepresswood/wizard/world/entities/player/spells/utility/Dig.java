@@ -20,8 +20,8 @@ public class Dig extends Spell
 	{
 		super(world, from, to, data, level);
 		
-		dig_width = data.getInt("dig_width");
-		dig_height = data.getInt("dig_height");
+		dig_width = data.getChildrenByName("level").get(level).getInt("dig_width");
+		dig_height = data.getChildrenByName("level").get(level).getInt("dig_height");
 	}
 
 	@Override

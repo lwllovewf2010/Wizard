@@ -75,30 +75,26 @@
 		<name>Dig</name>
 	    <texture>hold</texture>
 	    <type>Utility</type>
-	    <cost>0.0</cost>
 	    <recharge>0.0</recharge>
 	    <time_alive>0.0</time_alive>
-	    
-	    <dig_width>3</dig_width>
-	    <dig_height>3</dig_height>
-	    
+ 
 	    <level>
 			<value>1</value>
-			<cost>2.0</cost>
-			<follow>false</follow>
-			<split>1</split>
+			<cost>1.0</cost>
+			<dig_width>1</dig_width>
+			<dig_height>1</dig_height>
 		</level>
 		<level>
 			<value>2</value>
-			<cost>4.0</cost>
-			<follow>false</follow>
-			<split>2</split>
+			<cost>2.0</cost>
+			<dig_width>3</dig_width>
+			<dig_height>3</dig_height>
 		</level>
 		<level>
 			<value>3</value>
-			<cost>8.0</cost>
-			<follow>true</follow>
-			<split>4</split>
+			<cost>3.0</cost>
+			<dig_width>5</dig_width>
+			<dig_height>5</dig_height>
 		</level>
 	</dig>
 </spells>
