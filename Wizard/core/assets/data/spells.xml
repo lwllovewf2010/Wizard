@@ -17,19 +17,19 @@
 			<value>1</value>
 			<cost>2.0</cost>
 			<follow>false</follow>
-			<split>1</split>
+			<split>0</split>
 		</level>
 		<level>
 			<value>2</value>
 			<cost>4.0</cost>
 			<follow>false</follow>
-			<split>2</split>
+			<split>3</split>
 		</level>
 		<level>
 			<value>3</value>
 			<cost>8.0</cost>
 			<follow>true</follow>
-			<split>4</split>
+			<split>5</split>
 		</level>
 	</aether>
 	<fireball>

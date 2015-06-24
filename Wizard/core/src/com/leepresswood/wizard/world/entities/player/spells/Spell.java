@@ -138,7 +138,7 @@ public abstract class Spell
 
 	/**
 	 * I don't know why this could be needed, but it's here just in case.
-	 * @param enemy
+	 * @param enemy Enemy that hit this spell.
 	 */
 	public void hitBy(Enemy enemy)
 	{

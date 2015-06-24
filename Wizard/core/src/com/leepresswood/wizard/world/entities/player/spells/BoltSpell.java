@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.GameWorld;
 
 /**
- * Bolt Spells are a type of spell characterized by a single cast per click. One sprite to this type of spell.
+ * Bolt Spells are a type of spell characterized by a single cast per click.
  * @author Lee
  *
  */
