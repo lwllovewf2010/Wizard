@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.player.spells;
+package com.leepresswood.wizard.factories;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.Spells;
 import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.player.spells.Spell;
 import com.leepresswood.wizard.world.entities.player.spells.damage.Aether;
 import com.leepresswood.wizard.world.entities.player.spells.damage.Fireball;
 import com.leepresswood.wizard.world.entities.player.spells.utility.Dig;

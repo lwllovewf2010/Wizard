@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.enemies;
+package com.leepresswood.wizard.factories;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.Enemies;
 import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
 
 /**
