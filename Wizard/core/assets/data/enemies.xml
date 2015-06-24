@@ -8,7 +8,7 @@
 		<width>2.0</width>
 		<height>2.0</height>
 		<health>10.0</health>
-		<defense>0.0</defense>
+		<defense>25.0</defense>
 		<jump_speed>7.5</jump_speed>
 		<speed>5.0</speed>
 		<acceleration>5.0</acceleration>

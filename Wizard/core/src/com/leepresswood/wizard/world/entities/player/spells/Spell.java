@@ -54,7 +54,7 @@ public abstract class Spell
 	 * @param to Click point.
 	 * @param data Spell data.
 	 */
-	public Spell(GameWorld world, Vector2 from, Vector2 to, Element data)
+	public Spell(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
 	{
 		this.world = world;
 		this.from = from;

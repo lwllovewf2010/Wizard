@@ -8,7 +8,6 @@ import com.leepresswood.wizard.input.InputGame;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.gui.GUIGame;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
-import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 import com.leepresswood.wizard.world.GameWorld;
 
 public class ScreenGame extends ScreenParent
@@ -16,8 +15,8 @@ public class ScreenGame extends ScreenParent
 	public GameWorld world;
 	public GUIGame gui;	
 	
-	public boolean go_to_level_store;				//Flag is set when the player requested to visit the level store.
-	public ScreenLevelStore screen_level_store;	//Reference to the level store.
+	public boolean go_to_level_store;							//Flag is set when the player requested to visit the level store.
+	public ScreenLevelStore screen_level_store;				//Reference to the level store.
 	
 	public ScreenGame(GameWizard game)
 	{
@@ -74,7 +73,7 @@ public class ScreenGame extends ScreenParent
 		
 		//On top of setting the input, we want to read the current state of the player's level from the level store.
 		if(screen_level_store != null)
-			gui.refreshSpellList(((SpellLevelUpGUIButton) screen_level_store.button_array[0]).current + 1);
+			world.level_handler.gatherLevelData();
 	}
 	
 	@Override

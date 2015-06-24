@@ -9,7 +9,6 @@ import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.player.spells.Spell;
 
 /**
  * Class should include all attributes every player will have.
@@ -27,7 +26,7 @@ public abstract class Player extends GameEntity
 	{
 		super(world, x, y, data);
 		
-		//Grab the health.
+		//Grab the health and mana.
 		health = data.getFloat("health");
 		mana = data.getFloat("mana");
 	}

@@ -6,13 +6,31 @@
 		<name>Aether</name>
 		<texture>hold</texture>
 		<type>Void</type>
-		<cost>2.0</cost>
 		<recharge>0.5</recharge>
 		<time_alive>3.0</time_alive>
 		
 		<damage>2.0</damage>	    
 		<speed>11.0</speed>
 		<knockback>6.0</knockback>
+		
+		<level>
+			<value>1</value>
+			<cost>2.0</cost>
+			<follow>false</follow>
+			<split>1</split>
+		</level>
+		<level>
+			<value>2</value>
+			<cost>4.0</cost>
+			<follow>false</follow>
+			<split>2</split>
+		</level>
+		<level>
+			<value>3</value>
+			<cost>8.0</cost>
+			<follow>true</follow>
+			<split>4</split>
+		</level>
 	</aether>
 	<fireball>
 	    <name>Fireball</name>
@@ -28,6 +46,25 @@
 	     
 		<impulse>0.75</impulse>
 		<speed_decay>0.95</speed_decay>
+		
+		<level>
+			<value>1</value>
+			<cost>2.0</cost>
+			<follow>false</follow>
+			<split>1</split>
+		</level>
+		<level>
+			<value>2</value>
+			<cost>4.0</cost>
+			<follow>false</follow>
+			<split>2</split>
+		</level>
+		<level>
+			<value>3</value>
+			<cost>8.0</cost>
+			<follow>true</follow>
+			<split>4</split>
+		</level>
 	</fireball>
 	
 	<!--Defense-->
@@ -44,5 +81,24 @@
 	    
 	    <dig_width>3</dig_width>
 	    <dig_height>3</dig_height>
+	    
+	    <level>
+			<value>1</value>
+			<cost>2.0</cost>
+			<follow>false</follow>
+			<split>1</split>
+		</level>
+		<level>
+			<value>2</value>
+			<cost>4.0</cost>
+			<follow>false</follow>
+			<split>2</split>
+		</level>
+		<level>
+			<value>3</value>
+			<cost>8.0</cost>
+			<follow>true</follow>
+			<split>4</split>
+		</level>
 	</dig>
 </spells>
