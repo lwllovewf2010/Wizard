@@ -19,7 +19,7 @@ import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
  */
 public class Aether extends BoltSpell
 {
-	public boolean follow = true;
+	public boolean follow;
 	private final float RECALCULATE_MAX_DISTANCE = 225f;
 	private final float RECALCULATE_TIME = 0.01f;
 	private final float RECALCULATE_MAX_ANGLE_DIFFERENCE = 2f;

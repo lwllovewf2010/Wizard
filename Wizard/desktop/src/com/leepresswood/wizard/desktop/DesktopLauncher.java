@@ -24,16 +24,16 @@ public class DesktopLauncher
 	 * be appended to the version number.
 	 * 
 	 * Version 0.8 Alpha Goals:
-	 * More spells
-	 * More wizard types
-	 * More enemies
+	 * Upgradable spells
+	 * Upgradable attributes
 	 * 
 	 * Near Future Goals:
 	 * Enemy graphics
 	 * Player graphics
 	 * Spell graphics
-	 * Upgradable spells
-	 * Upgradable attributes
+	 * More spells
+	 * More wizard types
+	 * More enemies
 	 * Better GUI
 	 */
 	public static final String GAME_VERSION = "0.7 Alpha";
