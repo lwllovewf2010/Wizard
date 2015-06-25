@@ -122,4 +122,13 @@ public class Fireball extends BoltSpell
 		//If spell has been upgraded, there will be an explosion that takes its place.
 		
 	}
+	
+	/**
+	 * The aftermath of an enemy collision.
+	 * @author Lee
+	 */
+	private class Explosion
+	{
+		
+	}
 }
