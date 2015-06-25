@@ -16,6 +16,7 @@ import com.leepresswood.wizard.world.GameWorld;
 public abstract class BoltSpell extends Spell
 {
 	public float damage;
+	public float angle;
 	public float speed_x, speed_y;
 	public float speed_max;
 	public float knockback;
@@ -32,7 +33,7 @@ public abstract class BoltSpell extends Spell
 		knockback = data.getFloat("knockback");
 		
 		//Determine the initial speeds from the max speed and angle between the vectors.
-		float angle = new Vector2(to).sub(from).angle();
+		angle = new Vector2(to).sub(from).angle();
 		speed_x = speed_max * MathUtils.cosDeg(angle);
 		speed_y = speed_max * MathUtils.sinDeg(angle);
 		

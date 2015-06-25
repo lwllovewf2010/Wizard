@@ -19,9 +19,10 @@ import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
  */
 public class Aether extends BoltSpell
 {
-	public boolean follow;
-	private final float RECALCULATE_MAX_DISTANCE = 25f;
-	private final float RECALCULATE_TIME = 0.75f;
+	public boolean follow = true;
+	private final float RECALCULATE_MAX_DISTANCE = 225f;
+	private final float RECALCULATE_TIME = 0.01f;
+	private final float RECALCULATE_MAX_ANGLE_DIFFERENCE = 2f;
 	private float recalculate_current;
 	
 	//For multiple bolts.
@@ -31,7 +32,7 @@ public class Aether extends BoltSpell
 	
 	public Aether(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data, level);level=1;
+		super(world, from, to, data, level);
 		
 		//Aether will be split into multiple bolts. Each split should move and collide individually.
 		int split_count = data.getChildrenByName("level").get(level).getInt("split");
@@ -91,9 +92,19 @@ public class Aether extends BoltSpell
 				//Change direction toward that enemy if it exists.
 				if(enemy_index != null)
 				{
-					float angle = new Vector2(enemy_index.sprite.getX() + enemy_index.sprite.getWidth() / 2f, enemy_index.sprite.getY() + enemy_index.sprite.getHeight() / 2f).sub(from).angle();
-					speed_x = speed_max * MathUtils.cosDeg(angle);
-					speed_y = speed_max * MathUtils.sinDeg(angle);
+					//float current_angle = MathUtils.atan2(speed_y, speed_x);
+					float between_angle = new Vector2(enemy_index.sprite.getX() + enemy_index.sprite.getWidth() / 2f, enemy_index.sprite.getY() + enemy_index.sprite.getHeight() / 2f).sub(new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f)).angle();
+					float d_angle =  between_angle - angle;
+					if(d_angle > 180f)
+						d_angle -= 360f;
+					else if(d_angle < -180f)
+						d_angle += 360f;
+					if(Math.abs(d_angle) > RECALCULATE_MAX_ANGLE_DIFFERENCE)
+						d_angle = Math.signum(d_angle) * RECALCULATE_MAX_ANGLE_DIFFERENCE;
+
+					speed_x = speed_max * MathUtils.cosDeg(angle + d_angle);
+					speed_y = speed_max * MathUtils.sinDeg(angle + d_angle);
+					angle += d_angle;
 				}
 			}
 		}
