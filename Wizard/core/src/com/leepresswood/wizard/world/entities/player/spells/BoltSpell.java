@@ -32,7 +32,7 @@ public abstract class BoltSpell extends Spell
 		knockback = data.getFloat("knockback");
 		
 		//Determine the initial speeds from the max speed and angle between the vectors.
-		float angle = to.sub(from).angle();
+		float angle = new Vector2(to).sub(from).angle();
 		speed_x = speed_max * MathUtils.cosDeg(angle);
 		speed_y = speed_max * MathUtils.sinDeg(angle);
 		
