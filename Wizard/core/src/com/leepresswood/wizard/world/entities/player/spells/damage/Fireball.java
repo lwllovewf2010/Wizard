@@ -21,6 +21,8 @@ public class Fireball extends BoltSpell
 	private float impulse;
 	private float speed_decay;
 	
+	private float bomb_radius;
+	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
 	
 	public Fireball(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
@@ -116,5 +118,8 @@ public class Fireball extends BoltSpell
 		
 		//Destroy this bolt.
 		active = false;
+		
+		//If spell has been upgraded, there will be an explosion that takes its place.
+		
 	}
 }
