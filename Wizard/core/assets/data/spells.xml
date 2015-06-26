@@ -17,12 +17,12 @@
 			<value>1</value>
 			<cost>2.0</cost>
 			<follow>false</follow>
-			<split>0</split>
+			<split>1</split>
 		</level>
 		<level>
 			<value>2</value>
 			<cost>4.0</cost>
-			<follow>false</follow>
+			<follow>true</follow>
 			<split>3</split>
 		</level>
 		<level>
@@ -36,7 +36,6 @@
 	    <name>Fireball</name>
 	    <texture>hold</texture>
 	    <type>Fire</type>
-	    <cost>5.0</cost>
 	    <recharge>0.5</recharge>
 	    <time_alive>5.0</time_alive>
 	    
@@ -49,21 +48,57 @@
 		
 		<level>
 			<value>1</value>
-			<cost>2.0</cost>
-			<follow>false</follow>
-			<split>1</split>
+			<cost>5.0</cost>
+			<explosion>
+				<name>Explosion</name>
+			    <texture>hold</texture>
+			    <type>Fire</type>
+			    <cost>0.0</cost>
+			    <recharge>0.0</recharge>
+			    <time_alive>0.75</time_alive>
+			    
+			    <damage>5.0</damage>	    
+			    <speed>0.0</speed>
+			    <knockback>10.0</knockback>
+			    
+			    <radius>1.0</radius>
+			</explosion>
 		</level>
 		<level>
 			<value>2</value>
-			<cost>4.0</cost>
-			<follow>false</follow>
-			<split>2</split>
+			<cost>7.5</cost>
+			<explosion>
+				<name>Explosion</name>
+			    <texture>hold</texture>
+			    <type>Fire</type>
+			    <cost>0.0</cost>
+			    <recharge>0.0</recharge>
+			    <time_alive>0.75</time_alive>
+			    
+			    <damage>5.0</damage>	    
+			    <speed>0.0</speed>
+			    <knockback>12.5</knockback>
+			    
+			    <radius>1.5</radius>
+			</explosion>
 		</level>
 		<level>
 			<value>3</value>
-			<cost>8.0</cost>
-			<follow>true</follow>
-			<split>4</split>
+			<cost>10.0</cost>
+			<explosion>
+				<name>Explosion</name>
+			    <texture>hold</texture>
+			    <type>Fire</type>
+			    <cost>0.0</cost>
+			    <recharge>0.0</recharge>
+			    <time_alive>0.75</time_alive>
+			    
+			    <damage>5.0</damage>	    
+			    <speed>0.0</speed>
+			    <knockback>15.0</knockback>
+			    
+			    <radius>2.0</radius>
+			</explosion>
 		</level>
 	</fireball>
 	

@@ -20,8 +20,7 @@ public class Fireball extends BoltSpell
 {	
 	private float impulse;
 	private float speed_decay;
-	
-	private float bomb_radius;
+	private Element explosion_data;
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
 	
@@ -32,6 +31,7 @@ public class Fireball extends BoltSpell
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
 		speed_decay = data.getFloat("speed_decay");
+		explosion_data = data.getChildByName("explosion");
 		
 		System.out.println(
 			"\tImpulse: " + impulse
@@ -119,16 +119,8 @@ public class Fireball extends BoltSpell
 		//Destroy this bolt.
 		active = false;
 		
-		//If spell has been upgraded, there will be an explosion that takes its place.
-		
-	}
-	
-	/**
-	 * The aftermath of an enemy collision.
-	 * @author Lee
-	 */
-	private class Explosion
-	{
-		
+		//The collision death of this bolt will create an explosion.
+		Vector2 location = new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
+		world.entity_handler.spells.add(new Explosion(world, location, location, explosion_data, level));
 	}
 }

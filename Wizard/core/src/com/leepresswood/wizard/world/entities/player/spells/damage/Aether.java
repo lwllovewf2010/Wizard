@@ -34,6 +34,9 @@ public class Aether extends BoltSpell
 	{
 		super(world, from, to, data, level);
 		
+		//Get XML data.
+		follow = data.getChildrenByName("level").get(level).getBoolean("follow");
+		
 		//Aether will be split into multiple bolts. Each split should move and collide individually.
 		int split_count = data.getChildrenByName("level").get(level).getInt("split");
 		float rotate_by = ROTATE_SPLIT_ANGLE / (split_count + 1);
