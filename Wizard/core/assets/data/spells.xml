@@ -61,7 +61,7 @@
 			    <speed>0.0</speed>
 			    <knockback>10.0</knockback>
 			    
-			    <radius>1.0</radius>
+			    <radius>3.0</radius>
 			</explosion>
 		</level>
 		<level>
@@ -79,7 +79,7 @@
 			    <speed>0.0</speed>
 			    <knockback>12.5</knockback>
 			    
-			    <radius>1.5</radius>
+			    <radius>3.5</radius>
 			</explosion>
 		</level>
 		<level>
@@ -97,7 +97,7 @@
 			    <speed>0.0</speed>
 			    <knockback>15.0</knockback>
 			    
-			    <radius>2.0</radius>
+			    <radius>4.0</radius>
 			</explosion>
 		</level>
 	</fireball>

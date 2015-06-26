@@ -23,9 +23,9 @@ public class Explosion extends BoltSpell
 		super(world, from, to, data, 0);
 		
 		//Change the sprite's size to this radius.
-		sprite.setOriginCenter();
 		radius = data.getFloat("radius");
 		sprite.setSize(radius, radius);
+		sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
 	}
 
 	@Override
@@ -35,13 +35,16 @@ public class Explosion extends BoltSpell
 		float new_size_percent = 1f - time_alive_current / time_alive_max;
 		sprite.setSize(new_size_percent * radius, new_size_percent * radius);
 		
+		//Reset the center.
+		sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
+		
 		//Reset the bounds.
 		bounds[0] = sprite.getBoundingRectangle();
 	}
 
 	@Override
 	protected void updateCollision()
-	{//We don't care about this spell's physics.
+	{//We don't care about this spell's collisions.
 	}
 
 	@Override
