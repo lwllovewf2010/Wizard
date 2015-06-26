@@ -121,6 +121,6 @@ public class Fireball extends BoltSpell
 		
 		//The collision death of this bolt will create an explosion.
 		Vector2 location = new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
-		world.entity_handler.spells.add(new Explosion(world, location, location, explosion_data, level));
+		world.entity_handler.spell_queue.add(new Explosion(world, location, location, explosion_data, level));
 	}
 }

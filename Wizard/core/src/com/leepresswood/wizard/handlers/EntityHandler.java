@@ -31,11 +31,12 @@ public class EntityHandler
 	
 	public ArrayList<Enemy> enemies;								//List of enemies.
 	public ArrayList<Spell> spells;								//List of spells.
+	public ArrayList<Spell> spell_queue;						//New spells being created will be placed here if their creation interrupts array looping.
 	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
 	
-	public Element wave_root;
-	public int wave;
-	public Queue<String> enemy_queue;
+	public Element wave_root;										//Contains wave data.
+	public int wave;													//Current wave.
+	public Queue<String> enemy_queue;							//Holds the enemies that are to be created over time.
 	
 	/**
 	 * Debug constructor.
@@ -94,6 +95,7 @@ public class EntityHandler
 		//Initialize the lists.
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
+		spell_queue = new ArrayList<Spell>();
 		remove = new ArrayList<Object>();
 		
 		//Initialize wave data.
@@ -160,6 +162,10 @@ public class EntityHandler
 		factory_spell.update(delta);
 		for(Spell s : spells)
 			s.update(delta);
+		
+		//Spawn new spells from the spell queue.
+		spells.addAll(spell_queue);
+		spell_queue.clear();
 		
 		//Spawn new enemies if we're ready for them.
 		if(enemy_queue != null && !enemy_queue.isEmpty() && factory_enemy.isReady())
