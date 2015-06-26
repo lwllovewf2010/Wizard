@@ -8,12 +8,7 @@ import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 
 /**
- * Bolt spell that is affected by gravity. Explodes on impact.<br/>
- * Type: Fire<br/>
- * Damage: High<br/>
- * Speed: Medium</br/>
- * Cost: Medium<br/>
- * Recast Time: High<br/>
+ * Bolt spell that is affected by gravity. Explodes on impact.
  * @author Lee
  */
 public class Fireball extends BoltSpell

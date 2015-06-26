@@ -9,6 +9,10 @@ import com.leepresswood.wizard.world.GameWorld;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.spells.Spell;
 
+/**
+ * Remove the targetted block.
+ * @author Lee
+ */
 public class Dig extends Spell
 {
 	private int dig_width;

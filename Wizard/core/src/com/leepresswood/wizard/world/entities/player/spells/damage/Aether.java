@@ -9,12 +9,7 @@ import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 
 /**
- * Bolt spell that is not affected by gravity. Goes through walls and floors. No knockback. Hits enemies once.<br/>
- * Type: Void<br/>
- * Damage: Low<br/>
- * Speed: Low</br/>
- * Cost: Medium<br/>
- * Recast Time: Low<br/>
+ * Bolt spell that is not affected by gravity. Goes through walls and floors.
  * @author Lee
  */
 public class Aether extends BoltSpell
@@ -110,10 +105,9 @@ public class Aether extends BoltSpell
 				}
 			}
 		}
-			
-		sprite.translate(speed_x * delta, speed_y * delta);
 		
-		//Reset the bounds.
+		//Move in the direction and reset the bounds.
+		sprite.translate(speed_x * delta, speed_y * delta);
 		bounds[0] = sprite.getBoundingRectangle();
 	}
 
