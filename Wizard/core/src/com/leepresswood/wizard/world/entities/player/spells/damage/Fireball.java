@@ -31,7 +31,7 @@ public class Fireball extends BoltSpell
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
 		speed_decay = data.getFloat("speed_decay");
-		explosion_data = data.getChildByName("explosion");
+		explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
 		
 		System.out.println(
 			"\tImpulse: " + impulse

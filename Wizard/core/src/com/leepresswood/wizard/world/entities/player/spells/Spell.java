@@ -68,7 +68,8 @@ public abstract class Spell
 		name = data.get("name");
 		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		type = MagicType.valueOf(data.get("type").toUpperCase());
-		mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");
+		if(data.getChildrenByName("level").size > 0)
+			mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");
 		recharge = data.getFloat("recharge");
 		time_alive_max = data.getFloat("time_alive");
 		
