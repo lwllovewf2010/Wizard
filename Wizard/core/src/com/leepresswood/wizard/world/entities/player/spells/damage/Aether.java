@@ -95,9 +95,8 @@ public class Aether extends BoltSpell
 				//Change direction toward that enemy if it exists.
 				if(enemy_index != null)
 				{
-					//float current_angle = MathUtils.atan2(speed_y, speed_x);
-					float between_angle = new Vector2(enemy_index.sprite.getX() + enemy_index.sprite.getWidth() / 2f, enemy_index.sprite.getY() + enemy_index.sprite.getHeight() / 2f).sub(new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f)).angle();
-					float d_angle =  between_angle - angle;
+					//Get the angle between the spell's movement direction and the direction toward the closest enemy.
+					float d_angle =  new Vector2(enemy_index.sprite.getX() + enemy_index.sprite.getWidth() / 2f, enemy_index.sprite.getY() + enemy_index.sprite.getHeight() / 2f).sub(new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f)).angle() - angle;
 					if(d_angle > 180f)
 						d_angle -= 360f;
 					else if(d_angle < -180f)
@@ -105,9 +104,9 @@ public class Aether extends BoltSpell
 					if(Math.abs(d_angle) > RECALCULATE_MAX_ANGLE_DIFFERENCE)
 						d_angle = Math.signum(d_angle) * RECALCULATE_MAX_ANGLE_DIFFERENCE;
 
-					speed_x = speed_max * MathUtils.cosDeg(angle + d_angle);
-					speed_y = speed_max * MathUtils.sinDeg(angle + d_angle);
 					angle += d_angle;
+					speed_x = speed_max * MathUtils.cosDeg(angle);
+					speed_y = speed_max * MathUtils.sinDeg(angle);
 				}
 			}
 		}
