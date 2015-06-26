@@ -23,20 +23,24 @@ public class DesktopLauncher
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Version 0.8 Alpha Goals:
-	 * Upgradable spells
-	 * Upgradable attributes
+	 * Version 0.9 Alpha Goals:
+	 * ========================
+	 * Better collision detection
+	 * Cleaner entity creation strings
+	 * Leveling of attributes
+	 * On-screen text indicators
+	 * Better GUI
 	 * 
 	 * Near Future Goals:
+	 * ==================
 	 * Enemy graphics
 	 * Player graphics
 	 * Spell graphics
 	 * More spells
 	 * More wizard types
 	 * More enemies
-	 * Better GUI
 	 */
-	public static final String GAME_VERSION = "0.7 Alpha";
+	public static final String GAME_VERSION = "0.8 Alpha";
 	
 	/**
 	 * Game width will be a constant. Game height will be directly
