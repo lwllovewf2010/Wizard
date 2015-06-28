@@ -3,7 +3,7 @@
 	<wave>
 		<enemy>
 			<name>skeleton</name>
-			<number>10</number>
+			<number>1</number>
 		</enemy>
 	</wave>
 </waves>
