@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.GameWorld;
 
@@ -37,7 +36,6 @@ public abstract class GameEntity
 	public boolean moving_right;
 	public float speed_current_x;
 	public float knockback_speed;
-	public Vector2 last_position;
 	
 	//Knockback.
 	public boolean is_invincible;
@@ -73,7 +71,6 @@ public abstract class GameEntity
 		jump_start_speed = data.getFloat("jump_speed");
 		
 		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
-		last_position = new Vector2();
 		
 		System.out.println(
 				"PersonEntity:"
@@ -119,6 +116,9 @@ public abstract class GameEntity
 			if(!is_invincible)
 				enemyCollision();			
 			blockCollision();
+			
+			//Reset the bounds.
+			bounds[0] = sprite.getBoundingRectangle();
 		}
 		
 		//Die in accordance with the type of enemy this is.
@@ -144,7 +144,7 @@ public abstract class GameEntity
 		}
 		if(is_being_knocked_back)
 		{
-			is_being_knocked_back = false;
+			is_being_knocked_back = false;			
 			speed_current_x += knockback_speed * MathUtils.cosDeg(knockback_angle);
 			speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
 		}
@@ -154,25 +154,18 @@ public abstract class GameEntity
 			calcMovementY(delta);
 		}
 		
-		//Store the current location to be able to return if we collide.
-		last_position.x = sprite.getX();
-		last_position.y = sprite.getY();
 		sprite.translate(speed_current_x * delta, speed_current_y * delta);
-		
-		//Reset the bounds.
-		bounds[0] = sprite.getBoundingRectangle();
 	}
 	
 	/**
 	 * Collision with the game world.
 	 */
 	protected void blockCollision()
-	{System.out.println(last_position);
-	System.out.println(sprite.getBoundingRectangle());
+	{
 		//Bottom
 		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
 		{
-			sprite.setY(last_position.y);
+			sprite.setY((int) (sprite.getY() + 1));
 			speed_current_y = 0f;
 			jump_time_current = 0f;
 			
@@ -183,21 +176,21 @@ public abstract class GameEntity
 		//Top
 		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
-			sprite.setY(last_position.y);
+			sprite.setY((int) (sprite.getY()));
 			speed_current_y = 0f;
 		}
 		
 		//Left
 		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
-			sprite.setX(last_position.x);
+			sprite.setX((int) (sprite.getX() + 1));
 			speed_current_x = 0f;
 		}
 		
 		//Right
 		if(world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
-			sprite.setX(last_position.x);
+			sprite.setX((int) (sprite.getX()));
 			speed_current_x = 0f;
 		}
 	}

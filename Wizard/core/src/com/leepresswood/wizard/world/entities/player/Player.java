@@ -88,9 +88,6 @@ public abstract class Player extends GameEntity
 			if(speed_current_x > speed_max_x)
 				speed_current_x = speed_max_x;
 		}
-		
-		//Move in the X direction.
-		sprite.translateX(delta * speed_current_x);
 	}
 	
 	protected void calcMovementY(float delta)
@@ -126,9 +123,6 @@ public abstract class Player extends GameEntity
 		
 		//Do a fall calculation by simulating gravity.
 		speed_current_y -= delta * world.map_camera_handler.GRAVITY;
-
-		//Move in the Y direction.
-		sprite.translateY(speed_current_y * delta);
 	}
 	
 	public void draw(SpriteBatch batch)
