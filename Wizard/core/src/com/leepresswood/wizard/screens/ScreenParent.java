@@ -41,6 +41,9 @@ public abstract class ScreenParent extends ScreenAdapter
 	@Override
 	public void render(float delta)
 	{
+		//Display FPS
+		Gdx.graphics.setTitle(GameWizard.GAME_NAME + " : " + GameWizard.GAME_VERSION + " - FPS: " + Gdx.graphics.getFramesPerSecond());
+		
 		//Update
 		update(delta);
 		
