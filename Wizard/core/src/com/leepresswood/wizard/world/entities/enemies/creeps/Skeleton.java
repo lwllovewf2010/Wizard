@@ -1,8 +1,10 @@
 package com.leepresswood.wizard.world.entities.enemies.creeps;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.Player;
 
@@ -16,7 +18,10 @@ public class Skeleton extends Enemy
 	@Override
 	protected void setBodies(float x, float y, float width, float height)
 	{
+		//For now, we'll just have one body part.
+		body_parts = new BodyPart[1];
 		
+		body_parts[0] = new BodyPart(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height));
 	}
 	
 	@Override

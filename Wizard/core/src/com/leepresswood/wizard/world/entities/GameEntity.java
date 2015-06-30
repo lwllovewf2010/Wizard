@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
 
 /**
  * Parent class to both the players and the enemies. 
@@ -56,8 +57,7 @@ public abstract class GameEntity
 	
 	//Sprites and bounds.
 	public Sprite sprite;
-	public Sprite[] sprites;
-	public Body[] bodies;
+	public BodyPart[] body_parts;
 	
 	public GameEntity(Universe universe, float x, float y, Element data)
 	{
