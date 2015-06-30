@@ -56,7 +56,6 @@ public abstract class GameEntity
 	public boolean jump_stop_hop;
 	
 	//Sprites and bounds.
-	public Sprite sprite;
 	public BodyPart[] body_parts;
 	
 	public GameEntity(Universe universe, float x, float y, Element data)
@@ -73,19 +72,6 @@ public abstract class GameEntity
 		
 		//Create a body for all this entity's parts.
 		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
-		
-		System.out.println(
-				"PersonEntity:"
-				+ "\n\tName: " + name
-				+ "\n\tPosition: " + sprite.getX() + ", " + sprite.getY() 
-				+ "\n\tWidth: " + sprite.getWidth() 
-				+ "\n\tHeight: " + sprite.getHeight()
-				+ "\n\tDefense: " + defense
-				+ "\n\tMax Speed: " + speed_max_x
-				+ "\n\tJump Speed: " + jump_start_speed
-				+ "\n\tHorizontal Acceleration: " + accel_x
-				+ "\n\tHorizontal Deceleration: " + decel_x
-		);
 	}
 	
 	/**
@@ -122,6 +108,16 @@ public abstract class GameEntity
 	}
 	
 	/**
+	 * Draw the sprites in the correct order.
+	 * @param batch The SpriteBatch for the sprites of this entity.
+	 */
+	public void draw(SpriteBatch batch)
+	{//We will assume the body parts are ordered correctly while drawing.
+		for(BodyPart p : body_parts)
+			p.draw(batch);
+	}
+	
+	/**
 	 * Determine left-right movement.
 	 */
 	private void move(float delta)
@@ -146,7 +142,7 @@ public abstract class GameEntity
 			calcMovementY(delta);
 		}
 		
-		sprite.translate(speed_current_x * delta, speed_current_y * delta);
+		//sprite.translate(speed_current_x * delta, speed_current_y * delta);
 	}
 	
 	/**
@@ -154,7 +150,7 @@ public abstract class GameEntity
 	 */
 	protected void blockCollision()
 	{
-		//Bottom
+		/*//Bottom
 		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
 		{
 			sprite.setY((int) (sprite.getY() + 1));
@@ -184,7 +180,7 @@ public abstract class GameEntity
 		{
 			sprite.setX((int) (sprite.getX()));
 			speed_current_x = 0f;
-		}
+		}*/
 	}
 	
 	/**
@@ -209,12 +205,6 @@ public abstract class GameEntity
 	 * @param delta Change in time.
 	 */
 	protected abstract void calcMovementY(float delta);
-	
-	/**
-	 * Draw the sprites in the correct order.
-	 * @param batch The SpriteBatch for the sprites of this entity.
-	 */
-	public abstract void draw(SpriteBatch batch);
 	
 	/**
 	 * Is this entity dead?

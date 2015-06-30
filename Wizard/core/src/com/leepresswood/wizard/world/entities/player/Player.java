@@ -51,7 +51,7 @@ public abstract class Player extends GameEntity
 	{
 		super.blockCollision();
 		
-		//On top of the normal block collision, we want our player to be stuck within the bounds of the stage.
+		/*//On top of the normal block collision, we want our player to be stuck within the bounds of the stage.
 		if(sprite.getX() < 0f)
 		{
 			sprite.setX(0f);
@@ -61,7 +61,7 @@ public abstract class Player extends GameEntity
 		{
 			sprite.setX(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 			speed_current_x = 0f;
-		}
+		}*/
 	}
 
 	protected void calcMovementX(float delta)
@@ -131,11 +131,6 @@ public abstract class Player extends GameEntity
 		
 		//Do a fall calculation by simulating gravity.
 		speed_current_y -= delta * universe.map_camera_handler.GRAVITY;
-	}
-	
-	public void draw(SpriteBatch batch)
-	{
-		sprite.draw(batch);
 	}
 	
 	@Override

@@ -1,16 +1,12 @@
 package com.leepresswood.wizard.world.entities.enemies;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
 import com.leepresswood.wizard.world.entities.player.Player;
-import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
-import com.leepresswood.wizard.world.entities.player.spells.Spell;
 
 /**
  * Parent to all the enemy types.
@@ -40,17 +36,11 @@ public abstract class Enemy extends GameEntity
 				+ "\n\tHealth: " + health
 		);
 	}
-	
-	@Override
-	public void draw(SpriteBatch batch)
-	{
-		sprite.draw(batch);
-	}
 
 	@Override
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
-		if(sprite.getX() > universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
+		/*if(sprite.getX() > universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x * delta;
 		else if(sprite.getX() < universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
 			speed_current_x += accel_x * delta;
@@ -59,7 +49,7 @@ public abstract class Enemy extends GameEntity
 		
 		//Limit speed by max.
 		if(Math.abs(speed_current_x) > speed_max_x)
-			speed_current_x = speed_max_x * Math.signum(speed_current_x);
+			speed_current_x = speed_max_x * Math.signum(speed_current_x);*/
 	}
 	
 	@Override
@@ -139,7 +129,8 @@ public abstract class Enemy extends GameEntity
 			die_time_current = DIE_TIME_MAX;
 		}
 
-		sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
+		for(BodyPart p : body_parts)
+			p.sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
 	}
 
 	/**
