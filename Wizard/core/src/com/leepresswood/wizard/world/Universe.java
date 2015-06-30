@@ -2,7 +2,7 @@ package com.leepresswood.wizard.world;
 
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.handlers.LevelHandler;
-import com.leepresswood.wizard.handlers.MapCameraEntity;
+import com.leepresswood.wizard.handlers.MapCameraHandler;
 import com.leepresswood.wizard.handlers.WaveHandler;
 import com.leepresswood.wizard.handlers.WorldHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
@@ -17,7 +17,7 @@ public class Universe
 	
 	//Handlers
 	public WorldHandler world_handler;
-	public MapCameraEntity map_camera_handler;
+	public MapCameraHandler map_camera_handler;
 	public EntityHandler entity_handler;
 	public LevelHandler level_handler;
 	public WaveHandler wave_handler;
@@ -27,7 +27,7 @@ public class Universe
 		this.screen = screen;
 		
 		world_handler = new WorldHandler(this);
-		map_camera_handler = new MapCameraEntity(this);
+		map_camera_handler = new MapCameraHandler(this);
 		entity_handler = new EntityHandler(this);
 		level_handler = new LevelHandler(this, 1);
 		wave_handler = new WaveHandler(this);

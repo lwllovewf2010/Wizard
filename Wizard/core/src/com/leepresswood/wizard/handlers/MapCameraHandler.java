@@ -12,7 +12,7 @@ import com.leepresswood.wizard.world.Universe;
  * Handles the creation and management of the map and camera.
  * @author Lee
  */
-public class MapCameraEntity extends OrthographicCamera
+public class MapCameraHandler extends OrthographicCamera
 {
 	public Universe universe;
 	
@@ -38,7 +38,7 @@ public class MapCameraEntity extends OrthographicCamera
 	public float GRAVITY;															//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;														//Width/Height of each block.
 	
-	public MapCameraEntity(Universe universe)
+	public MapCameraHandler(Universe universe)
 	{
 		this.universe = universe;
 		
