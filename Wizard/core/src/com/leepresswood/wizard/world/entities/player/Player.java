@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.world.entities.player;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -29,6 +30,12 @@ public abstract class Player extends GameEntity
 		//Grab the health and mana.
 		health = data.getFloat("health");
 		mana = data.getFloat("mana");
+	}
+	
+	@Override
+	protected void setBodies(float x, float y, float width, float height)
+	{
+		
 	}
 	
 	@Override
@@ -133,7 +140,7 @@ public abstract class Player extends GameEntity
 	@Override
 	protected void enemyCollision()
 	{
-		for(Enemy e : universe.entity_handler.enemies)
+		/*for(Enemy e : universe.entity_handler.enemies)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are alive and within a certain radius.
 			if(e.dying == false && 25f > Vector2.dst2(e.bodies[0].x + e.bodies[0].width / 2f, e.bodies[0].y + e.bodies[0].height / 2f, bodies[0].x + bodies[0].width / 2f, bodies[0].y + bodies[0].height / 2f))
@@ -161,7 +168,7 @@ public abstract class Player extends GameEntity
 					}
 				}
 			}
-		}
+		}*/
 	}
 
 	@Override

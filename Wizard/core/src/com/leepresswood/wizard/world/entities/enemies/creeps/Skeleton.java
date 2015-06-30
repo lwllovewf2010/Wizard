@@ -14,6 +14,12 @@ public class Skeleton extends Enemy
 	}
 	
 	@Override
+	protected void setBodies(float x, float y, float width, float height)
+	{
+		
+	}
+	
+	@Override
 	public void attack(Vector2 touch)
 	{
 		//Skeletons don't have any attacks. Their only damage happens by bumping into things.

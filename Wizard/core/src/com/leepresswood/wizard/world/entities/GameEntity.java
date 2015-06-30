@@ -56,6 +56,7 @@ public abstract class GameEntity
 	
 	//Sprites and bounds.
 	public Sprite sprite;
+	public Sprite[] sprites;
 	public Body[] bodies;
 	
 	public GameEntity(Universe universe, float x, float y, Element data)
@@ -71,13 +72,7 @@ public abstract class GameEntity
 		jump_start_speed = data.getFloat("jump_speed");
 		
 		//Create a body for all this entity's parts.
-		
-		
-		
-		
-		
-		
-		bodies = setBodies(texture, x, y, data.getFloat("width"), data.getFloat("height"));
+		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
 		
 		System.out.println(
 				"PersonEntity:"
@@ -100,9 +95,8 @@ public abstract class GameEntity
 	 * @param y
 	 * @param width
 	 * @param height
-	 * @return Bounds of all the sprites.
 	 */
-	protected abstract Body[] setBodies(Texture texture, float x, float y, float width, float height);
+	protected abstract void setBodies(float x, float y, float width, float height);
 	
 	/**
 	 * Update timing and movement of sprites.
