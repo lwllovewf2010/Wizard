@@ -38,9 +38,9 @@ public class BodyPart
 	 * Set sprite's position to the body's new position.
 	 */
 	public void update(float delta)
-	{System.out.println(body.getPosition());
+	{
 		//animation.update(delta);
-		sprite.setPosition(body.getPosition().x, body.getPosition().y);
+		sprite.setPosition(body.getPosition().x - sprite.getWidth() / 2f, body.getPosition().y - sprite.getHeight() / 2f);
 	}
 	
 	/**

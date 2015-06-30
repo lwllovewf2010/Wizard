@@ -84,7 +84,8 @@ public class MapCameraHandler extends OrthographicCamera
 		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 			{
-				universe.world_handler.addBlockToWorld(i, j, pixel_size, pixel_size);
+				if(collision_layer.getCell(i, j) != null)
+					universe.world_handler.addBlockToWorld(i, j, 1f, 1f);
 			}
 		}
 	}

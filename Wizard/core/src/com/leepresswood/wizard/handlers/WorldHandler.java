@@ -27,7 +27,7 @@ public class WorldHandler
 	public WorldHandler(Universe universe)
 	{
 		this.universe = universe;
-		world = new World(new Vector2(0, -9.8f), true);
+		world = new World(new Vector2(0, -98f), true);
 		
 		//Create a block type.
 		body_definition_static = new BodyDef();
@@ -40,7 +40,7 @@ public class WorldHandler
 	public void handlerInit(int width, int height, float gravity)
 	{
 		//Change gravity to the passed value.
-		world.setGravity(new Vector2(0, -gravity));
+		world.setGravity(new Vector2(0f, -gravity));
 		
 		//Initialize static block array.
 		blocks = new Body[height][width];
@@ -60,7 +60,7 @@ public class WorldHandler
 		//body_definition_dynamic.gravityScale = 0f;
 		
 		//Set the definition to the location.
-		body_definition_dynamic.position.set(x * width, y * height);
+		body_definition_dynamic.position.set(x, y);
 		
 		//Create a body in the world using our definition.
 		Body body = world.createBody(body_definition_dynamic);
@@ -96,7 +96,7 @@ public class WorldHandler
 	public void addBlockToWorld(float x, float y, float width, float height)
 	{
 		//Set the definition to the location.
-		body_definition_static.position.set(x * width, y * height);
+		body_definition_static.position.set(x, y);
 		
 		//Create a body in the world using our definition.
 		Body body = world.createBody(body_definition_static);
