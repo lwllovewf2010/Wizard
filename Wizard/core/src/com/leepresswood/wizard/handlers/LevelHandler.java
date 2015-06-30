@@ -9,7 +9,7 @@ import com.leepresswood.wizard.world.Universe;
  */
 public class LevelHandler
 {
-	public Universe world;
+	public Universe universe;
 	
 	public int level;							//Total points available.
 	public int points_spent;				//Points that have been spent on leveling.
@@ -18,9 +18,9 @@ public class LevelHandler
 	public int spells_available;			//Number of available spells.
 	public int[] spell_levels;
 	
-	public LevelHandler(Universe world, int level)
+	public LevelHandler(Universe universe, int level)
 	{
-		this.world = world;
+		this.universe = universe;
 		this.level = level;
 		
 		spells_available = 1;
@@ -45,7 +45,7 @@ public class LevelHandler
 	public void gatherLevelData()
 	{
 		//Collect the number of available spells.
-		int new_spells_available = ((SpellLevelUpGUIButton) world.screen.screen_level_store.button_array[0]).current + 1;
+		int new_spells_available = ((SpellLevelUpGUIButton) universe.screen.screen_level_store.button_array[0]).current + 1;
 		
 		//From this number, create a new spell_levels array if necessary.
 		if(spells_available != new_spells_available)
@@ -65,6 +65,6 @@ public class LevelHandler
 		
 		//Using all this new data, we can create the spell list.
 		spells_available = new_spells_available;
-		world.screen.gui.refreshSpellList(spells_available);
+		universe.screen.gui.refreshSpellList(spells_available);
 	}
 }

@@ -8,15 +8,15 @@ import com.leepresswood.wizard.world.Universe;
  */
 public class WaveHandler
 {
-	public Universe world;
+	public Universe universe;
 	
 	public boolean start_wave;				//Wave was requested to be started.
 	public int wave_number;					//Wave number. 1-based. 
 	public boolean mid_wave;				//Are we currently within a wave?
 	
-	public WaveHandler(Universe world)
+	public WaveHandler(Universe universe)
 	{
-		this.world = world;
+		this.universe = universe;
 		
 		wave_number = 1;
 	}
@@ -28,7 +28,7 @@ public class WaveHandler
 	{
 		if(start_wave && !mid_wave)
 			waveBegin();
-		if(mid_wave && world.entity_handler.enemies != null && world.entity_handler.enemies.isEmpty())
+		if(mid_wave && universe.entity_handler.enemies != null && universe.entity_handler.enemies.isEmpty())
 			waveEnd();
 	}
 	
@@ -39,7 +39,7 @@ public class WaveHandler
 	{
 		start_wave = false;
 		mid_wave = true;
-		world.entity_handler.spawnWave();
+		universe.entity_handler.spawnWave();
 	}
 	
 	/**
@@ -50,6 +50,6 @@ public class WaveHandler
 		wave_number++;
 		start_wave = false;
 		mid_wave = false;
-		world.level_handler.levelUp();
+		universe.level_handler.levelUp();
 	}
 }

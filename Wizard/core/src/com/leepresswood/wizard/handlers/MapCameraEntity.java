@@ -14,7 +14,7 @@ import com.leepresswood.wizard.world.Universe;
  */
 public class MapCameraEntity extends OrthographicCamera
 {
-	public Universe world;
+	public Universe universe;
 	
 	
 	
@@ -38,12 +38,12 @@ public class MapCameraEntity extends OrthographicCamera
 	public float GRAVITY;															//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;														//Width/Height of each block.
 	
-	public MapCameraEntity(Universe world)
+	public MapCameraEntity(Universe universe)
 	{
-		this.world = world;
+		this.universe = universe;
 		
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
-		map = world.screen.game.assets.getMap(Assets.MAP_TEST);
+		map = universe.screen.game.assets.getMap(Assets.MAP_TEST);
 		pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
 		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
 		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));
@@ -79,12 +79,12 @@ public class MapCameraEntity extends OrthographicCamera
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
 		//Make the map blocks. These can be used to get the tile that is being highlighted.
-		world.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL);
+		universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL);
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 			{
-				world.world_handler.addBlockToWorld(i, j, pixel_size, pixel_size);
+				universe.world_handler.addBlockToWorld(i, j, pixel_size, pixel_size);
 			}
 		}
 				
@@ -108,8 +108,8 @@ public class MapCameraEntity extends OrthographicCamera
 	public void setCameraBounds()
 	{
 		//First, set the camera to the player's position.
-		position.x = world.entity_handler.player.sprite.getX() + world.entity_handler.player.sprite.getWidth() / 2f;
-		position.y = world.entity_handler.player.sprite.getY() + world.entity_handler.player.sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
+		position.x = universe.entity_handler.player.sprite.getX() + universe.entity_handler.player.sprite.getWidth() / 2f;
+		position.y = universe.entity_handler.player.sprite.getY() + universe.entity_handler.player.sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(position.x < WORLD_LEFT)

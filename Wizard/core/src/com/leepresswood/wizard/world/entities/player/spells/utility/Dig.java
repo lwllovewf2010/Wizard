@@ -20,9 +20,9 @@ public class Dig extends Spell
 	
 	public Dig(Texture t, float x, float y){super(t, x, y);}
 	
-	public Dig(Universe world, Vector2 from, Vector2 to, Element data, int level)
+	public Dig(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data, level);
+		super(universe, from, to, data, level);
 		
 		dig_width = data.getChildrenByName("level").get(level).getInt("dig_width");
 		dig_height = data.getChildrenByName("level").get(level).getInt("dig_height");
@@ -49,10 +49,10 @@ public class Dig extends Spell
 			for(int i = (int) (-dig_width / 2f); i < (dig_width / 2f); i++)
 			{
 				//Remove the texture of the block.
-				world.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
+				universe.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
 				
 				//Remove the physical block.
-				world.world_handler.removeBlockFromWorld(i, j);
+				universe.world_handler.removeBlockFromWorld(i, j);
 				
 				//Break the loops.
 				i = dig_width;

@@ -3,7 +3,6 @@ package com.leepresswood.wizard.handlers;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -15,8 +14,8 @@ import com.leepresswood.wizard.world.Universe;
  */
 public class WorldHandler
 {
-	public Universe world;
-	public World physical_world;
+	public Universe universe;
+	public World world;
 	
 	//Block body types.
 	private BodyDef body_definition_static;
@@ -25,9 +24,10 @@ public class WorldHandler
 	//Physical blocks.
 	public Body[][] blocks;
 	
-	public WorldHandler(Universe world)
+	public WorldHandler(Universe universe)
 	{
-		physical_world = new World(new Vector2(0, -9.8f), true);
+		this.universe = universe;
+		world = new World(new Vector2(0, -9.8f), true);
 		
 		//Create a block type.
 		body_definition_static = new BodyDef();
@@ -75,7 +75,7 @@ public class WorldHandler
 		body_definition_static.position.set(x * width, y * height);
 		
 		//Create a body in the world using our definition.
-		Body body = physical_world.createBody(body_definition_static);
+		Body body = world.createBody(body_definition_static);
 		
 		//Define a shape for the dimensions of the body.
 		PolygonShape shape = new PolygonShape();
@@ -106,16 +106,16 @@ public class WorldHandler
 	 */
 	public void removeBlockFromWorld(int x, int y)
 	{
-		physical_world.destroyBody(blocks[y][x]);
+		world.destroyBody(blocks[y][x]);
 	}
 	
 	public void update(float delta)
 	{
-		physical_world.step(delta, 6, 2);
+		world.step(delta, 6, 2);
 	}
 
 	public void dispose()
    {
-		physical_world.dispose();
+		world.dispose();
    }
 }

@@ -19,9 +19,9 @@ public class Fireball extends BoltSpell
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
 	
-	public Fireball(Universe world, Vector2 from, Vector2 to, Element data, int level)
+	public Fireball(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data, level);
+		super(universe, from, to, data, level);
 		
 		//Read the data from the XML file.
 		impulse = data.getFloat("impulse");
@@ -39,7 +39,7 @@ public class Fireball extends BoltSpell
 	{
 		//Change the direction of the ball.
 		//X doesn't need to be changed, so only change Y.
-		speed_y -= world.map_camera_handler.GRAVITY * delta;
+		speed_y -= universe.map_camera_handler.GRAVITY * delta;
 		
 		//Move in the direction.
 		sprite.translate(speed_x * delta, speed_y * delta);
@@ -53,7 +53,7 @@ public class Fireball extends BoltSpell
 	{
 		//Check blocks for bounce.
 		//Bottom
-		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
 		{			
 			//Set Y to the block level.
 			sprite.setY((int) (sprite.getY() + 1));
@@ -66,7 +66,7 @@ public class Fireball extends BoltSpell
 		}
 		
 		//Top
-		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			//Set Y to the block level.
 			sprite.setY((int) (sprite.getY()));
@@ -79,7 +79,7 @@ public class Fireball extends BoltSpell
 		}
 		
 		//Left
-		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			//Set X to the block level.
 			sprite.setX((int) (sprite.getX() + 1));
@@ -92,7 +92,7 @@ public class Fireball extends BoltSpell
 		}
 		
 		//Right
-		if(world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			//Set X to the block level.
 			sprite.setX((int) (sprite.getX()));
@@ -116,6 +116,6 @@ public class Fireball extends BoltSpell
 		
 		//The collision death of this bolt will create an explosion.
 		Vector2 location = new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
-		world.entity_handler.spell_queue.add(new Explosion(world, location, location, explosion_data, level));
+		universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
 	}
 }

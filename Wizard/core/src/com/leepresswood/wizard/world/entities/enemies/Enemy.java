@@ -26,9 +26,9 @@ public abstract class Enemy extends GameEntity
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	public Enemy(Universe world, float x, float y, Element data)
+	public Enemy(Universe universe, float x, float y, Element data)
 	{
-		super(world, x, y, data);
+		super(universe, x, y, data);
 		
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
@@ -50,9 +50,9 @@ public abstract class Enemy extends GameEntity
 	@Override
 	protected void calcMovementX(float delta)
 	{//General AI tells the enemies to move toward the center.
-		if(sprite.getX() > world.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
+		if(sprite.getX() > universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x * delta;
-		else if(sprite.getX() < world.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
+		else if(sprite.getX() < universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - sprite.getWidth())
 			speed_current_x += accel_x * delta;
 		else
 			speed_current_x = 0f;
@@ -73,13 +73,13 @@ public abstract class Enemy extends GameEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		speed_current_y -= delta * world.screen.world.map_camera_handler.GRAVITY;
+		speed_current_y -= delta * universe.screen.world.map_camera_handler.GRAVITY;
 	}
 	
 	@Override
 	protected void enemyCollision()
 	{
-		for(Spell s : world.entity_handler.spells)
+		for(Spell s : universe.entity_handler.spells)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
 			if(25f > Vector2.dst2(s.bounds[0].x + s.bounds[0].width / 2f, s.bounds[0].y + s.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))

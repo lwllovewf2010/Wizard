@@ -13,7 +13,7 @@ import com.leepresswood.wizard.world.Universe;
  */
 public abstract class GameEntity
 {
-	protected Universe world;
+	protected Universe universe;
 	
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "textures/";
@@ -58,12 +58,12 @@ public abstract class GameEntity
 	public Sprite sprite;
 	public Rectangle[] bounds;
 	
-	public GameEntity(Universe world, float x, float y, Element data)
+	public GameEntity(Universe universe, float x, float y, Element data)
 	{
-		this.world = world;
+		this.universe = universe;
 		
 		name = data.get("name");
-		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		defense = data.getFloat("defense");
 		speed_max_x = data.getFloat("speed");
 		accel_x = data.getFloat("acceleration");
@@ -163,7 +163,7 @@ public abstract class GameEntity
 	protected void blockCollision()
 	{
 		//Bottom
-		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
 		{
 			sprite.setY((int) (sprite.getY() + 1));
 			speed_current_y = 0f;
@@ -174,21 +174,21 @@ public abstract class GameEntity
 		}
 		
 		//Top
-		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setY((int) (sprite.getY()));
 			speed_current_y = 0f;
 		}
 		
 		//Left
-		if(world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setX((int) (sprite.getX() + 1));
 			speed_current_x = 0f;
 		}
 		
 		//Right
-		if(world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || world.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
+		if(universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
 		{
 			sprite.setX((int) (sprite.getX()));
 			speed_current_x = 0f;

@@ -23,9 +23,9 @@ public abstract class BoltSpell extends Spell
 	
 	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
-	public BoltSpell(Universe world, Vector2 from, Vector2 to, Element data, int level)
+	public BoltSpell(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data, level);
+		super(universe, from, to, data, level);
 		
 		//Read the data from the XML file.
 		damage = data.getFloat("damage");

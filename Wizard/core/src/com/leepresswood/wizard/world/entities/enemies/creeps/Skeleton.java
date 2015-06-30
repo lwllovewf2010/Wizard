@@ -8,9 +8,9 @@ import com.leepresswood.wizard.world.entities.player.Player;
 
 public class Skeleton extends Enemy
 {
-	public Skeleton(Universe world, float x, float y, Element element)
+	public Skeleton(Universe universe, float x, float y, Element element)
 	{
-		super(world, x, y, element);
+		super(universe, x, y, element);
 	}
 	
 	@Override

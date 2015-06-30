@@ -17,7 +17,7 @@ import com.leepresswood.wizard.world.entities.enemies.Enemy;
  */
 public abstract class Spell
 {
-	protected Universe world;
+	protected Universe universe;
 	
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "textures/";
@@ -52,21 +52,21 @@ public abstract class Spell
 	
 	/**
 	 * Use this constructor to create a spell entity in the world.
-	 * @param world Reference to the screen.
+	 * @param universe Reference to the screen.
 	 * @param from Player's starting location.
 	 * @param to Click point.
 	 * @param data Spell data.
 	 */
-	public Spell(Universe world, Vector2 from, Vector2 to, Element data, int level)
+	public Spell(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		this.world = world;
+		this.universe = universe;
 		this.from = from;
 		this.to = to;
 		this.level = level;
 		
 		//Read the data from the XML file.
 		name = data.get("name");
-		texture = world.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		type = MagicType.valueOf(data.get("type").toUpperCase());
 		if(data.getChildrenByName("level").size > 0)
 			mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");

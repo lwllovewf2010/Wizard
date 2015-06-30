@@ -18,9 +18,9 @@ public class Explosion extends BoltSpell
 	
 	public Explosion(Texture t, float x, float y){super(t, x, y);}
 
-	public Explosion(Universe world, Vector2 from, Vector2 to, Element data, int level)
+	public Explosion(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data, 0);
+		super(universe, from, to, data, 0);
 		
 		//Change the sprite's size to this radius.
 		radius = data.getFloat("radius");

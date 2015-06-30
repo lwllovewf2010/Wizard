@@ -20,7 +20,7 @@ import com.leepresswood.wizard.world.entities.player.types.AirWizard;
 
 public class EntityHandler
 {
-	public Universe world;
+	public Universe universe;
 	
 	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
 	public EnemyFactory factory_enemy;							//Creates enemies.
@@ -40,23 +40,23 @@ public class EntityHandler
 	
 	/**
 	 * Debug constructor.
-	 * @param world Reference to world.
+	 * @param universe Reference to universe.
 	 */
-	public EntityHandler(Universe world){this(world, MagicType.AIR);}
+	public EntityHandler(Universe universe){this(universe, MagicType.AIR);}
 	
 	/**
 	 * Spawn player of the given magic type.
-	 * @param world Reference to world.
+	 * @param universe Reference to universe.
 	 * @param type Magic type to spawn.
 	 */
-	public EntityHandler(Universe world, MagicType type)
+	public EntityHandler(Universe universe, MagicType type)
 	{
-		this.world = world;
+		this.universe = universe;
 		this.type = type;
 		
 		//The factories are used to create new game items.
-		factory_spell = new SpellFactory(world);
-		factory_enemy = new EnemyFactory(world);
+		factory_spell = new SpellFactory(universe);
+		factory_enemy = new EnemyFactory(universe);
 		
 		//Get a reference to the player from the given type.
 		try
@@ -67,7 +67,7 @@ public class EntityHandler
 			switch(type)
 			{
 				case AIR:
-					player = new AirWizard(world, world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, world.map_camera_handler.GROUND, player_root);
+					player = new AirWizard(universe, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, universe.map_camera_handler.GROUND, player_root);
 					break;
 				case EARTH:
 					break;
@@ -118,20 +118,20 @@ public class EntityHandler
 		if(!player.is_dead)
 		{
 			//Get the selected spell type from the GUI.
-			Spell spell_type = world.screen.gui.getActiveSpell();
+			Spell spell_type = universe.screen.gui.getActiveSpell();
 			
 			//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-			if(world.screen.gui.canCast(spell_type))
+			if(universe.screen.gui.canCast(spell_type))
 			{
 				//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
-				Spell spell = world.entity_handler.factory_spell.getSpell(spell_type.getClass().getSimpleName().toUpperCase(), new Vector2(player.sprite.getX() + player.sprite.getWidth() / 2f, player.sprite.getY() + player.sprite.getHeight() / 2f), new Vector2(touch.x, touch.y), world.level_handler.spell_levels[world.screen.gui.spell_active]);
+				Spell spell = universe.entity_handler.factory_spell.getSpell(spell_type.getClass().getSimpleName().toUpperCase(), new Vector2(player.sprite.getX() + player.sprite.getWidth() / 2f, player.sprite.getY() + player.sprite.getHeight() / 2f), new Vector2(touch.x, touch.y), universe.level_handler.spell_levels[universe.screen.gui.spell_active]);
 				
 				//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
 				if(spell != null)
 				{
 					//Create the selected spell.
-					world.screen.gui.cast(spell);
-					world.entity_handler.spells.add(spell);
+					universe.screen.gui.cast(spell);
+					universe.entity_handler.spells.add(spell);
 				}
 			}
 		}
@@ -177,14 +177,14 @@ public class EntityHandler
 	
 	public void draw()
 	{
-		world.screen.batch.setProjectionMatrix(world.map_camera_handler.combined);
-		world.screen.batch.begin();
+		universe.screen.batch.setProjectionMatrix(universe.map_camera_handler.combined);
+		universe.screen.batch.begin();
 			for(Enemy e : enemies)
-				e.draw(world.screen.batch);
-			player.draw(world.screen.batch);
+				e.draw(universe.screen.batch);
+			player.draw(universe.screen.batch);
 			for(Spell s : spells)
-				s.draw(world.screen.batch);
-		world.screen.batch.end();
+				s.draw(universe.screen.batch);
+		universe.screen.batch.end();
 	}
 	
 	/**

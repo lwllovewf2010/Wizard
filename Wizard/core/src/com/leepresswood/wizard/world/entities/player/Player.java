@@ -22,9 +22,9 @@ public abstract class Player extends GameEntity
 	public final float JUMP_TIME_MAX = 0.25f;
 	public boolean jump_stop_hop;
 	
-	public Player(Universe world, float x, float y, Element data)
+	public Player(Universe universe, float x, float y, Element data)
 	{
-		super(world, x, y, data);
+		super(universe, x, y, data);
 		
 		//Grab the health and mana.
 		health = data.getFloat("health");
@@ -35,7 +35,7 @@ public abstract class Player extends GameEntity
 	public void damage(float amount)
 	{
 		//Damage was done, but defense must be taken into consideration.
-		world.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
+		universe.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
 	}
 	
 	@Override
@@ -49,9 +49,9 @@ public abstract class Player extends GameEntity
 			sprite.setX(0f);
 			speed_current_x = 0f;
 		}
-		else if(sprite.getX() + sprite.getWidth() > world.map_camera_handler.WORLD_TOTAL_HORIZONTAL)
+		else if(sprite.getX() + sprite.getWidth() > universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL)
 		{
-			sprite.setX(world.map_camera_handler.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
+			sprite.setX(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 			speed_current_x = 0f;
 		}
 	}
@@ -122,7 +122,7 @@ public abstract class Player extends GameEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		speed_current_y -= delta * world.map_camera_handler.GRAVITY;
+		speed_current_y -= delta * universe.map_camera_handler.GRAVITY;
 	}
 	
 	public void draw(SpriteBatch batch)
@@ -133,7 +133,7 @@ public abstract class Player extends GameEntity
 	@Override
 	protected void enemyCollision()
 	{
-		for(Enemy e : world.entity_handler.enemies)
+		for(Enemy e : universe.entity_handler.enemies)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are alive and within a certain radius.
 			if(e.dying == false && 25f > Vector2.dst2(e.bounds[0].x + e.bounds[0].width / 2f, e.bounds[0].y + e.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))
@@ -167,7 +167,7 @@ public abstract class Player extends GameEntity
 	@Override
 	protected boolean getDeathStatus()
 	{
-		return world.screen.gui.bar_health.current_bar_value <= 0f;
+		return universe.screen.gui.bar_health.current_bar_value <= 0f;
 	}
 	
 	@Override

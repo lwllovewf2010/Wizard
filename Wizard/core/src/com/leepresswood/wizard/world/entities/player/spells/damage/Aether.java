@@ -25,9 +25,9 @@ public class Aether extends BoltSpell
 	
 	public Aether(Texture t, float x, float y){super(t, x, y);}
 	
-	public Aether(Universe world, Vector2 from, Vector2 to, Element data, int level)
+	public Aether(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(world, from, to, data, level);
+		super(universe, from, to, data, level);
 		
 		//Get XML data.
 		follow = data.getChildrenByName("level").get(level).getBoolean("follow");
@@ -49,7 +49,7 @@ public class Aether extends BoltSpell
 			else
 				new_to.rotate((i - split_count / 2) * rotate_by);
 			//System.out.println(new_to.angle());
-			world.entity_handler.spells.add(new Aether(world, from, new Vector2(from).add(new_to), data, level, i));
+			universe.entity_handler.spells.add(new Aether(universe, from, new Vector2(from).add(new_to), data, level, i));
 		}
 	}
 	
@@ -77,7 +77,7 @@ public class Aether extends BoltSpell
 				float enemy_distance_min = RECALCULATE_MAX_DISTANCE;
 				Enemy enemy_index = null;
 				
-				for(Enemy e : world.entity_handler.enemies)
+				for(Enemy e : universe.entity_handler.enemies)
 				{	
 					float length = new Vector2(sprite.getX() + sprite.getWidth() / 2f - (e.sprite.getX() + e.sprite.getWidth() / 2f), sprite.getY() + sprite.getHeight() / 2f - (e.sprite.getY() + e.sprite.getHeight() / 2f)).len2();
 					if(length < enemy_distance_min)
