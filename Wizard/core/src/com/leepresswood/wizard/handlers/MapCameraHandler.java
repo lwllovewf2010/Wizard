@@ -30,7 +30,7 @@ public class MapCameraHandler extends OrthographicCamera
 	//Camera properties.
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
 	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
-	public final float WORLD_ZOOM = 3.0f;										//Amount added to the world camera's zoom.
+	public final float WORLD_ZOOM = 1000.0f;										//Amount added to the world camera's zoom.
 	public final float WORLD_PLAYER_Y_SKEW = 4.5f;							//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
 	//Others.
@@ -108,8 +108,8 @@ public class MapCameraHandler extends OrthographicCamera
 	public void setCameraBounds()
 	{
 		//First, set the camera to the player's position.
-		position.x = universe.entity_handler.player.sprite.getX() + universe.entity_handler.player.sprite.getWidth() / 2f;
-		position.y = universe.entity_handler.player.sprite.getY() + universe.entity_handler.player.sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
+		position.x = universe.entity_handler.player.body_parts[0].sprite.getX() + universe.entity_handler.player.body_parts[0].sprite.getWidth() / 2f;
+		position.y = universe.entity_handler.player.body_parts[0].sprite.getY() + universe.entity_handler.player.body_parts[0].sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(position.x < WORLD_LEFT)

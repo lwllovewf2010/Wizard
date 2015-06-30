@@ -65,7 +65,7 @@ public class Aether extends BoltSpell
 	@Override
 	protected void updatePosition(float delta)
 	{
-		//Determine how aether will move.
+		/*//Determine how aether will move.
 		if(follow)
 		{
 			recalculate_current += delta;
@@ -108,7 +108,7 @@ public class Aether extends BoltSpell
 		
 		//Move in the direction and reset the bounds.
 		sprite.translate(speed_x * delta, speed_y * delta);
-		bounds[0] = sprite.getBoundingRectangle();
+		bounds[0] = sprite.getBoundingRectangle();*/
 	}
 
 	@Override
