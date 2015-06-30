@@ -108,4 +108,9 @@ public class WorldHandler
 	{
 		physical_world.destroyBody(blocks[y][x]);
 	}
+	
+	public void update(float delta)
+	{
+		physical_world.step(delta, 6, 2);
+	}
 }
