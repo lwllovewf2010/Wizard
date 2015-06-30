@@ -82,11 +82,11 @@ public abstract class Enemy extends GameEntity
 		for(Spell s : universe.entity_handler.spells)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
-			if(25f > Vector2.dst2(s.bounds[0].x + s.bounds[0].width / 2f, s.bounds[0].y + s.bounds[0].height / 2f, bounds[0].x + bounds[0].width / 2f, bounds[0].y + bounds[0].height / 2f))
+			if(25f > Vector2.dst2(s.bounds[0].x + s.bounds[0].width / 2f, s.bounds[0].y + s.bounds[0].height / 2f, bodies[0].x + bodies[0].width / 2f, bodies[0].y + bodies[0].height / 2f))
 			{
 				for(Rectangle r : s.bounds)
 				{
-					for(Rectangle r2 : this.bounds)
+					for(Rectangle r2 : this.bodies)
 					{
 						if(r2.overlaps(r))
 						{

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
 
@@ -56,7 +56,7 @@ public abstract class GameEntity
 	
 	//Sprites and bounds.
 	public Sprite sprite;
-	public Rectangle[] bounds;
+	public Body[] bodies;
 	
 	public GameEntity(Universe universe, float x, float y, Element data)
 	{
@@ -70,7 +70,14 @@ public abstract class GameEntity
 		decel_x = data.getFloat("deceleration");
 		jump_start_speed = data.getFloat("jump_speed");
 		
-		bounds = setSprites(texture, x, y, data.getFloat("width"), data.getFloat("height"));
+		//Create a body for all this entity's parts.
+		
+		
+		
+		
+		
+		
+		bodies = setBodies(texture, x, y, data.getFloat("width"), data.getFloat("height"));
 		
 		System.out.println(
 				"PersonEntity:"
@@ -95,13 +102,7 @@ public abstract class GameEntity
 	 * @param height
 	 * @return Bounds of all the sprites.
 	 */
-	protected Rectangle[] setSprites(Texture texture, float x, float y, float width, float height)
-	{
-		sprite = new Sprite(texture);
-		sprite.setBounds(x, y, width, height);
-		
-		return new Rectangle[]{sprite.getBoundingRectangle()};
-	}
+	protected abstract Body[] setBodies(Texture texture, float x, float y, float width, float height);
 	
 	/**
 	 * Update timing and movement of sprites.
@@ -116,9 +117,6 @@ public abstract class GameEntity
 			if(!is_invincible)
 				enemyCollision();			
 			blockCollision();
-			
-			//Reset the bounds.
-			bounds[0] = sprite.getBoundingRectangle();
 		}
 		
 		//Die in accordance with the type of enemy this is.
