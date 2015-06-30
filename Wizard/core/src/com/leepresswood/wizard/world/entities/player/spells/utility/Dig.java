@@ -45,8 +45,20 @@ public class Dig extends Spell
 	protected void updateCollision()
 	{//At this point, remove the X blocks and kill the spell.
 		for(int j = (int) (-dig_height / 2f); j < (dig_height / 2f); j++)
+		{	
 			for(int i = (int) (-dig_width / 2f); i < (dig_width / 2f); i++)
+			{
+				//Remove the texture of the block.
 				world.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
+				
+				//Remove the physical block.
+				world.world_handler.removeBlockFromWorld(i, j);
+				
+				//Break the loops.
+				i = dig_width;
+				j = dig_width;
+			}
+		}
 		active = false;
 	}
 

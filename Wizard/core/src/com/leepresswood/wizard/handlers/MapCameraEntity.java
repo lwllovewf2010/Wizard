@@ -78,12 +78,13 @@ public class MapCameraEntity extends OrthographicCamera
 		WORLD_LEFT = zoom * viewportWidth / 2f;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
-		//Make the map rectangles. These can be used to get the tile that is being highlighted.
+		//Make the map blocks. These can be used to get the tile that is being highlighted.
+		world.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL);
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 			{
-				world.world_handler.addBlockToWorld(i * pixel_size, j * pixel_size, pixel_size, pixel_size);
+				world.world_handler.addBlockToWorld(i, j, pixel_size, pixel_size);
 			}
 		}
 				
