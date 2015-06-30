@@ -5,10 +5,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.leepresswood.wizard.data.Assets;
 import com.leepresswood.wizard.world.GameWorld;
 
+/**
+ * Handles the creation and management of the map and camera.
+ * @author Lee
+ */
 public class MapCameraEntity extends OrthographicCamera
 {
 	public GameWorld world;
@@ -23,7 +26,6 @@ public class MapCameraEntity extends OrthographicCamera
 	public TiledMap map;
 	public TiledMapTileLayer collision_layer;
 	public OrthogonalTiledMapRenderer map_renderer;
-	public Rectangle[][] map_rectangles;
 	
 	//Camera properties.
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
@@ -77,16 +79,11 @@ public class MapCameraEntity extends OrthographicCamera
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
 		//Make the map rectangles. These can be used to get the tile that is being highlighted.
-		map_rectangles = new Rectangle[WORLD_TOTAL_VERTICAL][WORLD_TOTAL_HORIZONTAL];
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 			{
-				map_rectangles[j][i] = new Rectangle();
-				map_rectangles[j][i].x = i * pixel_size;
-				map_rectangles[j][i].y = j * pixel_size;
-				map_rectangles[j][i].width = pixel_size;
-				map_rectangles[j][i].height = pixel_size;
+				world.world_handler.addBlockToWorld(i * pixel_size, j * pixel_size, pixel_size, pixel_size);
 			}
 		}
 				

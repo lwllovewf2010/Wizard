@@ -15,8 +15,8 @@ public class WorldHandler
 	public World physical_world;
 	
 	//Block body types.
-	BodyDef body_definition_static;
-	BodyDef body_definition_dynamic;
+	private BodyDef body_definition_static;
+	private BodyDef body_definition_dynamic;
 	
 	public WorldHandler(GameWorld world)
 	{
@@ -32,19 +32,21 @@ public class WorldHandler
 	}
 	
 	/**
-	 * Add a block at the given X and Y value.
-	 * @param x
-	 * @param y
+	 * Add a static block at the given X and Y value.
+	 * @param x X coordinate.
+	 * @param y Y coordinate.
+	 * @param width Width of static block.
+	 * @param height Height of static block.
 	 */
-	public void addBlockToWorld(float x, float y)
+	public void addBlockToWorld(float x, float y, float width, float height)
 	{
 		
 	}
 	
 	/**
 	 * Remove the block at the given coordinates.
-	 * @param x
-	 * @param y
+	 * @param x X coordinate.
+	 * @param y Y coordinate.
 	 */
 	public void removeBlockFromWorld(int x, int y)
 	{
