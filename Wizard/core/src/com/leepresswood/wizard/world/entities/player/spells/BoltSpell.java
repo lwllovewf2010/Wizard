@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 
 /**
  * Bolt Spells are a type of spell characterized by a single cast per click.
@@ -23,7 +23,7 @@ public abstract class BoltSpell extends Spell
 	
 	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
 	
-	public BoltSpell(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
+	public BoltSpell(Universe world, Vector2 from, Vector2 to, Element data, int level)
 	{
 		super(world, from, to, data, level);
 		

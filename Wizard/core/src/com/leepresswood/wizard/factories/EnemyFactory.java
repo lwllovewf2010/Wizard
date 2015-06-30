@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.Enemies;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
 
@@ -18,13 +18,13 @@ import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
  */
 public class EnemyFactory
 {
-	private GameWorld world;
+	private Universe world;
 	private Element data_root;
 	
 	public float time_recharge_next = 0.5f;
 	public float time_recharge_current;	
 	
-	public EnemyFactory(GameWorld world)
+	public EnemyFactory(Universe world)
 	{
 		this.world = world;
 		time_recharge_current = time_recharge_next;

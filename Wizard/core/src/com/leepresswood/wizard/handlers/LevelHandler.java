@@ -1,7 +1,7 @@
 package com.leepresswood.wizard.handlers;
 
 import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 
 /**
  * Level manager for the player.
@@ -9,7 +9,7 @@ import com.leepresswood.wizard.world.GameWorld;
  */
 public class LevelHandler
 {
-	public GameWorld world;
+	public Universe world;
 	
 	public int level;							//Total points available.
 	public int points_spent;				//Points that have been spent on leveling.
@@ -18,7 +18,7 @@ public class LevelHandler
 	public int spells_available;			//Number of available spells.
 	public int[] spell_levels;
 	
-	public LevelHandler(GameWorld world, int level)
+	public LevelHandler(Universe world, int level)
 	{
 		this.world = world;
 		this.level = level;

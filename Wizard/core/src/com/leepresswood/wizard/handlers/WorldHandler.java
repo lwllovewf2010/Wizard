@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 
 /**
  * Handles the physics of the world.
@@ -15,7 +15,7 @@ import com.leepresswood.wizard.world.GameWorld;
  */
 public class WorldHandler
 {
-	public GameWorld world;
+	public Universe world;
 	public World physical_world;
 	
 	//Block body types.
@@ -25,7 +25,7 @@ public class WorldHandler
 	//Physical blocks.
 	public Body[][] blocks;
 	
-	public WorldHandler(GameWorld world)
+	public WorldHandler(Universe world)
 	{
 		physical_world = new World(new Vector2(0, -9.8f), true);
 		
@@ -113,4 +113,9 @@ public class WorldHandler
 	{
 		physical_world.step(delta, 6, 2);
 	}
+
+	public void dispose()
+   {
+		physical_world.dispose();
+   }
 }

@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.Spells;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.player.spells.Spell;
 import com.leepresswood.wizard.world.entities.player.spells.damage.Aether;
 import com.leepresswood.wizard.world.entities.player.spells.damage.Fireball;
@@ -21,14 +21,14 @@ import com.leepresswood.wizard.world.entities.player.spells.utility.Dig;
  */
 public class SpellFactory
 {
-	private GameWorld world;
+	private Universe world;
 	
 	private Element data_root;									//Location of spell data.
 	
 	public HashMap<Spells, Float> time_recharge;			//Recharge zeroed out after casting a spell.
 	public HashMap<Spells, Float> time_max;				//Max time set by spell data.
 	
-	public SpellFactory(GameWorld world)
+	public SpellFactory(Universe world)
 	{
 		this.world = world;
 

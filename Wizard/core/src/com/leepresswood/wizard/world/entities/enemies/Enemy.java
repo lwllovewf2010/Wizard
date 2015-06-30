@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.player.Player;
 import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
@@ -26,7 +26,7 @@ public abstract class Enemy extends GameEntity
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	public Enemy(GameWorld world, float x, float y, Element data)
+	public Enemy(Universe world, float x, float y, Element data)
 	{
 		super(world, x, y, data);
 		

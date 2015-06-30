@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.MagicType;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 
 /**
@@ -17,7 +17,7 @@ import com.leepresswood.wizard.world.entities.enemies.Enemy;
  */
 public abstract class Spell
 {
-	protected GameWorld world;
+	protected Universe world;
 	
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "textures/";
@@ -57,7 +57,7 @@ public abstract class Spell
 	 * @param to Click point.
 	 * @param data Spell data.
 	 */
-	public Spell(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
+	public Spell(Universe world, Vector2 from, Vector2 to, Element data, int level)
 	{
 		this.world = world;
 		this.from = from;

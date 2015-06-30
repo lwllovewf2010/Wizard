@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 
@@ -22,7 +22,7 @@ public abstract class Player extends GameEntity
 	public final float JUMP_TIME_MAX = 0.25f;
 	public boolean jump_stop_hop;
 	
-	public Player(GameWorld world, float x, float y, Element data)
+	public Player(Universe world, float x, float y, Element data)
 	{
 		super(world, x, y, data);
 		

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 
@@ -25,7 +25,7 @@ public class Aether extends BoltSpell
 	
 	public Aether(Texture t, float x, float y){super(t, x, y);}
 	
-	public Aether(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
+	public Aether(Universe world, Vector2 from, Vector2 to, Element data, int level)
 	{
 		super(world, from, to, data, level);
 		
@@ -57,7 +57,7 @@ public class Aether extends BoltSpell
 	 * This is a private version of the spell that can be used to create splits.
 	 * Send this instance directly into the spell list.
 	 */
-	private Aether(GameWorld world, Vector2 from, Vector2 to, Element data, int level, int count)
+	private Aether(Universe world, Vector2 from, Vector2 to, Element data, int level, int count)
 	{
 		super(world, from, to, data, level);
 	}

@@ -11,7 +11,7 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  * Holds information about the game world. Sets up camera based upon this world.
  * @author Lee
  */
-public class GameWorld
+public class Universe
 {
 	public ScreenGame screen;
 	
@@ -22,7 +22,7 @@ public class GameWorld
 	public LevelHandler level_handler;
 	public WaveHandler wave_handler;
 	
-	public GameWorld(ScreenGame screen)
+	public Universe(ScreenGame screen)
 	{
 		this.screen = screen;
 		

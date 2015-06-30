@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.leepresswood.wizard.data.Assets;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 
 /**
  * Handles the creation and management of the map and camera.
@@ -14,7 +14,7 @@ import com.leepresswood.wizard.world.GameWorld;
  */
 public class MapCameraEntity extends OrthographicCamera
 {
-	public GameWorld world;
+	public Universe world;
 	
 	
 	
@@ -38,7 +38,7 @@ public class MapCameraEntity extends OrthographicCamera
 	public float GRAVITY;															//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;														//Width/Height of each block.
 	
-	public MapCameraEntity(GameWorld world)
+	public MapCameraEntity(Universe world)
 	{
 		this.world = world;
 		

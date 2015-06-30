@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.factories.EnemyFactory;
 import com.leepresswood.wizard.factories.SpellFactory;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.Player;
 import com.leepresswood.wizard.world.entities.player.spells.Spell;
@@ -20,7 +20,7 @@ import com.leepresswood.wizard.world.entities.player.types.AirWizard;
 
 public class EntityHandler
 {
-	public GameWorld world;
+	public Universe world;
 	
 	public SpellFactory factory_spell;							//Creates spells. Manages spell recharge time.
 	public EnemyFactory factory_enemy;							//Creates enemies.
@@ -42,14 +42,14 @@ public class EntityHandler
 	 * Debug constructor.
 	 * @param world Reference to world.
 	 */
-	public EntityHandler(GameWorld world){this(world, MagicType.AIR);}
+	public EntityHandler(Universe world){this(world, MagicType.AIR);}
 	
 	/**
 	 * Spawn player of the given magic type.
 	 * @param world Reference to world.
 	 * @param type Magic type to spawn.
 	 */
-	public EntityHandler(GameWorld world, MagicType type)
+	public EntityHandler(Universe world, MagicType type)
 	{
 		this.world = world;
 		this.type = type;

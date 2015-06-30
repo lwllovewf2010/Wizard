@@ -1,6 +1,6 @@
 package com.leepresswood.wizard.handlers;
 
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 
 /**
  * Handles the beginning and ending of waves.
@@ -8,13 +8,13 @@ import com.leepresswood.wizard.world.GameWorld;
  */
 public class WaveHandler
 {
-	public GameWorld world;
+	public Universe world;
 	
 	public boolean start_wave;				//Wave was requested to be started.
 	public int wave_number;					//Wave number. 1-based. 
 	public boolean mid_wave;				//Are we currently within a wave?
 	
-	public WaveHandler(GameWorld world)
+	public WaveHandler(Universe world)
 	{
 		this.world = world;
 		

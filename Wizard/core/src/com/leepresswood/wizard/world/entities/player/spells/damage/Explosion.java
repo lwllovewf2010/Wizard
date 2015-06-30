@@ -3,7 +3,7 @@ package com.leepresswood.wizard.world.entities.player.spells.damage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.world.GameWorld;
+import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
 
@@ -18,7 +18,7 @@ public class Explosion extends BoltSpell
 	
 	public Explosion(Texture t, float x, float y){super(t, x, y);}
 
-	public Explosion(GameWorld world, Vector2 from, Vector2 to, Element data, int level)
+	public Explosion(Universe world, Vector2 from, Vector2 to, Element data, int level)
 	{
 		super(world, from, to, data, 0);
 		
