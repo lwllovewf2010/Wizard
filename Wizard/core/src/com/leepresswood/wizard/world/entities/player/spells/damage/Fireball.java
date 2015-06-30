@@ -39,7 +39,7 @@ public class Fireball extends BoltSpell
 	{
 		//Change the direction of the ball.
 		//X doesn't need to be changed, so only change Y.
-		speed_y -= universe.map_camera_handler.GRAVITY * delta;
+		//speed_y -= universe.map_camera_handler.GRAVITY * delta;
 		
 		//Move in the direction.
 		sprite.translate(speed_x * delta, speed_y * delta);

@@ -91,7 +91,7 @@ public abstract class GameEntity
 	public void update(float delta)
 	{
 		//Nothing else needs to be done if we're dead.
-		if(!dying)
+		/*if(!dying)
 		{
 			move(delta);
 			if(!is_invincible)
@@ -104,7 +104,10 @@ public abstract class GameEntity
 		{
 			dying = true;
 			die(delta);
-		}
+		}*/
+		
+		for(BodyPart p : body_parts)
+			p.update(delta);
 	}
 	
 	/**

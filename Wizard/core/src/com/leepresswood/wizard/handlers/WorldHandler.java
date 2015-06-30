@@ -37,8 +37,11 @@ public class WorldHandler
 		body_definition_dynamic.type = BodyDef.BodyType.DynamicBody;
 	}
 	
-	public void handlerInit(int width, int height)
+	public void handlerInit(int width, int height, float gravity)
 	{
+		//Change gravity to the passed value.
+		world.setGravity(new Vector2(0, -gravity));
+		
 		//Initialize static block array.
 		blocks = new Body[height][width];
 	}
@@ -55,9 +58,30 @@ public class WorldHandler
 	{
 		//For non-gravity units:
 		//body_definition_dynamic.gravityScale = 0f;
-		Body body = null;
 		
+		//Set the definition to the location.
+		body_definition_dynamic.position.set(x * width, y * height);
 		
+		//Create a body in the world using our definition.
+		Body body = world.createBody(body_definition_dynamic);
+		
+		//Define a shape for the dimensions of the body.
+		PolygonShape shape = new PolygonShape();
+		
+		//Set the box.
+		shape.setAsBox(width / 2f, height / 2f);
+		
+		//Define physical properties.
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = shape;
+		fixtureDef.density = 1f;
+		
+		//Add the physical properties to the body.
+		//Fixture fixture = body.createFixture(fixtureDef);
+		body.createFixture(fixtureDef);
+		
+		//Shape should be disposed.
+		shape.dispose();
 		
 		return body;
 	}

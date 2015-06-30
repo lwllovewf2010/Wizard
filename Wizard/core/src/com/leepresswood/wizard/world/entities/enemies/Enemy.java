@@ -63,7 +63,7 @@ public abstract class Enemy extends GameEntity
 		}
 		
 		//Do a fall calculation by simulating gravity.
-		speed_current_y -= delta * universe.screen.world.map_camera_handler.GRAVITY;
+		//speed_current_y -= delta * universe.screen.world.map_camera_handler.GRAVITY;
 	}
 	
 	@Override

@@ -131,9 +131,6 @@ public abstract class Player extends GameEntity
 				jump_stop_hop = false;
 			}
 		}
-		
-		//Do a fall calculation by simulating gravity.
-		speed_current_y -= delta * universe.map_camera_handler.GRAVITY;
 	}
 	
 	@Override

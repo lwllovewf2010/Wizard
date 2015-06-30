@@ -79,7 +79,7 @@ public class MapCameraHandler extends OrthographicCamera
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
 		//Make the map blocks. These can be used to get the tile that is being highlighted.
-		universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL);
+		universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL, GRAVITY);
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
