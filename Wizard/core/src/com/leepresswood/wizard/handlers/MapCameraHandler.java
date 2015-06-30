@@ -30,7 +30,7 @@ public class MapCameraHandler extends OrthographicCamera
 	//Camera properties.
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
 	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
-	public final float WORLD_ZOOM = 1000.0f;										//Amount added to the world camera's zoom.
+	public final float WORLD_ZOOM = 3.0f;										//Amount added to the world camera's zoom.
 	public final float WORLD_PLAYER_Y_SKEW = 4.5f;							//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
 	
 	//Others.
@@ -87,19 +87,6 @@ public class MapCameraHandler extends OrthographicCamera
 				universe.world_handler.addBlockToWorld(i, j, pixel_size, pixel_size);
 			}
 		}
-				
-		//Display information.
-		System.out.println(
-				"World:\n\tGround Level: " + GROUND 
-				+ "\n\tGravity: " + GRAVITY 
-				+ "\n\tBlock Size: " + pixel_size
-		);
-		System.out.println(
-				"Camera:\n\tPosition: " + position 
-				+ "\n\tWidth: " + viewportWidth 
-				+ "\n\tHeight: " + viewportHeight 
-				+ "\n\tZoom: " + zoom
-		);
 	}
 	
 	/**
