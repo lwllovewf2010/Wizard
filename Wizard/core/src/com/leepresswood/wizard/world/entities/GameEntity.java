@@ -125,6 +125,7 @@ public abstract class GameEntity
 	 */
 	private void move(float delta)
 	{
+		//Invincibility calculation.
 		if(is_invincible)
 		{
 			invincible_time_current += delta;
@@ -133,17 +134,10 @@ public abstract class GameEntity
 				is_invincible = false;
 			}
 		}
-		if(is_being_knocked_back)
-		{
-			is_being_knocked_back = false;			
-			speed_current_x += knockback_speed * MathUtils.cosDeg(knockback_angle);
-			speed_current_y = knockback_speed * MathUtils.sinDeg(knockback_angle);
-		}
-		else
-		{
-			calcMovementX(delta);
-			calcMovementY(delta);
-		}
+		
+		//Movement calculation.
+		calcMovementX(delta);
+		calcMovementY(delta);
 		
 		//sprite.translate(speed_current_x * delta, speed_current_y * delta);
 	}

@@ -73,7 +73,7 @@ public abstract class Player extends GameEntity
 		/* if(!moving_right && !moving_left || moving_right && moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))
 		 * Note: Simplifying the boolean math. ((A and B) or (!A and !B)) is (A == B)
 		 */		
-		/*if(moving_right == moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))	
+		if(moving_right == moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))	
 		{
 			//Move command is no longer pressed. Decay to 0 speed over time.
 			if(speed_current_x < 0f)
@@ -98,7 +98,10 @@ public abstract class Player extends GameEntity
 			speed_current_x += accel_x * delta;
 			if(speed_current_x > speed_max_x)
 				speed_current_x = speed_max_x;
-		}*/
+		}
+		
+		for(BodyPart p : body_parts)
+			p.body.setLinearVelocity(speed_current_x, 0f);
 	}
 	
 	protected void calcMovementY(float delta)
