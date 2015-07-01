@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.world;
 
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.handlers.MapCameraHandler;
@@ -21,6 +22,8 @@ public class Universe
 	public EntityHandler entity_handler;
 	public LevelHandler level_handler;
 	public WaveHandler wave_handler;
+	
+	Box2DDebugRenderer debug = new Box2DDebugRenderer();
 	
 	public Universe(ScreenGame screen)
 	{
@@ -44,7 +47,8 @@ public class Universe
 	public void draw()
 	{
 		map_camera_handler.map_renderer.setView(map_camera_handler);
-		map_camera_handler.map_renderer.render();		
+		//map_camera_handler.map_renderer.render();		
 		entity_handler.draw();
+		debug.render(world_handler.world, map_camera_handler.combined);
 	}
 }

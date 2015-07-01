@@ -3,8 +3,10 @@ package com.leepresswood.wizard.handlers;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.leepresswood.wizard.world.Universe;
 
@@ -22,19 +24,19 @@ public class WorldHandler
 	private BodyDef body_definition_dynamic;
 	
 	//Physical blocks.
-	public Body[][] blocks;
+	private Body[][] blocks;
 	
 	public WorldHandler(Universe universe)
 	{
 		this.universe = universe;
+		
 		world = new World(new Vector2(0, -98f), true);
 		
 		//Create a block type.
 		body_definition_static = new BodyDef();
-		body_definition_dynamic = new BodyDef();
-		
 		body_definition_static.type = BodyDef.BodyType.StaticBody;
 		
+		body_definition_dynamic = new BodyDef();
 		body_definition_dynamic.type = BodyDef.BodyType.DynamicBody;
 		body_definition_dynamic.fixedRotation = true;
 	}
@@ -56,7 +58,7 @@ public class WorldHandler
 	 * @param height Height of dynamic block.
 	 * @return Reference to the block.
 	 */
-	public Body createDynamicEntity(float x, float y, float width, float height)
+	public Body createDynamicEntity(float x, float y, float width, float height, boolean use_box)
 	{
 		//For non-gravity units:
 		//body_definition_dynamic.gravityScale = 0f;
@@ -67,21 +69,29 @@ public class WorldHandler
 		//Create a body in the world using our definition.
 		Body body = world.createBody(body_definition_dynamic);
 		
-		//Define a shape for the dimensions of the body.
-		PolygonShape shape = new PolygonShape();
+		Shape shape = null;
 		
-		//Set the box.
-		shape.setAsBox(width / 2f, height / 2f);
+		//Set the box/circle.
+		if(use_box)
+		{
+			shape = new PolygonShape();
+			((PolygonShape) shape).setAsBox(width / 2f, height / 2f);
+		}
+		else
+		{
+			shape = new CircleShape();
+			shape.setRadius(width / 2f);
+		}		
 		
 		//Define physical properties.
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = shape;
-		fixtureDef.density = 1f;
-		fixtureDef.friction = 0f;
+		FixtureDef fixture_definition = new FixtureDef();
+		fixture_definition.shape = shape;
+		fixture_definition.density = 1f;
+		fixture_definition.friction = 0f;
 		
 		//Add the physical properties to the body.
 		//Fixture fixture = body.createFixture(fixtureDef);
-		body.createFixture(fixtureDef);
+		body.createFixture(fixture_definition);
 		
 		//Shape should be disposed.
 		shape.dispose();
@@ -111,14 +121,14 @@ public class WorldHandler
 		shape.setAsBox(width / 2f, height / 2f);
 		
 		//Define physical properties.
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = shape;
-		fixtureDef.density = 1f;
-		fixtureDef.friction = 0f;
+		FixtureDef fixture_definition = new FixtureDef();
+		fixture_definition.shape = shape;
+		fixture_definition.density = 1f;
+		fixture_definition.friction = 0f;
 		
 		//Add the physical properties to the body.
 		//Fixture fixture = body.createFixture(fixtureDef);
-		body.createFixture(fixtureDef);
+		body.createFixture(fixture_definition);
 		
 		//Add the body to the array.
 		blocks[(int) y][(int) x] = body;

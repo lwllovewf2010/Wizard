@@ -15,9 +15,7 @@ import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
  *
  */
 public abstract class Player extends GameEntity
-{
-	public final float JUMP_TIME_MAX = 0.25f;
-	
+{	
 	public Player(Universe universe, float x, float y, Element data)
 	{
 		super(universe, x, y, data);
@@ -38,7 +36,7 @@ public abstract class Player extends GameEntity
 		Sprite s = new Sprite(texture);
 		s.setBounds(x, y, width, height);
 		
-		body_parts[0] = new BodyPart(s, universe.world_handler.createDynamicEntity(x, y, width, height));
+		body_parts[0] = new BodyPart(s, universe.world_handler.createDynamicEntity(x, y, width, height, false));
 	}
 	
 	@Override
@@ -107,7 +105,7 @@ public abstract class Player extends GameEntity
 	{
 		//If the jumping variable is true, jump button is being held.
 		if(jumping && on_ground)
-		{System.out.println(jump_start_speed);
+		{
 			//Stop further jumping until we're on the ground.
 			on_ground = false;
 			for(BodyPart p : body_parts)
