@@ -1,10 +1,7 @@
 package com.leepresswood.wizard.world.entities;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
@@ -39,7 +36,6 @@ public abstract class GameEntity
 	
 	//Knockback.
 	public boolean is_invincible;
-	public boolean is_being_knocked_back;
 	public float invincible_time_max = 0.5f;
 	public float invincible_time_current;
 	public float knockback_angle;
@@ -49,10 +45,8 @@ public abstract class GameEntity
 	public boolean dying;
 	
 	//Jumping.
-	public float jump_time_current;
 	public boolean jumping;
-	public float speed_current_y;
-	public boolean jump_stop_hop;
+	public boolean on_ground;
 	
 	//Sprites and bounds.
 	public BodyPart[] body_parts;
@@ -137,8 +131,6 @@ public abstract class GameEntity
 		//Movement calculation.
 		calcMovementX(delta);
 		calcMovementY(delta);
-		
-		//sprite.translate(speed_current_x * delta, speed_current_y * delta);
 	}
 	
 	/**

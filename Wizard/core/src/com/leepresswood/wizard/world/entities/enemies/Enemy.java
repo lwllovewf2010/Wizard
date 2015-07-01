@@ -58,8 +58,7 @@ public abstract class Enemy extends GameEntity
 		//If we asked the enemy to jump, do a jump calculation.
 		if(do_jump)
 		{
-			do_jump = false;
-			speed_current_y += jump_start_speed;
+			
 		}
 		
 		//Do a fall calculation by simulating gravity.

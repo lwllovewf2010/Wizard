@@ -1,7 +1,6 @@
 package com.leepresswood.wizard.world.entities.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
@@ -18,7 +17,6 @@ import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
 public abstract class Player extends GameEntity
 {
 	public final float JUMP_TIME_MAX = 0.25f;
-	public boolean jump_stop_hop;
 	
 	public Player(Universe universe, float x, float y, Element data)
 	{
@@ -27,6 +25,8 @@ public abstract class Player extends GameEntity
 		//Grab the health and mana.
 		health = data.getFloat("health");
 		mana = data.getFloat("mana");
+		
+		on_ground = true;
 	}
 	
 	@Override
@@ -39,7 +39,6 @@ public abstract class Player extends GameEntity
 		s.setBounds(x, y, width, height);
 		
 		body_parts[0] = new BodyPart(s, universe.world_handler.createDynamicEntity(x, y, width, height));
-		
 	}
 	
 	@Override
@@ -101,38 +100,18 @@ public abstract class Player extends GameEntity
 		}
 		
 		for(BodyPart p : body_parts)
-			p.body.setLinearVelocity(speed_current_x, 0f);
+			p.body.setLinearVelocity(speed_current_x, p.body.getLinearVelocity().y);
 	}
 	
 	protected void calcMovementY(float delta)
 	{
-		//Don't allow multiple hops with the same spacebar press.
-		if(!jump_stop_hop)
-		{
-			//If the jumping variable is true, jump button is being held. This allows the jump button to be held longer to jump higher. There must be a max jump button time, though.
-			if(jumping)
-			{
-				if(jump_time_current < JUMP_TIME_MAX)
-				{
-					speed_current_y = jump_start_speed;
-					jump_time_current += delta;
-				}
-			}
-			else
-			{
-				//Block the player from jumping multiple times within the same jump.
-				if(jump_time_current > 0f)
-				{
-					jump_time_current = JUMP_TIME_MAX;
-				}
-			}
-		}
-		else
-		{//Allow the player to jump again if they have released the jump button at least once since the flag was set.
-			if(!jumping)
-			{
-				jump_stop_hop = false;
-			}
+		//If the jumping variable is true, jump button is being held.
+		if(jumping && on_ground)
+		{System.out.println(jump_start_speed);
+			//Stop further jumping until we're on the ground.
+			on_ground = false;
+			for(BodyPart p : body_parts)
+				p.body.applyForceToCenter(0f, jump_start_speed, true);
 		}
 	}
 	
