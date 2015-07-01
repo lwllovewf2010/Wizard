@@ -111,7 +111,7 @@ public abstract class Player extends GameEntity
 			//Stop further jumping until we're on the ground.
 			on_ground = false;
 			for(BodyPart p : body_parts)
-				p.body.applyForceToCenter(0f, jump_start_speed, true);
+				p.body.applyForceToCenter(0f, jump_start_speed * universe.map_camera_handler.pixel_size * universe.map_camera_handler.GRAVITY, true);			//Translating jump speed into newtons for box2d.
 		}
 	}
 	

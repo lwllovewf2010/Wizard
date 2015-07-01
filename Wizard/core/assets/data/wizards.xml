@@ -8,7 +8,7 @@
 	    <health>10.0</health>
 	    <mana>100.0</mana>
 	    <defense>1.0</defense>
-	    <jump_speed>30000.0</jump_speed>
+	    <jump_speed>8.0</jump_speed>
 	    <speed>8.0</speed>
 	    <acceleration>5.0</acceleration>
 	    <deceleration>10.0</deceleration>
@@ -26,8 +26,8 @@
 	    <health>10.0</health>
 	    <mana>100.0</mana>
 	    <defense>2.0</defense>
-	    <jump_speed>7.5</jump_speed>
-	    <speed>5.0</speed>
+	    <jump_speed>4.0</jump_speed>
+	    <speed>3.0</speed>
 	    <acceleration>5.0</acceleration>
 	    <deceleration>10.0</deceleration>
 	    <spell_list>
