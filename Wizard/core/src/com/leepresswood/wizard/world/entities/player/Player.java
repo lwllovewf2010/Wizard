@@ -104,7 +104,7 @@ public abstract class Player extends GameEntity
 	protected void calcMovementY(float delta)
 	{
 		//Don't allow multiple hops with the same spacebar press.
-		/*if(!jump_stop_hop)
+		if(!jump_stop_hop)
 		{
 			//If the jumping variable is true, jump button is being held. This allows the jump button to be held longer to jump higher. There must be a max jump button time, though.
 			if(jumping)
@@ -130,7 +130,7 @@ public abstract class Player extends GameEntity
 			{
 				jump_stop_hop = false;
 			}
-		}*/
+		}
 	}
 	
 	@Override

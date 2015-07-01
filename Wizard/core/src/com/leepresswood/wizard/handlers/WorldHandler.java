@@ -34,7 +34,9 @@ public class WorldHandler
 		body_definition_dynamic = new BodyDef();
 		
 		body_definition_static.type = BodyDef.BodyType.StaticBody;
+		
 		body_definition_dynamic.type = BodyDef.BodyType.DynamicBody;
+		body_definition_dynamic.fixedRotation = true;
 	}
 	
 	public void handlerInit(int width, int height, float gravity)
