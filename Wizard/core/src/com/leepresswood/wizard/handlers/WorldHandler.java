@@ -96,7 +96,7 @@ public class WorldHandler
 	public void addBlockToWorld(float x, float y, float width, float height)
 	{
 		//Set the definition to the location.
-		body_definition_static.position.set(x, y);
+		body_definition_static.position.set(x + width / 2f, y + height / 2f);
 		
 		//Create a body in the world using our definition.
 		Body body = world.createBody(body_definition_static);
