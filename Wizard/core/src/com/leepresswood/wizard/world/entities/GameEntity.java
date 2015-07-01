@@ -32,7 +32,6 @@ public abstract class GameEntity
 	public float jump_start_speed;
 	
 	//Movement and direction.
-	public boolean facing_left;
 	public boolean moving_left;
 	public boolean moving_right;
 	public float speed_current_x;

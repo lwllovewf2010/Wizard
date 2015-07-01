@@ -113,6 +113,7 @@ public class WorldHandler
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = shape;
 		fixtureDef.density = 1f;
+		fixtureDef.friction = 0f;
 		
 		//Add the physical properties to the body.
 		//Fixture fixture = body.createFixture(fixtureDef);

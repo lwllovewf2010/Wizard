@@ -41,7 +41,6 @@ public class BodyPart
 	{
 		//animation.update(delta);
 		sprite.setPosition(body.getPosition().x - sprite.getWidth() / 2f, body.getPosition().y - sprite.getHeight() / 2f);
-		//body.applyTorque(-body.tor, wake);
 	}
 	
 	/**
