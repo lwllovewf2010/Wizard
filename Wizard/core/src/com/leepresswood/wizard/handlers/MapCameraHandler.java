@@ -96,8 +96,8 @@ public class MapCameraHandler extends OrthographicCamera
 	public void setCameraBounds()
 	{
 		//First, set the camera to the player's position.
-		position.x = universe.entity_handler.player.body_parts[0].sprite.getX() + universe.entity_handler.player.body_parts[0].sprite.getWidth() / 2f;
-		position.y = universe.entity_handler.player.body_parts[0].sprite.getY() + universe.entity_handler.player.body_parts[0].sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
+		position.x = universe.entity_handler.player.parts[0].sprite.getX() + universe.entity_handler.player.parts[0].sprite.getWidth() / 2f;
+		position.y = universe.entity_handler.player.parts[0].sprite.getY() + universe.entity_handler.player.parts[0].sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(position.x < WORLD_LEFT)

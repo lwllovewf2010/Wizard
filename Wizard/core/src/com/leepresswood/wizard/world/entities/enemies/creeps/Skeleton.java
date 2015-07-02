@@ -19,9 +19,9 @@ public class Skeleton extends Enemy
 	protected void setBodies(float x, float y, float width, float height)
 	{
 		//For now, we'll just have one body part.
-		body_parts = new Box2DSprite[1];
+		parts = new Box2DSprite[1];
 		
-		body_parts[0] = new Box2DSprite(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+		parts[0] = new Box2DSprite(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
 	}
 	
 	@Override

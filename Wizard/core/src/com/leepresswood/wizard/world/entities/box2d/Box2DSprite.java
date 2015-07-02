@@ -3,9 +3,10 @@ package com.leepresswood.wizard.world.entities.box2d;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.leepresswood.wizard.world.entities.GameEntity;
 
 /**
- * A body part. Contains a sprite and a box2d body.
+ * Contains both a sprite and a box2d body.
  * @author Lee
  */
 public class Box2DSprite
@@ -14,13 +15,13 @@ public class Box2DSprite
 	public Sprite sprite;
 	public Body body;
 	
-	public Box2DSprite(Sprite sprite, Body body, Object o)
+	public Box2DSprite(Sprite sprite, Body body, GameEntity e)
    {
 		//animation = new Animation();
 		this.sprite = sprite;
 		
 		this.body = body;
-		this.body.setUserData(o);
+		this.body.setUserData(e);
    }
 	
 	/*public void setAnimation(TextureRegion reg, float delay)

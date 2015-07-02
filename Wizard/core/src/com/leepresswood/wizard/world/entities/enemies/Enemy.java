@@ -4,14 +4,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.LivingEntity;
 import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
 import com.leepresswood.wizard.world.entities.player.Player;
 
 /**
  * Parent to all the enemy types.
  */
-public abstract class Enemy extends GameEntity
+public abstract class Enemy extends LivingEntity
 {	
 	//XML Data
 	public float knockback_damage;
@@ -128,7 +128,7 @@ public abstract class Enemy extends GameEntity
 			die_time_current = DIE_TIME_MAX;
 		}
 
-		for(Box2DSprite p : body_parts)
+		for(Box2DSprite p : parts)
 			p.sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
 	}
 
