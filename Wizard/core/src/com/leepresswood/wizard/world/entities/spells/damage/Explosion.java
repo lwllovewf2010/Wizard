@@ -1,11 +1,11 @@
-package com.leepresswood.wizard.world.entities.player.spells.damage;
+package com.leepresswood.wizard.world.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.player.spells.BoltSpell;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
 /**
  * The aftermath of a fireball colliding with an enemy.

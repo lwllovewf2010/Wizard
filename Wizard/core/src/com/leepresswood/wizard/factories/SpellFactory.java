@@ -9,10 +9,10 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.Spells;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.player.spells.Spell;
-import com.leepresswood.wizard.world.entities.player.spells.damage.Aether;
-import com.leepresswood.wizard.world.entities.player.spells.damage.Fireball;
-import com.leepresswood.wizard.world.entities.player.spells.utility.Dig;
+import com.leepresswood.wizard.world.entities.spells.Spell;
+import com.leepresswood.wizard.world.entities.spells.damage.Aether;
+import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
+import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 
 /**
  * Creates and manages spell spawning.

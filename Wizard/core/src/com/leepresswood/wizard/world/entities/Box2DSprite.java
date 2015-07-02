@@ -1,9 +1,8 @@
-package com.leepresswood.wizard.world.entities.box2d;
+package com.leepresswood.wizard.world.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.leepresswood.wizard.world.entities.GameEntity;
 
 /**
  * Contains both a sprite and a box2d body.

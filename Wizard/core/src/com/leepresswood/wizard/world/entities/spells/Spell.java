@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.player.spells;
+package com.leepresswood.wizard.world.entities.spells;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,7 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 
 /**
  * The Spell class is a parent to the various spells in the game. All spells will have a cast-to position, 
@@ -17,8 +18,6 @@ import com.leepresswood.wizard.world.entities.enemies.Enemy;
  */
 public abstract class Spell
 {
-	protected Universe universe;
-	
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "textures/";
 	private final String TEXTURE_EXTENSION = ".png";

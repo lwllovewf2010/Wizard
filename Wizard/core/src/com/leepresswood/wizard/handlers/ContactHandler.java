@@ -1,10 +1,10 @@
-package com.leepresswood.wizard.world.entities.box2d;
+package com.leepresswood.wizard.handlers;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.leepresswood.wizard.world.entities.LivingEntity;
+import com.leepresswood.wizard.world.entities.living.LivingEntity;
 
 public class ContactHandler implements ContactListener
 {

@@ -1,10 +1,11 @@
-package com.leepresswood.wizard.world.entities;
+package com.leepresswood.wizard.world.entities.living;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 
 /**
  * Parent class to both the players and the enemies. 
@@ -50,7 +51,7 @@ public abstract class LivingEntity extends GameEntity
 	
 	public LivingEntity(Universe universe, float x, float y, Element data)
 	{
-		this.universe = universe;
+		super(universe);
 		
 		name = data.get("name");
 		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
@@ -98,6 +99,7 @@ public abstract class LivingEntity extends GameEntity
 			p.update(delta);
 	}
 	
+	@Override
 	public void draw(SpriteBatch batch)
 	{//We will assume the parts are ordered correctly while drawing.
 		for(Box2DSprite p : parts)
@@ -184,15 +186,4 @@ public abstract class LivingEntity extends GameEntity
 	 * @param delta Change in time.
 	 */
 	protected abstract void calcMovementY(float delta);
-	
-	/**
-	 * Is this entity dead?
-	 * @return True if dead. False otherwise.
-	 */
-	protected abstract boolean getDeathStatus();
-	
-	/**
-	 * Send entity into death animation. Also handle what happens afterward within this.
-	 */
-	protected abstract void die(float delta);
 }

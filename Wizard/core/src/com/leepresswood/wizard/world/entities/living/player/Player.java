@@ -1,11 +1,11 @@
-package com.leepresswood.wizard.world.entities.player;
+package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.LivingEntity;
-import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.living.LivingEntity;
 
 /**
  * Class should include all attributes every player will have.
@@ -148,7 +148,7 @@ public abstract class Player extends LivingEntity
 	}
 
 	@Override
-	protected boolean getDeathStatus()
+	public boolean getDeathStatus()
 	{
 		return universe.screen.gui.bar_health.current_bar_value <= 0f;
 	}

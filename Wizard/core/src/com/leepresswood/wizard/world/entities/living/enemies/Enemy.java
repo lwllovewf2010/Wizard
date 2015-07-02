@@ -1,12 +1,12 @@
-package com.leepresswood.wizard.world.entities.enemies;
+package com.leepresswood.wizard.world.entities.living.enemies;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.LivingEntity;
-import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
-import com.leepresswood.wizard.world.entities.player.Player;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.living.LivingEntity;
+import com.leepresswood.wizard.world.entities.living.player.Player;
 
 /**
  * Parent to all the enemy types.
@@ -112,7 +112,7 @@ public abstract class Enemy extends LivingEntity
 	}
 	
 	@Override
-	protected boolean getDeathStatus()
+	public boolean getDeathStatus()
 	{
 		return health <= 0f;
 	}

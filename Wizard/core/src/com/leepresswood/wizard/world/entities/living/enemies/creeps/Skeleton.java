@@ -1,12 +1,12 @@
-package com.leepresswood.wizard.world.entities.enemies.creeps;
+package com.leepresswood.wizard.world.entities.living.enemies.creeps;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
-import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.player.Player;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.living.player.Player;
 
 public class Skeleton extends Enemy
 {

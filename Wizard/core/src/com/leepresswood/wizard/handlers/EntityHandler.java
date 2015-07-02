@@ -13,10 +13,10 @@ import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.factories.EnemyFactory;
 import com.leepresswood.wizard.factories.SpellFactory;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.player.Player;
-import com.leepresswood.wizard.world.entities.player.spells.Spell;
-import com.leepresswood.wizard.world.entities.player.types.AirWizard;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.living.player.Player;
+import com.leepresswood.wizard.world.entities.living.player.types.AirWizard;
+import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class EntityHandler
 {

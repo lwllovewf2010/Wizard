@@ -8,8 +8,8 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.Enemies;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.enemies.creeps.Skeleton;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.living.enemies.creeps.Skeleton;
 
 /**
  * Creates and manages enemy spawning.
