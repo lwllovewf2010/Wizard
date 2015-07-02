@@ -2,11 +2,12 @@ package com.leepresswood.wizard.world.entities.spells;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
 
 /**
@@ -20,7 +21,6 @@ public abstract class Spell extends GameEntity
 	private final String TEXTURE_BASE = "textures/";
 	private final String TEXTURE_EXTENSION = ".png";
 	public Sprite sprite;
-	public Rectangle[] bounds;
 	
 	//XML data
 	public String name;
@@ -74,16 +74,8 @@ public abstract class Spell extends GameEntity
 		time_alive_max = data.getFloat("time_alive");
 		
 		//Create an active version of this spell.
-		active = true;		
-		sprite = new Sprite(texture);
-		bounds = makeSprites();
+		active = true;
 	}
-	
-	/**
-	 * Create the sprite using the "from" and "to" vectors.
-	 * @return 
-	 */
-	protected abstract Rectangle[] makeSprites();
 	
 	/**
 	 * Call the position and collision updates. Also examine the time.
@@ -102,6 +94,13 @@ public abstract class Spell extends GameEntity
 				active = false;
 		}
 	}
+
+	@Override
+   public void draw(SpriteBatch batch)
+   {
+		for(Box2DSprite s : parts)
+			s.sprite.draw(batch);
+   }
 	
 	@Override
 	public boolean getDeathStatus()

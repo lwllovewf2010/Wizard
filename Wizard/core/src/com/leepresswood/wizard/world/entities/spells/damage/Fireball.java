@@ -1,9 +1,12 @@
 package com.leepresswood.wizard.world.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
@@ -28,22 +31,8 @@ public class Fireball extends BoltSpell
 		speed_decay = data.getFloat("speed_decay");
 		explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
 	}
-
-	@Override
-	protected void updatePosition(float delta)
-	{
-		//Change the direction of the ball.
-		//X doesn't need to be changed, so only change Y.
-		//speed_y -= universe.map_camera_handler.GRAVITY * delta;
-		
-		//Move in the direction.
-		sprite.translate(speed_x * delta, speed_y * delta);
-		
-		//Reset the bounds.
-		bounds[0] = sprite.getBoundingRectangle();
-	}
 	
-	@Override
+	/*@Override
 	protected void updateCollision()
 	{
 		//Check blocks for bounce.
@@ -98,19 +87,42 @@ public class Fireball extends BoltSpell
 			//Decay the Y speed by the speed decay.
 			speed_y *= speed_decay;
 		}
-	}
+	}*/
+	
+	@Override
+   protected void setBodies(float x, float y, float width, float height)
+   {
+		parts = new Box2DSprite[1];
+		
+		Sprite s = new Sprite(texture);
+		s.setBounds(x, y, width, height);
+		
+		//We will only have one body here, but we don't want gravity affecting the body.
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+		parts[0].body.getFixtureList().get(0).setRestitution(impulse);
+   }
 
 	@Override
-	public void doHit(Enemy enemy)
-	{
+   protected void calcMovementX(float delta)
+   {
+   }
+
+	@Override
+   protected void calcMovementY(float delta)
+   {
+   }
+
+	@Override
+   public void doHit(GameEntity entity)
+   {
 		//Remove life.
-		enemy.damage(damage);
+		//enemy.damage(damage);
 		
 		//Destroy this bolt.
-		active = false;
+		//active = false;
 		
 		//The collision death of this bolt will create an explosion.
-		Vector2 location = new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
-		universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
-	}
+		//Vector2 location = new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
+		//universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
+   }
 }

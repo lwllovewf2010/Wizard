@@ -2,6 +2,7 @@ package com.leepresswood.wizard.world.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -121,10 +122,6 @@ public class Aether extends BoltSpell
 				}
 			}
 		}
-		
-		//Move in the direction and reset the bounds.
-		sprite.translate(speed_x * delta, speed_y * delta);
-		bounds[0] = sprite.getBoundingRectangle();
    }
 
 	@Override

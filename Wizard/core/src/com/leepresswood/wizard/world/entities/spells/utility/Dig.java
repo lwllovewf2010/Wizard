@@ -1,12 +1,12 @@
 package com.leepresswood.wizard.world.entities.spells.utility;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
 /**
@@ -27,14 +27,18 @@ public class Dig extends Spell
 		dig_width = data.getChildrenByName("level").get(level).getInt("dig_width");
 		dig_height = data.getChildrenByName("level").get(level).getInt("dig_height");
 	}
-
+	
 	@Override
-	protected Rectangle[] makeSprites()
-	{
-		sprite.setBounds(0, 0, 0, 0);
+   protected void setBodies(float x, float y, float width, float height)
+   {
+		parts = new Box2DSprite[1];
 		
-		return new Rectangle[]{sprite.getBoundingRectangle()};
-	}
+		Sprite s = new Sprite(texture);
+		s.setBounds(x, y, width, height);
+		
+		//We will only have one body here, but we don't want gravity affecting the body.
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+   }
 
 	@Override
 	protected void calcMovementX(float delta)
@@ -47,8 +51,9 @@ public class Dig extends Spell
 	}
 
 	@Override
-	protected void updateCollision()
-	{//At this point, remove the X blocks and kill the spell.
+   public void doHit(GameEntity entity)
+   {
+		//At this point, remove the X blocks and kill the spell.
 		for(int j = (int) (-dig_height / 2f); j < (dig_height / 2f); j++)
 		{	
 			for(int i = (int) (-dig_width / 2f); i < (dig_width / 2f); i++)
@@ -65,15 +70,5 @@ public class Dig extends Spell
 			}
 		}
 		active = false;
-	}
-
-	@Override
-	public void draw(SpriteBatch batch)
-	{//Dig doesn't have a texture.
-	}
-
-	@Override
-	public void doHit(Enemy enemy)
-	{//Dig doesn't collide with enemies.
-	}
+   }
 }
