@@ -2,7 +2,6 @@ package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -16,14 +15,17 @@ import com.leepresswood.wizard.world.entities.living.LivingEntity;
  *
  */
 public abstract class Player extends LivingEntity
-{	
+{
+	public float mana_max;
+	public float mana_current;
+	
 	public Player(Universe universe, float x, float y, Element data)
 	{
 		super(universe, x, y, data);
 		
-		//Grab the health and mana.
-		health_max = data.getFloat("health");
-		mana = data.getFloat("mana");
+		//Grab mana.		
+		mana_max = data.getFloat("mana");
+		mana_current = mana_max;
 		
 		on_ground = true;
 	}
@@ -149,7 +151,7 @@ public abstract class Player extends LivingEntity
 	@Override
 	public boolean getDeathStatus()
 	{
-		return universe.screen.gui.bar_health.current_bar_value <= 0f;
+		return health_current <= 0f;
 	}
 	
 	@Override

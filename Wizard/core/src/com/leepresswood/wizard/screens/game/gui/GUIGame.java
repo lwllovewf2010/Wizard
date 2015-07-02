@@ -83,12 +83,10 @@ public class GUIGame
 		final float bar_height = Gdx.graphics.getHeight() * 0.02f;
 		final float bar_x = gap;
 		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
-		final float recovery_health = 0.75f;
-		final float recovery_mana = 0.3f;
 		
 		//Set bars.
-		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health_max, recovery_health);
-		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana, recovery_mana);
+		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health_max);
+		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana_max);
 		
 		//Set colors.
 		color_health = new Color(Color.valueOf("AA3C39FF"));
@@ -148,8 +146,14 @@ public class GUIGame
 		for(GUIButton b : button_array)
 			b.update(delta);
 		
-		bar_health.updateOverTime(delta);
-		bar_mana.updateOverTime(delta);
+		//Grab bar values from the player. Update bar.
+		bar_health.setMaxValue(screen.world.entity_handler.player.health_max);
+		bar_health.setCurrentValue(screen.world.entity_handler.player.health_current);
+		bar_health.update(delta);
+		
+		bar_mana.setMaxValue(screen.world.entity_handler.player.mana_max);
+		bar_health.setCurrentValue(screen.world.entity_handler.player.mana_current);
+		bar_mana.update(delta);
 	}
 	
 	/**

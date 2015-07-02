@@ -26,6 +26,12 @@ public abstract class GameEntity
 	public abstract void update(float delta);
 	
 	/**
+	 * Draw the sprites in the correct order.
+	 * @param batch The SpriteBatch for the sprites of this entity.
+	 */
+	public abstract void draw(SpriteBatch batch);
+	
+	/**
 	 * Calculate movement in the X direction.
 	 * @param delta Change in time.
 	 */
@@ -36,12 +42,6 @@ public abstract class GameEntity
 	 * @param delta Change in time.
 	 */
 	protected abstract void calcMovementY(float delta);
-	
-	/**
-	 * Draw the sprites in the correct order.
-	 * @param batch The SpriteBatch for the sprites of this entity.
-	 */
-	public abstract void draw(SpriteBatch batch);
 	
 	/**
 	 * This entity collided with the passed entity. Do damage/effects.

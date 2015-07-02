@@ -23,7 +23,6 @@ public abstract class LivingEntity extends GameEntity
 	public String name;
 	public Texture texture;
 	public float health_max;
-	public float mana;
 	public float defense;
 	public float speed_max_x;
 	public float accel_x;
@@ -57,11 +56,14 @@ public abstract class LivingEntity extends GameEntity
 		
 		name = data.get("name");
 		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		health_max = data.getFloat("health");
 		defense = data.getFloat("defense");
 		speed_max_x = data.getFloat("speed");
 		accel_x = data.getFloat("acceleration");
 		decel_x = data.getFloat("deceleration");
 		jump_start_speed = data.getFloat("jump_speed");
+		
+		health_current = health_max;
 		
 		//Create a body for all this entity's parts.
 		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
@@ -157,13 +159,13 @@ public abstract class LivingEntity extends GameEntity
 	}
 	
 	/**
-	 * Damage was taken. 
+	 * Damage was taken.
 	 * @param amount Amount of damage taken.
 	 */
 	public void damage(float amount)
-	{
-		//Damage was done, but defense must be taken into consideration.
+	{//Damage was done, but defense must be taken into consideration.
 		universe.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
+		health_current -= DefenseCalculator.damageAfterDefense(amount, defense);
 	}
 	
 	/**
