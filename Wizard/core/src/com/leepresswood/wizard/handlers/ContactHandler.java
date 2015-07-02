@@ -4,17 +4,17 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.leepresswood.wizard.world.entities.living.LivingEntity;
+import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class ContactHandler implements ContactListener
 {
 	@Override
    public void beginContact(Contact contact)
    {
-		System.out.println(contact.getFixtureA().getBody().getUserData());
-		System.out.println(contact.getFixtureB().getBody().getUserData());
-		if(contact.getFixtureA().getBody().getUserData() instanceof LivingEntity)
-		{			
+		if(contact.getFixtureA().getBody().getUserData() instanceof Spell)
+		{
+			((Spell) contact.getFixtureA().getBody().getUserData()).doHit((GameEntity) contact.getFixtureB().getBody().getUserData());
 			//((LivingEntity) contact.getFixtureA().getBody().getUserData()).enemyCollision();
 		}
    }

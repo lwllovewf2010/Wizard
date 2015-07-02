@@ -70,6 +70,6 @@ public class Dig extends Spell
 
 	@Override
    public void doHit(GameEntity entity)
-   {//Doesn't collide with most entities.
+   {//Dig doesn't collide.
    }
 }
