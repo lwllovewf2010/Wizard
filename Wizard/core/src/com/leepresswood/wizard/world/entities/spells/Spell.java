@@ -17,16 +17,11 @@ import com.leepresswood.wizard.world.entities.GameEntity;
  */
 public abstract class Spell extends GameEntity
 {
-	//Sprite and texture data.
-	private final String TEXTURE_BASE = "textures/";
-	private final String TEXTURE_EXTENSION = ".png";
 	public Sprite sprite;
 	
 	//XML data
-	public String name;
 	public MagicType type;
 	public float mana_cost;
-	public Texture texture;
 	public float recharge;
 	
 	//Spell location, movement, visibility, etc.
@@ -65,8 +60,6 @@ public abstract class Spell extends GameEntity
 		this.level = level;
 		
 		//Read the data from the XML file.
-		name = data.get("name");
-		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		type = MagicType.valueOf(data.get("type").toUpperCase());
 		if(data.getChildrenByName("level").size > 0)
 			mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");

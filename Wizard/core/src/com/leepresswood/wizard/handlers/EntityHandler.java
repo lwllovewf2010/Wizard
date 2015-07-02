@@ -13,6 +13,8 @@ import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.factories.EnemyFactory;
 import com.leepresswood.wizard.factories.SpellFactory;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.living.player.Player;
 import com.leepresswood.wizard.world.entities.living.player.types.AirWizard;
@@ -32,7 +34,7 @@ public class EntityHandler
 	public ArrayList<Enemy> enemies;								//List of enemies.
 	public ArrayList<Spell> spells;								//List of spells.
 	public ArrayList<Spell> spell_queue;						//New spells being created will be placed here if their creation interrupts array looping.
-	public ArrayList<Object> remove;								//Deals with the removal of objects that no longer need to be on the screen.
+	public ArrayList<GameEntity> remove;						//Deals with the removal of objects that no longer need to be on the screen.
 	
 	public Element wave_root;										//Contains wave data.
 	public int wave;													//Current wave.
@@ -96,7 +98,7 @@ public class EntityHandler
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
 		spell_queue = new ArrayList<Spell>();
-		remove = new ArrayList<Object>();
+		remove = new ArrayList<GameEntity>();
 		
 		//Initialize wave data.
 		try
@@ -203,11 +205,17 @@ public class EntityHandler
 				remove.add(e);
 		
 		//Do the removal.
-		for(Object o : remove)
+		for(GameEntity o : remove)
+		{	
 			if(o instanceof Spell)
 				spells.remove(o);
 			else if(o instanceof Enemy)
 				enemies.remove(o);
+		
+			//On top of removing the entity from its list, destroy its body.
+			for(Box2DSprite s : o.parts)
+				universe.world_handler.world.destroyBody(s.body);
+		}
 		remove.clear();
 	}
 }

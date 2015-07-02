@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.world;
 
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.handlers.MapCameraHandler;
@@ -30,6 +31,7 @@ public class Universe
 		this.screen = screen;
 		
 		world_handler = new WorldHandler(this);
+		world_handler.world.setContactListener(new ContactHandler());
 		map_camera_handler = new MapCameraHandler(this);
 		entity_handler = new EntityHandler(this);
 		level_handler = new LevelHandler(this, 1);

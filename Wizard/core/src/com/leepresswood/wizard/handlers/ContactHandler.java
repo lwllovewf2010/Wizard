@@ -11,6 +11,8 @@ public class ContactHandler implements ContactListener
 	@Override
    public void beginContact(Contact contact)
    {
+		System.out.println(contact.getFixtureA().getBody().getUserData());
+		System.out.println(contact.getFixtureB().getBody().getUserData());
 		if(contact.getFixtureA().getBody().getUserData() instanceof LivingEntity)
 		{			
 			//((LivingEntity) contact.getFixtureA().getBody().getUserData()).enemyCollision();

@@ -26,6 +26,24 @@ public class Dig extends Spell
 		
 		dig_width = data.getChildrenByName("level").get(level).getInt("dig_width");
 		dig_height = data.getChildrenByName("level").get(level).getInt("dig_height");
+		
+		//We don't want this this spell to last long. Do the spell effect now and kill it.
+		for(int j = (int) (-dig_height / 2f); j < (dig_height / 2f); j++)
+		{	
+			for(int i = (int) (-dig_width / 2f); i < (dig_width / 2f); i++)
+			{
+				//Remove the texture of the block.
+				universe.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
+				
+				//Remove the physical block.
+				universe.world_handler.removeBlockFromWorld(i, j);
+				
+				//Break the loops.
+				i = dig_width;
+				j = dig_width;
+			}
+		}
+		active = false;
 	}
 	
 	@Override
@@ -52,23 +70,6 @@ public class Dig extends Spell
 
 	@Override
    public void doHit(GameEntity entity)
-   {
-		//At this point, remove the X blocks and kill the spell.
-		for(int j = (int) (-dig_height / 2f); j < (dig_height / 2f); j++)
-		{	
-			for(int i = (int) (-dig_width / 2f); i < (dig_width / 2f); i++)
-			{
-				//Remove the texture of the block.
-				universe.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
-				
-				//Remove the physical block.
-				universe.world_handler.removeBlockFromWorld(i, j);
-				
-				//Break the loops.
-				i = dig_width;
-				j = dig_width;
-			}
-		}
-		active = false;
+   {//Doesn't collide with most entities.
    }
 }
