@@ -144,7 +144,8 @@ public class WorldHandler
 	 */
 	public void removeBlockFromWorld(int x, int y)
 	{
-		world.destroyBody(blocks[y][x]);
+		if(blocks[y][x] != null)
+			world.destroyBody(blocks[y][x]);
 	}
 	
 	public void update(float delta)

@@ -36,7 +36,7 @@ public class Dig extends Spell
 				universe.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
 				
 				//Remove the physical block.
-				universe.world_handler.removeBlockFromWorld(i, j);
+				universe.world_handler.removeBlockFromWorld((int) to.x + i, (int) to.y + j);
 				
 				//Break the loops.
 				i = dig_width;
