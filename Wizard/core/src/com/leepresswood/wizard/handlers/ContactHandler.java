@@ -24,8 +24,7 @@ public class ContactHandler implements ContactListener
 			
 		}
 		
-		System.out.println(contact.getFixtureA().getBody().getUserData());
-		System.out.println(contact.getFixtureB().getBody().getUserData());
+		System.out.println("A = " + contact.getFixtureA().getBody().getUserData() + ", B = " + contact.getFixtureB().getBody().getUserData());
    }
 
 	@Override
@@ -36,8 +35,28 @@ public class ContactHandler implements ContactListener
 	@Override
    public void preSolve(Contact contact, Manifold oldManifold)
    {
+		Byte a = (Byte) contact.getFixtureA().getBody().getUserData();
+		Byte b = (Byte) contact.getFixtureB().getBody().getUserData();
 		//Determine if the contact is allowed.
-		contact.setEnabled(false);
+		//Ground.
+		if(a == GROUND || b == GROUND)
+			contact.setEnabled(b != SPELL_TRANSPARENT);
+		else if(b == GROUND)
+			contact.setEnabled(a != SPELL_TRANSPARENT);
+		
+		//Spells.
+		//Note: Ground has already been processed, so let's not worry about it.
+		else if(a == SPELL_TRANSPARENT || a == SPELL_SOLID)
+			contact.setEnabled(b != PLAYER && b != SPELL_TRANSPARENT && b != SPELL_SOLID);
+		else if(b == SPELL_TRANSPARENT || b == SPELL_SOLID)
+			contact.setEnabled(a != PLAYER && a != SPELL_TRANSPARENT && a != SPELL_SOLID);
+		
+		//Enemies.
+		//Note: Ground and spells processed, so we only need to set the player interaction.
+		else if(a == ENEMY)
+			contact.setEnabled(a == PLAYER);
+		else if(b == ENEMY)
+			contact.setEnabled(b == PLAYER);
    }
 
 	@Override

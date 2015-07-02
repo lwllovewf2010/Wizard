@@ -129,6 +129,7 @@ public class WorldHandler
 		//Add the physical properties to the body.
 		//Fixture fixture = body.createFixture(fixtureDef);
 		body.createFixture(fixture_definition);
+		body.setUserData(ContactHandler.GROUND);
 		
 		//Add the body to the array.
 		blocks[(int) y][(int) x] = body;

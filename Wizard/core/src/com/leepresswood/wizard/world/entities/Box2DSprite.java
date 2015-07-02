@@ -20,7 +20,7 @@ public class Box2DSprite
 		this.sprite = sprite;
 		
 		this.body = body;
-		//this.body.setUserData(e);
+		this.body.setUserData(contact);
    }
 	
 	/*public void setAnimation(TextureRegion reg, float delay)
