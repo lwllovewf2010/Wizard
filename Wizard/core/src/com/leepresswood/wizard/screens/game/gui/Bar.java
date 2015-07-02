@@ -30,7 +30,7 @@ public class Bar
 	public void setMaxValue(float amount)
 	{
 		//We need to update the current value as well as the max bar value. Set current to a percentage of the new value.
-		float new_percent = getHealthAsPercent();
+		float new_percent = getAsPercent();
 		max_bar_value = amount;
 		current_bar_value = new_percent * amount;
 	}
@@ -48,7 +48,7 @@ public class Bar
 	 * Do math to set the width of the bar after damage/healing.
 	 * @return Current health as a decimal percentage of its maximum value.
 	 */
-	private float getHealthAsPercent()
+	private float getAsPercent()
 	{
 		return current_bar_value / max_bar_value;
 	}
@@ -60,6 +60,6 @@ public class Bar
 	public void change(float amount)
 	{
 		current_bar_value = current_bar_value + amount > max_bar_value ? max_bar_value : current_bar_value + amount;
-		width =  MAX_BAR_WIDTH * getHealthAsPercent();
+		width =  MAX_BAR_WIDTH * getAsPercent();
 	}
 }

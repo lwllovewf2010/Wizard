@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.LivingEntity;
 import com.leepresswood.wizard.world.entities.living.player.Player;
 
@@ -28,12 +29,12 @@ public abstract class Enemy extends LivingEntity
 		
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
-		health = data.getFloat("health");
+		health_max = data.getFloat("health");
 		
 		System.out.println(
 				"\tKnockback Force: " + knockback_force
 				+ "\n\tKnockback Damage: " + knockback_damage
-				+ "\n\tHealth: " + health
+				+ "\n\tHealth: " + health_max
 		);
 	}
 
@@ -54,16 +55,19 @@ public abstract class Enemy extends LivingEntity
 	
 	@Override
 	protected void calcMovementY(float delta)
-	{//Ground enemies are affected by gravity.
-		//If we asked the enemy to jump, do a jump calculation.
+	{//If we asked the enemy to jump, do a jump calculation.
 		if(do_jump)
 		{
 			
 		}
-		
-		//Do a fall calculation by simulating gravity.
-		//speed_current_y -= delta * universe.screen.world.map_camera_handler.GRAVITY;
 	}
+	
+	@Override
+   public void doHit(GameEntity entity)
+   {//Damage the player.
+		if(entity instanceof Player)
+			((Player) entity).damage(knockback_damage);
+   }
 	
 	@Override
 	public void enemyCollision()
@@ -108,13 +112,13 @@ public abstract class Enemy extends LivingEntity
 	@Override
 	public void damage(float amount)
 	{
-		health -= DefenseCalculator.damageAfterDefense(amount, defense);
+		health_max -= DefenseCalculator.damageAfterDefense(amount, defense);
 	}
 	
 	@Override
 	public boolean getDeathStatus()
 	{
-		return health <= 0f;
+		return health_max <= 0f;
 	}
 	
 	@Override
@@ -131,16 +135,4 @@ public abstract class Enemy extends LivingEntity
 		for(Box2DSprite p : parts)
 			p.sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
 	}
-
-	/**
-	 * Enemy hit the passed player. Do any damage/effects.
-	 * @param player The player that was hit.
-	 */
-	public abstract void doHit(Player player);
-
-	/**
-	 * The passed player bumped into this enemy. If there is an effect on the player's body (like a fire cloak), hit the enemy with it.
-	 * @param player The player that was hit.
-	 */
-	public abstract void hitBy(Player player);
 }

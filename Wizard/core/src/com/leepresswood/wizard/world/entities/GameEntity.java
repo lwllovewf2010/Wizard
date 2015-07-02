@@ -26,10 +26,28 @@ public abstract class GameEntity
 	public abstract void update(float delta);
 	
 	/**
+	 * Calculate movement in the X direction.
+	 * @param delta Change in time.
+	 */
+	protected abstract void calcMovementX(float delta);
+	
+	/**
+	 * Calculate movement in the Y direction.
+	 * @param delta Change in time.
+	 */
+	protected abstract void calcMovementY(float delta);
+	
+	/**
 	 * Draw the sprites in the correct order.
 	 * @param batch The SpriteBatch for the sprites of this entity.
 	 */
 	public abstract void draw(SpriteBatch batch);
+	
+	/**
+	 * This entity collided with the passed entity. Do damage/effects.
+	 * @param entity The entity that was hit.
+	 */
+	public abstract void doHit(GameEntity entity);
 	
 	/**
 	 * Is this entity dead?
@@ -38,7 +56,7 @@ public abstract class GameEntity
 	public abstract boolean getDeathStatus();
 	
 	/**
-	 * Send entity into death animation. Also handle what happens afterward within this.
+	 * Send entity into death animation. Also handles what happens afterward.
 	 */
 	public abstract void die(float delta);
 }

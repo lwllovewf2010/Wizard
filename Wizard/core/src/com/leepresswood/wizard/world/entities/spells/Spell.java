@@ -2,21 +2,19 @@ package com.leepresswood.wizard.world.entities.spells;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.enums.MagicType;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
-import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 
 /**
  * The Spell class is a parent to the various spells in the game. All spells will have a cast-to position, 
  * a cast-from position, a mana cost, a delay, and an animation. 
  * @author Lee
  */
-public abstract class Spell
+public abstract class Spell extends GameEntity
 {
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "textures/";
@@ -44,7 +42,9 @@ public abstract class Spell
 	 * Use this constructor for the spell list on the GUI.
 	 */
 	public Spell(Texture t, float x, float y)
-	{
+	{//We don't need access to the universe in this constructor.
+		super(null);
+		
 		sprite = new Sprite(t);
 		sprite.setBounds(x, y, 50f, 50f);
 	}
@@ -58,7 +58,8 @@ public abstract class Spell
 	 */
 	public Spell(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		this.universe = universe;
+		super(universe);
+		
 		this.from = from;
 		this.to = to;
 		this.level = level;
@@ -101,8 +102,8 @@ public abstract class Spell
 	 */
 	public void update(float delta)
 	{
-		updatePosition(delta);
-		updateCollision();
+		calcMovementX(delta);
+		calcMovementY(delta);
 		
 		//If time is set, compare it. Above TIME_MAX -> make inactive. Note that a negative time alive will make endless as far as time is concerned.
 		if(time_alive_max > 0f)
@@ -113,34 +114,14 @@ public abstract class Spell
 		}
 	}
 	
-	/**
-	 * Update the spell's position over time. Also calls the collision collision detection method.
-	 * @param delta Change in time.
-	 */
-	protected abstract void updatePosition(float delta);
+	@Override
+	public boolean getDeathStatus()
+	{
+	   return false;
+	}
 	
-	/**
-	 * Checks the spell's collision with game objects. Deals with damage and visibility as well.
-	 */
-	protected abstract void updateCollision();
-	
-	/**
-	 * Draw the spell.
-	 * @param batch SpriteBatch for the sprite.
-	 */
-	public abstract void draw(SpriteBatch batch);
-
-	/**
-	 * This spell made contact with the passed enemy. Do any damage/effects that may be required.
-	 * @param enemy Enemy that was hit.
-	 */
-	public abstract void doHit(Enemy enemy);
-
-	/**
-	 * I don't know why this could be needed, but it's here just in case.
-	 * @param enemy Enemy that hit this spell.
-	 */
-	public void hitBy(Enemy enemy)
+	@Override
+	public void die(float delta)
 	{
 	}
 }

@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
-import com.leepresswood.wizard.world.entities.living.player.Player;
 
 public class Skeleton extends Enemy
 {
@@ -28,16 +27,5 @@ public class Skeleton extends Enemy
 	public void attack(Vector2 touch)
 	{
 		//Skeletons don't have any attacks. Their only damage happens by bumping into things.
-	}
-
-	@Override
-	public void doHit(Player player)
-	{
-		player.damage(knockback_damage);
-	}
-
-	@Override
-	public void hitBy(Player player)
-	{
 	}
 }

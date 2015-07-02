@@ -50,6 +50,6 @@ public class Explosion extends BoltSpell
 	@Override
 	public void doHit(Enemy enemy)
 	{
-		enemy.health -= damage;
+		enemy.health_max -= damage;
 	}
 }

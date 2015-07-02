@@ -37,7 +37,12 @@ public class Dig extends Spell
 	}
 
 	@Override
-	protected void updatePosition(float delta)
+	protected void calcMovementX(float delta)
+	{//Dig doesn't move.
+	}
+	
+	@Override
+	protected void calcMovementY(float delta)
 	{//Dig doesn't move.
 	}
 

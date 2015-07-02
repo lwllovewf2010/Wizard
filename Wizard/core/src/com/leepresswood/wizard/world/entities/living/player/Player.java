@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.LivingEntity;
 
 /**
@@ -21,7 +22,7 @@ public abstract class Player extends LivingEntity
 		super(universe, x, y, data);
 		
 		//Grab the health and mana.
-		health = data.getFloat("health");
+		health_max = data.getFloat("health");
 		mana = data.getFloat("mana");
 		
 		on_ground = true;
@@ -37,13 +38,6 @@ public abstract class Player extends LivingEntity
 		s.setBounds(x, y, width, height);
 		
 		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
-	}
-	
-	@Override
-	public void damage(float amount)
-	{
-		//Damage was done, but defense must be taken into consideration.
-		universe.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
 	}
 	
 	@Override
@@ -112,6 +106,11 @@ public abstract class Player extends LivingEntity
 				p.body.applyForceToCenter(0f, jump_start_speed * universe.map_camera_handler.pixel_size * universe.map_camera_handler.GRAVITY, true);			//Translating jump speed into newtons for box2d.
 		}
 	}
+	
+	@Override
+   public void doHit(GameEntity entity)
+   {//Player colliding with an entity will not do anything.
+   }
 	
 	@Override
 	public void enemyCollision()

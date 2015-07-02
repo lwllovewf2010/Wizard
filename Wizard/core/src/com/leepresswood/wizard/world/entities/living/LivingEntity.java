@@ -3,6 +3,7 @@ package com.leepresswood.wizard.world.entities.living;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -21,7 +22,7 @@ public abstract class LivingEntity extends GameEntity
 	//XML Data
 	public String name;
 	public Texture texture;
-	public float health;
+	public float health_max;
 	public float mana;
 	public float defense;
 	public float speed_max_x;
@@ -42,6 +43,7 @@ public abstract class LivingEntity extends GameEntity
 	public float knockback_angle;
 	
 	//Dying.
+	public float health_current;
 	public boolean is_dead;
 	public boolean dying;
 	
@@ -81,8 +83,18 @@ public abstract class LivingEntity extends GameEntity
 		//Nothing else needs to be done if we're dead.
 		if(!dying)
 		{
-			move(delta);
-			if(!is_invincible)
+			//Movement calculation.
+			calcMovementX(delta);
+			calcMovementY(delta);
+			
+			//Invincibility calculation.
+			if(is_invincible)
+			{
+				invincible_time_current += delta;
+				if(invincible_time_current >= invincible_time_max)
+					is_invincible = false;
+			}
+			else
 				enemyCollision();			
 			//blockCollision();
 		}
@@ -94,7 +106,7 @@ public abstract class LivingEntity extends GameEntity
 			die(delta);
 		}
 		
-		//Update parts.
+		//Update parts to the new position.
 		for(Box2DSprite p : parts)
 			p.update(delta);
 	}
@@ -104,26 +116,6 @@ public abstract class LivingEntity extends GameEntity
 	{//We will assume the parts are ordered correctly while drawing.
 		for(Box2DSprite p : parts)
 			p.draw(batch);
-	}
-	
-	/**
-	 * Determine left-right movement.
-	 */
-	private void move(float delta)
-	{
-		//Invincibility calculation.
-		if(is_invincible)
-		{
-			invincible_time_current += delta;
-			if(invincible_time_current >= invincible_time_max)
-			{
-				is_invincible = false;
-			}
-		}
-		
-		//Movement calculation.
-		calcMovementX(delta);
-		calcMovementY(delta);
 	}
 	
 	/**
@@ -165,25 +157,17 @@ public abstract class LivingEntity extends GameEntity
 	}
 	
 	/**
-	 * Damage was taken. Do the correct action.
+	 * Damage was taken. 
 	 * @param amount Amount of damage taken.
 	 */
-	public abstract void damage(float amount);
+	public void damage(float amount)
+	{
+		//Damage was done, but defense must be taken into consideration.
+		universe.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
+	}
 	
 	/**
 	 * Collision with enemies to this entity.
 	 */
 	public abstract void enemyCollision();
-	
-	/**
-	 * Calculate movement in the X direction.
-	 * @param delta Change in time.
-	 */
-	protected abstract void calcMovementX(float delta);
-	
-	/**
-	 * Calculate movement in the Y direction.
-	 * @param delta Change in time.
-	 */
-	protected abstract void calcMovementY(float delta);
 }

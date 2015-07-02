@@ -87,7 +87,7 @@ public class GUIGame
 		final float recovery_mana = 0.3f;
 		
 		//Set bars.
-		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health, recovery_health);
+		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health_max, recovery_health);
 		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana, recovery_mana);
 		
 		//Set colors.

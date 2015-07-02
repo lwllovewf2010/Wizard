@@ -119,6 +119,6 @@ public class Aether extends BoltSpell
 	@Override
 	public void doHit(Enemy enemy)
 	{
-		enemy.health -= damage;
+		enemy.health_max -= damage;
 	}
 }
