@@ -1,10 +1,12 @@
 package com.leepresswood.wizard.world.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
@@ -66,6 +68,14 @@ public class Aether extends BoltSpell
 	@Override
    protected void setBodies(float x, float y, float width, float height)
    {
+		parts = new Box2DSprite[1];
+		
+		Sprite s = new Sprite(texture);
+		s.setBounds(x, y, width, height);
+		
+		//We will only have one body here, but we don't want gravity affecting the body.
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+		parts[0].body.setGravityScale(0f);
    }
 
 	@Override
@@ -85,7 +95,7 @@ public class Aether extends BoltSpell
 				
 				for(Enemy e : universe.entity_handler.enemies)
 				{	
-					float length = new Vector2(sprite.getX() + sprite.getWidth() / 2f - (e.sprite.getX() + e.sprite.getWidth() / 2f), sprite.getY() + sprite.getHeight() / 2f - (e.sprite.getY() + e.sprite.getHeight() / 2f)).len2();
+					float length = new Vector2(sprite.getX() + sprite.getWidth() / 2f - (e.parts[0].sprite.getX() + e.parts[0].sprite.getWidth() / 2f), sprite.getY() + sprite.getHeight() / 2f - (e.parts[0].sprite.getY() + e.parts[0].sprite.getHeight() / 2f)).len2();
 					if(length < enemy_distance_min)
 					{
 						enemy_distance_min = length;
@@ -97,7 +107,7 @@ public class Aether extends BoltSpell
 				if(enemy_index != null)
 				{
 					//Get the angle between the spell's movement direction and the direction toward the closest enemy.
-					float d_angle =  new Vector2(enemy_index.sprite.getX() + enemy_index.sprite.getWidth() / 2f, enemy_index.sprite.getY() + enemy_index.sprite.getHeight() / 2f).sub(new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f)).angle() - angle;
+					float d_angle =  new Vector2(enemy_index.parts[0].sprite.getX() + enemy_index.parts[0].sprite.getWidth() / 2f, enemy_index.parts[0].sprite.getY() + enemy_index.parts[0].sprite.getHeight() / 2f).sub(new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f)).angle() - angle;
 					if(d_angle > 180f)
 						d_angle -= 360f;
 					else if(d_angle < -180f)
