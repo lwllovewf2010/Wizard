@@ -13,7 +13,7 @@ public class ContactHandler implements ContactListener
    {
 		if(contact.getFixtureA().getBody().getUserData() instanceof LivingEntity)
 		{			
-			((LivingEntity) contact.getFixtureA().getBody().getUserData()).enemyCollision();
+			//((LivingEntity) contact.getFixtureA().getBody().getUserData()).enemyCollision();
 		}
    }
 

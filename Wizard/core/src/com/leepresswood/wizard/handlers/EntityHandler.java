@@ -121,7 +121,7 @@ public class EntityHandler
 			Spell spell_type = universe.screen.gui.getActiveSpell();
 			
 			//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-			if(universe.screen.gui.canCast(spell_type))
+			if(player.mana_current >= spell_type.mana_cost)
 			{
 				//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
 				Spell spell = universe.entity_handler.factory_spell.getSpell(spell_type.getClass().getSimpleName().toUpperCase(), new Vector2(player.parts[0].sprite.getX() + player.parts[0].sprite.getWidth() / 2f, player.parts[0].sprite.getY() + player.parts[0].sprite.getHeight() / 2f), new Vector2(touch.x, touch.y), universe.level_handler.spell_levels[universe.screen.gui.spell_active]);
@@ -130,8 +130,8 @@ public class EntityHandler
 				if(spell != null)
 				{
 					//Create the selected spell.
-					universe.screen.gui.cast(spell);
-					universe.entity_handler.spells.add(spell);
+					player.mana_current -= spell.mana_cost;
+					spells.add(spell);
 				}
 			}
 		}

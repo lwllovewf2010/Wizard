@@ -266,23 +266,4 @@ public class GUIGame
 	{
 		return spells[spell_active];
 	}
-	
-	/**
-	 * Can the player cast the required spell?
-	 * @param s The spell to examine.
-	 * @return If it is possible to cast the spell.
-	 */
-	public boolean canCast(Spell s)
-	{
-		return bar_mana.current_bar_value >= s.mana_cost;
-	}
-	
-	/**
-	 * Subtract the mana cost from the mana bar.
-	 * @param s The spell whose mana we are examining.
-	 */
-	public void cast(Spell s)
-	{
-		bar_mana.change(-s.mana_cost);
-	}
 }

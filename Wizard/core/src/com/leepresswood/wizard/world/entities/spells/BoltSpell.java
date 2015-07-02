@@ -23,7 +23,7 @@ public abstract class BoltSpell extends Spell
 	
 	public BoltSpell(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(universe, from, to, data, level);
+		super(universe, from, to, from, data, level);
 		
 		//Read the data from the XML file.
 		damage = data.getFloat("damage");

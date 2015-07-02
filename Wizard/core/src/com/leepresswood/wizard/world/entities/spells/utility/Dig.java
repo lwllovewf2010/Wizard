@@ -22,7 +22,7 @@ public class Dig extends Spell
 	
 	public Dig(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(universe, from, to, data, level);
+		super(universe, from, to, to, data, level);
 		
 		dig_width = data.getChildrenByName("level").get(level).getInt("dig_width");
 		dig_height = data.getChildrenByName("level").get(level).getInt("dig_height");

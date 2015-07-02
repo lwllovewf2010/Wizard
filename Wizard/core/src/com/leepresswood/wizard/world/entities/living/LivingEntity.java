@@ -1,6 +1,5 @@
 package com.leepresswood.wizard.world.entities.living;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
@@ -13,13 +12,7 @@ import com.leepresswood.wizard.world.entities.GameEntity;
  */
 public abstract class LivingEntity extends GameEntity
 {	
-	//Sprite and texture data.
-	private final String TEXTURE_BASE = "textures/";
-	private final String TEXTURE_EXTENSION = ".png";
-	
 	//XML Data
-	public String name;
-	public Texture texture;
 	public float health_max;
 	public float defense;
 	public float speed_max_x;
@@ -50,10 +43,8 @@ public abstract class LivingEntity extends GameEntity
 	
 	public LivingEntity(Universe universe, float x, float y, Element data)
 	{
-		super(universe);
+		super(universe, x, y, data);
 		
-		name = data.get("name");
-		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
 		health_max = data.getFloat("health");
 		defense = data.getFloat("defense");
 		speed_max_x = data.getFloat("speed");
@@ -62,9 +53,6 @@ public abstract class LivingEntity extends GameEntity
 		jump_start_speed = data.getFloat("jump_speed");
 		
 		health_current = health_max;
-		
-		//Create a body for all this entity's parts.
-		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
 	}
 	
 	@Override

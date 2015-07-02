@@ -74,7 +74,7 @@ public class SpellFactory
 	{
 		Spells spell_type = Spells.valueOf(type);
 		Spell s = null;
-		
+
 		if(time_recharge.get(spell_type) >= time_max.get(spell_type))
 		{
 			time_recharge.put(spell_type, 0f);

@@ -56,9 +56,9 @@ public abstract class Spell extends GameEntity
 	 * @param to Click point.
 	 * @param data Spell data.
 	 */
-	public Spell(Universe universe, Vector2 from, Vector2 to, Element data, int level)
+	public Spell(Universe universe, Vector2 from, Vector2 to, Vector2 spawn, Element data, int level)
 	{
-		super(universe);
+		super(universe, spawn.x, spawn.y, data);
 		
 		this.from = from;
 		this.to = to;

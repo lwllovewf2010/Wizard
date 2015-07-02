@@ -108,6 +108,8 @@
 	<!--Utility-->
 	<dig>
 		<name>Dig</name>
+		<width>0.0</width>
+		<height>0.0</height>
 	    <texture>hold</texture>
 	    <type>Utility</type>
 	    <recharge>0.0</recharge>

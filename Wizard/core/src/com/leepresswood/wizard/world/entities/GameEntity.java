@@ -1,6 +1,8 @@
 package com.leepresswood.wizard.world.entities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
 
 /**
@@ -11,12 +13,32 @@ public abstract class GameEntity
 {
 	public Universe universe;
 	
+	//Sprite and texture data.
+	private final String TEXTURE_BASE = "textures/";
+	private final String TEXTURE_EXTENSION = ".png";
+	
+	//XML data.
+	public String name;
+	public Texture texture;
+	
 	//Sprites and bounds.
 	public Box2DSprite[] parts;
 	
 	public GameEntity(Universe universe)
+	{
+		this.universe = universe;
+	}
+	
+	public GameEntity(Universe universe, float x, float y, Element data)
    {
 		this.universe = universe;
+		
+		//Gather XML data.
+		name = data.get("name");
+		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		
+		//Create a body for all this entity's parts.
+		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
    }
 	
 	/**
