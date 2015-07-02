@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
@@ -48,7 +49,7 @@ public class Aether extends BoltSpell
 				new_to.rotate(-i * rotate_by);
 			else
 				new_to.rotate((i - split_count / 2) * rotate_by);
-			//System.out.println(new_to.angle());
+			
 			universe.entity_handler.spells.add(new Aether(universe, from, new Vector2(from).add(new_to), data, level, i));
 		}
 	}
@@ -61,11 +62,16 @@ public class Aether extends BoltSpell
 	{
 		super(world, from, to, data, level);
 	}
-	
+
 	@Override
-	protected void updatePosition(float delta)
-	{
-		/*//Determine how aether will move.
+   protected void setBodies(float x, float y, float width, float height)
+   {
+   }
+
+	@Override
+   protected void calcMovementX(float delta)
+   {//We'll do combined calculations here.
+		//Determine how aether will move.
 		if(follow)
 		{
 			recalculate_current += delta;
@@ -108,17 +114,16 @@ public class Aether extends BoltSpell
 		
 		//Move in the direction and reset the bounds.
 		sprite.translate(speed_x * delta, speed_y * delta);
-		bounds[0] = sprite.getBoundingRectangle();*/
-	}
+		bounds[0] = sprite.getBoundingRectangle();
+   }
 
 	@Override
-	protected void updateCollision()
-	{//Aether can hit multiple targets and go through walls, so no real collision is necessary. Time will make it disappear.
-	}
+   protected void calcMovementY(float delta)
+   {//Y calculation has already been done.
+   }
 
 	@Override
-	public void doHit(Enemy enemy)
-	{
-		enemy.health_max -= damage;
-	}
+   public void doHit(GameEntity entity)
+   {
+   }
 }

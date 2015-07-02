@@ -12,9 +12,7 @@ import com.leepresswood.wizard.world.entities.GameEntity;
  * Parent class to both the players and the enemies. 
  */
 public abstract class LivingEntity extends GameEntity
-{
-	protected Universe universe;
-	
+{	
 	//Sprite and texture data.
 	private final String TEXTURE_BASE = "textures/";
 	private final String TEXTURE_EXTENSION = ".png";
@@ -69,16 +67,6 @@ public abstract class LivingEntity extends GameEntity
 		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
 	}
 	
-	/**
-	 * Set sprites to their initial values.
-	 * @param texture
-	 * @param x
-	 * @param y
-	 * @param width
-	 * @param height
-	 */
-	protected abstract void setBodies(float x, float y, float width, float height);
-	
 	@Override
 	public void update(float delta)
 	{
@@ -96,9 +84,9 @@ public abstract class LivingEntity extends GameEntity
 				if(invincible_time_current >= invincible_time_max)
 					is_invincible = false;
 			}
-			else
-				enemyCollision();			
-			//blockCollision();
+			//else
+			//	enemyCollision();			
+			blockCollision();
 		}
 		
 		//Die in accordance with the type of enemy this is.
@@ -164,12 +152,12 @@ public abstract class LivingEntity extends GameEntity
 	 */
 	public void damage(float amount)
 	{//Damage was done, but defense must be taken into consideration.
-		universe.screen.gui.bar_health.change(-DefenseCalculator.damageAfterDefense(amount, defense));
 		health_current -= DefenseCalculator.damageAfterDefense(amount, defense);
 	}
 	
-	/**
-	 * Collision with enemies to this entity.
-	 */
-	public abstract void enemyCollision();
+	@Override
+	public boolean getDeathStatus()
+	{
+		return health_current <= 0f;
+	}
 }

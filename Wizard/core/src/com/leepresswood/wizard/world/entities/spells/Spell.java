@@ -77,17 +77,6 @@ public abstract class Spell extends GameEntity
 		active = true;		
 		sprite = new Sprite(texture);
 		bounds = makeSprites();
-		
-		System.out.println(
-			"Spell:\n\tName: " + name
-			+ "\n\tLevel: " + (level + 1)
-			+ "\n\tType: " + type
-			+ "\n\tMana Cost: " + mana_cost 
-			+ "\n\tRecharge: " + recharge 
-			+ "\n\tFrom: " + from 
-			+ "\n\tTo: " + to
-			+ "\n\tTime Alive: " + time_alive_max
-		);
 	}
 	
 	/**

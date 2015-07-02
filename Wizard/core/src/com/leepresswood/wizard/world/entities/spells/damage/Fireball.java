@@ -27,11 +27,6 @@ public class Fireball extends BoltSpell
 		impulse = data.getFloat("impulse");
 		speed_decay = data.getFloat("speed_decay");
 		explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
-		
-		System.out.println(
-			"\tImpulse: " + impulse
-			+ "\n\tSpeed Decay: " + speed_decay
-		);
 	}
 
 	@Override

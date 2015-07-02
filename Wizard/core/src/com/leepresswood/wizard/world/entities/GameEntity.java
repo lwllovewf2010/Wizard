@@ -18,6 +18,15 @@ public abstract class GameEntity
    {
 		this.universe = universe;
    }
+	
+	/**
+	 * Set sprites to their initial values.
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
+	protected abstract void setBodies(float x, float y, float width, float height);
 
 	/**
 	 * Update timing and movement of sprites.

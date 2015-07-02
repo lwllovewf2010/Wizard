@@ -46,18 +46,18 @@ public abstract class Player extends LivingEntity
 	protected void blockCollision()
 	{
 		super.blockCollision();
-		
-		/*//On top of the normal block collision, we want our player to be stuck within the bounds of the stage.
-		if(sprite.getX() < 0f)
+
+		//On top of the normal block collision, we want our player to be stuck within the bounds of the universe..
+		if(parts[0].body.getTransform().getPosition().x - parts[0].body.getFixtureList().get(0).getShape().getRadius() < 0f)
 		{
-			sprite.setX(0f);
 			speed_current_x = 0f;
+			parts[0].body.setTransform(parts[0].body.getFixtureList().get(0).getShape().getRadius(), parts[0].body.getTransform().getPosition().y, 0f);
 		}
-		else if(sprite.getX() + sprite.getWidth() > universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL)
+		else if(parts[0].body.getTransform().getPosition().x + parts[0].body.getFixtureList().get(0).getShape().getRadius() > universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL)
 		{
-			sprite.setX(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - sprite.getWidth());
 			speed_current_x = 0f;
-		}*/
+			parts[0].body.setTransform(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - (parts[0].body.getFixtureList().get(0).getShape().getRadius()), parts[0].body.getTransform().getPosition().y, 0f);
+		}
 	}
 
 	protected void calcMovementX(float delta)
@@ -114,7 +114,7 @@ public abstract class Player extends LivingEntity
    {//Player colliding with an entity will not do anything.
    }
 	
-	@Override
+	/*@Override
 	public void enemyCollision()
 	{
 		/*for(Enemy e : universe.entity_handler.enemies)
@@ -145,14 +145,8 @@ public abstract class Player extends LivingEntity
 					}
 				}
 			}
-		}*/
-	}
-
-	@Override
-	public boolean getDeathStatus()
-	{
-		return health_current <= 0f;
-	}
+		}
+	}*/
 	
 	@Override
 	public void die(float delta)
