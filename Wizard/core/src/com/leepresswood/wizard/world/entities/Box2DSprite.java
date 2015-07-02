@@ -14,13 +14,13 @@ public class Box2DSprite
 	public Sprite sprite;
 	public Body body;
 	
-	public Box2DSprite(Sprite sprite, Body body, GameEntity e)
+	public Box2DSprite(Sprite sprite, Body body, GameEntity e, byte contact)
    {
 		//animation = new Animation();
 		this.sprite = sprite;
 		
 		this.body = body;
-		this.body.setUserData(e);
+		//this.body.setUserData(e);
    }
 	
 	/*public void setAnimation(TextureRegion reg, float delay)

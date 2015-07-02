@@ -5,6 +5,8 @@
 	<aether>
 		<name>Aether</name>
 		<texture>hold</texture>
+		<width>1.5</width>
+		<height>1.5</height>
 		<type>Void</type>
 		<recharge>0.5</recharge>
 		<time_alive>3.0</time_alive>
@@ -35,6 +37,8 @@
 	<fireball>
 	    <name>Fireball</name>
 	    <texture>hold</texture>
+		<width>1.5</width>
+		<height>1.5</height>
 	    <type>Fire</type>
 	    <recharge>0.5</recharge>
 	    <time_alive>5.0</time_alive>
@@ -52,6 +56,8 @@
 			<explosion>
 				<name>Explosion</name>
 			    <texture>hold</texture>
+				<width>2.0</width>
+				<height>2.0</height>
 			    <type>Fire</type>
 			    <cost>0.0</cost>
 			    <recharge>0.0</recharge>
@@ -70,6 +76,8 @@
 			<explosion>
 				<name>Explosion</name>
 			    <texture>hold</texture>
+				<width>3.0</width>
+				<height>3.0</height>
 			    <type>Fire</type>
 			    <cost>0.0</cost>
 			    <recharge>0.0</recharge>
@@ -88,6 +96,8 @@
 			<explosion>
 				<name>Explosion</name>
 			    <texture>hold</texture>
+				<width>4.0</width>
+				<height>4.0</height>
 			    <type>Fire</type>
 			    <cost>0.0</cost>
 			    <recharge>0.0</recharge>
@@ -108,9 +118,9 @@
 	<!--Utility-->
 	<dig>
 		<name>Dig</name>
+	    <texture>hold</texture>
 		<width>0.0</width>
 		<height>0.0</height>
-	    <texture>hold</texture>
 	    <type>Utility</type>
 	    <recharge>0.0</recharge>
 	    <time_alive>0.0</time_alive>

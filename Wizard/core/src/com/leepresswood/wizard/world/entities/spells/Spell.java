@@ -79,6 +79,9 @@ public abstract class Spell extends GameEntity
 		calcMovementX(delta);
 		calcMovementY(delta);
 		
+		for(Box2DSprite s : parts)
+			s.update(delta);
+		
 		//If time is set, compare it. Above TIME_MAX -> make inactive. Note that a negative time alive will make endless as far as time is concerned.
 		if(time_alive_max > 0f)
 		{

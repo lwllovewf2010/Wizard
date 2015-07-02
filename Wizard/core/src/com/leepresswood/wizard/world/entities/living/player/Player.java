@@ -2,6 +2,7 @@ package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -12,7 +13,6 @@ import com.leepresswood.wizard.world.entities.living.LivingEntity;
  * This includes health, power, defense, speed, jump height, etc.
  * Body parts included in extended classes to allow different shapes of classes.
  * @author Lee
- *
  */
 public abstract class Player extends LivingEntity
 {
@@ -39,7 +39,7 @@ public abstract class Player extends LivingEntity
 		Sprite s = new Sprite(texture);
 		s.setBounds(x, y, width, height);
 		
-		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.PLAYER);
 	}
 	
 	@Override

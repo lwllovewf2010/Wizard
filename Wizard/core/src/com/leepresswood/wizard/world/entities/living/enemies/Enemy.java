@@ -69,9 +69,9 @@ public abstract class Enemy extends LivingEntity
 			((Player) entity).damage(knockback_damage);
    }
 	
-	@Override
-	public void enemyCollision()
-	{
+	////@Override
+	//public void enemyCollision()
+	//{
 		/*for(Spell s : universe.entity_handler.spells)
 		{
 			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
@@ -101,7 +101,7 @@ public abstract class Enemy extends LivingEntity
 				}
 			}
 		}*/
-	}
+	//}
 	
 	/**
 	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.

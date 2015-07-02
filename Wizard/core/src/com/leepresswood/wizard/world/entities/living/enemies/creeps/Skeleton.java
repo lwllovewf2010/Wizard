@@ -3,6 +3,7 @@ package com.leepresswood.wizard.world.entities.living.enemies.creeps;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
@@ -20,7 +21,7 @@ public class Skeleton extends Enemy
 		//For now, we'll just have one body part.
 		parts = new Box2DSprite[1];
 		
-		parts[0] = new Box2DSprite(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+		parts[0] = new Box2DSprite(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.ENEMY);
 	}
 	
 	@Override

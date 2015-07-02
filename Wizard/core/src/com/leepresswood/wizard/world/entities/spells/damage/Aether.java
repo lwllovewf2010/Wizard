@@ -2,10 +2,10 @@ package com.leepresswood.wizard.world.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -75,14 +75,13 @@ public class Aether extends BoltSpell
 		s.setBounds(x, y, width, height);
 		
 		//We will only have one body here, but we don't want gravity affecting the body.
-		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.SPELL_TRANSPARENT);
 		parts[0].body.setGravityScale(0f);
    }
 
 	@Override
    protected void calcMovementX(float delta)
-   {//We'll do combined calculations here.
-		//Determine how aether will move.
+   {//Determine how aether will move.
 		if(follow)
 		{
 			recalculate_current += delta;
@@ -122,6 +121,8 @@ public class Aether extends BoltSpell
 				}
 			}
 		}
+		
+		parts[0].body.setLinearVelocity(speed_x, speed_y);
    }
 
 	@Override
