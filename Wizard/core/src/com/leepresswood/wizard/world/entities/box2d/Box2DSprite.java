@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.bodyparts;
+package com.leepresswood.wizard.world.entities.box2d;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,18 +8,19 @@ import com.badlogic.gdx.physics.box2d.Body;
  * A body part. Contains a sprite and a box2d body.
  * @author Lee
  */
-public class BodyPart
+public class Box2DSprite
 {
 	//private Animation animation;
 	public Sprite sprite;
 	public Body body;
 	
-	public BodyPart(Sprite sprite, Body body)
+	public Box2DSprite(Sprite sprite, Body body, Object o)
    {
 		//animation = new Animation();
-		
 		this.sprite = sprite;
+		
 		this.body = body;
+		this.body.setUserData(o);
    }
 	
 	/*public void setAnimation(TextureRegion reg, float delay)

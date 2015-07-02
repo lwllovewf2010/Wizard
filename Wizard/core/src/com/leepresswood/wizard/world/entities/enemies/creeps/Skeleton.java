@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
+import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
 import com.leepresswood.wizard.world.entities.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.player.Player;
 
@@ -19,9 +19,9 @@ public class Skeleton extends Enemy
 	protected void setBodies(float x, float y, float width, float height)
 	{
 		//For now, we'll just have one body part.
-		body_parts = new BodyPart[1];
+		body_parts = new Box2DSprite[1];
 		
-		body_parts[0] = new BodyPart(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false));
+		body_parts[0] = new Box2DSprite(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
 	}
 	
 	@Override

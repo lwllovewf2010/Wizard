@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
-import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
+import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
 import com.leepresswood.wizard.world.entities.player.Player;
 
 /**
@@ -66,7 +66,7 @@ public abstract class Enemy extends GameEntity
 	}
 	
 	@Override
-	protected void enemyCollision()
+	public void enemyCollision()
 	{
 		/*for(Spell s : universe.entity_handler.spells)
 		{
@@ -128,7 +128,7 @@ public abstract class Enemy extends GameEntity
 			die_time_current = DIE_TIME_MAX;
 		}
 
-		for(BodyPart p : body_parts)
+		for(Box2DSprite p : body_parts)
 			p.sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
 	}
 

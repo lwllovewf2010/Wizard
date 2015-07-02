@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
-import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
+import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
 
 /**
  * Class should include all attributes every player will have.
@@ -31,12 +31,12 @@ public abstract class Player extends GameEntity
 	protected void setBodies(float x, float y, float width, float height)
 	{
 		//For now, we'll just have one body part.
-		body_parts = new BodyPart[1];
+		body_parts = new Box2DSprite[1];
 		
 		Sprite s = new Sprite(texture);
 		s.setBounds(x, y, width, height);
 		
-		body_parts[0] = new BodyPart(s, universe.world_handler.createDynamicEntity(x, y, width, height, false));
+		body_parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this);
 	}
 	
 	@Override
@@ -97,7 +97,7 @@ public abstract class Player extends GameEntity
 				speed_current_x = speed_max_x;
 		}
 		
-		for(BodyPart p : body_parts)
+		for(Box2DSprite p : body_parts)
 			p.body.setLinearVelocity(speed_current_x, p.body.getLinearVelocity().y);
 	}
 	
@@ -108,13 +108,13 @@ public abstract class Player extends GameEntity
 		{
 			//Stop further jumping until we're on the ground.
 			on_ground = false;
-			for(BodyPart p : body_parts)
+			for(Box2DSprite p : body_parts)
 				p.body.applyForceToCenter(0f, jump_start_speed * universe.map_camera_handler.pixel_size * universe.map_camera_handler.GRAVITY, true);			//Translating jump speed into newtons for box2d.
 		}
 	}
 	
 	@Override
-	protected void enemyCollision()
+	public void enemyCollision()
 	{
 		/*for(Enemy e : universe.entity_handler.enemies)
 		{

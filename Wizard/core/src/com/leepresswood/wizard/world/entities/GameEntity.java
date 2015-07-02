@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.bodyparts.BodyPart;
+import com.leepresswood.wizard.world.entities.box2d.Box2DSprite;
 
 /**
  * Parent class to both the players and the enemies. 
@@ -49,7 +49,7 @@ public abstract class GameEntity
 	public boolean on_ground;
 	
 	//Sprites and bounds.
-	public BodyPart[] body_parts;
+	public Box2DSprite[] body_parts;
 	
 	public GameEntity(Universe universe, float x, float y, Element data)
 	{
@@ -99,7 +99,7 @@ public abstract class GameEntity
 			die(delta);
 		}
 		
-		for(BodyPart p : body_parts)
+		for(Box2DSprite p : body_parts)
 			p.update(delta);
 	}
 	
@@ -109,7 +109,7 @@ public abstract class GameEntity
 	 */
 	public void draw(SpriteBatch batch)
 	{//We will assume the body parts are ordered correctly while drawing.
-		for(BodyPart p : body_parts)
+		for(Box2DSprite p : body_parts)
 			p.draw(batch);
 	}
 	
@@ -180,7 +180,7 @@ public abstract class GameEntity
 	/**
 	 * Collision with enemies to this entity.
 	 */
-	protected abstract void enemyCollision();
+	public abstract void enemyCollision();
 	
 	/**
 	 * Calculate movement in the X direction.
