@@ -25,8 +25,6 @@ public class GameWizard extends Game
 	 * 
 	 * Version 0.9 Alpha Goals:
 	 * ========================
-	 * Better collision detection
-	 * Cleaner entity creation strings
 	 * Leveling of attributes
 	 * On-screen text indicators
 	 * Better GUI

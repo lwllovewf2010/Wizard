@@ -30,6 +30,10 @@ public class Fireball extends BoltSpell
 		impulse = data.getFloat("impulse");
 		speed_decay = data.getFloat("speed_decay");
 		explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
+		
+		//Set impulse and the initial linear velocity. Gravity will do the rest.
+		parts[0].body.getFixtureList().get(0).setRestitution(impulse);
+		parts[0].body.setLinearVelocity(speed_x, speed_y);
 	}
 	
 	/*@Override
@@ -97,9 +101,8 @@ public class Fireball extends BoltSpell
 		Sprite s = new Sprite(texture);
 		s.setBounds(x, y, width, height);
 		
-		//We will only have one body here, but we don't want gravity affecting the body.
+		//We will only have one body here.
 		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.SPELL_SOLID);
-		parts[0].body.getFixtureList().get(0).setRestitution(impulse);
    }
 
 	@Override
