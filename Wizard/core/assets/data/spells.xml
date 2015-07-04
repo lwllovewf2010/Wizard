@@ -48,7 +48,6 @@
 	    <knockback>10.0</knockback>
 	     
 		<impulse>0.75</impulse>
-		<speed_decay>0.95</speed_decay>
 		
 		<level>
 			<value>1</value>
