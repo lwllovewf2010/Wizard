@@ -3,6 +3,7 @@ package com.leepresswood.wizard.world.entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.leepresswood.wizard.world.B2DSPackage;
 
 /**
  * Contains both a sprite and a box2d body.
@@ -20,7 +21,7 @@ public class Box2DSprite
 		this.sprite = sprite;
 		
 		this.body = body;
-		this.body.setUserData(contact);
+		this.body.setUserData(new B2DSPackage(e, contact));
    }
 	
 	/*public void setAnimation(TextureRegion reg, float delay)

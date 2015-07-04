@@ -8,7 +8,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.leepresswood.wizard.world.B2DSPackage;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
 
 /**
  * Handles the physics of the world.
@@ -129,7 +131,7 @@ public class WorldHandler
 		//Add the physical properties to the body.
 		//Fixture fixture = body.createFixture(fixtureDef);
 		body.createFixture(fixture_definition);
-		body.setUserData(ContactHandler.GROUND);
+		body.setUserData(new B2DSPackage(null, ContactHandler.GROUND));
 		
 		//Add the body to the array.
 		blocks[(int) y][(int) x] = body;

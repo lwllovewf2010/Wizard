@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.B2DSPackage;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class ContactHandler implements ContactListener
@@ -15,16 +15,19 @@ public class ContactHandler implements ContactListener
 	public static final byte ENEMY = 4;
 	public static final byte PLAYER = 5;
 	
+	//Contact data.
+	private byte a, b;
+	
 	@Override
    public void beginContact(Contact contact)
    {
-		if(contact.getFixtureA().getBody().getUserData() instanceof Spell)
+		if(((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity instanceof Spell)
 		{
-			((Spell) contact.getFixtureA().getBody().getUserData()).doHit((GameEntity) contact.getFixtureB().getBody().getUserData());
+			((Spell) ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity).doHit(((B2DSPackage) contact.getFixtureB().getBody().getUserData()).entity);
 			
 		}
 		
-		System.out.println("A = " + contact.getFixtureA().getBody().getUserData() + ", B = " + contact.getFixtureB().getBody().getUserData());
+		//System.out.println("A = " + contact.getFixtureA().getBody().getUserData() + ", B = " + contact.getFixtureB().getBody().getUserData());
    }
 
 	@Override
@@ -35,8 +38,9 @@ public class ContactHandler implements ContactListener
 	@Override
    public void preSolve(Contact contact, Manifold oldManifold)
    {
-		Byte a = (Byte) contact.getFixtureA().getBody().getUserData();
-		Byte b = (Byte) contact.getFixtureB().getBody().getUserData();
+		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
+		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
+		
 		//Determine if the contact is allowed.
 		//Ground.
 		if(a == GROUND || b == GROUND)
