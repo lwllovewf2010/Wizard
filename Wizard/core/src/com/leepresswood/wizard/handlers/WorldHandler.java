@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.leepresswood.wizard.world.B2DSPackage;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.Box2DSprite;
 
 /**
  * Handles the physics of the world.
@@ -92,7 +91,6 @@ public class WorldHandler
 		fixture_definition.friction = 0f;
 		
 		//Add the physical properties to the body.
-		//Fixture fixture = body.createFixture(fixtureDef);
 		body.createFixture(fixture_definition);
 		
 		//Shape should be disposed.
@@ -129,7 +127,6 @@ public class WorldHandler
 		fixture_definition.friction = 0f;
 		
 		//Add the physical properties to the body.
-		//Fixture fixture = body.createFixture(fixtureDef);
 		body.createFixture(fixture_definition);
 		body.setUserData(new B2DSPackage(null, ContactHandler.GROUND));
 		

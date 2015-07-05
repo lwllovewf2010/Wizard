@@ -5,6 +5,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.leepresswood.wizard.world.B2DSPackage;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
+import com.leepresswood.wizard.world.entities.living.player.Player;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class ContactHandler implements ContactListener
@@ -21,10 +23,20 @@ public class ContactHandler implements ContactListener
 	@Override
    public void beginContact(Contact contact)
    {
-		if(((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity instanceof Spell)
+		if(a == GROUND || b == GROUND)
+		{//Nothing needs to happen to the ground for now.
+		}
+		if(a == SPELL_SOLID || a == SPELL_TRANSPARENT || b == SPELL_SOLID || b == SPELL_TRANSPARENT)
 		{
 			((Spell) ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity).doHit(((B2DSPackage) contact.getFixtureB().getBody().getUserData()).entity);
-			
+		}
+		if(a == ENEMY || b == ENEMY)
+		{
+			((Enemy) ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity).doHit(((B2DSPackage) contact.getFixtureB().getBody().getUserData()).entity);
+		}
+		if(a == PLAYER || b == PLAYER)
+		{
+			((Player) ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity).doHit(((B2DSPackage) contact.getFixtureB().getBody().getUserData()).entity);
 		}
 		
 		//System.out.println("A = " + contact.getFixtureA().getBody().getUserData() + ", B = " + contact.getFixtureB().getBody().getUserData());

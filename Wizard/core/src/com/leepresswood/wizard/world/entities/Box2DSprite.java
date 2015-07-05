@@ -19,8 +19,8 @@ public class Box2DSprite
    {
 		//animation = new Animation();
 		this.sprite = sprite;
-		this.body = body;
 		
+		this.body = body;
 		this.body.setUserData(new B2DSPackage(e, contact));
    }
 	

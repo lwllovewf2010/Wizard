@@ -24,6 +24,10 @@ public abstract class GameEntity
 	//Sprites and bounds.
 	public Box2DSprite[] parts;
 	
+	/**
+	 * A general version that will be used as the spell icons for the GUI.
+	 * @param universe Reference to the universe.
+	 */
 	public GameEntity(Universe universe)
 	{
 		this.universe = universe;
