@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.world;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.leepresswood.wizard.world.entities.GameEntity;
 
 /**
@@ -8,12 +9,19 @@ import com.leepresswood.wizard.world.entities.GameEntity;
  */
 public class B2DSPackage
 {
+	public Body body;
 	public GameEntity entity;
 	public byte contact;
 	
-	public B2DSPackage(GameEntity e, byte contact)
+	public B2DSPackage(GameEntity entity, byte contact)
 	{
-		this.entity = e;
+		this.entity = entity;
+		this.contact = contact;
+	}
+	
+	public B2DSPackage(Body body, byte contact)
+	{
+		this.body = body;
 		this.contact = contact;
 	}
 }

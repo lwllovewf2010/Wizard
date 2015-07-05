@@ -128,7 +128,7 @@ public class WorldHandler
 		
 		//Add the physical properties to the body.
 		body.createFixture(fixture_definition);
-		body.setUserData(new B2DSPackage(null, ContactHandler.GROUND));
+		body.setUserData(new B2DSPackage(body, ContactHandler.GROUND));
 		
 		//Add the body to the array.
 		blocks[(int) y][(int) x] = body;

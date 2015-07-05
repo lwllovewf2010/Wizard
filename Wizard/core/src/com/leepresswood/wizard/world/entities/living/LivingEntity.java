@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.world.entities.living;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
@@ -132,6 +133,30 @@ public abstract class LivingEntity extends GameEntity
 			sprite.setX((int) (sprite.getX()));
 			speed_current_x = 0f;
 		}*/
+	}
+	
+	@Override
+	public void doHit(GameEntity entity)
+	{//We want our living entities to be stopped by the ground. This allows them to jump again upon hitting the ground's top.
+		
+	}
+	
+	/**
+	 * Overloading the doHit function for entity-ground collisions.
+	 * @param body
+	 */
+	public void doHit(Body body)
+	{
+		/**
+		 * Logic:
+		 * This is being called because there was a collision. There's no debate there.
+		 * We're trying to determine the side of the collision. Hitting from this entity's
+		 * bottom will turn on jumping once more.
+		 * Bottom-touching will be determined by the Y-positioning of the bodies. If this
+		 * entity's Y-position is higher than the Y-position of the collided body, we can jump again.
+		 */
+		if(parts[0].body.getPosition().y >= body.getPosition().y)
+			on_ground = true;
 	}
 	
 	/**
