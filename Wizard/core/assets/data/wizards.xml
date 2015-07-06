@@ -8,9 +8,9 @@
 	    <health>10.0</health>
 	    <mana>100.0</mana>
 	    <defense>1.0</defense>
-	    <jump_speed>5.0</jump_speed>
-	    <speed>8.0</speed>
-	    <acceleration>5.0</acceleration>
+	    <jump_speed>7.0</jump_speed>
+	    <speed>13.0</speed>
+	    <acceleration>7.0</acceleration>
 	    <deceleration>20.0</deceleration>
 	    <spell_list>
 	    	<spell>dig</spell>
