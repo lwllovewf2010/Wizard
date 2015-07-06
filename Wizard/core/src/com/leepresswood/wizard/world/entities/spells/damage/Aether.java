@@ -80,7 +80,7 @@ public class Aether extends BoltSpell
    }
 
 	@Override
-   protected void calcMovementX(float delta)
+   protected void calcMovement(float delta)
    {//Determine how aether will move.
 		if(follow)
 		{
@@ -123,11 +123,6 @@ public class Aether extends BoltSpell
 		}
 		
 		parts[0].body.setLinearVelocity(speed_x, speed_y);
-   }
-
-	@Override
-   protected void calcMovementY(float delta)
-   {//Y calculation has already been done.
    }
 
 	@Override

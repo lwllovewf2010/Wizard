@@ -21,7 +21,7 @@ public class ContactHandler implements ContactListener
 	
 	@Override
    public void beginContact(Contact contact)
-   {
+   {//This is called before the physical contact has happened. Set the 
 		startContactProcessing(contact);
 		if(contact.isEnabled())
 			parseContact(contact);

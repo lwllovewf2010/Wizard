@@ -30,16 +30,10 @@ public abstract class Enemy extends LivingEntity
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
 		health_max = data.getFloat("health");
-		
-		System.out.println(
-				"\tKnockback Force: " + knockback_force
-				+ "\n\tKnockback Damage: " + knockback_damage
-				+ "\n\tHealth: " + health_max
-		);
 	}
 
 	@Override
-	protected void calcMovementX(float delta)
+	protected void calcMovement(float delta)
 	{//General AI tells the enemies to move toward the center.
 		/*if(sprite.getX() > universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x * delta;
@@ -51,15 +45,6 @@ public abstract class Enemy extends LivingEntity
 		//Limit speed by max.
 		if(Math.abs(speed_current_x) > speed_max_x)
 			speed_current_x = speed_max_x * Math.signum(speed_current_x);*/
-	}
-	
-	@Override
-	protected void calcMovementY(float delta)
-	{//If we asked the enemy to jump, do a jump calculation.
-		if(do_jump)
-		{
-			
-		}
 	}
 	
 	@Override

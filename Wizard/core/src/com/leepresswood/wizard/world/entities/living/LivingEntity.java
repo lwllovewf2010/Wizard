@@ -63,8 +63,7 @@ public abstract class LivingEntity extends GameEntity
 		if(!dying)
 		{
 			//Movement calculation.
-			calcMovementX(delta);
-			calcMovementY(delta);
+			calcMovement(delta);
 			
 			//Invincibility calculation.
 			if(is_invincible)
@@ -74,8 +73,7 @@ public abstract class LivingEntity extends GameEntity
 					is_invincible = false;
 			}
 			//else
-			//	enemyCollision();			
-			blockCollision();
+			//	enemyCollision();
 		}
 		
 		//Die in accordance with the type of enemy this is.
@@ -97,47 +95,9 @@ public abstract class LivingEntity extends GameEntity
 			p.draw(batch);
 	}
 	
-	/**
-	 * Collision with the game world.
-	 */
-	protected void blockCollision()
-	{
-		/*//Bottom
-		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
-		{
-			sprite.setY((int) (sprite.getY() + 1));
-			speed_current_y = 0f;
-			jump_time_current = 0f;
-			
-			if(jumping)
-				jump_stop_hop = true;
-		}
-		
-		//Top
-		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			sprite.setY((int) (sprite.getY()));
-			speed_current_y = 0f;
-		}
-		
-		//Left
-		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			sprite.setX((int) (sprite.getX() + 1));
-			speed_current_x = 0f;
-		}
-		
-		//Right
-		if(universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			sprite.setX((int) (sprite.getX()));
-			speed_current_x = 0f;
-		}*/
-	}
-	
 	@Override
 	public void doHit(GameEntity entity)
-	{//We want our living entities to be stopped by the ground. This allows them to jump again upon hitting the ground's top.
+	{
 		
 	}
 	

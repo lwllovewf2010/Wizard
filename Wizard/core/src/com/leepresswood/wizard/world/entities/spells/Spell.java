@@ -76,8 +76,7 @@ public abstract class Spell extends GameEntity
 	 */
 	public void update(float delta)
 	{
-		calcMovementX(delta);
-		calcMovementY(delta);
+		calcMovement(delta);
 		
 		for(Box2DSprite s : parts)
 			s.update(delta);

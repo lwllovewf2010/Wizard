@@ -104,12 +104,7 @@ public class Fireball extends BoltSpell
    }
 
 	@Override
-   protected void calcMovementX(float delta)
-   {
-   }
-
-	@Override
-   protected void calcMovementY(float delta)
+   protected void calcMovement(float delta)
    {
    }
 

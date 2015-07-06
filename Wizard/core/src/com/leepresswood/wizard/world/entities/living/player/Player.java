@@ -41,12 +41,12 @@ public abstract class Player extends LivingEntity
 		
 		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.PLAYER);
 	}
-	
-	@Override
-	protected void blockCollision()
-	{
-		super.blockCollision();
 
+	@Override
+	public void update(float delta)
+	{
+		super.update(delta);
+   
 		//On top of the normal block collision, we want our player to be stuck within the bounds of the universe..
 		if(parts[0].body.getTransform().getPosition().x - parts[0].body.getFixtureList().get(0).getShape().getRadius() < 0f)
 		{
@@ -59,8 +59,8 @@ public abstract class Player extends LivingEntity
 			parts[0].body.setTransform(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - (parts[0].body.getFixtureList().get(0).getShape().getRadius()), parts[0].body.getTransform().getPosition().y, 0f);
 		}
 	}
-
-	protected void calcMovementX(float delta)
+	
+	protected void calcMovement(float delta)
 	{
 		//Deceleration check. Decelerate if not moving, if both left and right are pressed at the same time, or if moving in one direction but pressing another.
 		/* if(!moving_right && !moving_left || moving_right && moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))
@@ -93,20 +93,18 @@ public abstract class Player extends LivingEntity
 				speed_current_x = speed_max_x;
 		}
 		
-		for(Box2DSprite p : parts)
-			p.body.setLinearVelocity(speed_current_x, p.body.getLinearVelocity().y);
-	}
-	
-	protected void calcMovementY(float delta)
-	{
+		//Y
 		//If the jumping variable is true, jump button is being held.
 		if(jumping && on_ground)
 		{
 			//Stop further jumping until we're on the ground.
 			on_ground = false;
 			for(Box2DSprite p : parts)
-				p.body.applyForceToCenter(0f, jump_start_speed * universe.map_camera_handler.pixel_size * universe.map_camera_handler.GRAVITY, true);			//Translating jump speed into newtons for box2d.
+				p.body.setLinearVelocity(p.body.getLinearVelocity().x, jump_start_speed * 5);//applyForceToCenter(0f, jump_start_speed * universe.map_camera_handler.pixel_size * universe.map_camera_handler.GRAVITY, true);			//Translating jump speed into newtons for box2d.
 		}
+		
+		for(Box2DSprite p : parts)
+			p.body.setLinearVelocity(speed_current_x, p.body.getLinearVelocity().y);
 	}
 	
 	@Override

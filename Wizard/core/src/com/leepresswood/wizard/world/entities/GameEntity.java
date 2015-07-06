@@ -67,16 +67,10 @@ public abstract class GameEntity
 	public abstract void draw(SpriteBatch batch);
 	
 	/**
-	 * Calculate movement in the X direction.
+	 * Calculate movement.
 	 * @param delta Change in time.
 	 */
-	protected abstract void calcMovementX(float delta);
-	
-	/**
-	 * Calculate movement in the Y direction.
-	 * @param delta Change in time.
-	 */
-	protected abstract void calcMovementY(float delta);
+	protected abstract void calcMovement(float delta);
 	
 	/**
 	 * This entity collided with the passed entity. Do damage/effects.
