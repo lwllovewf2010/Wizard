@@ -1,7 +1,6 @@
-package com.leepresswood.wizard.world;
+package com.leepresswood.wizard.world.entities;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.leepresswood.wizard.world.entities.GameEntity;
 
 /**
  * The packaged data that is stored in the body.

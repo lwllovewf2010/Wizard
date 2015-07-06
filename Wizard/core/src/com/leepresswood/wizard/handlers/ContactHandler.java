@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.leepresswood.wizard.world.B2DSPackage;
+import com.leepresswood.wizard.world.entities.B2DSPackage;
 import com.leepresswood.wizard.world.entities.living.LivingEntity;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
@@ -25,7 +25,11 @@ public class ContactHandler implements ContactListener
 		if(a == GROUND || b == GROUND)
 		{//Nothing needs to happen to the ground for now.
 		}
-		if(a == SPELL_SOLID || a == SPELL_TRANSPARENT || b == SPELL_SOLID || b == SPELL_TRANSPARENT)
+		if(a == SPELL_SOLID || a == SPELL_TRANSPARENT)
+		{
+			
+		}
+		if(b == SPELL_SOLID || b == SPELL_TRANSPARENT)
 		{
 			((Spell) ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity).doHit(((B2DSPackage) contact.getFixtureB().getBody().getUserData()).entity);
 		}
