@@ -22,16 +22,71 @@ public class ContactHandler implements ContactListener
 	@Override
    public void beginContact(Contact contact)
    {
+		startContactProcessing(contact);
+		if(contact.isEnabled())
+			parseContact(contact);
+   }
+	
+	private void startContactProcessing(Contact contact)
+	{
+		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
+		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
+		
+		//Determine if the contact is allowed.
+		//Ground.
+		if(a == GROUND)
+		{
+			contact.setEnabled(b != SPELL_TRANSPARENT);
+			return;
+		}
+		if(b == GROUND)
+		{
+			contact.setEnabled(a != SPELL_TRANSPARENT);
+			return;
+		}
+		
+		//Spells.
+		//Note: Ground has already been processed, so let's not worry about it.
+		if(a == SPELL_TRANSPARENT || a == SPELL_SOLID)
+		{
+			contact.setEnabled(b != PLAYER && b != SPELL_TRANSPARENT && b != SPELL_SOLID);
+			return;
+		}
+		if(b == SPELL_TRANSPARENT || b == SPELL_SOLID)
+		{
+			contact.setEnabled(a != PLAYER && a != SPELL_TRANSPARENT && a != SPELL_SOLID);
+			return;
+		}
+		
+		//Enemies.
+		//Note: Ground and spells processed, so we only need to set the player interaction.
+		if(a == ENEMY)
+		{
+			contact.setEnabled(a == PLAYER);
+			return;
+		}
+		if(b == ENEMY)
+		{
+			contact.setEnabled(b == PLAYER);
+			return;
+		}
+		
+		//If something strange happened, just ignore the contact.
+		contact.setEnabled(false);
+	}
+	
+	private void parseContact(Contact contact)
+	{
 		if(a == GROUND || b == GROUND)
 		{//Nothing needs to happen to the ground for now.
 		}
 		if(a == SPELL_SOLID || a == SPELL_TRANSPARENT)
 		{
-			
+			((Spell) getA(contact, B2DSPackage.class).entity).doHit(getB(contact, B2DSPackage.class).entity);
 		}
 		if(b == SPELL_SOLID || b == SPELL_TRANSPARENT)
 		{
-			((Spell) ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).entity).doHit(((B2DSPackage) contact.getFixtureB().getBody().getUserData()).entity);
+			((Spell) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).entity);
 		}
 		if(a == PLAYER || a == ENEMY)
 		{
@@ -43,10 +98,7 @@ public class ContactHandler implements ContactListener
 			if(a == GROUND)
 				((LivingEntity) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).body);
 		}
-		
-		
-		//System.out.println("A = " + contact.getFixtureA().getBody().getUserData() + ", B = " + contact.getFixtureB().getBody().getUserData());
-   }
+	}
 	
 	private <T> T getA(Contact contact, Class<T> type)
 	{
@@ -65,35 +117,12 @@ public class ContactHandler implements ContactListener
 
 	@Override
    public void preSolve(Contact contact, Manifold oldManifold)
-   {
-		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
-		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
-		
-		//Determine if the contact is allowed.
-		//Ground.
-		if(a == GROUND || b == GROUND)
-			contact.setEnabled(b != SPELL_TRANSPARENT);
-		else if(b == GROUND)
-			contact.setEnabled(a != SPELL_TRANSPARENT);
-		
-		//Spells.
-		//Note: Ground has already been processed, so let's not worry about it.
-		else if(a == SPELL_TRANSPARENT || a == SPELL_SOLID)
-			contact.setEnabled(b != PLAYER && b != SPELL_TRANSPARENT && b != SPELL_SOLID);
-		else if(b == SPELL_TRANSPARENT || b == SPELL_SOLID)
-			contact.setEnabled(a != PLAYER && a != SPELL_TRANSPARENT && a != SPELL_SOLID);
-		
-		//Enemies.
-		//Note: Ground and spells processed, so we only need to set the player interaction.
-		else if(a == ENEMY)
-			contact.setEnabled(a == PLAYER);
-		else if(b == ENEMY)
-			contact.setEnabled(b == PLAYER);
+   {//This is called while processing the physics. Disable the contact if necessary.
+		startContactProcessing(contact);
    }
 
 	@Override
    public void postSolve(Contact contact, ContactImpulse impulse)
    {
    }
-	
 }
