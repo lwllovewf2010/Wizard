@@ -58,9 +58,12 @@ public class Fireball extends BoltSpell
 		//enemy.damage(damage);
 		
 		//Destroy this bolt.
-		//active = false;
+		active = false;
 		
 		//The collision death of this bolt will create an explosion.
+		/*
+		 * Note: Instantiating this spell will create a new body in the world while we're already rendering. This isn't allowed, so we need to add it to a body queue instead.
+		 */
 		Vector2 location = new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f, parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f);
 		universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
    }

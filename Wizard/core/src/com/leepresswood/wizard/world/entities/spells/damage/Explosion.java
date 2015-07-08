@@ -9,13 +9,14 @@ import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
+import com.leepresswood.wizard.world.entities.spells.DynamicallyCreatedSpell;
 
 /**
  * The aftermath of a fireball colliding with an enemy.
  *
  * @author Lee
  */
-public class Explosion extends BoltSpell
+public class Explosion extends BoltSpell implements DynamicallyCreatedSpell
 {	
 	private float x, y, width, height;
 	
@@ -52,11 +53,11 @@ public class Explosion extends BoltSpell
 	protected void calcMovement(float delta)
 	{//The spell doesn't move, but it does shrink over time.
 		float new_size_percent = 1f - time_alive_current / time_alive_max;
-		sprite.setSize(new_size_percent * sprite.getWidth(), new_size_percent * sprite.getHeight());
+		parts[0].sprite.setSize(new_size_percent * parts[0].sprite.getWidth(), new_size_percent * parts[0].sprite.getHeight());
 		
 		//Reset the center.
-		parts[0].sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
-		parts[0].body.getFixtureList().get(0).getShape().setRadius(sprite.getWidth());
+		parts[0].sprite.setPosition(from.x - parts[0].sprite.getWidth() / 2f, from.y -  parts[0].sprite.getHeight() / 2f);
+		parts[0].body.getFixtureList().get(0).getShape().setRadius(parts[0].sprite.getWidth());
 	}
 
 	@Override
