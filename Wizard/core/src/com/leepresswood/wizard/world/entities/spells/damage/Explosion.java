@@ -1,9 +1,13 @@
 package com.leepresswood.wizard.world.entities.spells.damage;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.Box2DSprite;
+import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
@@ -51,5 +55,28 @@ public class Explosion extends BoltSpell
 	public void doHit(Enemy enemy)
 	{
 		enemy.health_max -= damage;
+	}
+
+	@Override
+	protected void setBodies(float x, float y, float width, float height)
+	{
+		parts = new Box2DSprite[1];
+		
+		Sprite s = new Sprite(texture);
+		s.setBounds(x, y, width, height);
+		
+		//We will only have one body here.
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.SPELL_TRANSPARENT);
+		parts[0].body.setGravityScale(0f);
+	}
+
+	@Override
+	protected void calcMovement(float delta)
+	{
+	}
+
+	@Override
+	public void doHit(GameEntity entity)
+	{
 	}
 }

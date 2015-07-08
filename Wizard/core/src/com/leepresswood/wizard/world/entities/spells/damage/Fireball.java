@@ -48,7 +48,7 @@ public class Fireball extends BoltSpell
 
 	@Override
    protected void calcMovement(float delta)
-   {
+   {//Physics takes over from here.
    }
 
 	@Override
