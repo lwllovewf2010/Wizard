@@ -61,7 +61,7 @@ public class Fireball extends BoltSpell
 		active = false;
 		
 		//The collision death of this bolt will create an explosion.
-		Vector2 location = new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
+		Vector2 location = new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f, parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f);
 		universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
    }
 }

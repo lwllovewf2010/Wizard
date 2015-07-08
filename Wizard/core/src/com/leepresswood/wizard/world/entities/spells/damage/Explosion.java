@@ -8,7 +8,6 @@ import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
-import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
 /**
@@ -17,12 +16,12 @@ import com.leepresswood.wizard.world.entities.spells.BoltSpell;
  * @author Lee
  */
 public class Explosion extends BoltSpell
-{
+{	
 	public Explosion(Texture t, float x, float y){super(t, x, y);}
 
 	public Explosion(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(universe, from, to, data, 0);		
+		super(universe, from, to, data, 0);
 	}
 
 	@Override
@@ -31,12 +30,12 @@ public class Explosion extends BoltSpell
 		parts = new Box2DSprite[1];
 		
 		Sprite s = new Sprite(texture);
-		sprite.setSize(width, height);
-		sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
+		s.setSize(width, height);
+		s.setPosition(x - width / 2f, y -  height / 2f);
 		
 		//We will only have one body here.
 		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.SPELL_TRANSPARENT);
-		parts[0].body.setGravityScale(0f);
+		parts[0].body.setGravityScale(0f);System.out.println(123);
 	}
 
 	@Override
