@@ -55,26 +55,6 @@
 			<explosion>
 				<name>Explosion</name>
 			    <texture>hold</texture>
-				<width>2.0</width>
-				<height>2.0</height>
-			    <type>Fire</type>
-			    <cost>0.0</cost>
-			    <recharge>0.0</recharge>
-			    <time_alive>0.75</time_alive>
-			    
-			    <damage>5.0</damage>	    
-			    <speed>0.0</speed>
-			    <knockback>15.0</knockback>
-			    
-			    <radius>3.0</radius>
-			</explosion>
-		</level>
-		<level>
-			<value>2</value>
-			<cost>7.5</cost>
-			<explosion>
-				<name>Explosion</name>
-			    <texture>hold</texture>
 				<width>3.0</width>
 				<height>3.0</height>
 			    <type>Fire</type>
@@ -84,9 +64,25 @@
 			    
 			    <damage>5.0</damage>	    
 			    <speed>0.0</speed>
-			    <knockback>17.5</knockback>
+			    <knockback>15.0</knockback>
+			</explosion>
+		</level>
+		<level>
+			<value>2</value>
+			<cost>7.5</cost>
+			<explosion>
+				<name>Explosion</name>
+			    <texture>hold</texture>
+				<width>3.5</width>
+				<height>3.5</height>
+			    <type>Fire</type>
+			    <cost>0.0</cost>
+			    <recharge>0.0</recharge>
+			    <time_alive>0.75</time_alive>
 			    
-			    <radius>3.5</radius>
+			    <damage>5.0</damage>	    
+			    <speed>0.0</speed>
+			    <knockback>17.5</knockback>
 			</explosion>
 		</level>
 		<level>
@@ -105,8 +101,6 @@
 			    <damage>5.0</damage>	    
 			    <speed>0.0</speed>
 			    <knockback>20.0</knockback>
-			    
-			    <radius>4.0</radius>
 			</explosion>
 		</level>
 	</fireball>

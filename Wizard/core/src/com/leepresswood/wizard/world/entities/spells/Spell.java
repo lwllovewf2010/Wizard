@@ -17,6 +17,7 @@ import com.leepresswood.wizard.world.entities.GameEntity;
  */
 public abstract class Spell extends GameEntity
 {
+	//This sprite is only used for the spell icon.
 	public Sprite sprite;
 	
 	//XML data

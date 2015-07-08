@@ -18,43 +18,11 @@ import com.leepresswood.wizard.world.entities.spells.BoltSpell;
  */
 public class Explosion extends BoltSpell
 {
-	private float radius;	
-	
 	public Explosion(Texture t, float x, float y){super(t, x, y);}
 
 	public Explosion(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
-		super(universe, from, to, data, 0);
-		
-		//Change the sprite's size to this radius.
-		radius = data.getFloat("radius");
-		sprite.setSize(radius, radius);
-		sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
-	}
-
-	@Override
-	protected void updatePosition(float delta)
-	{
-		//The spell doesn't move, but it does shrink over time.
-		float new_size_percent = 1f - time_alive_current / time_alive_max;
-		sprite.setSize(new_size_percent * radius, new_size_percent * radius);
-		
-		//Reset the center.
-		sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
-		
-		//Reset the bounds.
-		bounds[0] = sprite.getBoundingRectangle();
-	}
-
-	@Override
-	protected void updateCollision()
-	{//We don't care about this spell's collisions.
-	}
-
-	@Override
-	public void doHit(Enemy enemy)
-	{
-		enemy.health_max -= damage;
+		super(universe, from, to, data, 0);		
 	}
 
 	@Override
@@ -63,7 +31,8 @@ public class Explosion extends BoltSpell
 		parts = new Box2DSprite[1];
 		
 		Sprite s = new Sprite(texture);
-		s.setBounds(x, y, width, height);
+		sprite.setSize(width, height);
+		sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
 		
 		//We will only have one body here.
 		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.SPELL_TRANSPARENT);
@@ -72,11 +41,18 @@ public class Explosion extends BoltSpell
 
 	@Override
 	protected void calcMovement(float delta)
-	{
+	{//The spell doesn't move, but it does shrink over time.
+		float new_size_percent = 1f - time_alive_current / time_alive_max;
+		sprite.setSize(new_size_percent * sprite.getWidth(), new_size_percent * sprite.getHeight());
+		
+		//Reset the center.
+		parts[0].sprite.setPosition(from.x - sprite.getWidth() / 2f, from.y -  sprite.getHeight() / 2f);
+		parts[0].body.getFixtureList().get(0).getShape().setRadius(sprite.getWidth());
 	}
 
 	@Override
 	public void doHit(GameEntity entity)
 	{
+		//enemy.health_max -= damage;
 	}
 }
