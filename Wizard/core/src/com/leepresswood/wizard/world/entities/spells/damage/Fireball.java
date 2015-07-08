@@ -34,63 +34,6 @@ public class Fireball extends BoltSpell
 		parts[0].body.setLinearVelocity(speed_x, speed_y);
 	}
 	
-	/*@Override
-	protected void updateCollision()
-	{
-		//Check blocks for bounce.
-		//Bottom
-		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null)
-		{			
-			//Set Y to the block level.
-			sprite.setY((int) (sprite.getY() + 1));
-			
-			//Flip Y speed and impulse to shorten the bounce.
-			speed_y *= -impulse;
-			
-			//Decay the X speed by the speed decay.
-			speed_x *= speed_decay;
-		}
-		
-		//Top
-		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth() / 2f), (int) (sprite.getY() + sprite.getHeight())) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			//Set Y to the block level.
-			sprite.setY((int) (sprite.getY()));
-			
-			//Flip Y speed and impulse to shorten the bounce.
-			speed_y *= -impulse;
-			
-			//Decay the X speed by the speed decay.
-			speed_x *= speed_decay;
-		}
-		
-		//Left
-		if(universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) sprite.getX(), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			//Set X to the block level.
-			sprite.setX((int) (sprite.getX() + 1));
-			
-			//Flip X speed and impulse to shorten the bounce.
-			speed_x *= -impulse;
-			
-			//Decay the Y speed by the speed decay.
-			speed_y *= speed_decay;
-		}
-		
-		//Right
-		if(universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) sprite.getY()) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight() / 2f)) != null || universe.map_camera_handler.collision_layer.getCell((int) (sprite.getX() + sprite.getWidth()), (int) (sprite.getY() + sprite.getHeight())) != null)
-		{
-			//Set X to the block level.
-			sprite.setX((int) (sprite.getX()));
-			
-			//Flip X speed and impulse to shorten the bounce.
-			speed_x *= -impulse;
-			
-			//Decay the Y speed by the speed decay.
-			speed_y *= speed_decay;
-		}
-	}*/
-	
 	@Override
    protected void setBodies(float x, float y, float width, float height)
    {
