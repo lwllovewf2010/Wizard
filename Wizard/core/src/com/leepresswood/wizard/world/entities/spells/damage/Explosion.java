@@ -17,6 +17,8 @@ import com.leepresswood.wizard.world.entities.spells.BoltSpell;
  */
 public class Explosion extends BoltSpell
 {	
+	private float x, y, width, height;
+	
 	public Explosion(Texture t, float x, float y){super(t, x, y);}
 
 	public Explosion(Universe universe, Vector2 from, Vector2 to, Element data, int level)
@@ -26,6 +28,15 @@ public class Explosion extends BoltSpell
 
 	@Override
 	protected void setBodies(float x, float y, float width, float height)
+	{//Because this will be created dynamically, we don't want to instantiate a body at this instant. Call the instantiate function during the spell queue step.
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+	
+	@Override
+	public void instantiate()
 	{
 		parts = new Box2DSprite[1];
 		
@@ -33,10 +44,9 @@ public class Explosion extends BoltSpell
 		s.setSize(width, height);
 		s.setPosition(x - width / 2f, y -  height / 2f);
 		
-		//We will only have one body here.
 		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.SPELL_TRANSPARENT);
-		parts[0].body.setGravityScale(0f);System.out.println(123);
-	}
+		parts[0].body.setGravityScale(0f);
+	}	
 
 	@Override
 	protected void calcMovement(float delta)
