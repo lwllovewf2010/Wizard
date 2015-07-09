@@ -15,8 +15,7 @@ import com.leepresswood.wizard.world.entities.spells.BoltSpell;
  * @author Lee
  */
 public class Fireball extends BoltSpell
-{	
-	private float impulse;
+{ 
 	private Element explosion_data;
 	
 	public Fireball(Texture t, float x, float y){super(t, x, y);}
@@ -26,7 +25,7 @@ public class Fireball extends BoltSpell
 		super(universe, from, to, data, level);
 		
 		//Read the data from the XML file.
-		impulse = data.getFloat("impulse");
+		float impulse = data.getFloat("impulse");
 		explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
 		
 		//Set impulse and the initial linear velocity. Gravity will do the rest.

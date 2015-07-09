@@ -21,7 +21,10 @@ public class Skeleton extends Enemy
 		//For now, we'll just have one body part.
 		parts = new Box2DSprite[1];
 		
-		parts[0] = new Box2DSprite(new Sprite(texture), universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.ENEMY);
+		Sprite s = new Sprite(texture);
+		s.setBounds(x, y, width, height);
+		
+		parts[0] = new Box2DSprite(s, universe.world_handler.createDynamicEntity(x, y, width, height, false), this, ContactHandler.ENEMY);
 	}
 	
 	@Override
