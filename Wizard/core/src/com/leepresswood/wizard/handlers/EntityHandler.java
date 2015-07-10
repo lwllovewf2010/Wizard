@@ -131,7 +131,7 @@ public class EntityHandler
 				
 				//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
 				if(spell != null)
-				{
+				{ 
 					//Create the selected spell.
 					player.mana_current -= spell.mana_cost;
 					spells.add(spell);
