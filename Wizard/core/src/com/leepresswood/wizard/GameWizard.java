@@ -26,8 +26,7 @@ public class GameWizard extends Game
 	 * Version 0.9 Alpha Goals:
 	 * ========================
 	 * Leveling of attributes
-	 * On-screen text indicators
-	 * Better GUI
+	 * Proper collision detection
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -37,8 +36,11 @@ public class GameWizard extends Game
 	 * More spells
 	 * More wizard types
 	 * More enemies
+	 * On-screen text indicators
+	 * Better GUI
+	 * Experience/Gold system
 	 */
-	public static final String GAME_VERSION = "0.8 Alpha";
+	public static final String GAME_VERSION = "0.9 Alpha";
 	
 	public Assets assets;
 
