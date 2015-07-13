@@ -100,7 +100,7 @@ public abstract class Player extends LivingEntity
 			//Stop further jumping until we're on the ground.
 			on_ground = false;
 			for(Box2DSprite p : parts)
-				p.body.setLinearVelocity(p.body.getLinearVelocity().x, jump_start_speed * 5);//applyForceToCenter(0f, jump_start_speed * universe.map_camera_handler.pixel_size * universe.map_camera_handler.GRAVITY, true);			//Translating jump speed into newtons for box2d.
+				p.body.setLinearVelocity(p.body.getLinearVelocity().x, jump_start_speed * 5);
 		}
 		
 		for(Box2DSprite p : parts)

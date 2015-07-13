@@ -8,6 +8,7 @@ import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
 /**
@@ -47,23 +48,25 @@ public class Fireball extends BoltSpell
 
 	@Override
    protected void calcMovement(float delta)
-   {//Physics takes over from here.
+   {//Physics takes over from here. No need to change what Box2D calculates.
    }
 
 	@Override
    public void doHit(GameEntity entity)
    {
-		//Remove life.
-		//enemy.damage(damage);
-		
-		//Destroy this bolt.
-		active = false;
-		
-		//The collision death of this bolt will create an explosion.
-		/*
-		 * Note: Instantiating this spell will create a new body in the world while we're already rendering. This isn't allowed, so we need to add it to a body queue instead.
-		 */
-		Vector2 location = new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f, parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f);
-		universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
+		//We want this to only explode against enemies.
+		if(entity instanceof Enemy)
+		{
+			//Remove life.
+			//enemy.damage(damage);
+			
+			//Destroy this bolt.
+			active = false;
+			
+			//The collision death of this bolt will create an explosion.
+			//Note: Instantiating this spell will create a new body in the world while we're already rendering. This isn't allowed, so we need to add it to a body queue instead.
+			Vector2 location = new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f, parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f);
+			universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
+		}
    }
 }

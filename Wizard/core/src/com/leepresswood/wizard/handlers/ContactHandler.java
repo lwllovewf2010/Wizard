@@ -22,82 +22,30 @@ public class ContactHandler implements ContactListener
 	@Override
    public void beginContact(Contact contact)
    {//This is called before the physical contact has happened. Set the effects that will be done.
-		startContactProcessing(contact);
+		effectPreprocess(contact);
 		if(contact.isEnabled())
 			parseContact(contact);
    }
 	
-	private void startContactProcessing(Contact contact)
+	/**
+	 * Call this method to determine if there is an effect relationship between the two entities.
+	 * @param contact Reference to the contact.
+	 */
+	private void effectPreprocess(Contact contact)
 	{
+		//Get the contact bytes.
 		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
 		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
 		
-		//Determine if the contact is allowed.
-		//Ground.
-		if(a == GROUND)
-		{
-			contact.setEnabled(b != SPELL_TRANSPARENT);
-			return;
-		}
-		if(b == GROUND)
-		{
-			contact.setEnabled(a != SPELL_TRANSPARENT);
-			return;
-		}
-		
-		//Spells.
-		//Note: Ground has already been processed, so let's not worry about it.
-		if(a == SPELL_TRANSPARENT || a == SPELL_SOLID)
-		{
-			contact.setEnabled(b != PLAYER && b != SPELL_TRANSPARENT && b != SPELL_SOLID);
-			return;
-		}
-		if(b == SPELL_TRANSPARENT || b == SPELL_SOLID)
-		{
-			contact.setEnabled(a != PLAYER && a != SPELL_TRANSPARENT && a != SPELL_SOLID);
-			return;
-		}
-		
-		//Enemies.
-		//Note: Ground and spells processed, so we only need to set the player interaction.
-		if(a == ENEMY)
-		{
-			contact.setEnabled(a == PLAYER);
-			return;
-		}
-		if(b == ENEMY)
-		{
-			contact.setEnabled(b == PLAYER);
-			return;
-		}
-		
-		//If something strange happened, just ignore the contact.
-		contact.setEnabled(false);
+		//For effect processing, the only requirement is that both A and B are not references to the ground because the ground does not have contact effects done to it. This could eventually change.
+		contact.setEnabled(a != GROUND && b != GROUND);
 	}
 	
 	private void parseContact(Contact contact)
 	{
-		if(a == GROUND || b == GROUND)
-		{//Nothing needs to happen to the ground for now.
-		}
-		if(a == SPELL_SOLID || a == SPELL_TRANSPARENT)
-		{
-			((Spell) getA(contact, B2DSPackage.class).entity).doHit(getB(contact, B2DSPackage.class).entity);
-		}
-		if(b == SPELL_SOLID || b == SPELL_TRANSPARENT)
-		{
-			((Spell) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).entity);
-		}
-		if(a == PLAYER || a == ENEMY)
-		{
-			if(b == GROUND)
-				((LivingEntity) getA(contact, B2DSPackage.class).entity).doHit(getB(contact, B2DSPackage.class).body);
-		}
-		if(b == PLAYER || b == ENEMY)
-		{
-			if(a == GROUND)
-				((LivingEntity) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).body);
-		}
+		//At this point, we are guaranteed to have two non-ground GameEntities. Utilize the doHit() methods in each.
+		getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
+		getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
 	}
 	
 	private <T> T getA(Contact contact, Class<T> type)
@@ -118,8 +66,34 @@ public class ContactHandler implements ContactListener
 	@Override
    public void preSolve(Contact contact, Manifold oldManifold)
    {//This is called while processing the physics. Disable the contact if necessary.
-		startContactProcessing(contact);
+		physicsPreprocess(contact);
    }
+	
+	/**
+	 * This is the method that should be called to allow or disallow a physical reaction between a contact pairing.
+	 * @param contact Reference to the contact.
+	 */
+	private void physicsPreprocess(Contact contact)
+	{
+		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
+		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
+		
+		//Ground affects everything but transparent spells.
+		if(a == GROUND && b != SPELL_TRANSPARENT || b == GROUND && a != SPELL_TRANSPARENT)
+			contact.setEnabled(true);
+		
+		//Transparent spells do not physically knock back anyone.
+		else if(a == SPELL_TRANSPARENT || b == SPELL_TRANSPARENT)
+			contact.setEnabled(false);
+		
+		//Solid spells do not hit the player.
+		else if(a == PLAYER && b == SPELL_SOLID || b == PLAYER && a == SPELL_SOLID)
+			contact.setEnabled(false);
+		
+		//Anything else should cause knockback.
+		else
+			contact.setEnabled(true);
+	}
 
 	@Override
    public void postSolve(Contact contact, ContactImpulse impulse)

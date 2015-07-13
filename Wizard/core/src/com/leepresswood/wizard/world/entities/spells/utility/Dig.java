@@ -44,6 +44,7 @@ public class Dig extends Spell
 				j = dig_width;
 			}
 		}
+		
 		active = false;
 	}
 	
