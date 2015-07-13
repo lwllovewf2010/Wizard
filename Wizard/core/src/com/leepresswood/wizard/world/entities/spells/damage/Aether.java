@@ -95,7 +95,7 @@ public class Aether extends BoltSpell
 				
 				for(Enemy e : universe.entity_handler.enemies)
 				{	
-					float length = new Vector2(sprite.getX() + sprite.getWidth() / 2f - (e.parts[0].sprite.getX() + e.parts[0].sprite.getWidth() / 2f), sprite.getY() + sprite.getHeight() / 2f - (e.parts[0].sprite.getY() + e.parts[0].sprite.getHeight() / 2f)).len2();
+					float length = new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f - (e.parts[0].sprite.getX() + e.parts[0].sprite.getWidth() / 2f), parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f - (e.parts[0].sprite.getY() + e.parts[0].sprite.getHeight() / 2f)).len2();
 					if(length < enemy_distance_min)
 					{
 						enemy_distance_min = length;
@@ -107,7 +107,7 @@ public class Aether extends BoltSpell
 				if(enemy_index != null)
 				{
 					//Get the angle between the spell's movement direction and the direction toward the closest enemy.
-					float d_angle =  new Vector2(enemy_index.parts[0].sprite.getX() + enemy_index.parts[0].sprite.getWidth() / 2f, enemy_index.parts[0].sprite.getY() + enemy_index.parts[0].sprite.getHeight() / 2f).sub(new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f)).angle() - angle;
+					float d_angle =  new Vector2(enemy_index.parts[0].sprite.getX() + enemy_index.parts[0].sprite.getWidth() / 2f, enemy_index.parts[0].sprite.getY() + enemy_index.parts[0].sprite.getHeight() / 2f).sub(new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f, parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f)).angle() - angle;
 					if(d_angle > 180f)
 						d_angle -= 360f;
 					else if(d_angle < -180f)
