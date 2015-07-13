@@ -8,6 +8,7 @@ import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 import com.leepresswood.wizard.world.entities.spells.DynamicallyCreatedSpell;
 
@@ -29,7 +30,7 @@ public class Explosion extends BoltSpell implements DynamicallyCreatedSpell
 
 	@Override
 	protected void setBodies(float x, float y, float width, float height)
-	{//Because this will be created dynamically, we don't want to instantiate a body at this instant. Call the instantiate function during the spell queue step.
+	{//Because this will be created dynamically, we don't want to instantiate a body at this instant. Call the instantiate() function during the spell queue step.
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -62,7 +63,10 @@ public class Explosion extends BoltSpell implements DynamicallyCreatedSpell
 
 	@Override
 	public void doHit(GameEntity entity)
-	{
-		//enemy.health_max -= damage;
+	{//Explosions don't end after collision.
+		if(entity instanceof Enemy)
+		{
+			((Enemy) entity).damage(damage);
+		}
 	}
 }

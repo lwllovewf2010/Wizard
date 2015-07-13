@@ -9,7 +9,9 @@ package com.leepresswood.wizard.world.entities.spells;
 public interface DynamicallyCreatedSpell
 {
 	/**
-	 * Effectively this type of spell's setBodies() method.
+	 * Effectively this type of spell's setBodies() method. This must be called rather than setBodies() because we want
+	 * this spell to avoid attempting to add a body to the world mid-render. This spell method is called upon every spell
+	 * in the spell queue in the EntityHandler at a time where it is safe to add new spells.
 	 */
 	public void instantiate();
 }

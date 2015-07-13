@@ -54,7 +54,9 @@ public abstract class Enemy extends LivingEntity
    public void doHit(GameEntity entity)
    {//Damage the player.
 		if(entity instanceof Player)
+		{
 			((Player) entity).damage(knockback_damage);
+		}
    }
 	
 	////@Override

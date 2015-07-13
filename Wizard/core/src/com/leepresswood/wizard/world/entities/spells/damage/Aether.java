@@ -127,12 +127,11 @@ public class Aether extends BoltSpell
 
 	@Override
    public void doHit(GameEntity entity)
-   {
-		//We want this to only hit enemies.
+   {//We want this to only hit enemies.
 		if(entity instanceof Enemy)
 		{
 			//Remove life.
-			//enemy.damage(damage);
+			((Enemy) entity).damage(damage);
 		}
    }
 }
