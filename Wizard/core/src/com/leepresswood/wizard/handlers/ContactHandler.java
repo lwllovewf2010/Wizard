@@ -5,8 +5,6 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.leepresswood.wizard.world.entities.B2DSPackage;
-import com.leepresswood.wizard.world.entities.living.LivingEntity;
-import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class ContactHandler implements ContactListener
 {
@@ -23,40 +21,13 @@ public class ContactHandler implements ContactListener
    public void beginContact(Contact contact)
    {//This is called before the physical contact has happened. Set the effects that will be done.
 		effectPreprocess(contact);
-		if(contact.isEnabled())
-			parseContact(contact);
-   }
-	
-	/**
-	 * Call this method to determine if there is an effect relationship between the two entities.
-	 * @param contact Reference to the contact.
-	 */
-	private void effectPreprocess(Contact contact)
-	{
-		//Get the contact bytes.
-		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
-		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
 		
-		//For effect processing, the only requirement is that both A and B are not references to the ground because the ground does not have contact effects done to it. This could eventually change.
-		contact.setEnabled(a != GROUND && b != GROUND);
-	}
-	
-	private void parseContact(Contact contact)
-	{
-		//At this point, we are guaranteed to have two non-ground GameEntities. Utilize the doHit() methods in each.
-		getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
-		getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
-	}
-	
-	private <T> T getA(Contact contact, Class<T> type)
-	{
-		return type.cast(contact.getFixtureA().getBody().getUserData());
-	}
-	
-	private <T> T getB(Contact contact, Class<T> type)
-	{
-		return type.cast(contact.getFixtureB().getBody().getUserData());
-	}
+		if(contact.isEnabled())
+		{//At this point, we are guaranteed to have two non-ground entitiesGameEntities. Utilize the doHit() methods in each.
+			getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
+			getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
+		}
+   }
 
 	@Override
    public void endContact(Contact contact)
@@ -68,6 +39,35 @@ public class ContactHandler implements ContactListener
    {//This is called while processing the physics. Disable the contact if necessary.
 		physicsPreprocess(contact);
    }
+
+	@Override
+   public void postSolve(Contact contact, ContactImpulse impulse)
+   {
+   }
+	
+	/**
+	 * Call this method to determine if there is an effect relationship between the two entities.
+	 * @param contact Reference to the contact.
+	 */
+	private void effectPreprocess(Contact contact)
+	{
+		//Get the contact bytes.
+		a = getA(contact, B2DSPackage.class).contact;
+		b = getB(contact, B2DSPackage.class).contact;
+		
+		//For effect processing, the only requirement is that both A and B are not references to the ground because the ground does not have contact effects done to it. This could eventually change.
+		contact.setEnabled(a != GROUND && b != GROUND);
+	}
+	
+	private <T> T getA(Contact contact, Class<T> type)
+	{
+		return type.cast(contact.getFixtureA().getBody().getUserData());
+	}
+	
+	private <T> T getB(Contact contact, Class<T> type)
+	{
+		return type.cast(contact.getFixtureB().getBody().getUserData());
+	}	
 	
 	/**
 	 * This is the method that should be called to allow or disallow a physical reaction between a contact pairing.
@@ -75,8 +75,9 @@ public class ContactHandler implements ContactListener
 	 */
 	private void physicsPreprocess(Contact contact)
 	{
-		a = ((B2DSPackage) contact.getFixtureA().getBody().getUserData()).contact;
-		b = ((B2DSPackage) contact.getFixtureB().getBody().getUserData()).contact;
+		//Get the contact bytes.
+		a = getA(contact, B2DSPackage.class).contact;
+		b = getB(contact, B2DSPackage.class).contact;
 		
 		//Ground affects everything but transparent spells.
 		if(a == GROUND && b != SPELL_TRANSPARENT || b == GROUND && a != SPELL_TRANSPARENT)
@@ -94,9 +95,4 @@ public class ContactHandler implements ContactListener
 		else
 			contact.setEnabled(true);
 	}
-
-	@Override
-   public void postSolve(Contact contact, ContactImpulse impulse)
-   {
-   }
 }

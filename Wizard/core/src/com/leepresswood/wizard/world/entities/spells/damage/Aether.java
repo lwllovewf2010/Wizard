@@ -130,7 +130,6 @@ public class Aether extends BoltSpell
    {//We want this to only hit enemies.
 		if(entity instanceof Enemy)
 		{
-			//Remove life.
 			((Enemy) entity).damage(damage);
 		}
    }
