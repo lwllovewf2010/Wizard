@@ -24,9 +24,8 @@ public class GameWizard extends Game
 	 * be appended to the version number.
 	 * 
 	 * Version 0.9 Alpha Goals:
-	 * ========================
+	 * =========================
 	 * Leveling of attributes
-	 * Proper collision detection
 	 * 
 	 * Near Future Goals:
 	 * ==================

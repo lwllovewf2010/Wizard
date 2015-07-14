@@ -11,7 +11,7 @@
 		<recharge>0.5</recharge>
 		<time_alive>3.0</time_alive>
 		
-		<damage>2.0</damage>	    
+		<damage>2.0</damage>
 		<speed>11.0</speed>
 		<knockback>6.0</knockback>
 		
@@ -45,7 +45,7 @@
 	    
 	    <damage>5.0</damage>	    
 	    <speed>27.0</speed>
-	    <knockback>10.0</knockback>
+	    <knockback>100000.0</knockback>
 	     
 		<impulse>0.75</impulse>
 		
