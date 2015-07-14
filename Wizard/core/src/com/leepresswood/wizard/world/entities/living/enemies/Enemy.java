@@ -56,6 +56,11 @@ public abstract class Enemy extends LivingEntity
 		if(entity instanceof Player)
 		{
 			((Player) entity).damage(knockback_damage);
+			
+			//Set the knockback and invincibility.
+			((Player) entity).knockback_speed = knockback_force;
+			((Player) entity).is_invincible = true;
+			((Player) entity).invincible_time_current = 0f;
 		}
    }
 	
