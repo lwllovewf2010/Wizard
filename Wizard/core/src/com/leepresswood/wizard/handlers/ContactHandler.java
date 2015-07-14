@@ -79,12 +79,8 @@ public class ContactHandler implements ContactListener
 		a = getA(contact, B2DSPackage.class).contact;
 		b = getB(contact, B2DSPackage.class).contact;
 		
-		//Ground affects everything but transparent spells.
-		if(a == GROUND && b != SPELL_TRANSPARENT || b == GROUND && a != SPELL_TRANSPARENT)
-			contact.setEnabled(true);
-		
 		//Transparent spells do not physically knock back anyone.
-		else if(a == SPELL_TRANSPARENT || b == SPELL_TRANSPARENT)
+		if(a == SPELL_TRANSPARENT || b == SPELL_TRANSPARENT)
 			contact.setEnabled(false);
 		
 		//Solid spells do not hit the player.

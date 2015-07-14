@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 
 /**
  * Bolt Spells are a type of spell characterized by a single cast per click.
@@ -35,4 +37,13 @@ public abstract class BoltSpell extends Spell
 		speed_x = speed_max * MathUtils.cosDeg(angle);
 		speed_y = speed_max * MathUtils.sinDeg(angle);
 	}
+	
+	@Override
+   public void doHit(GameEntity entity)
+   {//We want this to only hit enemies.
+		if(entity instanceof Enemy)
+		{
+			((Enemy) entity).damage(damage);
+		}
+   }
 }

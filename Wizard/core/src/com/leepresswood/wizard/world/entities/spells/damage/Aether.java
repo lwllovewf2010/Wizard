@@ -8,7 +8,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
-import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
@@ -123,14 +122,5 @@ public class Aether extends BoltSpell
 		}
 		
 		parts[0].body.setLinearVelocity(speed_x, speed_y);
-   }
-
-	@Override
-   public void doHit(GameEntity entity)
-   {//We want this to only hit enemies.
-		if(entity instanceof Enemy)
-		{
-			((Enemy) entity).damage(damage);
-		}
    }
 }

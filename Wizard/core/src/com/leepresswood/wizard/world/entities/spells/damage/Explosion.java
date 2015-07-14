@@ -7,8 +7,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
-import com.leepresswood.wizard.world.entities.GameEntity;
-import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 import com.leepresswood.wizard.world.entities.spells.DynamicallyCreatedSpell;
 
@@ -59,14 +57,5 @@ public class Explosion extends BoltSpell implements DynamicallyCreatedSpell
 		//Reset the center.
 		parts[0].sprite.setPosition(from.x - parts[0].sprite.getWidth() / 2f, from.y -  parts[0].sprite.getHeight() / 2f);
 		parts[0].body.getFixtureList().get(0).getShape().setRadius(parts[0].sprite.getWidth());
-	}
-
-	@Override
-	public void doHit(GameEntity entity)
-	{//Explosions don't end after collision.
-		if(entity instanceof Enemy)
-		{
-			((Enemy) entity).damage(damage);
-		}
 	}
 }

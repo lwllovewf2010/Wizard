@@ -53,12 +53,10 @@ public class Fireball extends BoltSpell
 
 	@Override
    public void doHit(GameEntity entity)
-   {//We want this to only explode against enemies.
+   {//On top of the regular collision, we want this to also create an explosion upon contact.
+		super.doHit(entity);
 		if(entity instanceof Enemy)
 		{
-			//Remove life.
-			((Enemy) entity).damage(damage);
-			
 			//Destroy this bolt.
 			active = false;
 			
