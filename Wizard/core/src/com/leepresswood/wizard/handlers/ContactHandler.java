@@ -91,6 +91,10 @@ public class ContactHandler implements ContactListener
 		else if(a == PLAYER && b == SPELL_SOLID || b == PLAYER && a == SPELL_SOLID)
 			contact.setEnabled(false);
 		
+		//The same entities do not run into each other.
+		else if(a == b)
+			contact.setEnabled(false);
+		
 		//Anything else should cause knockback.
 		else
 			contact.setEnabled(true);
