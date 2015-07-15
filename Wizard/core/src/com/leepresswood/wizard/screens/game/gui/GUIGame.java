@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -39,9 +38,14 @@ public class GUIGame
 	public int spell_active = 0;
 	public Spell[] spells;
 	
+	//Position outline.
+	private Vector3 mouse_position;
+	
 	public GUIGame(ScreenGame screen)
 	{
 		this.screen = screen;
+		
+		mouse_position = new Vector3();
 		
 		makeCamera();
 		makeStatusBars();
@@ -146,6 +150,17 @@ public class GUIGame
 	 */
 	public void draw()
 	{
+		//Mouse position outline.
+		mouse_position = screen.world.map_camera_handler.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0f));
+		screen.renderer.setProjectionMatrix(screen.world.map_camera_handler.combined);
+		screen.renderer.setColor(Color.WHITE);
+		screen.renderer.begin(ShapeType.Line);
+			screen.renderer.identity();
+			screen.renderer.rect((int) mouse_position.x, (int) mouse_position.y, 1f, 1f);
+		screen.renderer.end();
+		screen.renderer.setProjectionMatrix(camera.combined);
+		
+		//Buttons.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			for(GUIButton b : button_array)
@@ -171,21 +186,6 @@ public class GUIGame
 				else
 					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
 		screen.renderer.end();
-
-		//Mouse position outline.
-		Vector3 v = screen.world.map_camera_handler.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0f));
-		Rectangle r = new Rectangle((int) v.x, (int) v.y, 1f, 1f);
-		
-		if(r != null)
-		{
-			screen.renderer.setProjectionMatrix(screen.world.map_camera_handler.combined);
-			screen.renderer.setColor(Color.WHITE);
-			screen.renderer.begin(ShapeType.Line);
-				screen.renderer.identity();
-				screen.renderer.rect(r.x, r.y, r.width, r.height);
-			screen.renderer.end();
-			screen.renderer.setProjectionMatrix(camera.combined);
-		}
 	}
 	
 	/**
