@@ -23,16 +23,16 @@ public class InputGame implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.world.entity_handler.player.moving_right = true;
+				screen.universe.entity_handler.player.moving_right = true;
 				break;
 			case Keys.A:
-				screen.world.entity_handler.player.moving_left = true;
+				screen.universe.entity_handler.player.moving_left = true;
 				break;
 			case Keys.SPACE:
-				screen.world.entity_handler.player.jumping = true;
+				screen.universe.entity_handler.player.jumping = true;
 				break;
 			case Keys.SHIFT_LEFT:
-				screen.world.wave_handler.start_wave = true;
+				screen.universe.wave_handler.start_wave = true;
 				break;
 			case Keys.NUM_0:
 			case Keys.NUM_1:
@@ -70,13 +70,13 @@ public class InputGame implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.D:
-				screen.world.entity_handler.player.moving_right = false;
+				screen.universe.entity_handler.player.moving_right = false;
 				break;
 			case Keys.A:
-				screen.world.entity_handler.player.moving_left = false;
+				screen.universe.entity_handler.player.moving_left = false;
 				break;
 			case Keys.SPACE:
-				screen.world.entity_handler.player.jumping = false;
+				screen.universe.entity_handler.player.jumping = false;
 				break;
 			default:
 				break;
@@ -96,8 +96,8 @@ public class InputGame implements InputProcessor
 	{
 		if(!guiTouchCheck(screenX, screenY))
 		{//Touch was not on GUI, so push it into the game world.
-			Vector3 touch = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
-			screen.world.entity_handler.addSpell(new Vector2(touch.x, touch.y));
+			Vector3 touch = screen.universe.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
+			screen.universe.entity_handler.addSpell(new Vector2(touch.x, touch.y));
 		}	
 		
 		return true;

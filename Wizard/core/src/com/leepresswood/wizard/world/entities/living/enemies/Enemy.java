@@ -35,9 +35,9 @@ public abstract class Enemy extends LivingEntity
 	@Override
 	protected void calcMovement(float delta)
 	{//General AI tells the enemies to move toward the center.
-		if(parts[0].sprite.getX() > universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
+		if(parts[0].sprite.getX() > universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
 			speed_current_x -= accel_x * delta;
-		else if(parts[0].sprite.getX() < universe.screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - parts[0].sprite.getWidth())
+		else if(parts[0].sprite.getX() < universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - parts[0].sprite.getWidth())
 			speed_current_x += accel_x * delta;
 		else
 			speed_current_x = 0f;

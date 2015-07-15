@@ -75,8 +75,8 @@ public class GUIGame
 		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
 		
 		//Set bars.
-		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.world.entity_handler.player.health_max);
-		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.world.entity_handler.player.mana_max);
+		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.universe.entity_handler.player.health_max);
+		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.universe.entity_handler.player.mana_max);
 		
 		//Set colors.
 		color_health = new Color(Color.valueOf("AA3C39FF"));
@@ -90,9 +90,9 @@ public class GUIGame
 	{
 		try
 		{//Initialize each spell. We will be reading from the player's list of spells.
-			spells = new Spell[screen.world.level_handler.spells_available];
-			for(int i = 0; i < screen.world.level_handler.spells_available; i++)
-				spells[i] = parseSpell(new XmlReader().parse(Gdx.files.internal("data/spells.xml")), screen.world.entity_handler.player_root.getChildByName("spell_list").getChild(i).getText(), i);
+			spells = new Spell[screen.universe.level_handler.spells_available];
+			for(int i = 0; i < screen.universe.level_handler.spells_available; i++)
+				spells[i] = parseSpell(new XmlReader().parse(Gdx.files.internal("data/spells.xml")), screen.universe.entity_handler.player_root.getChildByName("spell_list").getChild(i).getText(), i);
 		}
 		catch (IOException e)
 		{
@@ -113,7 +113,7 @@ public class GUIGame
 			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
 		
 		//Get mana cost of this spell.
-		s.mana_cost = spell_root.getChildByName(spell_name).getChildrenByName("level").get(screen.world.level_handler.spell_levels[position]).getFloat("cost");
+		s.mana_cost = spell_root.getChildByName(spell_name).getChildrenByName("level").get(screen.universe.level_handler.spell_levels[position]).getFloat("cost");
 		return s;
 	}
 	
@@ -136,12 +136,12 @@ public class GUIGame
 			b.update(delta);
 		
 		//Grab bar values from the player. Update bar.
-		bar_health.setMaxValue(screen.world.entity_handler.player.health_max);
-		bar_health.setCurrentValue(screen.world.entity_handler.player.health_current);
+		bar_health.setMaxValue(screen.universe.entity_handler.player.health_max);
+		bar_health.setCurrentValue(screen.universe.entity_handler.player.health_current);
 		bar_health.update(delta);
 		
-		bar_mana.setMaxValue(screen.world.entity_handler.player.mana_max);
-		bar_health.setCurrentValue(screen.world.entity_handler.player.mana_current);
+		bar_mana.setMaxValue(screen.universe.entity_handler.player.mana_max);
+		bar_health.setCurrentValue(screen.universe.entity_handler.player.mana_current);
 		bar_mana.update(delta);
 	}
 	
@@ -151,8 +151,8 @@ public class GUIGame
 	public void draw()
 	{
 		//Mouse position outline.
-		mouse_position = screen.world.map_camera_handler.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0f));
-		screen.renderer.setProjectionMatrix(screen.world.map_camera_handler.combined);
+		mouse_position = screen.universe.map_camera_handler.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0f));
+		screen.renderer.setProjectionMatrix(screen.universe.map_camera_handler.combined);
 		screen.renderer.setColor(Color.WHITE);
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
@@ -166,7 +166,7 @@ public class GUIGame
 			for(GUIButton b : button_array)
 				b.draw(screen.batch);
 			
-			for(int i = 0; i < screen.world.level_handler.spells_available; i++)
+			for(int i = 0; i < screen.universe.level_handler.spells_available; i++)
 				spells[i].sprite.draw(screen.batch);
 		screen.batch.end();
 		
@@ -180,7 +180,7 @@ public class GUIGame
 		//Spell outlines.
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
-			for(int i = 0; i < screen.world.level_handler.spells_available; i++)
+			for(int i = 0; i < screen.universe.level_handler.spells_available; i++)
 				if(i == spell_active)
 					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
 				else
@@ -222,7 +222,7 @@ public class GUIGame
 	private void shiftSpellLeft()
 	{
 		if(spell_active < 0)
-			spell_active = screen.world.level_handler.spells_available - 1;
+			spell_active = screen.universe.level_handler.spells_available - 1;
 	}
 	
 	/**
@@ -230,7 +230,7 @@ public class GUIGame
 	 */
 	private void shiftSpellRight()
 	{
-		if(spell_active == screen.world.level_handler.spells_available)
+		if(spell_active == screen.universe.level_handler.spells_available)
 			spell_active = 0;
 	}
 	

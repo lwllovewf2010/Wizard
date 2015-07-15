@@ -21,7 +21,7 @@ public class LevelGUIButton extends GUIButton
 	public void update(float delta)
 	{
 		//This button will not be active during the wave.
-		if(((ScreenGame) screen).world.wave_handler.mid_wave)
+		if(((ScreenGame) screen).universe.wave_handler.mid_wave)
 			is_active = false;
 		else
 			is_active = true;

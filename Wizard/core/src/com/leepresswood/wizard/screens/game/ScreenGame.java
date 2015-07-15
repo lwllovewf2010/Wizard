@@ -12,7 +12,7 @@ import com.leepresswood.wizard.world.Universe;
 
 public class ScreenGame extends ScreenParent
 {
-	public Universe world;
+	public Universe universe;
 	public GUIGame gui;	
 	
 	public boolean go_to_level_store;							//Flag is set when the player requested to visit the level store.
@@ -23,7 +23,7 @@ public class ScreenGame extends ScreenParent
 		super(game);
 		
 		//The game screen has a world in the background and a GUI in the foreground.
-		world = new Universe(this);
+		universe = new Universe(this);
 		gui = new GUIGame(this);
 	}
 
@@ -54,7 +54,7 @@ public class ScreenGame extends ScreenParent
 		}
 		else
 		{
-			world.update(delta);		
+			universe.update(delta);		
 			gui.update(delta);
 		}
 	}
@@ -62,7 +62,7 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void draw()
 	{
-		world.draw();
+		universe.draw();
 		gui.draw();
 	}
 	
@@ -73,7 +73,7 @@ public class ScreenGame extends ScreenParent
 		
 		//On top of setting the input, we want to read the current state of the player's level from the level store.
 		if(screen_level_store != null)
-			world.level_handler.gatherLevelData();
+			universe.level_handler.gatherLevelData();
 	}
 	
 	@Override
@@ -83,6 +83,6 @@ public class ScreenGame extends ScreenParent
 		batch.dispose();
 		renderer.dispose();
 		
-		world.world_handler.dispose();
+		universe.world_handler.dispose();
 	}
 }

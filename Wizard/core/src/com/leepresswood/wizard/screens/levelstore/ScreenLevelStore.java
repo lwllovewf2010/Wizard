@@ -110,7 +110,7 @@ public class ScreenLevelStore extends ScreenParent
 	 */
 	private LevelHandler getLevelHandler()
 	{
-		return game_screen.world.level_handler;
+		return game_screen.universe.level_handler;
 	}
 
 	/**
