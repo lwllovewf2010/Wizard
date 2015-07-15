@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.leepresswood.wizard.world.entities.B2DSPackage;
+import com.leepresswood.wizard.world.entities.living.LivingEntity;
 
 public class ContactHandler implements ContactListener
 {
@@ -26,6 +27,13 @@ public class ContactHandler implements ContactListener
 		{//At this point, we are guaranteed to have two non-ground entitiesGameEntities. Utilize the doHit() methods in each.
 			getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
 			getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
+		}
+		else
+		{//Contact was with the ground. We want the living entities to be able to jump again if the collision was done in the correct way.
+			if(a == GROUND)
+				((LivingEntity) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).body);
+			else if(b == GROUND)
+				((LivingEntity) getA(contact, B2DSPackage.class).entity).doHit(getB(contact, B2DSPackage.class).body);
 		}
    }
 
@@ -90,9 +98,5 @@ public class ContactHandler implements ContactListener
 		//The same entities do not run into each other.
 		else if(a == b)
 			contact.setEnabled(false);
-		
-		//Anything else should cause knockback.
-		else
-			contact.setEnabled(true);
 	}
 }
