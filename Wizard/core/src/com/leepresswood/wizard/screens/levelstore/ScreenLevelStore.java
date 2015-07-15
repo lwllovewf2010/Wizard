@@ -24,7 +24,10 @@ public class ScreenLevelStore extends ScreenParent
 	
 	public TextureRegion background;
 	
-	public final int NUMBER_OF_BUTTONS = 3;
+	private final int NUMBER_OF_BUTTONS = 3;
+	private final int BUTTON_RETURN = 0;
+	private final int BUTTON_SPELL_NUMBER = 1;
+	private final int BUTTON_SKILL_ONE = 2;
 	public GUIButton[] button_array;
 	
 	private final int MAX_SPELLS_AVAILABLE = 5;
@@ -54,11 +57,11 @@ public class ScreenLevelStore extends ScreenParent
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
 		
 		//Attribute level-up buttons.
-		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 25f, 25f, 25f);
-		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
+		button_array[BUTTON_RETURN] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
+		button_array[BUTTON_SPELL_NUMBER] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 25f, 25f, 25f);
 		
 		//Spell level-up buttons.
-		button_array[2] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 0);
+		button_array[BUTTON_SKILL_ONE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 0);
 	}
 	
 	@Override
@@ -100,7 +103,7 @@ public class ScreenLevelStore extends ScreenParent
 		if(++game_screen.world.level_handler.spells_available >= MAX_SPELLS_AVAILABLE)
 		{
 			game_screen.world.level_handler.spells_available = MAX_SPELLS_AVAILABLE;
-			button_array[0].is_active = false;
+			button_array[BUTTON_SPELL_NUMBER].is_active = false;
 		}
 		else
 		{
@@ -114,10 +117,10 @@ public class ScreenLevelStore extends ScreenParent
 	 */
 	public void levelUpSpell(int spell_number)
    {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
-		if(++game_screen.world.level_handler.spell_levels[spell_number] >= MAX_SPELLS_AVAILABLE)
+		if(++game_screen.world.level_handler.spell_levels[spell_number] >= game_screen.world.level_handler.SPELL_LEVEL_MAX)
 		{
-			game_screen.world.level_handler.spell_levels[spell_number] = MAX_SPELLS_AVAILABLE;
-			button_array[spell_number + 2].is_active = false;
+			game_screen.world.level_handler.spell_levels[spell_number] = game_screen.world.level_handler.SPELL_LEVEL_MAX;
+			button_array[spell_number + BUTTON_SKILL_ONE].is_active = false;		//Index is shifted to correct for the spell level up buttons starting at an arbitrary point.
 		}
 		else
 		{

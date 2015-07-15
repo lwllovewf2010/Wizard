@@ -10,12 +10,14 @@ public class LevelHandler
 {
 	public Universe universe;
 	
-	public int level;							//Total points available.
-	public int points_spent;				//Points that have been spent on leveling.
-	public int points_available;			//Points available to be spent.
+	public int level;								//Total points available.
+	public int points_spent;					//Points that have been spent on leveling.
+	public int points_available;				//Points available to be spent.
 	
-	public int spells_available;			//Number of available spells.
-	public int[] spell_levels;				//Levels relating to each spell.
+	public int spells_available;				//Number of available spells.
+	
+	public final int SPELL_LEVEL_MAX = 5;	//Every spell can be leveled 5 times.
+	public int[] spell_levels;					//Levels relating to each spell.
 	
 	public LevelHandler(Universe universe, int level)
 	{
@@ -34,6 +36,24 @@ public class LevelHandler
 	public void levelUp()
 	{
 		level++;
+		points_available = level - points_spent;
+	}
+	
+	/**
+	 * Are there points available to be spent?
+	 * @return True if available. False otherwise.
+	 */
+	public boolean canSpend()
+	{
+		return points_spent < points_available;
+	}
+	
+	/**
+	 * Player requested to spend a point.
+	 */
+	public void spend()
+	{
+		points_spent++;
 		points_available = level - points_spent;
 	}
 	
