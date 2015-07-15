@@ -45,7 +45,7 @@ public class LevelHandler
 	public void gatherLevelData()
 	{
 		//Collect the number of available spells.
-		int new_spells_available = ((SpellLevelUpGUIButton) universe.screen.screen_level_store.button_array[0]).current + 1;
+		int new_spells_available = universe.screen.screen_level_store.current_spells_available + 1;
 		
 		//From this number, create a new spell_levels array if necessary.
 		if(spells_available != new_spells_available)

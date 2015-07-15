@@ -27,6 +27,8 @@ public class ScreenLevelStore extends ScreenParent
 	public final int NUMBER_OF_BUTTONS = 2;
 	public GUIButton[] button_array;
 	
+	public int current_spells_available;
+	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
 	{
 		super(game);
@@ -42,6 +44,7 @@ public class ScreenLevelStore extends ScreenParent
 		
 		
 		//Make elements of the screen.
+		current_spells_available = 0;
 		makeButtons();
 	}
 	
@@ -54,26 +57,26 @@ public class ScreenLevelStore extends ScreenParent
 		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 100f, 25f, 25f);
 		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
 	}
-
+	
 	@Override
 	public Color setUpBackgroundColor()
 	{
 		return new Color(Color.BLACK);
 	}
-
+	
 	@Override
 	public InputProcessor setUpInput()
 	{
 		return new InputLevelStore(this);
 	}
-
+	
 	@Override
 	public void update(float delta)
 	{
 		for(GUIButton b : button_array)
 			b.update(delta);
 	}
-
+	
 	@Override
 	public void draw()
 	{
