@@ -136,5 +136,17 @@
 			<dig_width>5</dig_width>
 			<dig_height>5</dig_height>
 		</level>
+		<level>
+			<value>4</value>
+			<cost>4.0</cost>
+			<dig_width>7</dig_width>
+			<dig_height>7</dig_height>
+		</level>
+		<level>
+			<value>5</value>
+			<cost>5.0</cost>
+			<dig_width>9</dig_width>
+			<dig_height>9</dig_height>
+		</level>
 	</dig>
 </spells>

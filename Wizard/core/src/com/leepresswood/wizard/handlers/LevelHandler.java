@@ -13,7 +13,7 @@ public class LevelHandler
 	public int level;										//Total points available.
 	public int points_spent;							//Points that have been spent on leveling.
 	
-	public final int SPELLS_NUMBER_MAX = 5;	//Maximum spells the player can have.
+	public final int SPELLS_NUMBER_MAX = 5;		//Maximum spells the player can have.
 	public int spells_available;						//Number of available spells.
 	
 	public final int SPELL_LEVEL_MAX = 5;			//Every spell can be leveled 5 times.
@@ -51,7 +51,7 @@ public class LevelHandler
 	 */
 	public boolean canSpend()
 	{
-		return points_spent < getPointsAvailable();
+		return 0 < getPointsAvailable();
 	}
 	
 	/**

@@ -11,7 +11,7 @@ import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
 /**
- * Remove the targetted block.
+ * Remove the targetted block(s).
  * @author Lee
  */
 public class Dig extends Spell
@@ -38,10 +38,6 @@ public class Dig extends Spell
 				
 				//Remove the physical block.
 				universe.world_handler.removeBlockFromWorld((int) to.x + i, (int) to.y + j);
-				
-				//Break the loops.
-				i = dig_width;
-				j = dig_width;
 			}
 		}
 		
