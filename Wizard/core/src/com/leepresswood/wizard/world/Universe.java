@@ -34,7 +34,7 @@ public class Universe
 		world_handler.world.setContactListener(new ContactHandler());
 		map_camera_handler = new MapCameraHandler(this);
 		entity_handler = new EntityHandler(this);
-		level_handler = new LevelHandler(this, 1);
+		level_handler = new LevelHandler(this, 3);
 		wave_handler = new WaveHandler(this);
 	}
 	

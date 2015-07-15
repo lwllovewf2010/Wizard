@@ -42,7 +42,7 @@ public class ScreenGame extends ScreenParent
 
 	@Override
 	public void update(float delta)
-	{
+	{System.out.println(world.level_handler.getPointsAvailable() + " " + world.level_handler.spell_levels[0]);
 		//Determine if we have to go to the level store. If so, replace the current screen with the shop screen. Pauses the game in the process.
 		if(go_to_level_store)
 		{
