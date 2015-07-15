@@ -61,32 +61,10 @@ public class LevelHandler
 	}
 	
 	/**
-	 * After returning from the level store, we must gather the new
-	 * level data.
+	 * After returning from the level store, we must gather the new level data.
 	 */
 	public void gatherLevelData()
 	{
-		//Collect the number of available spells.
-		int new_spells_available = spells_available + 1;
-		
-		//From this number, create a new spell_levels array if necessary.
-		if(spells_available != new_spells_available)
-		{//Because they are not equal, we added more spells to the list of available ones.
-			//Copy over the old list of spell levels.
-			int[] new_spell_levels = new int[new_spells_available];
-			for(int i = 0; i < spells_available - 1; i++)
-				new_spell_levels[i] = spell_levels[i];
-			
-			//Everything remaining will be initialized to level 1.
-			for(int i = spells_available; i < new_spells_available; i++)
-				new_spell_levels[i] = 0;
-			
-			//Change the pointer to the new array.
-			spell_levels = new_spell_levels;
-		}
-		
-		//Using all this new data, we can create the spell list.
-		spells_available = new_spells_available;
-		universe.screen.gui.refreshSpellList(spells_available);
+		universe.screen.gui.makeSpellList();
 	}
 }

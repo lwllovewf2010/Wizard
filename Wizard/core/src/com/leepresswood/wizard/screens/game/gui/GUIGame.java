@@ -34,8 +34,6 @@ public class GUIGame
 	public Color color_health, color_mana;
 	
 	//Spells
-	public final int SPELL_NUMBER_MAX = 3;
-	public int spell_number_unlocked = 1;
 	public int spell_active = 0;
 	public Spell[] spells;
 	
@@ -47,20 +45,6 @@ public class GUIGame
 		makeStatusBars();
 		makeSpellList();
 		makeButtons();
-	}
-	
-	/**
-	 * Remake the spell list upon returning from the level store.
-	 * @param spell_number_unlocked New number from the level store.
-	 */
-	public void refreshSpellList(int spell_number_unlocked)
-	{
-		//Avoid this method if we didn't update the number of spells.
-		if(this.spell_number_unlocked != spell_number_unlocked)
-		{
-			this.spell_number_unlocked = spell_number_unlocked > SPELL_NUMBER_MAX ? SPELL_NUMBER_MAX : spell_number_unlocked;
-			makeSpellList();
-		}
 	}
 	
 	/**
@@ -96,13 +80,12 @@ public class GUIGame
 	/**
 	 * Create the spell list.
 	 */
-	private void makeSpellList()
+	public void makeSpellList()
 	{
 		try
-		{
-			//Initialize each spell. We will be reading from the player's list of spells.
-			spells = new Spell[spell_number_unlocked];
-			for(int i = 0; i < spell_number_unlocked; i++)
+		{//Initialize each spell. We will be reading from the player's list of spells.
+			spells = new Spell[screen.world.level_handler.spells_available];
+			for(int i = 0; i < screen.world.level_handler.spells_available; i++)
 				spells[i] = parseSpell(new XmlReader().parse(Gdx.files.internal("data/spells.xml")), screen.world.entity_handler.player_root.getChildByName("spell_list").getChild(i).getText(), i);
 		}
 		catch (IOException e)
@@ -166,7 +149,7 @@ public class GUIGame
 			for(GUIButton b : button_array)
 				b.draw(screen.batch);
 			
-			for(int i = 0; i < spell_number_unlocked; i++)
+			for(int i = 0; i < screen.world.level_handler.spells_available; i++)
 				spells[i].sprite.draw(screen.batch);
 		screen.batch.end();
 		
@@ -180,7 +163,7 @@ public class GUIGame
 		//Spell outlines.
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
-			for(int i = 0; i < spell_number_unlocked; i++)
+			for(int i = 0; i < screen.world.level_handler.spells_available; i++)
 				if(i == spell_active)
 					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
 				else
@@ -246,7 +229,7 @@ public class GUIGame
 	private void shiftSpellLeft()
 	{
 		if(spell_active < 0)
-			spell_active = spell_number_unlocked - 1;
+			spell_active = screen.world.level_handler.spells_available - 1;
 	}
 	
 	/**
@@ -254,7 +237,7 @@ public class GUIGame
 	 */
 	private void shiftSpellRight()
 	{
-		if(spell_active == spell_number_unlocked)
+		if(spell_active == screen.world.level_handler.spells_available)
 			spell_active = 0;
 	}
 	

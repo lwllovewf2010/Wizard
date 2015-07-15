@@ -23,16 +23,19 @@ public class ScreenLevelStore extends ScreenParent
 {
 	public ScreenGame game_screen;
 	
+	//This background will be blurred.
 	public TextureRegion background;
 	
-	private final int NUMBER_OF_BUTTONS = 5;
+	//There will be buttons that are used to level up attributes.
+	public GUIButton[] button_array;
+	private final int NUMBER_OF_BUTTONS = 7;
 	private final int BUTTON_RETURN = 0;
 	private final int BUTTON_SPELL_NUMBER = 1;
 	private final int BUTTON_SKILL_ONE = 2;
 	private final int BUTTON_SKILL_TWO = 3;
 	private final int BUTTON_SKILL_THREE = 4;
-	public GUIButton[] button_array;
-	
+	private final int BUTTON_SKILL_FOUR = 5;
+	private final int BUTTON_SKILL_FIVE = 6;
 	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
 	{
@@ -64,8 +67,10 @@ public class ScreenLevelStore extends ScreenParent
 		
 		//Spell level-up buttons.
 		button_array[BUTTON_SKILL_ONE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 0);
-		button_array[BUTTON_SKILL_TWO] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 1);
-		button_array[BUTTON_SKILL_THREE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 2);
+		button_array[BUTTON_SKILL_TWO] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 51f, 100f, 25f, 25f, 1);
+		button_array[BUTTON_SKILL_THREE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 77f, 100f, 25f, 25f, 2);
+		button_array[BUTTON_SKILL_FOUR] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 103f, 100f, 25f, 25f, 3);
+		button_array[BUTTON_SKILL_FIVE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 129f, 100f, 25f, 25f, 4);
 	}
 	
 	@Override
