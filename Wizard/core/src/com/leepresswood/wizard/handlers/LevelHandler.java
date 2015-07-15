@@ -1,6 +1,5 @@
 package com.leepresswood.wizard.handlers;
 
-import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 import com.leepresswood.wizard.world.Universe;
 
 /**
@@ -16,7 +15,7 @@ public class LevelHandler
 	public int points_available;			//Points available to be spent.
 	
 	public int spells_available;			//Number of available spells.
-	public int[] spell_levels;
+	public int[] spell_levels;				//Levels relating to each spell.
 	
 	public LevelHandler(Universe universe, int level)
 	{
@@ -45,7 +44,7 @@ public class LevelHandler
 	public void gatherLevelData()
 	{
 		//Collect the number of available spells.
-		int new_spells_available = universe.screen.screen_level_store.current_spells_available + 1;
+		int new_spells_available = spells_available + 1;
 		
 		//From this number, create a new spell_levels array if necessary.
 		if(spells_available != new_spells_available)

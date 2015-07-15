@@ -19,7 +19,6 @@ import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
  */
 public class ScreenLevelStore extends ScreenParent
 {
-	public GameWizard game;
 	public ScreenGame game_screen;
 	
 	public TextureRegion background;
@@ -27,14 +26,13 @@ public class ScreenLevelStore extends ScreenParent
 	public final int NUMBER_OF_BUTTONS = 2;
 	public GUIButton[] button_array;
 	
-	public int current_spells_available;
+	private final int MAX_SPELLS_AVAILABLE = 5;
 	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
 	{
 		super(game);
 		
 		//We have collected a reference to the previous screen so we can return to it later.
-		this.game = game;
 		this.game_screen = game_screen;
 		
 		//We want to draw the frame buffer as the background to the level screen.
@@ -44,7 +42,6 @@ public class ScreenLevelStore extends ScreenParent
 		
 		
 		//Make elements of the screen.
-		current_spells_available = 0;
 		makeButtons();
 	}
 	
@@ -54,8 +51,13 @@ public class ScreenLevelStore extends ScreenParent
 	private void makeButtons()
 	{
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
-		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 100f, 25f, 25f);
+		
+		//Attribute level-up buttons.
+		button_array[0] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 25f, 25f, 25f);
 		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
+		
+		//Spell level-up buttons.
+		
 	}
 	
 	@Override
@@ -88,4 +90,21 @@ public class ScreenLevelStore extends ScreenParent
 				b.draw(batch);
 		batch.end();
 	}
+
+	/**
+	 * Level up of number of spells was requested. Increase the number and spend a point.
+	 */
+	public void levelUpSpells()
+   {
+		//Increase the number. Check the bounds. If it hit the max, disable the number level up button.
+		if(++game_screen.world.level_handler.spells_available >= MAX_SPELLS_AVAILABLE)
+		{
+			game_screen.world.level_handler.spells_available = MAX_SPELLS_AVAILABLE;
+			button_array[0].is_active = false;
+		}
+		else
+		{
+			game_screen.world.level_handler.points_spent++;
+		}
+   }
 }

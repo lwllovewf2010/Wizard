@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.guielements;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,6 +12,10 @@ public abstract class GUIButton
 	
 	public Sprite sprite;
 	public boolean is_active;
+	
+	//Colors for disabling the buttons.
+	private Color color_batch;
+	private Color color_active;
 	
 	public GUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
 	{
@@ -24,8 +29,24 @@ public abstract class GUIButton
 	
 	public void draw(SpriteBatch batch)
 	{
+		//Grab the color of the batch as a return color.
+		if(color_batch == null)
+		{
+			color_batch = batch.getColor();
+		}
+		
+		//If active, draw normally.
 		if(is_active)
+		{
 			sprite.draw(batch);
+		}
+		//Otherwise, change the batch color to the disabled color and draw.
+		else
+		{
+			batch.setColor(color_active);
+			sprite.draw(batch);
+			batch.setColor(color_batch);
+		}
 	}
 	
 	public abstract void update(float delta);

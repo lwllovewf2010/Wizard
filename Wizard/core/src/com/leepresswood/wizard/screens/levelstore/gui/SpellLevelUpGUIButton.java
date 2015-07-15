@@ -10,9 +10,7 @@ import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
  * @author Lee
  */
 public class SpellLevelUpGUIButton extends GUIButton
-{
-	private final int MAX_SPELLS_AVAILABLE = 5;
-	
+{	
 	public SpellLevelUpGUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
 	{
 		super(screen, t, x, y, width, height);
@@ -26,10 +24,6 @@ public class SpellLevelUpGUIButton extends GUIButton
 	@Override
 	public void doClick()
 	{//Bump current's value.
-		if(++((ScreenLevelStore) screen).current_spells_available >= MAX_SPELLS_AVAILABLE)
-		{
-			((ScreenLevelStore) screen).current_spells_available = MAX_SPELLS_AVAILABLE;
-			is_active = false;
-		}
+		((ScreenLevelStore) screen).levelUpSpells();
 	}
 }
