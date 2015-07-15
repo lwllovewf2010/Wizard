@@ -27,6 +27,10 @@ public abstract class GUIButton
 		is_active = true;
 	}
 	
+	public void update(float delta)
+	{
+	}
+	
 	public void draw(SpriteBatch batch)
 	{
 		//Grab the color of the batch as a return color.
@@ -49,6 +53,5 @@ public abstract class GUIButton
 		}
 	}
 	
-	public abstract void update(float delta);
 	public abstract void doClick();
 }

@@ -17,13 +17,8 @@ public class SpellLevelUpGUIButton extends GUIButton
 	}
 
 	@Override
-	public void update(float delta)
-	{
-	}
-
-	@Override
 	public void doClick()
 	{//Bump current's value.
-		((ScreenLevelStore) screen).levelUpSpells();
+		((ScreenLevelStore) screen).levelUpSpellNumber();
 	}
 }

@@ -18,11 +18,6 @@ public class ReturnToGameGUIButton extends GUIButton
 	}
 
 	@Override
-	public void update(float delta)
-	{
-	}
-
-	@Override
 	public void doClick()
 	{
 		screen.game.setScreen(((ScreenLevelStore) screen).game_screen);

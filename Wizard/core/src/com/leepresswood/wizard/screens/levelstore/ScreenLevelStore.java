@@ -9,6 +9,7 @@ import com.leepresswood.wizard.guielements.GUIButton;
 import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.levelstore.gui.LevelUpSpellButton;
 import com.leepresswood.wizard.screens.levelstore.gui.ReturnToGameGUIButton;
 import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 
@@ -23,7 +24,7 @@ public class ScreenLevelStore extends ScreenParent
 	
 	public TextureRegion background;
 	
-	public final int NUMBER_OF_BUTTONS = 2;
+	public final int NUMBER_OF_BUTTONS = 3;
 	public GUIButton[] button_array;
 	
 	private final int MAX_SPELLS_AVAILABLE = 5;
@@ -57,7 +58,7 @@ public class ScreenLevelStore extends ScreenParent
 		button_array[1] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
 		
 		//Spell level-up buttons.
-		
+		button_array[2] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 0);
 	}
 	
 	@Override
@@ -94,13 +95,29 @@ public class ScreenLevelStore extends ScreenParent
 	/**
 	 * Level up of number of spells was requested. Increase the number and spend a point.
 	 */
-	public void levelUpSpells()
-   {
-		//Increase the number. Check the bounds. If it hit the max, disable the number level up button.
+	public void levelUpSpellNumber()
+   {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
 		if(++game_screen.world.level_handler.spells_available >= MAX_SPELLS_AVAILABLE)
 		{
 			game_screen.world.level_handler.spells_available = MAX_SPELLS_AVAILABLE;
 			button_array[0].is_active = false;
+		}
+		else
+		{
+			game_screen.world.level_handler.points_spent++;
+		}
+   }
+
+	/**
+	 * Level up the designated spell.
+	 * @param spell_number The spell to level up.
+	 */
+	public void levelUpSpell(int spell_number)
+   {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
+		if(++game_screen.world.level_handler.spell_levels[spell_number] >= MAX_SPELLS_AVAILABLE)
+		{
+			game_screen.world.level_handler.spell_levels[spell_number] = MAX_SPELLS_AVAILABLE;
+			button_array[spell_number + 2].is_active = false;
 		}
 		else
 		{
