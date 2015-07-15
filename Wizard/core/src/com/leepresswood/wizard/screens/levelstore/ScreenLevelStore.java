@@ -126,8 +126,9 @@ public class ScreenLevelStore extends ScreenParent
 				button_array[BUTTON_SPELL_NUMBER].is_active = false;
 			}
 			else
-			{
+			{//Spend a point and activate the corresponding button.
 				getLevelHandler().spend();
+				button_array[getLevelHandler().spells_available + BUTTON_SKILL_ONE - 1].is_active = true;
 			}
 		}
    }
