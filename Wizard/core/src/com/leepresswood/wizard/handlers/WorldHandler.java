@@ -144,7 +144,7 @@ public class WorldHandler
 	 */
 	public void removeBlockFromWorld(int x, int y)
 	{
-		if(blocks[y][x] != null)
+		if(x >= 0 && y >= 0 && y < blocks.length && x < blocks[0].length && blocks[y][x] != null)
 			world.destroyBody(blocks[y][x]);
 	}
 	

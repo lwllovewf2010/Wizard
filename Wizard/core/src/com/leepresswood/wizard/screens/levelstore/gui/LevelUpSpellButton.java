@@ -14,6 +14,7 @@ public class LevelUpSpellButton extends GUIButton
 	   super(screen, t, x, y, width, height);
 	   
 	   this.spell_number = spell_number;
+	   this.is_active = false;
    }
 	
 	@Override

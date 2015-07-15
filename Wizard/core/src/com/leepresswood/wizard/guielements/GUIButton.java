@@ -25,6 +25,7 @@ public abstract class GUIButton
 		sprite.setBounds(x, y, width, height);
 		
 		is_active = true;
+		color_active = new Color(Color.BLUE);
 	}
 	
 	public void update(float delta)

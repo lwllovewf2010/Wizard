@@ -30,9 +30,9 @@ public class ContactHandler implements ContactListener
 		}
 		else
 		{//Contact was with the ground. We want the living entities to be able to jump again if the collision was done in the correct way.
-			if(a == GROUND)
+			if(a == GROUND && getB(contact, B2DSPackage.class).entity instanceof LivingEntity)
 				((LivingEntity) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).body);
-			else if(b == GROUND)
+			else if(b == GROUND && getA(contact, B2DSPackage.class).entity instanceof LivingEntity)
 				((LivingEntity) getA(contact, B2DSPackage.class).entity).doHit(getB(contact, B2DSPackage.class).body);
 		}
    }
