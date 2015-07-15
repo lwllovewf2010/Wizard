@@ -24,7 +24,7 @@ public class Universe
 	public LevelHandler level_handler;
 	public WaveHandler wave_handler;
 	
-	//Box2DDebugRenderer debug = new Box2DDebugRenderer();
+	Box2DDebugRenderer debug = new Box2DDebugRenderer();
 	
 	public Universe(ScreenGame screen)
 	{
@@ -49,8 +49,8 @@ public class Universe
 	public void draw()
 	{
 		map_camera_handler.map_renderer.setView(map_camera_handler);
-		map_camera_handler.map_renderer.render();		
+		//map_camera_handler.map_renderer.render();		
 		entity_handler.draw();
-		//debug.render(world_handler.world, map_camera_handler.combined);
+		debug.render(world_handler.world, map_camera_handler.combined);
 	}
 }
