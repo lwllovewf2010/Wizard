@@ -12,13 +12,9 @@ public class InputGame implements InputProcessor
 {
 	private ScreenGame screen;
 	
-	//public Vector3 mouse_position;
-	
 	public InputGame(ScreenGame screen)
 	{
 		this.screen = screen;
-		
-		//mouse_position = new Vector3();
 	}
 
 	@Override
@@ -59,7 +55,7 @@ public class InputGame implements InputProcessor
 			case Keys.NUMPAD_8:
 			case Keys.NUMPAD_9:
 				String key = Keys.toString(keycode);
-				screen.gui.changeSpell(Character.getNumericValue((key.charAt(key.length() - 1))));				
+				screen.gui.changeSpell(Character.getNumericValue(key.charAt(key.length() - 1)));				
 				break;
 			default:
 				break;
@@ -122,11 +118,6 @@ public class InputGame implements InputProcessor
 	@Override
 	public boolean mouseMoved(int screenX, int screenY)
 	{
-		/*mouse_position.x = screenX;
-		mouse_position.y = Gdx.graphics.getHeight() - screenY;*/
-		
-		//mouse_position = screen.world.map_camera_handler.unproject(new Vector3(screenX, screenY, 0f));
-		
 		return false;
 	}
 	

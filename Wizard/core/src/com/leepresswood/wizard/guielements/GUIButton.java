@@ -15,7 +15,7 @@ public abstract class GUIButton
 	
 	//Colors for disabling the buttons.
 	private Color color_batch;
-	private Color color_active;
+	private Color color_inactive;
 	
 	public GUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
 	{
@@ -25,7 +25,7 @@ public abstract class GUIButton
 		sprite.setBounds(x, y, width, height);
 		
 		is_active = true;
-		color_active = new Color(Color.BLUE);
+		color_inactive = new Color(Color.BLUE);
 	}
 	
 	public void update(float delta)
@@ -48,7 +48,7 @@ public abstract class GUIButton
 		//Otherwise, change the batch color to the disabled color and draw.
 		else
 		{
-			batch.setColor(color_active);
+			batch.setColor(color_inactive);
 			sprite.draw(batch);
 			batch.setColor(color_batch);
 		}

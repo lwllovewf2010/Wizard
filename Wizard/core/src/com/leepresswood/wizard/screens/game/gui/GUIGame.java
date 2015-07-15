@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.guielements.GUIButton;
@@ -171,28 +173,19 @@ public class GUIGame
 		screen.renderer.end();
 
 		//Mouse position outline.
-		/*Rectangle r = null;
-		for(int j = 0; j < screen.world.map_camera_handler.WORLD_TOTAL_VERTICAL; j++)
-		{
-			for(int i = 0; i < screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL; i++)
-			{
-				if(screen.world.map_camera_handler.map_rectangles[j][i].contains(screen.input.mouse_position.x, screen.input.mouse_position.y))//screen.world.map_camera_handler.map_rectangles[(int) (screen.input.mouse_position.y)][(int) (screen.input.mouse_position.x)];
-				{
-					r = screen.world.map_camera_handler.map_rectangles[j][i];
-					i = screen.world.map_camera_handler.WORLD_TOTAL_HORIZONTAL;
-					j = screen.world.map_camera_handler.WORLD_TOTAL_VERTICAL;
-				}
-			}System.out.println(screen.input.mouse_position);
-		}
+		Vector3 v = screen.world.map_camera_handler.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0f));
+		Rectangle r = new Rectangle((int) v.x, (int) v.y, 1f, 1f);
 		
 		if(r != null)
 		{
+			screen.renderer.setProjectionMatrix(screen.world.map_camera_handler.combined);
 			screen.renderer.setColor(Color.WHITE);
 			screen.renderer.begin(ShapeType.Line);
 				screen.renderer.identity();
 				screen.renderer.rect(r.x, r.y, r.width, r.height);
 			screen.renderer.end();
-		}*/
+			screen.renderer.setProjectionMatrix(camera.combined);
+		}
 	}
 	
 	/**
