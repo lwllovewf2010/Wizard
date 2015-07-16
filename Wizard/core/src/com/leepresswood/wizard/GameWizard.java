@@ -23,9 +23,12 @@ public class GameWizard extends Game
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Version 0.9 Alpha Goals:
+	 * Version 0.10 Alpha Goals:
 	 * =========================
-	 * Leveling of attributes
+	 * Fix broken health/mana bars
+	 * Knockback
+	 * Experience
+	 * Text
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -38,8 +41,13 @@ public class GameWizard extends Game
 	 * On-screen text indicators
 	 * Better GUI
 	 * Experience/Gold system
+	 * 
+	 * Known Issues:
+	 * =============
+	 * Fireball goes in random directions when it bounces off the gap between two ground blocks.
+	 * Health/Mana bars don't appropriately show their values.
 	 */
-	public static final String GAME_VERSION = "0.9 Alpha";
+	public static final String GAME_VERSION = "0.10 Alpha";
 	
 	public Assets assets;
 

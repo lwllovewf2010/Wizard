@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
