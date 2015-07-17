@@ -99,6 +99,12 @@ public abstract class Spell extends GameEntity
    }
 	
 	@Override
+	protected String getTextureBaseString()
+	{
+		return "spells/";
+	}
+	
+	@Override
 	public boolean getDeathStatus()
 	{
 	   return false;

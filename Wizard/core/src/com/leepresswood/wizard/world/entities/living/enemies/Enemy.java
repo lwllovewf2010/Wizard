@@ -117,6 +117,12 @@ public abstract class Enemy extends LivingEntity
 	}
 	
 	@Override
+	protected String getTextureBaseString()
+	{
+		return "enemies/";
+	}
+	
+	@Override
 	public void die(float delta)
 	{//New note: This is only called after it has been determined that the entity is dying. No need to check for dying.
 		//Update the timing and change the alpha.

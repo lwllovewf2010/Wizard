@@ -148,6 +148,12 @@ public abstract class Player extends LivingEntity
 	}*/
 	
 	@Override
+	protected String getTextureBaseString()
+	{
+		return "players/";
+	}
+	
+	@Override
 	public void die(float delta)
 	{
 	}

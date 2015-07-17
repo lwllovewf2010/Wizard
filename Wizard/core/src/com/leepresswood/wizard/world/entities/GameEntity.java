@@ -39,11 +39,17 @@ public abstract class GameEntity
 		
 		//Gather XML data.
 		name = data.get("name");
-		texture = universe.screen.game.assets.get(TEXTURE_BASE + data.get("texture") + TEXTURE_EXTENSION);
+		texture = universe.screen.game.assets.get(TEXTURE_BASE + getTextureBaseString() + data.get("texture") + TEXTURE_EXTENSION);
 		
 		//Create a body for all this entity's parts.
 		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
    }
+	
+	/**
+	 * Return the name of the directory that holds this type of entity's textures.
+	 * @return
+	 */
+	protected abstract String getTextureBaseString();
 	
 	/**
 	 * Set sprites to their initial values.

@@ -4,7 +4,7 @@
 	<!--Damage-->
 	<aether>
 		<name>Aether</name>
-		<texture>hold</texture>
+		<texture>aether</texture>
 		<width>1.5</width>
 		<height>1.5</height>
 		<type>Void</type>
@@ -36,7 +36,7 @@
 	</aether>
 	<fireball>
 	    <name>Fireball</name>
-	    <texture>hold</texture>
+	    <texture>fireball</texture>
 		<width>1.5</width>
 		<height>1.5</height>
 	    <type>Fire</type>
