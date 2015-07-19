@@ -6,25 +6,27 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
+/**
+ * Manages the loading of the game's assets.
+ * @author Lee
+ */
 public class Assets extends AssetManager
 {	
 	public static final int MAP_TEST = 0;
 	
 	public Assets()
 	{
-		//Maps
+		//Maps.
 		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		load("maps/map.tmx", TiledMap.class);
 		
-		//Textures
+		//Hold textures.
 		load("textures/hold.png", Texture.class);
-		
 		load("textures/bosses/hold.png", Texture.class);
-		
 		load("textures/enemies/hold.png", Texture.class);
-		
 		load("textures/players/hold.png", Texture.class);
 		
+		//Spell textures.
 		load("textures/spells/aether.png", Texture.class);
 		load("textures/spells/fireball.png", Texture.class);
 		load("textures/spells/hold.png", Texture.class);
