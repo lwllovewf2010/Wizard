@@ -95,13 +95,9 @@ public class MapCameraHandler extends OrthographicCamera
 		//Make the map blocks. These can be used to get the tile that is being highlighted.
 		universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL, GRAVITY);
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
-		{
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
-			{
 				if(collision_layer.getCell(i, j) != null)
 					universe.world_handler.addBlockToWorld(i, j, 1f, 1f);
-			}
-		}
 	}
 	
 	/**
@@ -113,15 +109,13 @@ public class MapCameraHandler extends OrthographicCamera
 		//NOTE: Look at player's position, but add a delay if just recently moved to make the camera smoother.
 		position.x += (universe.entity_handler.player.parts[0].body.getPosition().x - position.x) * Gdx.graphics.getDeltaTime() * LERP;
 		position.y += (universe.entity_handler.player.parts[0].body.getPosition().y - position.y) * Gdx.graphics.getDeltaTime() * LERP + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
-		//position.x = universe.entity_handler.player.parts[0].sprite.getX() + universe.entity_handler.player.parts[0].sprite.getWidth() / 2f;
-		//position.y = universe.entity_handler.player.parts[0].sprite.getY() + universe.entity_handler.player.parts[0].sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(position.x < WORLD_LEFT)
 			position.x = WORLD_LEFT;
 		else if(position.x > WORLD_RIGHT)
 			position.x = WORLD_RIGHT;
-		else if(position.y < WORLD_BOTTOM)
+		if(position.y < WORLD_BOTTOM)
 			position.y = WORLD_BOTTOM;
 		else if(position.y > WORLD_TOP)
 			position.y = WORLD_TOP;
