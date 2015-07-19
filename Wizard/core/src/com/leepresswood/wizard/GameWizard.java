@@ -29,9 +29,9 @@ public class GameWizard extends Game
 	 * Experience
 	 * Text
 	 * 
-	 * Change Log:
-	 * ==========
-	 * Fixed broken health/mana bars
+	 * Version 0.10 Alpha Change Log:
+	 * ==============================
+	 * Fixed broken health/mana bars.
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -48,7 +48,6 @@ public class GameWizard extends Game
 	 * Issues:
 	 * =======
 	 * Fireball goes in random directions when it bounces off the gap between two ground blocks.
-	 * Health/Mana bars don't appropriately show their values.
 	 */
 	public static final String GAME_VERSION = "0.10 Alpha";
 	

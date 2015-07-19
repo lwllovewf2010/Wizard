@@ -38,6 +38,20 @@ public class MapCameraHandler extends OrthographicCamera
 	public float GRAVITY;															//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;														//Width/Height of each block.
 	
+	/*
+	 * This value can be used to have the camera follow the player in an imperfect
+	 * fashion.
+	 * 
+	 * Lower values = Less responsive camera, and 0 = No movement.
+	 * Higher values = More responsive camera. Infinity = Perfect response, but
+	 * there should never be a time where this is necessary (or possible).
+	 * 
+	 * Any value between 2 and 5 should be fine for everyday camera activity. Might 
+	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
+	 * than 1.
+	 */
+	private final float LERP = 4f;
+	
 	public MapCameraHandler(Universe universe)
 	{
 		this.universe = universe;
@@ -96,8 +110,11 @@ public class MapCameraHandler extends OrthographicCamera
 	public void setCameraBounds()
 	{
 		//First, set the camera to the player's position.
-		position.x = universe.entity_handler.player.parts[0].sprite.getX() + universe.entity_handler.player.parts[0].sprite.getWidth() / 2f;
-		position.y = universe.entity_handler.player.parts[0].sprite.getY() + universe.entity_handler.player.parts[0].sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
+		//NOTE: Look at player's position, but add a delay if just recently moved to make the camera smoother.
+		position.x += (universe.entity_handler.player.parts[0].body.getPosition().x - position.x) * Gdx.graphics.getDeltaTime() * LERP;
+		position.y += (universe.entity_handler.player.parts[0].body.getPosition().y - position.y) * Gdx.graphics.getDeltaTime() * LERP + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
+		//position.x = universe.entity_handler.player.parts[0].sprite.getX() + universe.entity_handler.player.parts[0].sprite.getWidth() / 2f;
+		//position.y = universe.entity_handler.player.parts[0].sprite.getY() + universe.entity_handler.player.parts[0].sprite.getHeight() / 2f + zoom * viewportHeight / WORLD_PLAYER_Y_SKEW;
 		
 		//If this moves off the world's bounds, correct it.
 		if(position.x < WORLD_LEFT)

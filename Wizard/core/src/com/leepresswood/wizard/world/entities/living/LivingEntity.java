@@ -95,12 +95,6 @@ public abstract class LivingEntity extends GameEntity
 			p.draw(batch);
 	}
 	
-	@Override
-	public void doHit(GameEntity entity)
-	{
-		
-	}
-	
 	/**
 	 * Overloading the doHit function for entity-ground collisions.
 	 * @param body
@@ -109,14 +103,23 @@ public abstract class LivingEntity extends GameEntity
 	{
 		/**
 		 * Logic:
-		 * This is being called because there was a collision. There's no debate there.
+		 * This is being called because there was a collision. There's no debating that.
 		 * We're trying to determine the side of the collision. Hitting from this entity's
 		 * bottom will turn on jumping once more.
 		 * Bottom-touching will be determined by the Y-positioning of the bodies. If this
 		 * entity's Y-position is higher than the Y-position of the collided body, we can jump again.
 		 */
-		if(parts[0].body.getPosition().y >= body.getPosition().y)
+		if(parts[0].body.getPosition().y - parts[0].body.getFixtureList().get(0).getShape().getRadius() >= body.getPosition().y)
 			on_ground = true;
+		
+		//On top of jump-based collision, we also need to turn off the player's momentum upon hitting a wall.
+		//Right
+		if(parts[0].body.getLinearVelocity().x > 0f && parts[0].body.getPosition().x <= body.getPosition().x)
+			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);
+		
+		//Left
+		if(parts[0].body.getLinearVelocity().x < 0f && parts[0].body.getPosition().x >= body.getPosition().x)
+			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);
 	}
 	
 	/**
