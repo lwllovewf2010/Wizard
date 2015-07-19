@@ -127,22 +127,13 @@ public class GUIGame
 	}
 	
 	/**
-	 * Timed update. This will be used in the recovery of health/mana, any animations, and possibly a game clock with a day/night system.
+	 * Timed update. This will be used in any animations and possibly a game clock with a day/night system.
 	 * @param delta Change in time.
 	 */
 	public void update(float delta)
 	{
 		for(GUIButton b : button_array)
 			b.update(delta);
-		
-		//Grab bar values from the player. Update bar.
-		bar_health.setMaxValue(screen.universe.entity_handler.player.health_max);
-		bar_health.setCurrentValue(screen.universe.entity_handler.player.health_current);
-		bar_health.update(delta);
-		
-		bar_mana.setMaxValue(screen.universe.entity_handler.player.mana_max);
-		bar_health.setCurrentValue(screen.universe.entity_handler.player.mana_current);
-		bar_mana.update(delta);
 	}
 	
 	/**

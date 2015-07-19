@@ -25,10 +25,13 @@ public class GameWizard extends Game
 	 * 
 	 * Version 0.10 Alpha Goals:
 	 * =========================
-	 * Fix broken health/mana bars
 	 * Knockback
 	 * Experience
 	 * Text
+	 * 
+	 * Change Log:
+	 * ==========
+	 * Fixed broken health/mana bars
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -42,8 +45,8 @@ public class GameWizard extends Game
 	 * Better GUI
 	 * Experience/Gold system
 	 * 
-	 * Known Issues:
-	 * =============
+	 * Issues:
+	 * =======
 	 * Fireball goes in random directions when it bounces off the gap between two ground blocks.
 	 * Health/Mana bars don't appropriately show their values.
 	 */
