@@ -29,7 +29,6 @@ public class Skeleton extends Enemy
 	
 	@Override
 	public void attack(Vector2 touch)
-	{
-		//Skeletons don't have any attacks. Their only damage happens by bumping into things.
+	{//Skeletons don't have any attacks. Their only damage happens by bumping into things.
 	}
 }

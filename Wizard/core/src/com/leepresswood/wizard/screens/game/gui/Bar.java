@@ -5,7 +5,7 @@ public class Bar
 {
 	public float current_bar_value, max_bar_value;
 	public float x, y, width, height;
-	private final float MAX_BAR_WIDTH;
+	public final float MAX_BAR_WIDTH;
 	
 	public Bar(float x, float y, float width, float height, float max_bar_value)
 	{		
@@ -24,7 +24,7 @@ public class Bar
 	 * Do math to set the width of the bar after damage/healing.
 	 * @return Current health as a decimal percentage of its maximum value.
 	 */
-	private float getAsPercent()
+	public float getAsPercent()
 	{
 		return current_bar_value / max_bar_value;
 	}

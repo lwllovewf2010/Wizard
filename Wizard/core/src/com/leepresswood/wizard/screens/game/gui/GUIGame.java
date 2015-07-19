@@ -173,8 +173,8 @@ public class GUIGame
 		//Health/Mana bars.
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
-			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.height, color_health, color_health, color_health, color_health);
-			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
+			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.MAX_BAR_WIDTH * screen.universe.entity_handler.player.health_current / screen.universe.entity_handler.player.health_max, bar_health.height, color_health, color_health, color_health, color_health);
+			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.MAX_BAR_WIDTH * screen.universe.entity_handler.player.mana_current / screen.universe.entity_handler.player.mana_max, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();
 		
 		//Spell outlines.
