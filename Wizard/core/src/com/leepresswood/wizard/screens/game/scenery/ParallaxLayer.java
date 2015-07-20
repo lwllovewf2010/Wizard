@@ -27,10 +27,23 @@ public class ParallaxLayer
 		this.move_percentage = move_percentage;
 		
 		this.sprite = new Sprite(texture);
-		sprite.setBounds(0f, 0f, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
-		System.out.println(sprite.getBoundingRectangle());
+		sprite.setBounds(-30f, 5.5f, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL * 1.5f, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
 	}
 	
+	/**
+	 * This is a ground-level layer. Start drawing from the ground.
+	 * @param universe
+	 * @param move_percentage
+	 * @param texture
+	 * @param ground
+	 */
+	public ParallaxLayer(Universe universe, float move_percentage, Texture texture, float ground)
+   {
+		this(universe, move_percentage, texture);
+		
+		sprite.setY(ground);
+   }
+
 	public void update(float delta)
 	{//Shift the parallax sprite by the player's movement times the move percentage.
 		sprite.translate(move_percentage * universe.entity_handler.player.dx, move_percentage * universe.entity_handler.player.dy);

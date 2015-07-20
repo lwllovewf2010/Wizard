@@ -1,6 +1,8 @@
 package com.leepresswood.wizard.world;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.handlers.EntityHandler;
@@ -43,13 +45,13 @@ public class Universe
 		wave_handler = new WaveHandler(this);
 		
 		//Make the parallax layers.
-		parallax_layers = new ParallaxLayer[1];
-		parallax_layers[0] = new ParallaxLayer(this, 0.15f, screen.game.assets.get("textures/parallax/smallforest/sky.png", Texture.class));
-		/*parallax_layers[1] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class));
-		parallax_layers[2] = new ParallaxLayer(this, 0.30f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class));
-		parallax_layers[3] = new ParallaxLayer(this, 0.45f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
+		parallax_layers = new ParallaxLayer[6];
+		parallax_layers[0] = new ParallaxLayer(this, 0.05f, screen.game.assets.get("textures/parallax/smallforest/sky.png", Texture.class));
+		parallax_layers[1] = new ParallaxLayer(this, 0.10f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class));
+		parallax_layers[2] = new ParallaxLayer(this, 0.15f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class));
+		parallax_layers[3] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
 		parallax_layers[4] = new ParallaxLayer(this, 0.60f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
-		parallax_layers[5] = new ParallaxLayer(this, 0.75f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));*/
+		parallax_layers[5] = new ParallaxLayer(this, 0.75f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));
 	}
 	
 	public void update(float delta)

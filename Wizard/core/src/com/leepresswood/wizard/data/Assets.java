@@ -26,12 +26,15 @@ public class Assets extends AssetManager
 		load("textures/enemies/hold.png", Texture.class);
 		load("textures/players/hold.png", Texture.class);
 		
+		//Enemies.
+		load("textures/enemies/back1.png", Texture.class);
+		
 		//Spell textures.
 		load("textures/spells/aether.png", Texture.class);
 		load("textures/spells/fireball.png", Texture.class);
 		load("textures/spells/hold.png", Texture.class);
 		
-		//Parallax.
+		//Parallax. http://imageresize.org/Default.aspx
 		load("textures/parallax/smallforest/back1.png", Texture.class);
 		load("textures/parallax/smallforest/back2.png", Texture.class);
 		load("textures/parallax/smallforest/back3.png", Texture.class);
