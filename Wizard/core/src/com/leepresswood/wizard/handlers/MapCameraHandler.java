@@ -50,7 +50,7 @@ public class MapCameraHandler extends OrthographicCamera
 	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
 	 * than 1.
 	 */
-	private final float LERP = 10f;
+	private final float LERP = 2f;
 	
 	public MapCameraHandler(Universe universe)
 	{
@@ -98,6 +98,7 @@ public class MapCameraHandler extends OrthographicCamera
 	
 	/**
 	 * Make the map blocks.
+	 * 
 	 * To do this, we want to go row-by-row and connect neighboring blocks. If a block is missing,
 	 * leave a gap and start a new neighborhood. Each neighborhood will then be used to create
 	 * static ground items.

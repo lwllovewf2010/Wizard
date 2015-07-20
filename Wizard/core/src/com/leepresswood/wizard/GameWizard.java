@@ -28,10 +28,12 @@ public class GameWizard extends Game
 	 * Knockback
 	 * Experience
 	 * Text
+	 * Parallax backgrounds
 	 * 
 	 * Version 0.10 Alpha Change Log:
 	 * ==============================
 	 * Fixed broken health/mana bars.
+	 * Fireball no longer goes in random directions when bouncing off the gap between two ground blocks.
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -47,7 +49,7 @@ public class GameWizard extends Game
 	 * 
 	 * Issues:
 	 * =======
-	 * Fireball goes in random directions when it bounces off the gap between two ground blocks.
+	 * 
 	 */
 	public static final String GAME_VERSION = "0.10 Alpha";
 	
