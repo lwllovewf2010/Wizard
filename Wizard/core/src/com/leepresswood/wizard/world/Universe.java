@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.world;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.handlers.EntityHandler;
@@ -42,8 +43,13 @@ public class Universe
 		wave_handler = new WaveHandler(this);
 		
 		//Make the parallax layers.
-		parallax_layers = new ParallaxLayer[3];
-		parallax_layers[0] = new ParallaxLayer(universe, move_percentage, sprite);
+		parallax_layers = new ParallaxLayer[1];
+		parallax_layers[0] = new ParallaxLayer(this, 0.15f, screen.game.assets.get("textures/parallax/smallforest/sky.png", Texture.class));
+		/*parallax_layers[1] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class));
+		parallax_layers[2] = new ParallaxLayer(this, 0.30f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class));
+		parallax_layers[3] = new ParallaxLayer(this, 0.45f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
+		parallax_layers[4] = new ParallaxLayer(this, 0.60f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
+		parallax_layers[5] = new ParallaxLayer(this, 0.75f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));*/
 	}
 	
 	public void update(float delta)
@@ -52,10 +58,19 @@ public class Universe
 		entity_handler.update(delta);
 		map_camera_handler.setCameraBounds();
 		wave_handler.update();
+		
+		for(ParallaxLayer layer : parallax_layers)
+			layer.update(delta);
 	}
 	
 	public void draw()
 	{
+		//Draw parallax background.
+		screen.batch.setProjectionMatrix(map_camera_handler.combined);
+		screen.batch.begin();
+		for(ParallaxLayer layer : parallax_layers)
+			layer.draw(screen.batch);
+		screen.batch.end();
 		
 		map_camera_handler.map_renderer.setView(map_camera_handler);
 		map_camera_handler.map_renderer.render();		

@@ -68,6 +68,9 @@ public abstract class Player extends LivingEntity
 		//Set the dx and dy variables for parallax.
 		dx = last_x - parts[0].sprite.getX();
 		dy = last_y - parts[0].sprite.getY();
+		
+		last_x = parts[0].sprite.getX();
+		last_y = parts[0].sprite.getY();
 	}
 	
 	protected void calcMovement(float delta)

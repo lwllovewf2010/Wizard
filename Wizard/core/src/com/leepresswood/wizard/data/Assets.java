@@ -30,6 +30,14 @@ public class Assets extends AssetManager
 		load("textures/spells/aether.png", Texture.class);
 		load("textures/spells/fireball.png", Texture.class);
 		load("textures/spells/hold.png", Texture.class);
+		
+		//Parallax.
+		load("textures/parallax/smallforest/back1.png", Texture.class);
+		load("textures/parallax/smallforest/back2.png", Texture.class);
+		load("textures/parallax/smallforest/back3.png", Texture.class);
+		load("textures/parallax/smallforest/middle1.png", Texture.class);
+		load("textures/parallax/smallforest/middle2.png", Texture.class);
+		load("textures/parallax/smallforest/sky.png", Texture.class);
 	}
 	
 	public TiledMap getMap(int map)

@@ -28,6 +28,7 @@ public class ParallaxLayer
 		
 		this.sprite = new Sprite(texture);
 		sprite.setBounds(0f, 0f, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
+		System.out.println(sprite.getBoundingRectangle());
 	}
 	
 	public void update(float delta)
