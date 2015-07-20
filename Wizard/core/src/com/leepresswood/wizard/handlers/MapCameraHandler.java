@@ -94,11 +94,18 @@ public class MapCameraHandler extends OrthographicCamera
 		WORLD_LEFT = zoom * viewportWidth / 2f;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
-		/*Make the map blocks.
-		 * To do this, we want to go row-by-row and connect neighboring blocks. If a block is missing,
-		 * leave a gap and start a new neighborhood. Each neighborhood will then be used to create
-		 * static ground items.
-		 */
+		//Create the physical blocks.
+		createBlocks();
+	}
+	
+	/**
+	 * Make the map blocks.
+	 * To do this, we want to go row-by-row and connect neighboring blocks. If a block is missing,
+	 * leave a gap and start a new neighborhood. Each neighborhood will then be used to create
+	 * static ground items.
+	 */
+	public void createBlocks()
+	{
 		universe.world_handler.handlerInit(GRAVITY);
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 		{//Neighborhoods start with a width of 0.
@@ -114,7 +121,7 @@ public class MapCameraHandler extends OrthographicCamera
 				{
 					if(neighborhood_width > 0)
 					{//Add a neighborhood block and start a new neighborhood.
-						universe.world_handler.addBlockToWorld(i - neighborhood_width / 2f, j, neighborhood_width, 1f);
+						universe.world_handler.addBlockToWorld(i - neighborhood_width, j, neighborhood_width, 1f);
 						neighborhood_width = 0;
 					}
 				}
@@ -122,19 +129,10 @@ public class MapCameraHandler extends OrthographicCamera
 				//On top of adding the block if a blank cell is found, we also want to add one if this is the end of the row.
 				if(neighborhood_width > 0 && i == WORLD_TOTAL_HORIZONTAL - 1)
 				{
-					universe.world_handler.addBlockToWorld(i - neighborhood_width / 2f, j, neighborhood_width, 1f);
+					universe.world_handler.addBlockToWorld(i - neighborhood_width + 1, j, neighborhood_width, 1f);
 				}
 			}
 		}
-		
-		
-		
-		
-		/*universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL, GRAVITY);
-		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
-			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
-				if(collision_layer.getCell(i, j) != null)
-					universe.world_handler.addBlockToWorld(i, j, 1f, 1f);*/
 	}
 	
 	/**

@@ -35,11 +35,12 @@ public class Dig extends Spell
 			{
 				//Remove the texture of the block.
 				universe.map_camera_handler.collision_layer.setCell((int) to.x + i, (int) to.y + j, null);
-				
-				//Remove the physical blocks and remake the world.
-				universe.world_handler.removeBlocksFromWorld();
 			}
 		}
+		
+		//The world no longer matches the Tiled map. Remove all static blocks and remake.
+		universe.world_handler.removeBlocksFromWorld();
+		universe.map_camera_handler.createBlocks();
 		
 		active = false;
 	}

@@ -109,7 +109,7 @@ public class WorldHandler
 	 * @param height Height of static block.
 	 */
 	public void addBlockToWorld(float x, float y, float width, float height)
-	{
+	{System.out.println(x + " " + y + " " + width + " " + height);
 		//Set the definition to the location.
 		body_definition_static.position.set(x + width / 2f, y + height / 2f);
 		
