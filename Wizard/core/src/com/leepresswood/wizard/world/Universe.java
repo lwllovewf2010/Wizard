@@ -44,14 +44,19 @@ public class Universe
 		level_handler = new LevelHandler(this, 3);
 		wave_handler = new WaveHandler(this);
 		
+		//Move the camera to the player's position immediately to assure the parallax works.
+		map_camera_handler.position.x = entity_handler.player.parts[0].body.getPosition().x;
+		map_camera_handler.position.y = entity_handler.player.parts[0].body.getPosition().y;
+		map_camera_handler.update();
+		
 		//Make the parallax layers.
 		parallax_layers = new ParallaxLayer[6];
-		parallax_layers[0] = new ParallaxLayer(this, 0.05f, screen.game.assets.get("textures/parallax/smallforest/sky.png", Texture.class));
-		parallax_layers[1] = new ParallaxLayer(this, 0.10f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class));
-		parallax_layers[2] = new ParallaxLayer(this, 0.15f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class));
-		parallax_layers[3] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
-		parallax_layers[4] = new ParallaxLayer(this, 0.60f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
-		parallax_layers[5] = new ParallaxLayer(this, 0.75f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));
+		parallax_layers[0] = new ParallaxLayer(this, 0.00f, screen.game.assets.get("textures/parallax/smallforest/sky.png", Texture.class), 0f);
+		parallax_layers[1] = new ParallaxLayer(this, 0.00f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class), 0f);
+		parallax_layers[2] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class), 0f);
+		parallax_layers[3] = new ParallaxLayer(this, 0.30f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
+		parallax_layers[4] = new ParallaxLayer(this, 0.40f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
+		parallax_layers[5] = new ParallaxLayer(this, 0.40f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));
 	}
 	
 	public void update(float delta)

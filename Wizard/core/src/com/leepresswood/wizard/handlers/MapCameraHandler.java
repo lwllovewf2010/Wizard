@@ -38,6 +38,10 @@ public class MapCameraHandler extends OrthographicCamera
 	public float GRAVITY;															//Value of gravity. Set by the map. May seek to change eventually (faster/slower falling, or maybe reverse gravity)
 	public float pixel_size;														//Width/Height of each block.
 	
+	//Positioning for parallax.
+	public float dx, dy;
+	private float last_x, last_y;
+	
 	/*
 	 * This value can be used to have the camera follow the player in an imperfect
 	 * fashion.
@@ -50,7 +54,7 @@ public class MapCameraHandler extends OrthographicCamera
 	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
 	 * than 1.
 	 */
-	private final float LERP = 2f;
+	private final float LERP = 4f;
 	
 	public MapCameraHandler(Universe universe)
 	{
@@ -94,6 +98,9 @@ public class MapCameraHandler extends OrthographicCamera
 		
 		//Create the physical blocks.
 		createBlocks();
+		
+		last_x = position.x;
+		last_y = position.y;
 	}
 	
 	/**
@@ -154,5 +161,12 @@ public class MapCameraHandler extends OrthographicCamera
 		else if(position.y > WORLD_TOP)
 			position.y = WORLD_TOP;
 		update();
+		
+		//Determine the change is camera positioning for parallax.
+		dx = last_x - position.x;
+		dy = last_y - position.y;
+		
+		last_x = position.x;
+		last_y = position.y;
 	}
 }

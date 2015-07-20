@@ -27,7 +27,7 @@ public class ParallaxLayer
 		this.move_percentage = move_percentage;
 		
 		this.sprite = new Sprite(texture);
-		sprite.setBounds(-30f, 5.5f, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL * 1.5f, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
+		sprite.setBounds(-universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, universe.map_camera_handler.GROUND + 6.5f, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL * 2f, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class ParallaxLayer
 
 	public void update(float delta)
 	{//Shift the parallax sprite by the player's movement times the move percentage.
-		sprite.translate(move_percentage * universe.entity_handler.player.dx, move_percentage * universe.entity_handler.player.dy);
+		sprite.translate(move_percentage * universe.map_camera_handler.dx, move_percentage * universe.map_camera_handler.dy);
 	}
 	
 	public void draw(SpriteBatch batch)

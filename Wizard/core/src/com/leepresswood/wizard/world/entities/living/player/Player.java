@@ -19,9 +19,6 @@ public abstract class Player extends LivingEntity
 	public float mana_max;
 	public float mana_current;
 	
-	private float last_x, last_y;
-	public float dx, dy;
-	
 	public Player(Universe universe, float x, float y, Element data)
 	{
 		super(universe, x, y, data);
@@ -31,9 +28,6 @@ public abstract class Player extends LivingEntity
 		mana_current = mana_max;
 		
 		on_ground = true;
-		
-		last_x = x;
-		last_y = y;
 	}
 	
 	@Override
@@ -64,13 +58,6 @@ public abstract class Player extends LivingEntity
 			speed_current_x = 0f;
 			parts[0].body.setTransform(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - (parts[0].body.getFixtureList().get(0).getShape().getRadius()), parts[0].body.getTransform().getPosition().y, 0f);
 		}
-		
-		//Set the dx and dy variables for parallax.
-		dx = last_x - parts[0].sprite.getX();
-		dy = last_y - parts[0].sprite.getY();
-		
-		last_x = parts[0].sprite.getX();
-		last_y = parts[0].sprite.getY();
 	}
 	
 	protected void calcMovement(float delta)
