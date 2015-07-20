@@ -1,7 +1,5 @@
 package com.leepresswood.wizard.handlers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -52,7 +50,7 @@ public class MapCameraHandler extends OrthographicCamera
 	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
 	 * than 1.
 	 */
-	private final float LERP = 4f;
+	private final float LERP = 10f;
 	
 	public MapCameraHandler(Universe universe)
 	{
