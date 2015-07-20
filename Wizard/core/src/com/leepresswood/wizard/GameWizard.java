@@ -28,12 +28,12 @@ public class GameWizard extends Game
 	 * Knockback
 	 * Experience
 	 * Text
-	 * Parallax backgrounds
 	 * 
 	 * Version 0.10 Alpha Change Log:
 	 * ==============================
 	 * Fixed broken health/mana bars.
 	 * Fireball no longer goes in random directions when bouncing off the gap between two ground blocks.
+	 * Parallax background
 	 * 
 	 * Near Future Goals:
 	 * ==================

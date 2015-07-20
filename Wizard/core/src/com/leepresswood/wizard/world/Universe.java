@@ -8,6 +8,7 @@ import com.leepresswood.wizard.handlers.MapCameraHandler;
 import com.leepresswood.wizard.handlers.WaveHandler;
 import com.leepresswood.wizard.handlers.WorldHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
+import com.leepresswood.wizard.screens.game.scenery.ParallaxLayer;
 
 /**
  * Holds information about the game world. Sets up camera based upon this world.
@@ -24,6 +25,9 @@ public class Universe
 	public LevelHandler level_handler;
 	public WaveHandler wave_handler;
 	
+	//Parallax
+	public ParallaxLayer[] parallax_layers;
+	
 	//Box2DDebugRenderer debug = new Box2DDebugRenderer();
 	
 	public Universe(ScreenGame screen)
@@ -36,6 +40,10 @@ public class Universe
 		entity_handler = new EntityHandler(this);
 		level_handler = new LevelHandler(this, 3);
 		wave_handler = new WaveHandler(this);
+		
+		//Make the parallax layers.
+		parallax_layers = new ParallaxLayer[3];
+		parallax_layers[0] = new ParallaxLayer(universe, move_percentage, sprite);
 	}
 	
 	public void update(float delta)
@@ -48,6 +56,7 @@ public class Universe
 	
 	public void draw()
 	{
+		
 		map_camera_handler.map_renderer.setView(map_camera_handler);
 		map_camera_handler.map_renderer.render();		
 		entity_handler.draw();
