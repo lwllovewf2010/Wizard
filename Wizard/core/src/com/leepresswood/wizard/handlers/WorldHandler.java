@@ -1,5 +1,7 @@
 package com.leepresswood.wizard.handlers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -25,7 +27,7 @@ public class WorldHandler
 	private BodyDef body_definition_dynamic;
 	
 	//Physical blocks.
-	private Body[][] blocks;
+	private ArrayList<Body> blocks;
 	
 	public WorldHandler(Universe universe)
 	{
@@ -42,13 +44,13 @@ public class WorldHandler
 		body_definition_dynamic.fixedRotation = true;
 	}
 	
-	public void handlerInit(int width, int height, float gravity)
+	public void handlerInit(float gravity)
 	{
 		//Change gravity to the passed value.
 		world.setGravity(new Vector2(0f, -gravity));
 		
 		//Initialize static block array.
-		blocks = new Body[height][width];
+		blocks = new ArrayList<Body>();
 	}
 	
 	/**
@@ -131,21 +133,19 @@ public class WorldHandler
 		body.setUserData(new B2DSPackage(body, ContactHandler.GROUND));
 		
 		//Add the body to the array.
-		blocks[(int) y][(int) x] = body;
+		blocks.add(body);
 		
 		//Shape should be disposed.
 		shape.dispose();
 	}
 	
 	/**
-	 * Remove the block at the given coordinates.
-	 * @param x X coordinate.
-	 * @param y Y coordinate.
+	 * Remove all static blocks from the world.
 	 */
-	public void removeBlockFromWorld(int x, int y)
+	public void removeBlocksFromWorld()
 	{
-		if(x >= 0 && y >= 0 && y < blocks.length && x < blocks[0].length && blocks[y][x] != null)
-			world.destroyBody(blocks[y][x]);
+		for(Body b : blocks)
+			world.destroyBody(b);
 	}
 	
 	public void update(float delta)

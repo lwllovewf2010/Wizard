@@ -1,5 +1,7 @@
 package com.leepresswood.wizard.handlers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -92,12 +94,47 @@ public class MapCameraHandler extends OrthographicCamera
 		WORLD_LEFT = zoom * viewportWidth / 2f;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
-		//Make the map blocks. These can be used to get the tile that is being highlighted.
-		universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL, GRAVITY);
+		/*Make the map blocks.
+		 * To do this, we want to go row-by-row and connect neighboring blocks. If a block is missing,
+		 * leave a gap and start a new neighborhood. Each neighborhood will then be used to create
+		 * static ground items.
+		 */
+		universe.world_handler.handlerInit(GRAVITY);
+		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
+		{//Neighborhoods start with a width of 0.
+			int neighborhood_width = 0;
+			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
+			{//If a block exists at the given cell location, increase the neighborhood size by 1.
+				if(collision_layer.getCell(i, j) != null)
+				{
+					neighborhood_width++;
+				}
+				//Otherwise, we want to create a new block and reset the neighborhood if the neighborhood is larger than 0.
+				else
+				{
+					if(neighborhood_width > 0)
+					{//Add a neighborhood block and start a new neighborhood.
+						universe.world_handler.addBlockToWorld(i - neighborhood_width / 2f, j, neighborhood_width, 1f);
+						neighborhood_width = 0;
+					}
+				}
+				
+				//On top of adding the block if a blank cell is found, we also want to add one if this is the end of the row.
+				if(neighborhood_width > 0 && i == WORLD_TOTAL_HORIZONTAL - 1)
+				{
+					universe.world_handler.addBlockToWorld(i - neighborhood_width / 2f, j, neighborhood_width, 1f);
+				}
+			}
+		}
+		
+		
+		
+		
+		/*universe.world_handler.handlerInit(WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL, GRAVITY);
 		for(int j = 0; j < WORLD_TOTAL_VERTICAL; j++)
 			for(int i = 0; i < WORLD_TOTAL_HORIZONTAL; i++)
 				if(collision_layer.getCell(i, j) != null)
-					universe.world_handler.addBlockToWorld(i, j, 1f, 1f);
+					universe.world_handler.addBlockToWorld(i, j, 1f, 1f);*/
 	}
 	
 	/**
