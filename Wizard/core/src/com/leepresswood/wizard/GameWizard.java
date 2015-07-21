@@ -32,8 +32,9 @@ public class GameWizard extends Game
 	 * Version 0.10 Alpha Change Log:
 	 * ==============================
 	 * Fixed broken health/mana bars.
-	 * Fireball no longer goes in random directions when bouncing off the gap between two ground blocks.
+	 * Fireballs no longer go in random directions when bouncing off the gap between two ground blocks.
 	 * Parallax background
+	 * Movement for player is now force-based rather than experience-based.
 	 * 
 	 * Near Future Goals:
 	 * ==================

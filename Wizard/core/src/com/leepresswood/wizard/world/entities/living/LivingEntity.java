@@ -108,16 +108,19 @@ public abstract class LivingEntity extends GameEntity
 		 * entity's Y-position is higher than the Y-position of the collided body, we can jump again.
 		 */
 		if(parts[0].body.getPosition().y - parts[0].body.getFixtureList().get(0).getShape().getRadius() >= body.getPosition().y)
+		{
 			on_ground = true;
+			parts[0].body.setLinearVelocity(parts[0].body.getLinearVelocity().x, 0f);
+		}
 		
 		//On top of jump-based collision, we also need to turn off the player's momentum upon hitting a wall.
 		//Right
-		if(parts[0].body.getLinearVelocity().x > 0f && parts[0].body.getPosition().x <= body.getPosition().x)
+		/*if(parts[0].body.getLinearVelocity().x > 0f && parts[0].body.getPosition().x <= body.getPosition().x)
 			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);
 		
 		//Left
 		if(parts[0].body.getLinearVelocity().x < 0f && parts[0].body.getPosition().x >= body.getPosition().x)
-			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);
+			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);*/
 	}
 	
 	/**

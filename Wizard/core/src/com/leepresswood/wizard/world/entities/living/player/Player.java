@@ -77,14 +77,13 @@ public abstract class Player extends LivingEntity
 			//Stop further jumping until we're on the ground.
 			on_ground = false;
 			for(Box2DSprite p : parts)
-				p.body.setLinearVelocity(p.body.getLinearVelocity().x, jump_start_speed * 5);
+				p.body.applyForceToCenter(0f, jump_start_speed, true);
 		}
 		
 		for(Box2DSprite p : parts)
-		{//Only apply more force if the current horizontal speed is less than the max speed or if the force is in the opposite direction of the movement.
+			//Only apply more force if the current horizontal speed is less than the max speed or if the force is in the opposite direction of the movement.
 			if(Math.pow(p.body.getLinearVelocity().x, 2f) < Math.pow(speed_max_x, 2f) || Math.signum(p.body.getLinearVelocity().x) != Math.signum(force))
 				p.body.applyForceToCenter(force, 0f, true);
-		}
 	}
 	
 	@Override
