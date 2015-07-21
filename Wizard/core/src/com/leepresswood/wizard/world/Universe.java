@@ -52,11 +52,11 @@ public class Universe
 		//Make the parallax layers.
 		parallax_layers = new ParallaxLayer[6];
 		parallax_layers[0] = new ParallaxLayer(this, 0.00f, screen.game.assets.get("textures/parallax/smallforest/sky.png", Texture.class), 0f);
-		parallax_layers[1] = new ParallaxLayer(this, 0.00f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class), 0f);
-		parallax_layers[2] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class), 0f);
-		parallax_layers[3] = new ParallaxLayer(this, 0.30f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
-		parallax_layers[4] = new ParallaxLayer(this, 0.40f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
-		parallax_layers[5] = new ParallaxLayer(this, 0.40f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));
+		parallax_layers[1] = new ParallaxLayer(this, 0.00f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class));
+		parallax_layers[2] = new ParallaxLayer(this, 0.20f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class));
+		parallax_layers[3] = new ParallaxLayer(this, 0.50f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
+		parallax_layers[4] = new ParallaxLayer(this, 0.70f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
+		parallax_layers[5] = new ParallaxLayer(this, 0.70f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));
 	}
 	
 	public void update(float delta)
