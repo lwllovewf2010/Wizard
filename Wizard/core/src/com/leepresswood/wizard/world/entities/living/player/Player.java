@@ -24,10 +24,11 @@ public abstract class Player extends LivingEntity
 	{
 		super(universe, x, y, data);
 		
-		//Grab mana.		
+		//Grab XMl items..		
 		mana_max = data.getFloat("mana");
-		mana_current = mana_max;
+		jump_time_max = data.getFloat("jump_time_max");
 		
+		mana_current = mana_max;		
 		on_ground = true;
 	}
 	
@@ -63,6 +64,7 @@ public abstract class Player extends LivingEntity
 	
 	protected void calcMovement(float delta)
 	{
+		//X
 		if(moving_left && !moving_right)
 			force = -accel_x;
 		else if(moving_right && !moving_left)
@@ -71,13 +73,35 @@ public abstract class Player extends LivingEntity
 			force = 0f;
 		
 		//Y
-		//If the jumping variable is true, jump button is being held.
-		if(jumping && on_ground)
-		{
-			//Stop further jumping until we're on the ground.
-			on_ground = false;
-			for(Box2DSprite p : parts)
-				p.body.applyForceToCenter(0f, jump_start_speed, true);
+		if(jumping)
+		{//If the jumping variable is true, jump button is being held.
+			//If we're on the ground, we can start a jump.
+			if(on_ground)
+			{
+				on_ground = false;
+				mid_jump = true;
+				for(Box2DSprite p : parts)
+					p.body.applyForceToCenter(0f, jump_start_speed, true);
+			}
+			//If not on the ground but mid-jump, apply another force and count.
+			else if(mid_jump)
+			{
+				//Increase the timer before we apply another force.
+				jump_time_current += delta;
+				if(jump_time_current < jump_time_max)
+				{
+					for(Box2DSprite p : parts)
+						p.body.applyForceToCenter(0f, jump_start_speed, true);
+				}
+			}
+		}
+		else
+		{//We aren't holding the jump button.
+			if(mid_jump)
+			{
+				mid_jump = false;
+				jump_time_current = jump_time_max;
+			}
 		}
 		
 		for(Box2DSprite p : parts)

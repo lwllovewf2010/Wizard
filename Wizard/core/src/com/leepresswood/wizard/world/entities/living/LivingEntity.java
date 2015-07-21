@@ -40,6 +40,9 @@ public abstract class LivingEntity extends GameEntity
 	//Jumping.
 	public boolean jumping;
 	public boolean on_ground;
+	public float jump_time_max;
+	public float jump_time_current;
+	public boolean mid_jump;
 	
 	public LivingEntity(Universe universe, float x, float y, Element data)
 	{
@@ -110,6 +113,8 @@ public abstract class LivingEntity extends GameEntity
 		if(parts[0].body.getPosition().y - parts[0].body.getFixtureList().get(0).getShape().getRadius() >= body.getPosition().y)
 		{
 			on_ground = true;
+			mid_jump = false;
+			jump_time_current = 0f;
 			parts[0].body.setLinearVelocity(parts[0].body.getLinearVelocity().x, 0f);
 		}
 		
