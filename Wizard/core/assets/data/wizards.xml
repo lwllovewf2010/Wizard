@@ -9,9 +9,8 @@
 	    <mana>100.0</mana>
 	    <defense>1.0</defense>
 	    <jump_speed>7.0</jump_speed>
-	    <speed>13.0</speed>
-	    <acceleration>7.0</acceleration>
-	    <deceleration>20.0</deceleration>
+	    <speed>10.0</speed>
+	    <acceleration>300.0</acceleration>
 	    <spell_list>
 	    	<spell>dig</spell>
 	    	<spell>aether</spell>

@@ -18,13 +18,12 @@ public abstract class LivingEntity extends GameEntity
 	public float defense;
 	public float speed_max_x;
 	public float accel_x;
-	public float decel_x;
 	public float jump_start_speed;
 	
 	//Movement and direction.
 	public boolean moving_left;
 	public boolean moving_right;
-	public float speed_current_x;
+	public float force;
 	public float knockback_speed;
 	
 	//Knockback.
@@ -50,7 +49,6 @@ public abstract class LivingEntity extends GameEntity
 		defense = data.getFloat("defense");
 		speed_max_x = data.getFloat("speed");
 		accel_x = data.getFloat("acceleration");
-		decel_x = data.getFloat("deceleration");
 		jump_start_speed = data.getFloat("jump_speed");
 		
 		health_current = health_max;

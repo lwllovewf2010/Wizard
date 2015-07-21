@@ -1,6 +1,7 @@
 package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
@@ -50,48 +51,24 @@ public abstract class Player extends LivingEntity
 		//On top of the normal block collision, we want our player to be stuck within the bounds of the universe..
 		if(parts[0].body.getTransform().getPosition().x - parts[0].body.getFixtureList().get(0).getShape().getRadius() < 0f)
 		{
-			speed_current_x = 0f;
+			force = 0f;
 			parts[0].body.setTransform(parts[0].body.getFixtureList().get(0).getShape().getRadius(), parts[0].body.getTransform().getPosition().y, 0f);
 		}
 		else if(parts[0].body.getTransform().getPosition().x + parts[0].body.getFixtureList().get(0).getShape().getRadius() > universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL)
 		{
-			speed_current_x = 0f;
+			force = 0f;
 			parts[0].body.setTransform(universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL - (parts[0].body.getFixtureList().get(0).getShape().getRadius()), parts[0].body.getTransform().getPosition().y, 0f);
 		}
 	}
 	
 	protected void calcMovement(float delta)
 	{
-		//Deceleration check. Decelerate if not moving, if both left and right are pressed at the same time, or if moving in one direction but pressing another.
-		/* if(!moving_right && !moving_left || moving_right && moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))
-		 * Note: Simplifying the boolean math. ((A and B) or (!A and !B)) is (A == B)
-		 */		
-		if(moving_right == moving_left || (moving_left && speed_current_x > 0 || moving_right && speed_current_x < 0))	
-		{
-			//Move command is no longer pressed. Decay to 0 speed over time.
-			if(speed_current_x < 0f)
-				speed_current_x += decel_x * delta;
-			else if(speed_current_x > 0f)
-				speed_current_x -= decel_x * delta;
-			
-			//Dampen the speed for lower values.
-			if(Math.abs(speed_current_x) < 0.1f)
-				speed_current_x = 0f;
-		}
-		
-		//Acceleration check.
 		if(moving_left && !moving_right)
-		{
-			speed_current_x -= accel_x * delta;
-			if(speed_current_x < -speed_max_x)
-				speed_current_x = -speed_max_x;
-		}
+			force = -accel_x;
 		else if(moving_right && !moving_left)
-		{
-			speed_current_x += accel_x * delta;
-			if(speed_current_x > speed_max_x)
-				speed_current_x = speed_max_x;
-		}
+			force = accel_x;
+		else
+			force = 0f;
 		
 		//Y
 		//If the jumping variable is true, jump button is being held.
@@ -104,7 +81,10 @@ public abstract class Player extends LivingEntity
 		}
 		
 		for(Box2DSprite p : parts)
-			p.body.setLinearVelocity(speed_current_x, p.body.getLinearVelocity().y);
+		{//Only apply more force if the current horizontal speed is less than the max speed or if the force is in the opposite direction of the movement.
+			if(Math.pow(p.body.getLinearVelocity().x, 2f) < Math.pow(speed_max_x, 2f) || Math.signum(p.body.getLinearVelocity().x) != Math.signum(force))
+				p.body.applyForceToCenter(force, 0f, true);
+		}
 	}
 	
 	@Override

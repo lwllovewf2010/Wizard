@@ -36,18 +36,18 @@ public abstract class Enemy extends LivingEntity
 	protected void calcMovement(float delta)
 	{//General AI tells the enemies to move toward the center.
 		if(parts[0].sprite.getX() > universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
-			speed_current_x -= accel_x * delta;
+			force -= accel_x * delta;
 		else if(parts[0].sprite.getX() < universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - parts[0].sprite.getWidth())
-			speed_current_x += accel_x * delta;
+			force += accel_x * delta;
 		else
-			speed_current_x = 0f;
+			force = 0f;
 		
 		//Limit speed by max.
-		if(Math.abs(speed_current_x) > speed_max_x)
-			speed_current_x = speed_max_x * Math.signum(speed_current_x);
+		if(Math.abs(force) > speed_max_x)
+			force = speed_max_x * Math.signum(force);
 		
 		for(Box2DSprite p : parts)
-			p.body.setLinearVelocity(speed_current_x, p.body.getLinearVelocity().y);
+			p.body.setLinearVelocity(force, p.body.getLinearVelocity().y);
 	}
 	
 	@Override
