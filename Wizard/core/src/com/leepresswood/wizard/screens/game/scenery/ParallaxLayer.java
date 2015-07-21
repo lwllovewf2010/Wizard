@@ -27,7 +27,7 @@ public class ParallaxLayer
 		this.move_percentage = move_percentage;
 		
 		this.sprite = new Sprite(texture);
-		sprite.setBounds(-universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, universe.map_camera_handler.GROUND - 1, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL * 2f, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
+		sprite.setBounds(-universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 4f, universe.map_camera_handler.GROUND - 1, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL * 2f, universe.map_camera_handler.WORLD_TOTAL_VERTICAL);
 	}
 	
 	/**
