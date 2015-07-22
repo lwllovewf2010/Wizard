@@ -10,9 +10,8 @@
 		<health>10.0</health>
 		<defense>25.0</defense>
 		<jump_speed>7.5</jump_speed>
-		<speed>5.0</speed>
-		<acceleration>5.0</acceleration>
-		<deceleration>10.0</deceleration>
+		<speed>3.0</speed>
+	    <acceleration>300.0</acceleration>
 		
 		<knockback_force>9000.0</knockback_force>
 		<knockback_damage>10.0</knockback_damage>
