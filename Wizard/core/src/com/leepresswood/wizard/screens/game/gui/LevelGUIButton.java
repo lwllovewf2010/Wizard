@@ -12,9 +12,9 @@ import com.leepresswood.wizard.screens.game.ScreenGame;
  */
 public class LevelGUIButton extends GUIButton
 {
-	public LevelGUIButton(ScreenParent screen, Texture t, float x, float y, float width, float height)
+	public LevelGUIButton(ScreenParent screen, float x, float y, float width, float height)
 	{
-		super(screen, t, x, y, width, height);
+		super(screen, screen.game.assets.get("textures/gui/spellbook.png", Texture.class), x, y, width, height);
 	}
 
 	@Override

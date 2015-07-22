@@ -123,7 +123,7 @@ public class GUIGame
 	private void makeButtons()
 	{
 		button_array = new GUIButton[MAX_BUTTONS];
-		button_array[0] = new LevelGUIButton(screen, screen.game.assets.get("textures/hold.png", Texture.class), Gdx.graphics.getWidth() - 26f, Gdx.graphics.getHeight() - 26f, 25f, 25f);
+		button_array[0] = new LevelGUIButton(screen, Gdx.graphics.getWidth() - 40f, Gdx.graphics.getHeight() - 55f, 35f, 50f);
 	}
 	
 	/**

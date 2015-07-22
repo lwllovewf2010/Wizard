@@ -20,16 +20,19 @@ public class Assets extends AssetManager
 		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		load("maps/map.tmx", TiledMap.class);
 		
-		//Hold textures.
+		//Hold.
 		load("textures/hold.png", Texture.class);
 		load("textures/bosses/hold.png", Texture.class);
 		load("textures/enemies/hold.png", Texture.class);
 		load("textures/players/hold.png", Texture.class);
 		
+		//GUI.
+		load("textures/gui/spellbook.png", Texture.class);
+		
 		//Enemies.
 		load("textures/enemies/back1.png", Texture.class);
 		
-		//Spell textures.
+		//Spell.
 		load("textures/spells/aether.png", Texture.class);
 		load("textures/spells/fireball.png", Texture.class);
 		load("textures/spells/hold.png", Texture.class);
