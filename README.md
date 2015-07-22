@@ -8,10 +8,10 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 
 <h4>Change Log</h4>
 <ul>
-	
+	<li>Enemies now die correctly</li>
 </ul>
 
 <h4>Issues</h4>
 <ul>
-	<li>Camera shakes during linear movement.</li>
+	<li>Camera shakes during linear movement. Note: Is being caused during collisions. Can be replicated after the first time a spell is spawned. Camera always shakes at this point, meaning the player's position is being altered.</li>
 </ul>
