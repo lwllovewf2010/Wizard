@@ -27,6 +27,7 @@ public class GameWizard extends Game
 	 * =========================
 	 * Experience
 	 * Text
+	 * Better GUI
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -36,13 +37,6 @@ public class GameWizard extends Game
 	 * More spells
 	 * More wizard types
 	 * More enemies
-	 * On-screen text indicators
-	 * Better GUI
-	 * Experience/Gold system
-	 * 
-	 * Issues:
-	 * =======
-	 * 
 	 */
 	public static final String GAME_VERSION = "0.11 Alpha";
 	
