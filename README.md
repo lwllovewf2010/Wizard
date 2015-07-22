@@ -4,7 +4,7 @@ Version: <b>0.11 Alpha</b>
 A 2D sidescroller made with libGDX. This will eventually be a multiplayer game, but for now, a one-player sidescroller will do.
 
 <h5>Note:</h5>
-Logs will be kept for all major patches from <b>Version 0.11 Alpha</b> onward. The most recent three patch notes may be seen here. All logs will also be available within the /log directory.
+Logs will be kept for all major patches from Version 0.11 Alpha onward. The most recent three patch notes may be seen here. All logs will also be available within the /log directory.
 
 <h4>Change Log</h4>
 <ul>
