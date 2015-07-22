@@ -23,19 +23,10 @@ public class GameWizard extends Game
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Version 0.10 Alpha Goals:
+	 * Version 0.11 Alpha Goals:
 	 * =========================
 	 * Experience
 	 * Text
-	 * 
-	 * Version 0.10 Alpha Change Log:
-	 * ==============================
-	 * Fixed broken health/mana bars.
-	 * Fireballs no longer go in random directions when bouncing off the gap between two ground blocks.
-	 * Parallax backgrounds are now possible.
-	 * Movement for player is now force-based rather than experience-based.
-	 * Knockback from enemy attacks.
-	 * Invincibility after attacks.
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -53,7 +44,7 @@ public class GameWizard extends Game
 	 * =======
 	 * 
 	 */
-	public static final String GAME_VERSION = "0.10 Alpha";
+	public static final String GAME_VERSION = "0.11 Alpha";
 	
 	public Assets assets;
 
