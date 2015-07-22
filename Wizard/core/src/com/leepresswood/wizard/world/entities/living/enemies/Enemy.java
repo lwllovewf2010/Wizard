@@ -98,12 +98,6 @@ public abstract class Enemy extends LivingEntity
 	public abstract void attack(Vector2 touch);
 	
 	@Override
-	public boolean getDeathStatus()
-	{
-		return health_max <= 0f;
-	}
-	
-	@Override
 	protected String getTextureBaseString()
 	{
 		return "enemies/";

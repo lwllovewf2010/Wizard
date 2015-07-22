@@ -76,8 +76,6 @@ public abstract class LivingEntity extends GameEntity
 				if(invincible_time_current >= invincible_time_max)
 					is_invincible = false;
 			}
-			//else
-			//	enemyCollision();
 		}
 		
 		//Die in accordance with the type of enemy this is.
@@ -120,15 +118,6 @@ public abstract class LivingEntity extends GameEntity
 			jump_time_current = 0f;
 			parts[0].body.setLinearVelocity(parts[0].body.getLinearVelocity().x, 0f);
 		}
-		
-		//On top of jump-based collision, we also need to turn off the player's momentum upon hitting a wall.
-		//Right
-		/*if(parts[0].body.getLinearVelocity().x > 0f && parts[0].body.getPosition().x <= body.getPosition().x)
-			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);
-		
-		//Left
-		if(parts[0].body.getLinearVelocity().x < 0f && parts[0].body.getPosition().x >= body.getPosition().x)
-			parts[0].body.setLinearVelocity(0f, parts[0].body.getLinearVelocity().y);*/
 	}
 	
 	/**
@@ -152,11 +141,12 @@ public abstract class LivingEntity extends GameEntity
 				p.body.applyForceToCenter(knockback * MathUtils.cosDeg(knockback_angle), knockback * MathUtils.sinDeg(knockback_angle), true);
 			}
 			
-			//calculate invincibility.
+			//Calculate invincibility.
 			is_invincible = true;
 			invincible_time_current = 0f;
 		}
 		
+		System.out.println(this + " hit for " + amount + " damage. Remaining: " + health_current);
 	}
 	
 	@Override

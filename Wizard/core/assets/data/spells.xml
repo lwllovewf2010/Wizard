@@ -13,7 +13,7 @@
 		
 		<damage>2.0</damage>
 		<speed>11.0</speed>
-		<knockback>60000.0</knockback>
+		<knockback>6000.0</knockback>
 		
 		<level>
 			<value>1</value>
@@ -45,7 +45,7 @@
 	    
 	    <damage>5.0</damage>	    
 	    <speed>27.0</speed>
-	    <knockback>100000.0</knockback>
+	    <knockback>6000.0</knockback>
 	     
 		<impulse>0.75</impulse>
 		
@@ -64,7 +64,7 @@
 			    
 			    <damage>5.0</damage>	    
 			    <speed>0.0</speed>
-			    <knockback>15.0</knockback>
+			    <knockback>6000.0</knockback>
 			</explosion>
 		</level>
 		<level>
@@ -82,7 +82,7 @@
 			    
 			    <damage>5.0</damage>	    
 			    <speed>0.0</speed>
-			    <knockback>17.5</knockback>
+			    <knockback>6000.0</knockback>
 			</explosion>
 		</level>
 		<level>
@@ -100,7 +100,7 @@
 			    
 			    <damage>5.0</damage>	    
 			    <speed>0.0</speed>
-			    <knockback>20.0</knockback>
+			    <knockback>6000.0</knockback>
 			</explosion>
 		</level>
 	</fireball>
