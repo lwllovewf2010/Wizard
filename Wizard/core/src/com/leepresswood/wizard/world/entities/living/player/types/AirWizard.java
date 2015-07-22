@@ -2,7 +2,6 @@ package com.leepresswood.wizard.world.entities.living.player.types;
 
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.player.Player;
 
 public class AirWizard extends Player

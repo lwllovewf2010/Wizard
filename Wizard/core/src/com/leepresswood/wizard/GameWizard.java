@@ -25,7 +25,6 @@ public class GameWizard extends Game
 	 * 
 	 * Version 0.10 Alpha Goals:
 	 * =========================
-	 * Knockback
 	 * Experience
 	 * Text
 	 * 
@@ -33,8 +32,9 @@ public class GameWizard extends Game
 	 * ==============================
 	 * Fixed broken health/mana bars.
 	 * Fireballs no longer go in random directions when bouncing off the gap between two ground blocks.
-	 * Parallax background
+	 * Parallax backgrounds are now possible.
 	 * Movement for player is now force-based rather than experience-based.
+	 * Knockback from enemy attacks.
 	 * 
 	 * Near Future Goals:
 	 * ==================

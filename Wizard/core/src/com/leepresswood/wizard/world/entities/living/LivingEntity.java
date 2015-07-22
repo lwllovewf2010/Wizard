@@ -1,12 +1,15 @@
 package com.leepresswood.wizard.world.entities.living;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
+import com.leepresswood.wizard.world.entities.living.player.Player;
 
 /**
  * Parent class to both the players and the enemies. 
@@ -133,9 +136,24 @@ public abstract class LivingEntity extends GameEntity
 	 * Damage was taken.
 	 * @param amount Amount of damage taken.
 	 */
-	public void damage(float amount)
-	{//Damage was done, but defense must be taken into consideration.
+	public void damage(float amount, float knockback, Vector2 enemy_position)
+	{
+		//Damage was done, but defense must be taken into consideration.
 		health_current -= DefenseCalculator.damageAfterDefense(amount, defense);
+		
+		//Calculate knockback.
+		knockback_angle = parts[0].body.getPosition().angle(enemy_position);
+		if(parts[0].body.getPosition().x < enemy_position.x)
+			knockback_angle += 180f;
+		
+		for(Box2DSprite p : parts)
+		{
+			p.body.applyForceToCenter(knockback * MathUtils.cosDeg(knockback_angle), knockback * MathUtils.sinDeg(knockback_angle), true);
+		}
+		
+		//calculate invincibility.
+		//is_invincible = true;
+		//invincible_time_current = 0f;
 	}
 	
 	@Override

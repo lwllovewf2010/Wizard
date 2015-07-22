@@ -1,7 +1,6 @@
 package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
@@ -100,7 +99,7 @@ public abstract class Player extends LivingEntity
 			{//If the length of time we held the jump button is less than the min, keep holding it virtually.
 				jump_time_current += delta;
 				if(jump_time_current < JUMP_TIME_MIN)
-				{System.out.println(delta);
+				{
 					for(Box2DSprite p : parts)
 						p.body.applyForceToCenter(0f, jump_start_speed, true);
 				}

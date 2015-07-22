@@ -2,7 +2,6 @@ package com.leepresswood.wizard.world.entities.living.enemies;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -55,12 +54,7 @@ public abstract class Enemy extends LivingEntity
    {//Damage the player.
 		if(entity instanceof Player)
 		{
-			((Player) entity).damage(knockback_damage);
-			
-			//Set the knockback and invincibility.
-			((Player) entity).knockback_speed = knockback_force;
-			((Player) entity).is_invincible = true;
-			((Player) entity).invincible_time_current = 0f;
+			((Player) entity).damage(knockback_damage, knockback_force, parts[0].body.getPosition());
 		}
    }
 	
@@ -103,12 +97,6 @@ public abstract class Enemy extends LivingEntity
 	 * @param point The coordinate in the world that was clicked.
 	 */
 	public abstract void attack(Vector2 touch);
-	
-	@Override
-	public void damage(float amount)
-	{
-		health_max -= DefenseCalculator.damageAfterDefense(amount, defense);
-	}
 	
 	@Override
 	public boolean getDeathStatus()
