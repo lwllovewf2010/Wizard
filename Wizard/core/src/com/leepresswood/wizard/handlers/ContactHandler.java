@@ -98,5 +98,8 @@ public class ContactHandler implements ContactListener
 		//The same entities do not run into each other.
 		else if(a == b)
 			contact.setEnabled(false);
+		
+		if(a == SPELL_SOLID || b == SPELL_SOLID)
+			contact.setFriction(0f);
 	}
 }
