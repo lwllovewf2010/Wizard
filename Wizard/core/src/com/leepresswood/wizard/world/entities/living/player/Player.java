@@ -25,8 +25,7 @@ public abstract class Player extends LivingEntity
 		super(universe, x, y, data);
 		
 		//Grab XMl items..		
-		mana_max = data.getFloat("mana");
-		jump_time_max = data.getFloat("jump_time_max");
+		mana_max = data.getFloat("mana");;
 		
 		mana_current = mana_max;		
 		on_ground = true;
@@ -88,7 +87,7 @@ public abstract class Player extends LivingEntity
 			{
 				//Increase the timer before we apply another force.
 				jump_time_current += delta;
-				if(jump_time_current < jump_time_max)
+				if(jump_time_current < JUMP_TIME_MAX)
 				{
 					for(Box2DSprite p : parts)
 						p.body.applyForceToCenter(0f, jump_start_speed, true);
@@ -96,11 +95,20 @@ public abstract class Player extends LivingEntity
 			}
 		}
 		else
-		{//We aren't holding the jump button.
+		{//We aren't holding the jump button.			
 			if(mid_jump)
-			{
-				mid_jump = false;
-				jump_time_current = jump_time_max;
+			{//If the length of time we held the jump button is less than the min, keep holding it virtually.
+				jump_time_current += delta;
+				if(jump_time_current < JUMP_TIME_MIN)
+				{System.out.println(delta);
+					for(Box2DSprite p : parts)
+						p.body.applyForceToCenter(0f, jump_start_speed, true);
+				}
+				else
+				{
+					mid_jump = false;
+					jump_time_current = JUMP_TIME_MAX;
+				}
 			}
 		}
 		

@@ -40,7 +40,8 @@ public abstract class LivingEntity extends GameEntity
 	//Jumping.
 	public boolean jumping;
 	public boolean on_ground;
-	public float jump_time_max;
+	public final float JUMP_TIME_MAX = 0.15f;
+	public final float JUMP_TIME_MIN = 0.07f;
 	public float jump_time_current;
 	public boolean mid_jump;
 	
