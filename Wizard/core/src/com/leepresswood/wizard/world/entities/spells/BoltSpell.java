@@ -43,11 +43,7 @@ public abstract class BoltSpell extends Spell
    {//We want this to only hit enemies.
 		if(entity instanceof Enemy)
 		{
-			((Enemy) entity).damage(damage);
-			
-			//Upon impact, we want to set knockback as well. To do this, get the angle between the two and add a knockback force.
-			float angle_between = entity.parts[0].body.getPosition().angle(parts[0].body.getPosition());
-			entity.parts[0].body.setLinearVelocity(knockback * MathUtils.cosDeg(angle_between), knockback * MathUtils.sinDeg(angle_between));
+			((Enemy) entity).damage(damage, knockback, parts[0].body.getPosition());
 		}
    }
 }

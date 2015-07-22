@@ -9,7 +9,6 @@ import com.leepresswood.wizard.handlers.calculators.DefenseCalculator;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
-import com.leepresswood.wizard.world.entities.living.player.Player;
 
 /**
  * Parent class to both the players and the enemies. 
@@ -138,22 +137,26 @@ public abstract class LivingEntity extends GameEntity
 	 */
 	public void damage(float amount, float knockback, Vector2 enemy_position)
 	{
-		//Damage was done, but defense must be taken into consideration.
-		health_current -= DefenseCalculator.damageAfterDefense(amount, defense);
-		
-		//Calculate knockback.
-		knockback_angle = parts[0].body.getPosition().angle(enemy_position);
-		if(parts[0].body.getPosition().x < enemy_position.x)
-			knockback_angle += 180f;
-		
-		for(Box2DSprite p : parts)
+		if(!is_invincible)
 		{
-			p.body.applyForceToCenter(knockback * MathUtils.cosDeg(knockback_angle), knockback * MathUtils.sinDeg(knockback_angle), true);
+			//Damage was done, but defense must be taken into consideration.
+			health_current -= DefenseCalculator.damageAfterDefense(amount, defense);
+			
+			//Calculate knockback.
+			knockback_angle = parts[0].body.getPosition().angle(enemy_position);
+			if(parts[0].body.getPosition().x < enemy_position.x)
+				knockback_angle += 180f;
+			
+			for(Box2DSprite p : parts)
+			{
+				p.body.applyForceToCenter(knockback * MathUtils.cosDeg(knockback_angle), knockback * MathUtils.sinDeg(knockback_angle), true);
+			}
+			
+			//calculate invincibility.
+			is_invincible = true;
+			invincible_time_current = 0f;
 		}
 		
-		//calculate invincibility.
-		//is_invincible = true;
-		//invincible_time_current = 0f;
 	}
 	
 	@Override

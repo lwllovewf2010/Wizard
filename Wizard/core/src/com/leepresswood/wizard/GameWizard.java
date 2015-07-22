@@ -35,6 +35,7 @@ public class GameWizard extends Game
 	 * Parallax backgrounds are now possible.
 	 * Movement for player is now force-based rather than experience-based.
 	 * Knockback from enemy attacks.
+	 * Invincibility after attacks.
 	 * 
 	 * Near Future Goals:
 	 * ==================
