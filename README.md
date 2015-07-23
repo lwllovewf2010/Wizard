@@ -11,6 +11,7 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 	<li>Enemies now die correctly.</li>
 	<li>Added whitespace to sides of the world for enemy spawning.</li>
 	<li>Corrected aspect ratio of parallax layers.</li>
+	<li>Moved to constant Box2D World render speed.</li>
 </ul>
 
 <h4>Issues</h4>
