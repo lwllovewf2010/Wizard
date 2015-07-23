@@ -55,7 +55,10 @@ public class Universe
 		parallax_layers[1] = new ParallaxLayer(this, 0.00f, screen.game.assets.get("textures/parallax/smallforest/back3.png", Texture.class));
 		parallax_layers[1].sprite.translate(-10f, 5f);
 		parallax_layers[2] = new ParallaxLayer(this, 0.10f, screen.game.assets.get("textures/parallax/smallforest/back2.png", Texture.class));
+		parallax_layers[2].sprite.translate(7f, 3f);
 		parallax_layers[3] = new ParallaxLayer(this, 0.30f, screen.game.assets.get("textures/parallax/smallforest/back1.png", Texture.class));
+		parallax_layers[3].sprite.setSize(parallax_layers[3].sprite.getWidth(), parallax_layers[3].sprite.getHeight() * 0.60f);
+		parallax_layers[3].sprite.translate(0f, 10f);
 		parallax_layers[4] = new ParallaxLayer(this, 0.60f, screen.game.assets.get("textures/parallax/smallforest/middle2.png", Texture.class));
 		parallax_layers[5] = new ParallaxLayer(this, 0.60f, screen.game.assets.get("textures/parallax/smallforest/middle1.png", Texture.class));
 	}
