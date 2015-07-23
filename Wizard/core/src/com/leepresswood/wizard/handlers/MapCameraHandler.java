@@ -31,7 +31,8 @@ public class MapCameraHandler extends OrthographicCamera
 	public int WORLD_TOTAL_HORIZONTAL, WORLD_TOTAL_VERTICAL;
 	public float WORLD_LEFT, WORLD_RIGHT, WORLD_TOP, WORLD_BOTTOM;	
 	public final float WORLD_ZOOM = 4.0f;										//Amount added to the world camera's zoom.
-	public final float WORLD_PLAYER_Y_SKEW = 104.5f;						//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down. Anything less than 2 will put the player off the screen.
+	public final float WORLD_PLAYER_Y_SKEW = 75f;							//Higher values of this will move the player closer to the vertical middle. Lower values will move the player down.
+	public final float WORLD_HORIZONTAL_WHITESPACE = 10f;					//This is the amount of space left on either side of the world that can be used as a place to spawn enemies or allow knockback.
 	
 	//Others.
 	public float GROUND;																//Temporary value for the Y-value of the ground. Eventually want to read the blocks themselves and see if they are solid.
@@ -92,8 +93,8 @@ public class MapCameraHandler extends OrthographicCamera
 		WORLD_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);		
 		
 		WORLD_BOTTOM = zoom * viewportHeight / 2f;
-		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM;
-		WORLD_LEFT = zoom * viewportWidth / 2f;
+		WORLD_TOP = WORLD_TOTAL_VERTICAL - WORLD_BOTTOM - WORLD_HORIZONTAL_WHITESPACE;
+		WORLD_LEFT = zoom * viewportWidth / 2f + WORLD_HORIZONTAL_WHITESPACE;
 		WORLD_RIGHT = WORLD_TOTAL_HORIZONTAL - WORLD_LEFT;
 		
 		//Create the physical blocks.
