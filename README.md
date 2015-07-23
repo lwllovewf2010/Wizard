@@ -10,7 +10,7 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 <ul>
 	<li>Enemies now die correctly.</li>
 	<li>Added whitespace to sides of the world for enemy spawning.</li>
-	Corrected aspect ratio of parallax layers.
+	<li>Corrected aspect ratio of parallax layers.</li>
 </ul>
 
 <h4>Issues</h4>
