@@ -41,7 +41,7 @@ public class MapCameraHandler extends OrthographicCamera
 	
 	//Positioning for parallax.
 	public float dx, dy;
-	private float last_x, last_y;
+	public float last_x, last_y;
 	
 	/*
 	 * This value can be used to have the camera follow the player in an imperfect
@@ -99,9 +99,6 @@ public class MapCameraHandler extends OrthographicCamera
 		
 		//Create the physical blocks.
 		createBlocks();
-		
-		last_x = position.x;
-		last_y = position.y;
 	}
 	
 	/**

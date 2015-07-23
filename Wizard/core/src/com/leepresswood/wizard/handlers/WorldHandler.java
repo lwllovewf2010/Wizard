@@ -150,7 +150,7 @@ public class WorldHandler
 	
 	public void update(float delta)
 	{
-		world.step(delta, 6, 2);
+		world.step(1f / 60f, 6, 2);
 	}
 
 	public void dispose()
