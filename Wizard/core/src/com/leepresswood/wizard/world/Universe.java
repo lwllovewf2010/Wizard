@@ -5,6 +5,7 @@ import com.leepresswood.wizard.handlers.ContactHandler;
 import com.leepresswood.wizard.handlers.EntityHandler;
 import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.handlers.MapCameraHandler;
+import com.leepresswood.wizard.handlers.TextHandler;
 import com.leepresswood.wizard.handlers.WaveHandler;
 import com.leepresswood.wizard.handlers.WorldHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
@@ -24,6 +25,7 @@ public class Universe
 	public EntityHandler entity_handler;
 	public LevelHandler level_handler;
 	public WaveHandler wave_handler;
+	public TextHandler text_handler;
 	
 	//Parallax
 	public ParallaxLayer[] parallax_layers;
@@ -40,6 +42,7 @@ public class Universe
 		entity_handler = new EntityHandler(this);
 		level_handler = new LevelHandler(this, 3);
 		wave_handler = new WaveHandler(this);
+		text_handler = new TextHandler(this);
 		
 		//Move the camera to the player's position immediately to assure the parallax works.
 		map_camera_handler.position.x = entity_handler.player.parts[0].body.getPosition().x;

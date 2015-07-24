@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.leepresswood.wizard.world.Universe;
 
 /**
  * Handles the creation, movement, and deletion of on-screen text.
@@ -13,6 +14,8 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class TextHandler
 {
+	public Universe universe;
+	
 	private final float TIME_TO_INVISIBLE = 1.0f;
 	private final float TEXT_DEATH_SPEED = 2f / TIME_TO_INVISIBLE;
 	
@@ -27,8 +30,10 @@ public class TextHandler
 	private ArrayList<Vector2> position;
 	private ArrayList<Color> colors;
 	
-	public TextHandler()
+	public TextHandler(Universe universe)
 	{
+		this.universe = universe;
+		
 		in_game_text = new BitmapFont();
 		
 		time_max = new ArrayList<Float>();
