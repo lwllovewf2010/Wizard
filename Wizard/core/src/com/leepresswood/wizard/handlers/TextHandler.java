@@ -2,6 +2,7 @@ package com.leepresswood.wizard.handlers;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +25,7 @@ public class TextHandler
 	private ArrayList<Boolean> fade;
 	private ArrayList<String> strings;
 	private ArrayList<Vector2> position;
+	private ArrayList<Color> colors;
 	
 	public TextHandler()
 	{
@@ -35,6 +37,7 @@ public class TextHandler
 		fade = new ArrayList<Boolean>();
 		strings = new ArrayList<String>();
 		position = new ArrayList<Vector2>();
+		colors = new ArrayList<Color>();
 	}
 	
 	/**
@@ -44,7 +47,7 @@ public class TextHandler
 	 * @param x X location of left side of text.
 	 * @param y X location of text.
 	 */
-	public void createText(String text, float time_to_live, float x, float y)
+	public void createText(String text, float time_to_live, float x, float y, Color color)
 	{//Create a new text instance.
 		time_max.add(time_to_live);
 		time_current.add(0f);
@@ -52,6 +55,7 @@ public class TextHandler
 		fade.add(false);
 		strings.add(text);
 		position.add(new Vector2(x, y));
+		colors.add(color);
 	}
 	
 	/**
@@ -61,7 +65,7 @@ public class TextHandler
 	 * @param x X location of left side of text.
 	 * @param y X location of text.
 	 */
-	public void createDecayText(String text, float x, float y)
+	public void createDecayText(String text, float x, float y, Color color)
 	{//Create a new text instance.
 		time_max.add(TIME_TO_INVISIBLE);
 		time_current.add(0f);
@@ -69,6 +73,7 @@ public class TextHandler
 		fade.add(true);
 		strings.add(text);
 		position.add(new Vector2(x, y));
+		colors.add(color);
 	}
 	
 	public void update(float delta)
@@ -92,9 +97,10 @@ public class TextHandler
 	}
 	
 	public void draw(SpriteBatch batch)
-	{//Loop through all the ArrayLists and draw.
+	{//Loop through the ArrayList and draw.
 		for(int i = 0; i < time_max.size(); i++)
 		{
+			in_game_text.setColor(colors.get(i));
 			in_game_text.draw(batch, strings.get(i), position.get(i).x, position.get(i).y);
 			
 			//Remove old items.
