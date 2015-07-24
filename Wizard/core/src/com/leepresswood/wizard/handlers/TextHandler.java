@@ -103,6 +103,7 @@ public class TextHandler
 	
 	public void draw(SpriteBatch batch)
 	{//Loop through the ArrayList and draw.
+		batch.begin();
 		for(int i = 0; i < time_max.size(); i++)
 		{
 			in_game_text.setColor(colors.get(i));
@@ -119,5 +120,6 @@ public class TextHandler
 				position.remove(i);
 			}
 		}
+		batch.end();
 	}
 }
