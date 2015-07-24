@@ -145,8 +145,6 @@ public abstract class LivingEntity extends GameEntity
 			is_invincible = true;
 			invincible_time_current = 0f;
 		}
-		
-		System.out.println(this + " hit for " + amount + " damage. Remaining: " + health_current);
 	}
 	
 	@Override
