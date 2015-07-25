@@ -90,6 +90,8 @@ public class Universe
 		map_camera_handler.map_renderer.setView(map_camera_handler);
 		map_camera_handler.map_renderer.render();		
 		entity_handler.draw();
+		
+		//screen.batch.setTransformMatrix(screen.gui.camera.combined);
 		text_handler.draw(screen.batch);
 		//debug.render(world_handler.world, map_camera_handler.combined);
 	}
