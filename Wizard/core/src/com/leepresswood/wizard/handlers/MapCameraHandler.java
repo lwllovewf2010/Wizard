@@ -43,20 +43,6 @@ public class MapCameraHandler extends OrthographicCamera
 	public float dx, dy;
 	public float last_x, last_y;
 	
-	/*
-	 * This value can be used to have the camera follow the player in an imperfect
-	 * fashion.
-	 * 
-	 * Lower values = Less responsive camera, and 0 = No movement.
-	 * Higher values = More responsive camera. Infinity = Perfect response, but
-	 * there should never be a time where this is necessary (or possible).
-	 * 
-	 * Any value between 2 and 5 should be fine for everyday camera activity. Might 
-	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
-	 * than 1.
-	 */
-	private final float LERP = 4f;
-	
 	public MapCameraHandler(Universe universe)
 	{
 		this.universe = universe;
