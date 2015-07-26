@@ -3,7 +3,6 @@ package com.leepresswood.wizard.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.leepresswood.wizard.guielements.GUIButton;
@@ -100,9 +99,7 @@ public class InputGame implements InputProcessor
 			Vector3 touch = screen.universe.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
 			screen.universe.entity_handler.addSpell(new Vector2(touch.x, touch.y));
 		}
-		
-		screen.universe.text_handler.createText("Hello", 1f, screenX, Gdx.graphics.getHeight() - screenY, Color.YELLOW);
-		
+				
 		return true;
 	}
 	

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.leepresswood.wizard.world.Universe;
 
 /**
@@ -17,7 +18,7 @@ public class TextHandler
 	public Universe universe;
 	
 	private final float TIME_TO_INVISIBLE = 1.0f;
-	private final float TEXT_DEATH_SPEED = 2f / TIME_TO_INVISIBLE;
+	private final float TEXT_DEATH_SPEED = 100f / TIME_TO_INVISIBLE;
 	
 	private BitmapFont in_game_text;
 	
@@ -72,12 +73,14 @@ public class TextHandler
 	 */
 	public void createDecayText(String text, float x, float y, Color color)
 	{//Create a new text instance.
+		Vector3 new_position = universe.map_camera_handler.project(new Vector3(x, y, 0));
+		
 		time_max.add(TIME_TO_INVISIBLE);
 		time_current.add(0f);
 		alpha.add(1f);
 		fade.add(true);
 		strings.add(text);
-		position.add(new Vector2(x, y));
+		position.add(new Vector2(new_position.x, new_position.y));
 		colors.add(color);
 	}
 	
@@ -106,7 +109,7 @@ public class TextHandler
 		batch.begin();
 		for(int i = 0; i < time_max.size(); i++)
 		{
-			in_game_text.setColor(colors.get(i));
+			in_game_text.setColor(colors.get(i).r, colors.get(i).g, colors.get(i).b, alpha.get(i));
 			in_game_text.draw(batch, strings.get(i), position.get(i).x, position.get(i).y);
 			
 			//Remove old items.

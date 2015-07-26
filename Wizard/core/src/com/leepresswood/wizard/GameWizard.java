@@ -27,7 +27,7 @@ public class GameWizard extends Game
 	 * =========================
 	 * Experience
 	 * Text
-	 * Better GUI
+	 * More on the GUI
 	 * 
 	 * Near Future Goals:
 	 * ==================

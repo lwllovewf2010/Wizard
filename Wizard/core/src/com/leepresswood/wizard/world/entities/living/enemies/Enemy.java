@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.world.entities.living.enemies;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
@@ -21,6 +22,8 @@ public abstract class Enemy extends LivingEntity
 	
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
+	
+	private boolean spawn_text;
 	
 	public Enemy(Universe universe, float x, float y, Element data)
 	{
@@ -112,6 +115,13 @@ public abstract class Enemy extends LivingEntity
 		{
 			is_dead = true;
 			die_time_current = DIE_TIME_MAX;
+		}
+		
+		//Use the location of this enemy to display XP.
+		if(!spawn_text)
+		{
+			universe.text_handler.createDecayText("+15xp", parts[0].sprite.getX(), parts[0].sprite.getY(), Color.YELLOW);
+			spawn_text = true;
 		}
 
 		for(Box2DSprite p : parts)
