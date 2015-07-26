@@ -72,7 +72,6 @@ public class Universe
 		entity_handler.update(delta);
 		map_camera_handler.setCameraBounds();
 		wave_handler.update();
-		text_handler.update(delta);
 		
 		for(ParallaxLayer layer : parallax_layers)
 			layer.update(delta);
@@ -91,7 +90,6 @@ public class Universe
 		map_camera_handler.map_renderer.render();		
 		entity_handler.draw();
 		
-		text_handler.draw(screen.batch);
 		//debug.render(world_handler.world, map_camera_handler.combined);
 	}
 }

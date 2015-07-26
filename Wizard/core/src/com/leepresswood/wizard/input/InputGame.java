@@ -99,8 +99,9 @@ public class InputGame implements InputProcessor
 		{//Touch was not on GUI, so push it into the game world.
 			Vector3 touch = screen.universe.map_camera_handler.unproject(new Vector3(screenX, screenY, 0));
 			screen.universe.entity_handler.addSpell(new Vector2(touch.x, touch.y));
-			screen.universe.text_handler.createText("Hello", 1f, touch.x, touch.y, Color.YELLOW);
-		}	
+		}
+		
+		screen.universe.text_handler.createText("Hello", 1f, screenX, Gdx.graphics.getHeight() - screenY, Color.YELLOW);
 		
 		return true;
 	}

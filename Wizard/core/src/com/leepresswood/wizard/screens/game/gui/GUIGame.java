@@ -134,6 +134,9 @@ public class GUIGame
 	{
 		for(GUIButton b : button_array)
 			b.update(delta);
+		
+		//Text is handled by the GUI.
+		screen.universe.text_handler.update(delta);
 	}
 	
 	/**
@@ -177,6 +180,9 @@ public class GUIGame
 				else
 					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
 		screen.renderer.end();
+		
+		//Text is handled by the GUI.
+		screen.universe.text_handler.draw(screen.batch);
 	}
 	
 	/**
