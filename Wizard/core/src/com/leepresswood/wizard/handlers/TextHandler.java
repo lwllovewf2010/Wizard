@@ -103,6 +103,7 @@ public class TextHandler
 	
 	public void draw(SpriteBatch batch)
 	{//Loop through the ArrayList and draw.
+		batch.setTransformMatrix(universe.screen.gui.camera.combined);
 		batch.begin();
 		for(int i = 0; i < time_max.size(); i++)
 		{
