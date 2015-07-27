@@ -9,6 +9,7 @@
 		<height>2.0</height>
 		<health>10.0</health>
 		<defense>0.0</defense>
+		<experience></experience>
 		<jump_speed>7.5</jump_speed>
 		<speed>3.0</speed>
 	    <acceleration>300.0</acceleration>

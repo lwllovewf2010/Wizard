@@ -39,10 +39,16 @@ public class LevelHandler
 	 * Enemy was killed, and experience was gained.
 	 * @param experience Amount gained.
 	 */
-	public void addExperience(float experience)
+	public void addExperience(int experience)
 	{
-		this.experience_current += experience;
 		universe.text_handler.createDecayText("" + experience +  "xp", 100f, 100f, Color.YELLOW);
+		
+		this.experience_current += experience;
+		while(this.experience_current >= EXPERIENCE_MAX);
+		{
+			levelUp();
+			this.experience_current -= EXPERIENCE_MAX;
+		}
 	}
 	
 	public float getExperienceAsPercentOfLevel()

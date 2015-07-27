@@ -27,7 +27,6 @@ public class GameWizard extends Game
 	 * =========================
 	 * Dynamic spell selection from level store.
 	 * Experience drops on enemy death stored in XML.
-	 * Extra level up points from experience.
 	 * Level up costs multiple points for high-level items.
 	 * 
 	 * Near Future Goals:

@@ -17,6 +17,7 @@ public abstract class Enemy extends LivingEntity
 	//XML Data
 	public float knockback_damage;
 	public float knockback_force;
+	public int experience;
 	
 	public boolean do_jump;
 	
@@ -31,6 +32,7 @@ public abstract class Enemy extends LivingEntity
 		
 		knockback_force = data.getFloat("knockback_force");
 		knockback_damage = data.getFloat("knockback_damage");
+		experience = data.getInt("experience");
 		health_max = data.getFloat("health");
 	}
 
@@ -120,7 +122,7 @@ public abstract class Enemy extends LivingEntity
 		//Use the location of this enemy to display XP.
 		if(!spawn_text)
 		{
-			universe.level_handler.addExperience(15f);
+			universe.level_handler.addExperience(experience);
 			spawn_text = true;
 		}
 
