@@ -5,7 +5,7 @@
 	    <texture>hold</texture>
 	    <width>3.0</width>
 	    <height>3.0</height>
-	    <health>10.0</health>
+	    <health>100.0</health>
 	    <mana>100.0</mana>
 	    <defense>1.0</defense>
 	    <jump_speed>1700.0</jump_speed>

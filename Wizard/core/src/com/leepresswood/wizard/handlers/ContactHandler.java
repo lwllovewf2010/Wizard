@@ -53,30 +53,13 @@ public class ContactHandler implements ContactListener
    {//This is called while processing the physics. Disable the contact if necessary.
 		physicsPreprocess(contact);
 		
-		if(contact.isEnabled())
-		{//This happens if we're allowed to contact.
-			if(a != GROUND && b != GROUND)
-			{//Neither entity is a ground block. We are guaranteed to have two GameEntities.
-				if(getA(contact, B2DSPackage.class).entity.active && getB(contact, B2DSPackage.class).entity.active)
-				{
-					
-				}
-				else
-				{
-					contact.setEnabled(false);
-				}
+		if(contact.isEnabled() && a != GROUND && b != GROUND)
+		{//Neither entity is a ground block. We are guaranteed to have two GameEntities.
+			if(!getA(contact, B2DSPackage.class).entity.active && !getB(contact, B2DSPackage.class).entity.active)
+			{
+				contact.setEnabled(false);
 			}
-			else
-			{//One entity is a ground block. Allow physics to take over.
-				
-			}
-			
 		}
-		else
-		{
-			
-		}
-		
    }
 
 	@Override
