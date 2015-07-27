@@ -23,11 +23,12 @@ public class GameWizard extends Game
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Version 0.11 Alpha Goals:
+	 * Version 0.12 Alpha Goals:
 	 * =========================
-	 * Experience
-	 * Text
-	 * More on the GUI
+	 * Dynamic spell selection from level store.
+	 * Experience drops on enemy death stored in XML.
+	 * Extra level up points from experience.
+	 * Level up costs multiple points for high-level items.
 	 * 
 	 * Near Future Goals:
 	 * ==================
@@ -38,7 +39,7 @@ public class GameWizard extends Game
 	 * More wizard types
 	 * More enemies
 	 */
-	public static final String GAME_VERSION = "0.11 Alpha";
+	public static final String GAME_VERSION = "0.12 Alpha";
 	
 	public Assets assets;
 
