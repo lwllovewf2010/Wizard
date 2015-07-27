@@ -73,14 +73,15 @@ public class TextHandler
 	 */
 	public void createDecayText(String text, float x, float y, Color color)
 	{//Create a new text instance.
-		Vector3 new_position = universe.map_camera_handler.project(new Vector3(x, y, 0));
+		//Vector3 new_position = universe.map_camera_handler.project(new Vector3(x, y, 0));
 		
 		time_max.add(TIME_TO_INVISIBLE);
 		time_current.add(0f);
 		alpha.add(1f);
 		fade.add(true);
 		strings.add(text);
-		position.add(new Vector2(new_position.x, new_position.y));
+		//position.add(new Vector2(new_position.x, new_position.y));
+		position.add(new Vector2(x, y));
 		colors.add(color);
 	}
 	

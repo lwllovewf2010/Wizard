@@ -120,7 +120,7 @@ public abstract class Enemy extends LivingEntity
 		//Use the location of this enemy to display XP.
 		if(!spawn_text)
 		{
-			universe.text_handler.createDecayText("+15xp", parts[0].sprite.getX(), parts[0].sprite.getY(), Color.YELLOW);
+			universe.level_handler.addExperience(15f);
 			spawn_text = true;
 		}
 

@@ -1,5 +1,6 @@
 package com.leepresswood.wizard.handlers;
 
+import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.world.Universe;
 
 /**
@@ -19,6 +20,9 @@ public class LevelHandler
 	public final int SPELL_LEVEL_MAX = 5;			//Every spell can be leveled 5 times.
 	public int[] spell_levels;							//Levels relating to each spell.
 	
+	//Experience stuff.
+	public float experience;
+	
 	public LevelHandler(Universe universe, int level)
 	{
 		this.universe = universe;
@@ -32,6 +36,16 @@ public class LevelHandler
 		}
 	}
 
+	/**
+	 * Enemy was killed, and experience was gained.
+	 * @param experience Amount gained.
+	 */
+	public void addExperience(float experience)
+	{
+		this.experience += experience;
+		universe.text_handler.createDecayText("" + experience, 100f, 100f, Color.YELLOW);
+	}
+	
 	public int getPointsAvailable()
 	{
 		return level - points_spent;
