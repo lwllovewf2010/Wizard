@@ -24,7 +24,7 @@ public class ContactHandler implements ContactListener
 		effectPreprocess(contact);
 		
 		if(contact.isEnabled())
-		{//At this point, we are guaranteed to have two non-ground entitiesGameEntities. Utilize the doHit() methods in each.
+		{//At this point, we are guaranteed to have two non-ground GameEntities. Utilize the doHit() methods in each.
 			getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
 			getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
 		}

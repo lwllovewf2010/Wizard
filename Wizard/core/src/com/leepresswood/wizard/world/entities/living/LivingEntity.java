@@ -30,7 +30,7 @@ public abstract class LivingEntity extends GameEntity
 	
 	//Knockback.
 	public boolean is_invincible;
-	public float invincible_time_max = 0.5f;
+	public float invincible_time_max = 0.35f;
 	public float invincible_time_current;
 	public float knockback_angle;
 	

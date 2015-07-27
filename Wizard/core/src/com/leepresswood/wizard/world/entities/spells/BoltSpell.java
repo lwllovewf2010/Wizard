@@ -41,9 +41,12 @@ public abstract class BoltSpell extends Spell
 	@Override
    public void doHit(GameEntity entity)
    {//We want this to only hit enemies.
-		if(entity instanceof Enemy)
+		if(active)
 		{
-			((Enemy) entity).damage(damage, knockback, parts[0].body.getPosition());
+			if(entity instanceof Enemy)
+			{
+				((Enemy) entity).damage(damage, knockback, parts[0].body.getPosition());
+			}
 		}
    }
 }

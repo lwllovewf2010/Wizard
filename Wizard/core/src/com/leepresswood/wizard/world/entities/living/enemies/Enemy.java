@@ -58,10 +58,13 @@ public abstract class Enemy extends LivingEntity
 	
 	@Override
    public void doHit(GameEntity entity)
-   {//Damage the player.
-		if(entity instanceof Player)
+   {//Damage the player if enemy is not dead.
+		if(!is_dead)
 		{
-			((Player) entity).damage(knockback_damage, knockback_force, parts[0].body.getPosition());
+			if(entity instanceof Player)
+			{
+				((Player) entity).damage(knockback_damage, knockback_force, parts[0].body.getPosition());
+			}
 		}
    }
 	
