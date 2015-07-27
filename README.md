@@ -17,4 +17,6 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 <ul>
 	<li>No bounds on player movement outside of world.</li>
 	<li><del>Enemy movement direction + same knockback direction = Really fast knockback.</del></li>
+	<li><del>Dead enemies can damage player.</del></li>
+	<li>LivingEntity that is invincible interacts with physics of enemy.</li>
 </ul>
