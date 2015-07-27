@@ -19,7 +19,7 @@ public class Fireball extends BoltSpell
 { 
 	private Element explosion_data;
 	
-	public Fireball(Texture t, float x, float y){super(t, x, y);}
+	public Fireball(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 	
 	public Fireball(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{

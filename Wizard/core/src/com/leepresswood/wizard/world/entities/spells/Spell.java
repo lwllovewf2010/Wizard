@@ -37,12 +37,12 @@ public abstract class Spell extends GameEntity
 	/**
 	 * Use this constructor for the spell list on the GUI.
 	 */
-	public Spell(Texture t, float x, float y)
+	public Spell(Texture t, float x, float y, float width, float height)
 	{//We don't need access to the universe in this constructor.
 		super(null);
 		
 		sprite = new Sprite(t);
-		sprite.setBounds(x, y, 50f, 50f);
+		sprite.setBounds(x, y, width, height);
 	}
 	
 	/**

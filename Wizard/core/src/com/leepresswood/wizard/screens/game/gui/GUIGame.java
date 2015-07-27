@@ -68,7 +68,7 @@ public class GUIGame
 	 */
 	private void makeStatusBars()
 	{
-		final float gap = 2f;
+		final float gap = Gdx.graphics.getWidth() * 0.002f;
 		final float bar_width = Gdx.graphics.getWidth() * 0.01f;
 		final float bar_height = Gdx.graphics.getHeight() * 0.2f;
 		final float bar_x = gap;
@@ -104,15 +104,19 @@ public class GUIGame
 	
 	private Spell parseSpell(Element spell_root, String spell_name, int position)
 	{
-		Spell s = null;
+		final float gap = Gdx.graphics.getWidth() * 0.002f;
+		final float width = Gdx.graphics.getWidth() * 0.03f;
+		final float height = width;
+		final float bar_x = position * (width + gap);
+		final float bar_y = Gdx.graphics.getHeight() - gap - height;
 		
-		//Parse name.
+		Spell s = null;
 		if(spell_name.equalsIgnoreCase("dig"))
-			s = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
+			s = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), bar_x, bar_y, width, height);
 		else if(spell_name.equalsIgnoreCase("aether"))
-			s = new Aether(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
+			s = new Aether(screen.game.assets.get("textures/hold.png", Texture.class),bar_x, bar_y, width, height);
 		else if(spell_name.equalsIgnoreCase("fireball"))
-			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), 3f, 3f + position * 53f);
+			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), bar_x, bar_y, width, height);
 		
 		//Get mana cost of this spell.
 		s.mana_cost = spell_root.getChildByName(spell_name).getChildrenByName("level").get(screen.universe.level_handler.spell_levels[position]).getFloat("cost");
@@ -124,6 +128,8 @@ public class GUIGame
 	 */
 	private void makeButtons()
 	{
+		
+		
 		button_array = new GUIButton[MAX_BUTTONS];
 		button_array[0] = new LevelGUIButton(screen, Gdx.graphics.getWidth() - 40f, Gdx.graphics.getHeight() - 55f, 35f, 50f);
 	}
@@ -166,12 +172,21 @@ public class GUIGame
 				spells[i].sprite.draw(screen.batch);
 		screen.batch.end();
 		
-		//Health/Mana bars.
+		//Health/Mana bars.		
+		//Create the actual bars.
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
 			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.health_current / screen.universe.entity_handler.player.health_max, color_health, color_health, color_health, color_health);
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_health.width, bar_mana.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.mana_current / screen.universe.entity_handler.player.mana_max, color_mana, color_mana, color_mana, color_mana);
 			screen.renderer.rect(bar_experience.x, bar_experience.y, bar_experience.width, bar_experience.MAX_BAR_HEIGHT * screen.universe.level_handler.experience / screen.universe.level_handler.experience_max, color_experience, color_experience, color_experience, color_experience);
+		screen.renderer.end();
+		
+		//Create rectangles around the bars.
+		screen.renderer.begin(ShapeType.Line);
+			screen.renderer.identity();		
+			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.MAX_BAR_HEIGHT, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
+			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.width, bar_mana.MAX_BAR_HEIGHT, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
+			screen.renderer.rect(bar_experience.x, bar_experience.y, bar_experience.width, bar_experience.MAX_BAR_HEIGHT, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
 		screen.renderer.end();
 		
 		//Spell outlines.

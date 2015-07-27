@@ -19,7 +19,7 @@ public class Explosion extends BoltSpell implements DynamicallyCreatedSpell
 {	
 	private float x, y, width, height;
 	
-	public Explosion(Texture t, float x, float y){super(t, x, y);}
+	public Explosion(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 
 	public Explosion(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{

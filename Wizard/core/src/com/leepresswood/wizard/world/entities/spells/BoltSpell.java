@@ -21,7 +21,7 @@ public abstract class BoltSpell extends Spell
 	public float speed_max;
 	public float knockback;
 	
-	public BoltSpell(Texture t, float x, float y){super(t, x, y);}
+	public BoltSpell(Texture t, float x, float y, float width, float height){super(t, x, y,  width, height);}
 	
 	public BoltSpell(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{

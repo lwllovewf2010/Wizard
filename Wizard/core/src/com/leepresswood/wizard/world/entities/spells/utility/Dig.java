@@ -19,7 +19,7 @@ public class Dig extends Spell
 	private int dig_width;
 	private int dig_height;
 	
-	public Dig(Texture t, float x, float y){super(t, x, y);}
+	public Dig(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 	
 	public Dig(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{

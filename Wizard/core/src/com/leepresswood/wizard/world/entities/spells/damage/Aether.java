@@ -26,7 +26,7 @@ public class Aether extends BoltSpell
 	//For multiple bolts.
 	private final float ROTATE_SPLIT_ANGLE = 180f;
 	
-	public Aether(Texture t, float x, float y){super(t, x, y);}
+	public Aether(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 	
 	public Aether(Universe universe, Vector2 from, Vector2 to, Element data, int level)
 	{
