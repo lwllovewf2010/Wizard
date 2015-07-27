@@ -1,6 +1,5 @@
 <ul>
 	<lh>Change Log</lh>
-	<ul>
 	<li>Enemies now die correctly.</li>
 	<li>Added whitespace to sides of the world for enemy spawning.</li>
 	<li>Corrected aspect ratio of parallax layers.</li>
@@ -8,7 +7,6 @@
 	<li>Fixed camera jitter during movement.</li>
 	<li>Added experience and experience meter.</li>
 	<li>Repositioned GUI.</li>
-</ul>
 </ul>
 
 <ul>
