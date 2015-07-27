@@ -9,7 +9,7 @@ public class Bar
 	public float x, y, width, height;
 	public final float MAX_BAR_HEIGHT;
 	
-	public Bar(float x, float y, float width, float height, float max_bar_value)
+	public Bar(float x, float y, float width, float height)
 	{		
 		this.x = x;
 		this.y = y;

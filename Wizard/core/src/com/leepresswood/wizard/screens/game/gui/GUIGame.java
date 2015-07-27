@@ -31,8 +31,8 @@ public class GUIGame
 	public GUIButton[] button_array;
 	
 	//Health/Mana Bars
-	public Bar bar_health, bar_mana;
-	public Color color_health, color_mana;
+	public Bar bar_health, bar_mana, bar_experience;
+	public Color color_health, color_mana, color_experience;
 	
 	//Spells
 	public int spell_active = 0;
@@ -75,12 +75,14 @@ public class GUIGame
 		final float bar_y = gap;
 		
 		//Set bars.
-		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.universe.entity_handler.player.health_max);
-		bar_mana = new Bar(bar_x + bar_width + gap, bar_y, bar_width, bar_height, screen.universe.entity_handler.player.mana_max);
+		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height);
+		bar_mana = new Bar(bar_x + bar_width + gap, bar_y, bar_width, bar_height);
+		bar_experience = new Bar(bar_x + 2 * (bar_width + gap), bar_y, bar_width, bar_height);
 		
 		//Set colors.
 		color_health = new Color(Color.valueOf("AA3C39FF"));
 		color_mana = new Color(Color.valueOf("2E4372FF"));
+		color_experience = new Color(Color.valueOf("FFFF00FF"));
 	}
 	
 	/**
@@ -169,6 +171,7 @@ public class GUIGame
 			screen.renderer.identity();
 			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.health_current / screen.universe.entity_handler.player.health_max, color_health, color_health, color_health, color_health);
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_health.width, bar_mana.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.mana_current / screen.universe.entity_handler.player.mana_max, color_mana, color_mana, color_mana, color_mana);
+			screen.renderer.rect(bar_experience.x, bar_experience.y, bar_experience.width, bar_experience.MAX_BAR_HEIGHT * screen.universe.level_handler.experience / screen.universe.level_handler.experience_max, color_experience, color_experience, color_experience, color_experience);
 		screen.renderer.end();
 		
 		//Spell outlines.

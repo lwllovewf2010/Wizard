@@ -22,6 +22,7 @@ public class LevelHandler
 	
 	//Experience stuff.
 	public float experience;
+	public float experience_max = 100f;
 	
 	public LevelHandler(Universe universe, int level)
 	{
