@@ -13,7 +13,7 @@
 		
 		<damage>2.0</damage>
 		<speed>11.0</speed>
-		<knockback>6000.0</knockback>
+		<knockback>1500.0</knockback>
 		
 		<level>
 			<value>1</value>
