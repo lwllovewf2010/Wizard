@@ -128,8 +128,6 @@ public class GUIGame
 	 */
 	private void makeButtons()
 	{
-		
-		
 		button_array = new GUIButton[MAX_BUTTONS];
 		button_array[0] = new LevelGUIButton(screen, Gdx.graphics.getWidth() - 40f, Gdx.graphics.getHeight() - 55f, 35f, 50f);
 	}
@@ -178,7 +176,7 @@ public class GUIGame
 			screen.renderer.identity();
 			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.health_current / screen.universe.entity_handler.player.health_max, color_health, color_health, color_health, color_health);
 			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_health.width, bar_mana.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.mana_current / screen.universe.entity_handler.player.mana_max, color_mana, color_mana, color_mana, color_mana);
-			screen.renderer.rect(bar_experience.x, bar_experience.y, bar_experience.width, bar_experience.MAX_BAR_HEIGHT * screen.universe.level_handler.experience / screen.universe.level_handler.experience_max, color_experience, color_experience, color_experience, color_experience);
+			screen.renderer.rect(bar_experience.x, bar_experience.y, bar_experience.width, bar_experience.MAX_BAR_HEIGHT * screen.universe.level_handler.getExperienceAsPercentOfLevel(), color_experience, color_experience, color_experience, color_experience);
 		screen.renderer.end();
 		
 		//Create rectangles around the bars.

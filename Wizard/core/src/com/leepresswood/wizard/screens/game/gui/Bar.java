@@ -15,7 +15,6 @@ public class Bar
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		
 		MAX_BAR_HEIGHT = height;
 	}
 }

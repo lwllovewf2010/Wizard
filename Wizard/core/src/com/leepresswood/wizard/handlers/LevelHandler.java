@@ -21,8 +21,8 @@ public class LevelHandler
 	public int[] spell_levels;							//Levels relating to each spell.
 	
 	//Experience stuff.
-	public float experience;
-	public float experience_max = 100f;
+	private final float EXPERIENCE_MAX = 100f;
+	private float experience_current;
 	
 	public LevelHandler(Universe universe, int level)
 	{
@@ -32,9 +32,7 @@ public class LevelHandler
 		//Initialize each spell to level 0.
 		spell_levels = new int[SPELLS_NUMBER_MAX];
 		for(int i : spell_levels)
-		{
 			spell_levels[i] = 0;
-		}
 	}
 
 	/**
@@ -43,8 +41,13 @@ public class LevelHandler
 	 */
 	public void addExperience(float experience)
 	{
-		this.experience += experience;
-		universe.text_handler.createDecayText("" + experience, 100f, 100f, Color.YELLOW);
+		this.experience_current += experience;
+		universe.text_handler.createDecayText("" + experience +  "xp", 100f, 100f, Color.YELLOW);
+	}
+	
+	public float getExperienceAsPercentOfLevel()
+	{
+		return experience_current / EXPERIENCE_MAX;
 	}
 	
 	public int getPointsAvailable()
