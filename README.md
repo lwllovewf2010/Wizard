@@ -8,7 +8,8 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 
 <h4>Version 0.12 Alpha Change Log</h4>
 <ul>
-	<li>Extra level up points from experience.</li>	
+	<li>Extra level up points from experience.</li>
+	<li>Experience drops on enemy death stored in XML.</li>
 </ul>
 
 <h4>Issues</h4>
