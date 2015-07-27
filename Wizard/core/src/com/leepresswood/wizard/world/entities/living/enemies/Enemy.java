@@ -1,6 +1,5 @@
 package com.leepresswood.wizard.world.entities.living.enemies;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.world.Universe;
@@ -24,7 +23,7 @@ public abstract class Enemy extends LivingEntity
 	private final float DIE_TIME_MAX = 1f;
 	private float die_time_current;
 	
-	private boolean spawn_text;
+	private boolean get_experience;
 	
 	public Enemy(Universe universe, float x, float y, Element data)
 	{
@@ -40,17 +39,21 @@ public abstract class Enemy extends LivingEntity
 	protected void calcMovement(float delta)
 	{//General AI tells the enemies to move toward the center.
 		//X
-		if(parts[0].sprite.getX() > universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
-			force = -accel_x;
-		else if(parts[0].sprite.getX() < universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - parts[0].sprite.getWidth())
-			force = accel_x;
-		else
-			force = 0f;
+		if(!is_invincible)
+		{
+			if(parts[0].sprite.getX() > universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f)
+				force = -accel_x;
+			else if(parts[0].sprite.getX() < universe.screen.universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f - parts[0].sprite.getWidth())
+				force = accel_x;
+			else
+				force = 0f;
+			
+			for(Box2DSprite p : parts)
+				//Only apply more force if the current horizontal speed is less than the max speed or if the force is in the opposite direction of the movement.
+				if(Math.pow(p.body.getLinearVelocity().x, 2f) < Math.pow(speed_max_x, 2f) || Math.signum(p.body.getLinearVelocity().x) != Math.signum(force))
+					p.body.applyForceToCenter(force, 0f, true);
+		}
 		
-		for(Box2DSprite p : parts)
-			//Only apply more force if the current horizontal speed is less than the max speed or if the force is in the opposite direction of the movement.
-			if(Math.pow(p.body.getLinearVelocity().x, 2f) < Math.pow(speed_max_x, 2f) || Math.signum(p.body.getLinearVelocity().x) != Math.signum(force))
-				p.body.applyForceToCenter(force, 0f, true);
 	}
 	
 	@Override
@@ -61,40 +64,6 @@ public abstract class Enemy extends LivingEntity
 			((Player) entity).damage(knockback_damage, knockback_force, parts[0].body.getPosition());
 		}
    }
-	
-	////@Override
-	//public void enemyCollision()
-	//{
-		/*for(Spell s : universe.entity_handler.spells)
-		{
-			//To make this horrible O(n^3) function faster, we're only going to check the spells that are within a certain radius.S
-			if(25f > Vector2.dst2(s.bounds[0].x + s.bounds[0].width / 2f, s.bounds[0].y + s.bounds[0].height / 2f, bodies[0].x + bodies[0].width / 2f, bodies[0].y + bodies[0].height / 2f))
-			{
-				for(Rectangle r : s.bounds)
-				{
-					for(Rectangle r2 : this.bodies)
-					{
-						if(r2.overlaps(r))
-						{
-							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
-							knockback_angle += 180f;
-							
-							//Get damage/effects.
-							s.doHit(this);
-							s.hitBy(this);
-							
-							//Set the knockback and invincibility.
-							knockback_speed = ((BoltSpell) s).knockback;
-							is_being_knocked_back = true;
-							is_invincible = true;
-							invincible_time_current = 0f;
-						}
-					}
-				}
-			}
-		}*/
-	//}
 	
 	/**
 	 * Entity seeks to attack a targeted point in the world. Cast at or in the direction of that point.
@@ -119,11 +88,10 @@ public abstract class Enemy extends LivingEntity
 			die_time_current = DIE_TIME_MAX;
 		}
 		
-		//Use the location of this enemy to display XP.
-		if(!spawn_text)
+		if(!get_experience)
 		{
 			universe.level_handler.addExperience(experience);
-			spawn_text = true;
+			get_experience = true;
 		}
 
 		for(Box2DSprite p : parts)

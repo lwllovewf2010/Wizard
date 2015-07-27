@@ -134,10 +134,13 @@ public abstract class LivingEntity extends GameEntity
 			//Calculate knockback.
 			knockback_angle = parts[0].body.getPosition().angle(enemy_position);
 			if(parts[0].body.getPosition().x < enemy_position.x)
+			{
 				knockback_angle += 180f;
+			}
 			
 			for(Box2DSprite p : parts)
 			{
+				p.body.setLinearVelocity(0f, 0f);
 				p.body.applyForceToCenter(knockback * MathUtils.cosDeg(knockback_angle), knockback * MathUtils.sinDeg(knockback_angle), true);
 			}
 			

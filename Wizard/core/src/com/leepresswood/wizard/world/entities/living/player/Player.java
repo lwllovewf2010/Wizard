@@ -122,40 +122,6 @@ public abstract class Player extends LivingEntity
    {//Player colliding with an entity will not do anything.
    }
 	
-	/*@Override
-	public void enemyCollision()
-	{
-		/*for(Enemy e : universe.entity_handler.enemies)
-		{
-			//To make this horrible O(n^3) function faster, we're only going to check the enemies that are alive and within a certain radius.
-			if(e.dying == false && 25f > Vector2.dst2(e.bodies[0].x + e.bodies[0].width / 2f, e.bodies[0].y + e.bodies[0].height / 2f, bodies[0].x + bodies[0].width / 2f, bodies[0].y + bodies[0].height / 2f))
-			{
-				for(Rectangle r : e.bodies)
-				{
-					for(Rectangle r2 : this.bodies)
-					{
-						if(r2.overlaps(r))
-						{
-							//Get the angle between the enemy and the attack. The angle of the knockback will be the flipped version of this angle.
-							knockback_angle = MathUtils.radiansToDegrees * MathUtils.atan2(r2.y + r.height / 2f - sprite.getY() - sprite.getHeight() / 2f, r.x + r.width / 2f - sprite.getX() - sprite.getWidth() / 2f);
-							knockback_angle += 180f;
-							
-							//Get damage/effects.
-							e.doHit(this);
-							e.hitBy(this);
-							
-							//Set the knockback and invincibility.
-							knockback_speed = e.knockback_force;
-							is_being_knocked_back = true;
-							is_invincible = true;
-							invincible_time_current = 0f;
-						}
-					}
-				}
-			}
-		}
-	}*/
-	
 	@Override
 	protected String getTextureBaseString()
 	{
