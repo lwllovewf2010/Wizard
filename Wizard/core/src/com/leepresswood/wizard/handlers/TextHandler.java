@@ -81,7 +81,7 @@ public class TextHandler
 		fade.add(true);
 		strings.add(text);
 		//position.add(new Vector2(new_position.x, new_position.y));
-		position.add(new Vector2(x, y));
+		position.add(new Vector2(x, y + in_game_text.getCapHeight()));
 		colors.add(color);
 	}
 	

@@ -26,7 +26,6 @@ public class GameWizard extends Game
 	 * Version 0.12 Alpha Goals:
 	 * =========================
 	 * Dynamic spell selection from level store.
-	 * Experience drops on enemy death stored in XML.
 	 * Level up costs multiple points for high-level items.
 	 * 
 	 * Near Future Goals:
