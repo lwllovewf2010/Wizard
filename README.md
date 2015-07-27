@@ -13,6 +13,8 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 	<li>Corrected aspect ratio of parallax layers.</li>
 	<li>Moved to constant Box2D World render speed.</li>
 	<li>Fixed camera jitter during movement.</li>
+	<li>Added experience and experience meter.</li>
+	<li>Repositioned GUI.</li>
 </ul>
 
 <h4>Issues</h4>
