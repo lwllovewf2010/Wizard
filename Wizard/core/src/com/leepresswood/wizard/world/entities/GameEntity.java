@@ -17,6 +17,8 @@ public abstract class GameEntity
 	private final String TEXTURE_BASE = "textures/";
 	private final String TEXTURE_EXTENSION = ".png";
 	
+	public boolean active;
+	
 	//XML data.
 	public String name;
 	public Texture texture;
@@ -43,6 +45,8 @@ public abstract class GameEntity
 		
 		//Create a body for all this entity's parts.
 		setBodies(x, y, data.getFloat("width"), data.getFloat("height"));
+		
+		active = true;
    }
 	
 	/**

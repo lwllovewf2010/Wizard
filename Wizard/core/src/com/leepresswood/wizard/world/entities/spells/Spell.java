@@ -27,7 +27,6 @@ public abstract class Spell extends GameEntity
 	
 	//Spell location, movement, visibility, etc.
 	public Vector2 from, to;
-	public boolean active;
 	public float time_alive_current;
 	public float time_alive_max;
 	
@@ -66,9 +65,6 @@ public abstract class Spell extends GameEntity
 			mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");
 		recharge = data.getFloat("recharge");
 		time_alive_max = data.getFloat("time_alive");
-		
-		//Create an active version of this spell.
-		active = true;
 	}
 	
 	/**

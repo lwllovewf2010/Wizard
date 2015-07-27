@@ -36,7 +36,7 @@ public abstract class LivingEntity extends GameEntity
 	
 	//Dying.
 	public float health_current;
-	public boolean is_dead;
+	//public boolean is_dead;
 	public boolean dying;
 	
 	//Jumping.

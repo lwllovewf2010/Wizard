@@ -118,7 +118,7 @@ public class EntityHandler
 	 */
 	public void addSpell(Vector2 touch)
 	{
-		if(!player.is_dead && universe.level_handler.spells_available > 0)
+		if(player.active && universe.level_handler.spells_available > 0)
 		{
 			//Get the selected spell type from the GUI.
 			Spell spell_type = universe.screen.gui.getActiveSpell();
@@ -206,7 +206,7 @@ public class EntityHandler
 			
 		//Delete old enemies.
 		for(Enemy e : enemies)
-			if(e.is_dead)
+			if(!e.active)
 				remove.add(e);
 		
 		//Do the removal.

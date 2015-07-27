@@ -59,7 +59,7 @@ public abstract class Enemy extends LivingEntity
 	@Override
    public void doHit(GameEntity entity)
    {//Damage the player if enemy is not dead.
-		if(!is_dead)
+		if(active)
 		{
 			if(entity instanceof Player)
 			{
@@ -87,7 +87,7 @@ public abstract class Enemy extends LivingEntity
 		die_time_current += delta;
 		if(die_time_current >= DIE_TIME_MAX)
 		{
-			is_dead = true;
+			active = false;
 			die_time_current = DIE_TIME_MAX;
 		}
 		

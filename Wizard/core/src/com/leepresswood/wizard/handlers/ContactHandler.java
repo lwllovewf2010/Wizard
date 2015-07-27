@@ -22,18 +22,24 @@ public class ContactHandler implements ContactListener
    public void beginContact(Contact contact)
    {//This is called before the physical contact has happened. Set the effects that will be done.
 		effectPreprocess(contact);
-		
 		if(contact.isEnabled())
-		{//At this point, we are guaranteed to have two non-ground GameEntities. Utilize the doHit() methods in each.
-			getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
-			getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
+		{//At this point, we are guaranteed to have two non-ground GameEntities. Utilize the doHit() methods in each if possible.
+			if(getA(contact, B2DSPackage.class).entity.active && getB(contact, B2DSPackage.class).entity.active)
+			{
+				getA(contact, B2DSPackage.class).entity.doHit(getB(contact, B2DSPackage.class).entity);
+				getB(contact, B2DSPackage.class).entity.doHit(getA(contact, B2DSPackage.class).entity);
+			}
 		}
 		else
 		{//Contact was with the ground. We want the living entities to be able to jump again if the collision was done in the correct way.
 			if(a == GROUND && getB(contact, B2DSPackage.class).entity instanceof LivingEntity)
+			{
 				((LivingEntity) getB(contact, B2DSPackage.class).entity).doHit(getA(contact, B2DSPackage.class).body);
+			}
 			else if(b == GROUND && getA(contact, B2DSPackage.class).entity instanceof LivingEntity)
+			{
 				((LivingEntity) getA(contact, B2DSPackage.class).entity).doHit(getB(contact, B2DSPackage.class).body);
+			}
 		}
    }
 
@@ -99,6 +105,7 @@ public class ContactHandler implements ContactListener
 		else if(a == b)
 			contact.setEnabled(false);
 		
+		//Solid spells are not affected by friction.
 		if(a == SPELL_SOLID || b == SPELL_SOLID)
 			contact.setFriction(0f);
 	}
