@@ -206,7 +206,7 @@ public class EntityHandler
 			
 		//Delete old enemies.
 		for(Enemy e : enemies)
-			if(!e.active)
+			if(!e.active && !e.dying)
 				remove.add(e);
 		
 		//Do the removal.

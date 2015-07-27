@@ -86,18 +86,20 @@ public abstract class Enemy extends LivingEntity
 		//Update the timing and change the alpha.
 		die_time_current += delta;
 		if(die_time_current >= DIE_TIME_MAX)
-		{
-			active = false;
-			die_time_current = DIE_TIME_MAX;
+		{//At this point, we're fully dead. Stop dying.
+			dying = false;
 		}
 		
 		if(!get_experience)
 		{
 			universe.level_handler.addExperience(experience);
 			get_experience = true;
+			active = false;
 		}
 
 		for(Box2DSprite p : parts)
+		{
 			p.sprite.setAlpha(1f - die_time_current / DIE_TIME_MAX);
+		}
 	}
 }

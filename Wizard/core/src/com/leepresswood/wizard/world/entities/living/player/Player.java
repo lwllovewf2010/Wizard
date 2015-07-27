@@ -131,5 +131,6 @@ public abstract class Player extends LivingEntity
 	@Override
 	public void die(float delta)
 	{
+		active = false;
 	}
 }

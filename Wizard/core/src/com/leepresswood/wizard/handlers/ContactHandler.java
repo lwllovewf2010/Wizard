@@ -52,6 +52,31 @@ public class ContactHandler implements ContactListener
    public void preSolve(Contact contact, Manifold oldManifold)
    {//This is called while processing the physics. Disable the contact if necessary.
 		physicsPreprocess(contact);
+		
+		if(contact.isEnabled())
+		{//This happens if we're allowed to contact.
+			if(a != GROUND && b != GROUND)
+			{//Neither entity is a ground block. We are guaranteed to have two GameEntities.
+				if(getA(contact, B2DSPackage.class).entity.active && getB(contact, B2DSPackage.class).entity.active)
+				{
+					
+				}
+				else
+				{
+					contact.setEnabled(false);
+				}
+			}
+			else
+			{//One entity is a ground block. Allow physics to take over.
+				
+			}
+			
+		}
+		else
+		{
+			
+		}
+		
    }
 
 	@Override
@@ -92,7 +117,7 @@ public class ContactHandler implements ContactListener
 		//Get the contact bytes.
 		a = getA(contact, B2DSPackage.class).contact;
 		b = getB(contact, B2DSPackage.class).contact;
-		
+				
 		//Transparent spells do not physically knock back anyone.
 		if(a == SPELL_TRANSPARENT || b == SPELL_TRANSPARENT)
 			contact.setEnabled(false);

@@ -36,7 +36,6 @@ public abstract class LivingEntity extends GameEntity
 	
 	//Dying.
 	public float health_current;
-	//public boolean is_dead;
 	public boolean dying;
 	
 	//Jumping.
@@ -79,9 +78,8 @@ public abstract class LivingEntity extends GameEntity
 		}
 		
 		//Die in accordance with the type of enemy this is.
-		if(dying || getDeathStatus())
+		if(dying)
 		{
-			dying = true;
 			die(delta);
 		}
 		
@@ -144,9 +142,17 @@ public abstract class LivingEntity extends GameEntity
 				p.body.applyForceToCenter(knockback * MathUtils.cosDeg(knockback_angle), knockback * MathUtils.sinDeg(knockback_angle), true);
 			}
 			
-			//Calculate invincibility.
-			is_invincible = true;
-			invincible_time_current = 0f;
+			//Calculate if dying.
+			if(getDeathStatus())
+			{
+				dying = true;
+			}
+			else
+			{//Calculate invincibility.
+				is_invincible = true;
+				invincible_time_current = 0f;
+			}
+			
 		}
 	}
 	
