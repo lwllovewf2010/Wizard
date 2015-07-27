@@ -10,6 +10,7 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 <ul>
 	<li>Extra level up points from experience.</li>
 	<li>Experience drops on enemy death stored in XML.</li>
+	<li>Corrected positioning of decay text.</li>
 </ul>
 
 <h4>Issues</h4>
