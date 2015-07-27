@@ -16,5 +16,5 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 <h4>Issues</h4>
 <ul>
 	<li>No bounds on player movement outside of world.</li>
-	<li>Enemy movement direction + same knockback direction = Really fast knockback.</li>
+	<li><del>Enemy movement direction + same knockback direction = Really fast knockback.</del></li>
 </ul>
