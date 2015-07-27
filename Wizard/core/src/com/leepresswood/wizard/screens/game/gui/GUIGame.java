@@ -69,14 +69,14 @@ public class GUIGame
 	private void makeStatusBars()
 	{
 		final float gap = 2f;
-		final float bar_width = Gdx.graphics.getWidth() * 0.3f;
-		final float bar_height = Gdx.graphics.getHeight() * 0.02f;
+		final float bar_width = Gdx.graphics.getWidth() * 0.01f;
+		final float bar_height = Gdx.graphics.getHeight() * 0.2f;
 		final float bar_x = gap;
-		final float bar_y = Gdx.graphics.getHeight() - gap - bar_height;
+		final float bar_y = gap;
 		
 		//Set bars.
 		bar_health = new Bar(bar_x, bar_y, bar_width, bar_height, screen.universe.entity_handler.player.health_max);
-		bar_mana = new Bar(bar_x, bar_y - bar_height - gap, bar_width, bar_height, screen.universe.entity_handler.player.mana_max);
+		bar_mana = new Bar(bar_x + bar_width + gap, bar_y, bar_width, bar_height, screen.universe.entity_handler.player.mana_max);
 		
 		//Set colors.
 		color_health = new Color(Color.valueOf("AA3C39FF"));
@@ -167,8 +167,8 @@ public class GUIGame
 		//Health/Mana bars.
 		screen.renderer.begin(ShapeType.Filled);
 			screen.renderer.identity();
-			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.MAX_BAR_WIDTH * screen.universe.entity_handler.player.health_current / screen.universe.entity_handler.player.health_max, bar_health.height, color_health, color_health, color_health, color_health);
-			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_mana.MAX_BAR_WIDTH * screen.universe.entity_handler.player.mana_current / screen.universe.entity_handler.player.mana_max, bar_mana.height, color_mana, color_mana, color_mana, color_mana);
+			screen.renderer.rect(bar_health.x, bar_health.y, bar_health.width, bar_health.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.health_current / screen.universe.entity_handler.player.health_max, color_health, color_health, color_health, color_health);
+			screen.renderer.rect(bar_mana.x, bar_mana.y, bar_health.width, bar_mana.MAX_BAR_HEIGHT * screen.universe.entity_handler.player.mana_current / screen.universe.entity_handler.player.mana_max, color_mana, color_mana, color_mana, color_mana);
 		screen.renderer.end();
 		
 		//Spell outlines.

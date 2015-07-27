@@ -7,7 +7,7 @@ package com.leepresswood.wizard.screens.game.gui;
 public class Bar
 {
 	public float x, y, width, height;
-	public final float MAX_BAR_WIDTH;
+	public final float MAX_BAR_HEIGHT;
 	
 	public Bar(float x, float y, float width, float height, float max_bar_value)
 	{		
@@ -16,6 +16,6 @@ public class Bar
 		this.width = width;
 		this.height = height;
 		
-		MAX_BAR_WIDTH = width;
+		MAX_BAR_HEIGHT = height;
 	}
 }
