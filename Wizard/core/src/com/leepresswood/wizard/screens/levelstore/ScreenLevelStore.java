@@ -4,7 +4,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.leepresswood.wizard.GameWizard;
 import com.leepresswood.wizard.guielements.GUIButton;
 import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.input.InputLevelStore;
@@ -38,12 +37,14 @@ public class ScreenLevelStore extends ScreenParent
 	private final int BUTTON_SKILL_FIVE = 6;
 	
 	public GUIButton[] attack_buttons;
+	public GUIButton[] attack_effects_buttons;
 	public GUIButton[] defense_buttons;
+	public GUIButton[] defense_effects_buttons;
 	public GUIButton[] utility_buttons;
 	
-	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
+	public ScreenLevelStore(ScreenGame game_screen, TextureRegion background)
 	{
-		super(game);
+		super(game_screen.game);
 		
 		//We have collected a reference to the previous screen so we can return to it later.
 		this.game_screen = game_screen;

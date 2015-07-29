@@ -48,7 +48,7 @@ public class ScreenGame extends ScreenParent
 		{
 			//First time we visit the store will require loading.
 			if(screen_level_store == null)
-				screen_level_store = new ScreenLevelStore(game, this, ScreenUtils.getFrameBufferTexture());
+				screen_level_store = new ScreenLevelStore(this, ScreenUtils.getFrameBufferTexture());
 			game.setScreen(screen_level_store);
 			go_to_level_store = false;
 		}
