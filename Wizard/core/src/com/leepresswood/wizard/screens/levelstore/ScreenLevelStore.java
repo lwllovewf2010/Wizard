@@ -61,12 +61,6 @@ public class ScreenLevelStore extends ScreenParent
 		makeButtons();
 	}
 	
-	@Override
-	public void show()
-	{
-		
-	}
-	
 	/**
 	 * Make the clickable buttons.
 	 */
