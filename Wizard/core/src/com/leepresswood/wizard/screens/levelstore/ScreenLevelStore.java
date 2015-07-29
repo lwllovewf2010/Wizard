@@ -1,9 +1,11 @@
 package com.leepresswood.wizard.screens.levelstore;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.guielements.GUIButton;
 import com.leepresswood.wizard.handlers.LevelHandler;
 import com.leepresswood.wizard.input.InputLevelStore;
@@ -59,6 +61,12 @@ public class ScreenLevelStore extends ScreenParent
 		makeButtons();
 	}
 	
+	@Override
+	public void show()
+	{
+		
+	}
+	
 	/**
 	 * Make the clickable buttons.
 	 */
@@ -100,10 +108,19 @@ public class ScreenLevelStore extends ScreenParent
 	@Override
 	public void draw()
 	{
+		//Background.
 		batch.begin();
-			//Background.
-			//batch.draw(background, 0f, 0f);
-			
+			batch.draw(background, 0f, 0f);
+		batch.end();
+		
+		//Background box.
+		renderer.begin(ShapeType.Filled);
+			renderer.setColor(Color.RED);
+			renderer.rect(10f, 10f, Gdx.graphics.getWidth() - 20f, Gdx.graphics.getHeight() - 20f);
+		renderer.end();
+		
+		//Buttons.
+		batch.begin();
 			for(GUIButton b : button_array)
 				b.draw(batch);
 		batch.end();
