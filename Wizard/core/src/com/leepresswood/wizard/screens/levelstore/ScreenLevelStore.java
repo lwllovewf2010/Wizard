@@ -37,6 +37,10 @@ public class ScreenLevelStore extends ScreenParent
 	private final int BUTTON_SKILL_FOUR = 5;
 	private final int BUTTON_SKILL_FIVE = 6;
 	
+	public GUIButton[] attack_buttons;
+	public GUIButton[] defense_buttons;
+	public GUIButton[] utility_buttons;
+	
 	public ScreenLevelStore(GameWizard game, ScreenGame game_screen, TextureRegion background)
 	{
 		super(game);
