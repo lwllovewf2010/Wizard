@@ -53,13 +53,6 @@ public class LevelHandler
 	public int defense_levels;
 	public int defense_sublevels;
 	
-	//Old 
-	public final int SPELLS_NUMBER_MAX = 5;		//Maximum spells the player can have.
-	public int spells_available;						//Number of available spells.
-	
-	public final int SPELL_LEVEL_MAX = 5;			//Every spell can be leveled 5 times.
-	public int[] spell_levels;							//Levels relating to each spell.
-	
 	//Experience stuff.
 	private final float EXPERIENCE_MAX = 100f;
 	private float experience_current;
@@ -68,11 +61,6 @@ public class LevelHandler
 	{
 		this.universe = universe;
 		this.level = level;
-		
-		//Initialize each spell to level 0.
-		spell_levels = new int[SPELLS_NUMBER_MAX];
-		for(int i : spell_levels)
-			spell_levels[i] = 0;
 	}
 
 	/**
@@ -81,8 +69,10 @@ public class LevelHandler
 	 */
 	public void addExperience(int experience)
 	{
+		//Display text for experience earned.
 		universe.text_handler.createDecayText("+" + experience +  "xp", universe.screen.gui.bar_experience.x, universe.screen.gui.bar_experience.y + universe.screen.gui.bar_experience.MAX_BAR_HEIGHT, Color.YELLOW);
 		
+		//Increase experience (and experience bar indirectly) by this amount.
 		this.experience_current += experience;
 		while(this.experience_current >= EXPERIENCE_MAX);
 		{
@@ -91,11 +81,18 @@ public class LevelHandler
 		}
 	}
 	
+	/**
+	 * @return Percentage to next level.
+	 */
 	public float getExperienceAsPercentOfLevel()
 	{
 		return experience_current / EXPERIENCE_MAX;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getPointsAvailable()
 	{
 		return level - points_spent;
@@ -110,20 +107,22 @@ public class LevelHandler
 	}
 	
 	/**
-	 * Are there points available to be spent?
+	 * Are there enough points available to be spent?
+	 * @param spend How much the player wants to spend.
 	 * @return True if available. False otherwise.
 	 */
-	public boolean canSpend()
+	public boolean canSpend(int spend)
 	{
-		return 0 < getPointsAvailable();
+		return spend < getPointsAvailable();
 	}
 	
 	/**
 	 * Player requested to spend a point.
+	 * @param spend How much the player wants to spend.
 	 */
-	public void spend()
+	public void spend(int spend)
 	{
-		points_spent++;
+		points_spent += spend;
 	}
 	
 	/**
