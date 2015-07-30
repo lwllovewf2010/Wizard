@@ -1,11 +1,11 @@
-package com.leepresswood.wizard.handlers;
+package com.leepresswood.wizard.helpers.handlers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.leepresswood.wizard.helpers.Assets;
+import com.leepresswood.wizard.helpers.AssetHelper;
 import com.leepresswood.wizard.world.Universe;
 
 /**
@@ -48,7 +48,7 @@ public class MapCameraHandler extends OrthographicCamera
 		this.universe = universe;
 		
 		//Get map data. See here: https://github.com/libgdx/libgdx/wiki/Tile-maps
-		map = universe.screen.game.assets.getMap(Assets.MAP_TEST);
+		map = universe.screen.game.assets.getMap(AssetHelper.MAP_TEST);
 		pixel_size = new Float(map.getProperties().get("tilewidth", Integer.class));
 		GROUND = Float.parseFloat((String) (map.getProperties().get("ground")));
 		GRAVITY =  Float.parseFloat((String) (map.getProperties().get("gravity")));

@@ -1,7 +1,7 @@
 package com.leepresswood.wizard;
 
 import com.badlogic.gdx.Game;
-import com.leepresswood.wizard.helpers.Assets;
+import com.leepresswood.wizard.helpers.AssetHelper;
 import com.leepresswood.wizard.screens.splash.ScreenSplash;
 
 public class GameWizard extends Game 
@@ -39,7 +39,7 @@ public class GameWizard extends Game
 	 */
 	public static final String GAME_VERSION = "0.12 Alpha";
 	
-	public Assets assets;
+	public AssetHelper assets;
 
 	@Override
 	public void create()

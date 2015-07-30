@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.handlers;
+package com.leepresswood.wizard.helpers.handlers;
 
 import com.leepresswood.wizard.world.Universe;
 

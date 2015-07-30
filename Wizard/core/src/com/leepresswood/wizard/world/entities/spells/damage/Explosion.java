@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.handlers.ContactHandler;
+import com.leepresswood.wizard.helpers.Box2DSprite;
+import com.leepresswood.wizard.helpers.handlers.ContactHandler;
+import com.leepresswood.wizard.helpers.interfaces.DynamicallyCreatedSpell;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
-import com.leepresswood.wizard.world.entities.spells.DynamicallyCreatedSpell;
 
 /**
  * The aftermath of a fireball colliding with an enemy.

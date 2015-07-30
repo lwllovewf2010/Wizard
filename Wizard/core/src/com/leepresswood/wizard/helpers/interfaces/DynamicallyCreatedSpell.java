@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.world.entities.spells;
+package com.leepresswood.wizard.helpers.interfaces;
 
 /**
  * DynamicallyCreatedSpells are spells that may be created mid-rendering of the world. This interface is necessary to avoid creating a body

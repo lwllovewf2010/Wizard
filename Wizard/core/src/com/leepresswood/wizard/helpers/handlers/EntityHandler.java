@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.handlers;
+package com.leepresswood.wizard.helpers.handlers;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,16 +9,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.helpers.Box2DSprite;
 import com.leepresswood.wizard.helpers.enums.MagicType;
 import com.leepresswood.wizard.helpers.factories.EnemyFactory;
 import com.leepresswood.wizard.helpers.factories.SpellFactory;
+import com.leepresswood.wizard.helpers.interfaces.DynamicallyCreatedSpell;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.living.player.Player;
 import com.leepresswood.wizard.world.entities.living.player.types.AirWizard;
-import com.leepresswood.wizard.world.entities.spells.DynamicallyCreatedSpell;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class EntityHandler

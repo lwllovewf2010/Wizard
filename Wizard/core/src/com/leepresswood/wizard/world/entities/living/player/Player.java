@@ -2,9 +2,9 @@ package com.leepresswood.wizard.world.entities.living.player;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.handlers.ContactHandler;
+import com.leepresswood.wizard.helpers.Box2DSprite;
+import com.leepresswood.wizard.helpers.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.Box2DSprite;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.LivingEntity;
 

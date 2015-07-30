@@ -1,13 +1,13 @@
 package com.leepresswood.wizard.world;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.leepresswood.wizard.handlers.ContactHandler;
-import com.leepresswood.wizard.handlers.EntityHandler;
-import com.leepresswood.wizard.handlers.LevelHandler;
-import com.leepresswood.wizard.handlers.MapCameraHandler;
-import com.leepresswood.wizard.handlers.TextHandler;
-import com.leepresswood.wizard.handlers.WaveHandler;
-import com.leepresswood.wizard.handlers.WorldHandler;
+import com.leepresswood.wizard.helpers.handlers.ContactHandler;
+import com.leepresswood.wizard.helpers.handlers.EntityHandler;
+import com.leepresswood.wizard.helpers.handlers.LevelHandler;
+import com.leepresswood.wizard.helpers.handlers.MapCameraHandler;
+import com.leepresswood.wizard.helpers.handlers.TextHandler;
+import com.leepresswood.wizard.helpers.handlers.WaveHandler;
+import com.leepresswood.wizard.helpers.handlers.WorldHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.game.scenery.ParallaxLayer;
 

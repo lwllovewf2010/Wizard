@@ -3,6 +3,7 @@ package com.leepresswood.wizard.world.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.helpers.Box2DSprite;
 import com.leepresswood.wizard.world.Universe;
 
 /**

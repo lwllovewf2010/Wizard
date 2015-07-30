@@ -10,11 +10,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
  * Manages the loading of the game's assets.
  * @author Lee
  */
-public class Assets extends AssetManager
+public class AssetHelper extends AssetManager
 {	
 	public static final int MAP_TEST = 0;
 	
-	public Assets()
+	public AssetHelper()
 	{
 		//Maps.
 		setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
