@@ -67,6 +67,16 @@ public class ScreenGame extends ScreenParent
 	}
 	
 	@Override
+	public void show()
+	{
+	   super.show();
+	   
+	   //Upon returning from the level store, recalculate the spell packages.
+	   if(screen_level_store != null)
+		   universe.level_handler.recalculate();
+	}
+	
+	@Override
 	public void dispose()
 	{
 		super.dispose();

@@ -78,7 +78,8 @@ public class LevelHandler
 		this.universe = universe;
 		this.level = level;
 		
-		castable_spells = new ArrayList<SpellPackage>();
+		//Create spell packages.
+		recalculate();
 	}
 
 	/**
@@ -141,4 +142,14 @@ public class LevelHandler
 	{
 		points_spent += spend;
 	}
+
+	/**
+	 * After returning from the level store, we need to remake the spell data packages.
+	 */
+	public void recalculate()
+   {
+		castable_spells = new SpellPackage[4];
+		
+		castable_spells[0] = new SpellPackage();
+   }
 }
