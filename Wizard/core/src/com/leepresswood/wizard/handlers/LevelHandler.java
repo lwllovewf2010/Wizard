@@ -42,11 +42,16 @@ public class LevelHandler
 	 * spells on the game screen, but some of them will.
 	 * 
 	 * As far as implementation is concerned, new spells should be added to an
-	 * ArrayList. New effects should be added as a Buff.
+	 * ArrayList on the screen. New effects should be added as a Buff that is
+	 * transferred from one entity to another on contact.
 	 */
-	
-	
-	
+	public final int TOTAL_LEVELS = 6;
+	public boolean[] direct_levels;
+	public boolean[] direct_sublevels;
+	public boolean[] indirect_levels;
+	public boolean[] indirect_sublevels;
+	public boolean[] defense_levels;
+	public boolean[] defense_sublevels;
 	
 	//Old 
 	public final int SPELLS_NUMBER_MAX = 5;		//Maximum spells the player can have.
