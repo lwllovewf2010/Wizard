@@ -3,6 +3,8 @@ package com.leepresswood.wizard.helpers.handlers;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
+import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
+import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
@@ -57,7 +59,7 @@ public class LevelHandler
 	public int defense_sublevels;
 	
 	//This is going to be the list of available castable spells.
-	public ArrayList<Spell> castable_spells;
+	public ArrayList<SpellPackage> castable_spells;
 	
 	//Experience stuff.
 	private final float EXPERIENCE_MAX = 100f;
@@ -72,7 +74,7 @@ public class LevelHandler
 		this.universe = universe;
 		this.level = level;
 		
-		castable_spells = new ArrayList<Spell>();
+		castable_spells = new ArrayList<SpellPackage>();
 	}
 
 	/**
@@ -134,13 +136,5 @@ public class LevelHandler
 	public void spend(int spend)
 	{
 		points_spent += spend;
-	}
-	
-	/**
-	 * After returning from the level store, we must gather the new level data.
-	 */
-	public void gatherLevelData()
-	{
-		universe.screen.gui.makeSpellList();
 	}
 }

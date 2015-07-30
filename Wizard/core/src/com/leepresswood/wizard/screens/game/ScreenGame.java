@@ -67,18 +67,6 @@ public class ScreenGame extends ScreenParent
 	}
 	
 	@Override
-	public void show()
-	{
-		super.show();
-		
-		//On top of setting the input, we want to read the current state of the player's level from the level store.
-		if(screen_level_store != null)
-		{
-			universe.level_handler.gatherLevelData();
-		}
-	}
-	
-	@Override
 	public void dispose()
 	{
 		super.dispose();

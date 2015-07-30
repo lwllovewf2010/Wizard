@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wizard>
+	<data>
+		<name>Air Wizard</name>
+	    <texture>hold</texture>
+	    <width>3.0</width>
+	    <height>3.0</height>
+	    <health>100.0</health>
+	    <mana>100.0</mana>
+	    <defense>1.0</defense>
+	    <jump_speed>1700.0</jump_speed>
+	    <speed>10.0</speed>
+	    <acceleration>300.0</acceleration>
+	</data>
+	<levels>
+		<direct>
+			<main>
+				
+			</main>
+			<sub>
+			
+			</sub>
+		</direct>
+		<indirect>
+			<main>
+				
+			</main>
+			<sub>
+			
+			</sub>
+		</indirect>
+		<defense>
+			<main>
+				
+			</main>
+			<sub>
+			
+			</sub>
+		</defense>
+	</levels>
+		
+	    <spell_list>
+	    	<spell>dig</spell>
+	    	<spell>aether</spell>
+	    	<spell>fireball</spell>
+	    </spell_list>
+</wizard>
