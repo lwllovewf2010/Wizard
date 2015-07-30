@@ -46,12 +46,12 @@ public class LevelHandler
 	 * transferred from one entity to another on contact.
 	 */
 	public final int TOTAL_LEVELS = 6;
-	public boolean[] direct_levels;
-	public boolean[] direct_sublevels;
-	public boolean[] indirect_levels;
-	public boolean[] indirect_sublevels;
-	public boolean[] defense_levels;
-	public boolean[] defense_sublevels;
+	public int direct_levels;
+	public int direct_sublevels;
+	public int indirect_levels;
+	public int indirect_sublevels;
+	public int defense_levels;
+	public int defense_sublevels;
 	
 	//Old 
 	public final int SPELLS_NUMBER_MAX = 5;		//Maximum spells the player can have.
