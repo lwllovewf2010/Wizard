@@ -1,7 +1,10 @@
 package com.leepresswood.wizard.handlers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.world.Universe;
+import com.leepresswood.wizard.world.entities.spells.Spell;
 
 /**
  * Level manager for the player.
@@ -53,14 +56,23 @@ public class LevelHandler
 	public int defense_levels;
 	public int defense_sublevels;
 	
+	//This is going to be the list of available castable spells.
+	public ArrayList<Spell> castable_spells;
+	
 	//Experience stuff.
 	private final float EXPERIENCE_MAX = 100f;
 	private float experience_current;
 	
+	/**
+	 * @param universe Reference to Universe.
+	 * @param level Will be used as a starting level when the Universe loads.
+	 */
 	public LevelHandler(Universe universe, int level)
 	{
 		this.universe = universe;
 		this.level = level;
+		
+		castable_spells = new ArrayList<Spell>();
 	}
 
 	/**
@@ -90,8 +102,7 @@ public class LevelHandler
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * @return How many points are available.
 	 */
 	public int getPointsAvailable()
 	{

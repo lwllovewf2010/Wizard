@@ -118,7 +118,7 @@ public class EntityHandler
 	 */
 	public void addSpell(Vector2 touch)
 	{
-		if(player.active && universe.level_handler.spells_available > 0)
+		if(player.active && universe.level_handler.castable_spells.size() > 0)
 		{
 			//Get the selected spell type from the GUI.
 			Spell spell_type = universe.screen.gui.getActiveSpell();
