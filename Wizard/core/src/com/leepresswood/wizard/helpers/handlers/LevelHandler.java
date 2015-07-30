@@ -47,19 +47,23 @@ public class LevelHandler
 	 * spells on the game screen, but some of them will.
 	 * 
 	 * As far as implementation is concerned, new spells should be added to an
-	 * ArrayList on the screen. New effects should be added as a Buff that is
+	 * array on the screen. New effects should be added as a Buff that is
 	 * transferred from one entity to another on contact.
 	 */
 	public final int TOTAL_LEVELS = 6;
+	public final int COST_PER_LEVEL = 2;
+	public final int ULTIMATE_COST_PER_LEVEL = 5;
 	public int direct_levels;
 	public int direct_sublevels;
 	public int indirect_levels;
 	public int indirect_sublevels;
 	public int defense_levels;
 	public int defense_sublevels;
+	public int ultimate_levels;
+	public int ultimate_sublevels;
 	
 	//This is going to be the list of available castable spells.
-	public ArrayList<SpellPackage> castable_spells;
+	public SpellPackage[] castable_spells;
 	
 	//Experience stuff.
 	private final float EXPERIENCE_MAX = 100f;
