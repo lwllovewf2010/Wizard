@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.data;
+package com.leepresswood.wizard.helpers;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;

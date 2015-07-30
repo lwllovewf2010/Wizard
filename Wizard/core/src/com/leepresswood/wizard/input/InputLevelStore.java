@@ -2,7 +2,7 @@ package com.leepresswood.wizard.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.leepresswood.wizard.guielements.GUIButton;
+import com.leepresswood.wizard.helpers.guielements.GUIButton;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 
 public class InputLevelStore implements InputProcessor

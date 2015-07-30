@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.helpers.Assets;
 import com.leepresswood.wizard.world.Universe;
 
 /**

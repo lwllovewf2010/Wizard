@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.leepresswood.wizard.GameWizard;
-import com.leepresswood.wizard.data.Assets;
+import com.leepresswood.wizard.helpers.Assets;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class ScreenSplash extends ScreenAdapter

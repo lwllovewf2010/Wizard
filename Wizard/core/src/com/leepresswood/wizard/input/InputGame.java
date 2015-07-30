@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.leepresswood.wizard.guielements.GUIButton;
+import com.leepresswood.wizard.helpers.guielements.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class InputGame implements InputProcessor

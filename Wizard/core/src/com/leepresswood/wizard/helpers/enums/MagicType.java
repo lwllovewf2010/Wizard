@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.enums;
+package com.leepresswood.wizard.helpers.enums;
 
 
 public enum MagicType

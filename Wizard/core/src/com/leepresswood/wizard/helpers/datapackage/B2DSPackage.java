@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.handlers.datapackage;
+package com.leepresswood.wizard.helpers.datapackage;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.leepresswood.wizard.world.entities.GameEntity;

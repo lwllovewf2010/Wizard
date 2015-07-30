@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
-import com.leepresswood.wizard.guielements.GUIButton;
+import com.leepresswood.wizard.helpers.guielements.GUIButton;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 import com.leepresswood.wizard.world.entities.spells.damage.Aether;

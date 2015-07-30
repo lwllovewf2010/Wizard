@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.leepresswood.wizard.handlers.datapackage.B2DSPackage;
+import com.leepresswood.wizard.helpers.datapackage.B2DSPackage;
 import com.leepresswood.wizard.world.Universe;
 
 /**

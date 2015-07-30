@@ -1,4 +1,4 @@
-package com.leepresswood.wizard.handlers.calculators;
+package com.leepresswood.wizard.helpers.calculators;
 
 /**
  * Defense will directly affect the amount of damage the player takes.
