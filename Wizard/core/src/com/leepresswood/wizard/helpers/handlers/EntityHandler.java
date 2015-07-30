@@ -13,7 +13,7 @@ import com.leepresswood.wizard.helpers.Box2DSprite;
 import com.leepresswood.wizard.helpers.enums.MagicType;
 import com.leepresswood.wizard.helpers.factories.EnemyFactory;
 import com.leepresswood.wizard.helpers.factories.SpellFactory;
-import com.leepresswood.wizard.helpers.interfaces.DynamicallyCreatedSpell;
+import com.leepresswood.wizard.helpers.interfaces.DynamicallyCreatedSpellInterface;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
@@ -34,7 +34,7 @@ public class EntityHandler
 	
 	public ArrayList<Enemy> enemies;								//List of enemies.
 	public ArrayList<Spell> spells;								//List of spells.
-	public ArrayList<DynamicallyCreatedSpell> spell_queue;//New spells being created will be placed here if their creation interrupts world rendering looping.
+	public ArrayList<DynamicallyCreatedSpellInterface> spell_queue;//New spells being created will be placed here if their creation interrupts world rendering looping.
 	public ArrayList<GameEntity> remove;						//Deals with the removal of objects that no longer need to be on the screen.
 	
 	public Element wave_root;										//Contains wave data.
@@ -98,7 +98,7 @@ public class EntityHandler
 		//Initialize the lists.
 		enemies = new ArrayList<Enemy>();
 		spells = new ArrayList<Spell>();
-		spell_queue = new ArrayList<DynamicallyCreatedSpell>();
+		spell_queue = new ArrayList<DynamicallyCreatedSpellInterface>();
 		remove = new ArrayList<GameEntity>();
 		
 		//Initialize wave data.
@@ -167,7 +167,7 @@ public class EntityHandler
 			s.update(delta);
 		
 		//Spawn new spells from the spell queue.
-		for(DynamicallyCreatedSpell s : spell_queue)
+		for(DynamicallyCreatedSpellInterface s : spell_queue)
 		{
 			s.instantiate();
 			spells.add((Spell) s);

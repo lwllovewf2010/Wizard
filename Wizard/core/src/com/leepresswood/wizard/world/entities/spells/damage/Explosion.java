@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
 import com.leepresswood.wizard.helpers.handlers.ContactHandler;
-import com.leepresswood.wizard.helpers.interfaces.DynamicallyCreatedSpell;
+import com.leepresswood.wizard.helpers.interfaces.DynamicallyCreatedSpellInterface;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.spells.BoltSpell;
 
@@ -15,7 +15,7 @@ import com.leepresswood.wizard.world.entities.spells.BoltSpell;
  *
  * @author Lee
  */
-public class Explosion extends BoltSpell implements DynamicallyCreatedSpell
+public class Explosion extends BoltSpell implements DynamicallyCreatedSpellInterface
 {	
 	private float x, y, width, height;
 	

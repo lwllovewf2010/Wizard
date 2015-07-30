@@ -6,7 +6,7 @@ package com.leepresswood.wizard.helpers.interfaces;
  * same was as a normal spell's setBodies() method.
  * @author Lee
  */
-public interface DynamicallyCreatedSpell
+public interface DynamicallyCreatedSpellInterface
 {
 	/**
 	 * Effectively this type of spell's setBodies() method. This must be called rather than setBodies() because we want
