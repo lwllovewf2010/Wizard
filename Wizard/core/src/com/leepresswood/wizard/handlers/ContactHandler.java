@@ -4,7 +4,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.leepresswood.wizard.world.entities.B2DSPackage;
+import com.leepresswood.wizard.handlers.datapackage.B2DSPackage;
 import com.leepresswood.wizard.world.entities.living.LivingEntity;
 
 public class ContactHandler implements ContactListener
