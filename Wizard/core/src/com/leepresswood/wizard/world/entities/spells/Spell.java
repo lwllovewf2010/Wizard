@@ -4,9 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
-import com.leepresswood.wizard.helpers.enums.MagicType;
+import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
 
@@ -20,8 +19,9 @@ public abstract class Spell extends GameEntity
 	//This sprite is only used for the spell icon.
 	public Sprite sprite;
 	
+	public SpellPackage spell_data;
+	
 	//XML data
-	public MagicType type;
 	public float mana_cost;
 	public float recharge;
 	
@@ -29,9 +29,6 @@ public abstract class Spell extends GameEntity
 	public Vector2 from, to;
 	public float time_alive_current;
 	public float time_alive_max;
-	
-	//Level information.
-	public int level;
 
 	/**
 	 * Use this constructor for the spell list on the GUI.
@@ -51,20 +48,26 @@ public abstract class Spell extends GameEntity
 	 * @param to Click point.
 	 * @param data Spell data.
 	 */
-	public Spell(Universe universe, Vector2 from, Vector2 to, Vector2 spawn, Element data, int level)
+	public Spell(Universe universe, Vector2 from, Vector2 to, Vector2 spawn, SpellPackage data)
 	{
-		super(universe, spawn.x, spawn.y, data);
+		/**
+		 * Let's discuss SpellPackages:
+		 * The main root of the data will hold the initial information about the spell.
+		 * The sub root will cause effects to happen. This could come into direct contact
+		 * with the effects of the main root. Therefore, we need to first grab from the
+		 * main root and use that to initialize. After that's done, read from the sub
+		 * root at the spell's class level and write over the changed effects. Because
+		 * this activates on a class-by-class basis, the lower-level classes will be
+		 * able to pinpoint what needs to be changed directly.
+		 */
+		super(universe, spawn.x, spawn.y, SpellPackage.getMain(data));
 		
 		this.from = from;
 		this.to = to;
-		this.level = level;
+		this.spell_data = data;
 		
 		//Read the data from the XML file.
-		type = MagicType.valueOf(data.get("type").toUpperCase());
-		if(data.getChildrenByName("level").size > 0)
-			mana_cost = data.getChildrenByName("level").get(level).getFloat("cost");
-		recharge = data.getFloat("recharge");
-		time_alive_max = data.getFloat("time_alive");
+		time_alive_max = SpellPackage.getMainLevel(data).getFloat("time_alive");
 	}
 	
 	/**
