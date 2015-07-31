@@ -30,8 +30,8 @@ public abstract class BoltSpell extends Spell
 		
 		//Read the data from the XML file.
 		damage = getDamage(data);
-		speed_max = SpellPackage.getBasic(data).getFloat("speed");
-		knockback = SpellPackage.getBasic(data).getFloat("knockback");
+		speed_max = getSpeed(data);
+		knockback = getKnockback(data);
 		
 		//Determine the initial speeds from the max speed and angle between the vectors.
 		angle = new Vector2(to).sub(from).angle();
@@ -67,5 +67,41 @@ public abstract class BoltSpell extends Spell
 			damage = sub.getFloat("damage");
 		
 		return damage;
+	}
+	
+	/**
+	 * @return The damage of the spell.
+	 */
+	private float getSpeed(SpellPackage data)
+	{
+		Element basic = SpellPackage.getBasic(data);
+		Element main = SpellPackage.getMainLevel(data);
+		Element sub = SpellPackage.getSubLevel(data);
+		
+		float speed = basic.getFloat("speed");
+		if(main.get("speed",  null) != null)
+			speed = main.getFloat("speed");
+		if(sub.get("speed",  null) != null)
+			speed = sub.getFloat("speed");
+		
+		return speed;
+	}
+	
+	/**
+	 * @return The damage of the spell.
+	 */
+	private float getKnockback(SpellPackage data)
+	{
+		Element basic = SpellPackage.getBasic(data);
+		Element main = SpellPackage.getMainLevel(data);
+		Element sub = SpellPackage.getSubLevel(data);
+		
+		float knockback = basic.getFloat("knockback");
+		if(main.get("knockback",  null) != null)
+			knockback = main.getFloat("knockback");
+		if(sub.get("knockback",  null) != null)
+			knockback = sub.getFloat("knockback");
+		
+		return knockback;
 	}
 }
