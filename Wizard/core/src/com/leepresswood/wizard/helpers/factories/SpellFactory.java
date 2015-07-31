@@ -19,18 +19,15 @@ import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 /**
  * Creates and manages spell spawning.
  * @author Lee
- *
  */
 public class SpellFactory
 {
-	private Universe world;
+	public Universe universe;
+	public float[] time_recharge;
 	
-	public float[] time_recharge;			//Recharge zeroed out after casting a spell.
-	
-	public SpellFactory(Universe world)
+	public SpellFactory(Universe universe)
 	{
-		this.world = world;
-
+		this.universe = universe;
 		time_recharge = new float[LevelHandler.NUMBER_OF_SPELLS];
 	}
 	
@@ -54,24 +51,24 @@ public class SpellFactory
 	public Spell getSpell(int category_index, Vector2 from, Vector2 to)
 	{
 		//Get data package.
-		SpellPackage data = world.level_handler.castable_spells[category_index];
+		SpellPackage data = universe.level_handler.castable_spells[category_index];
 		Element main = SpellPackage.getMainLevel(data);
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		//Parse spell from this package.
-		if(time_recharge[category_index] >= time_max[category_index] && world.entity_handler.player.mana_current >= SpellPackage.getMainLevel(data).getFloat("mana_cost"))
+		if(time_recharge[category_index] >= time_max[category_index] && universe.entity_handler.player.mana_current >= SpellPackage.getMainLevel(data).getFloat("mana_cost"))
 		{
 			time_recharge[category_index] = 0f;
 			switch(spell_type)
 			{
 				case FIREBALL:
-					s = new Fireball(world, from, to, data_root.getChildByName("fireball"), level);
+					s = new Fireball(universe, from, to, data_root.getChildByName("fireball"), level);
 					break;
 				case AETHER:
-					s = new Aether(world, from, to, data_root.getChildByName("aether"), level);
+					s = new Aether(universe, from, to, data_root.getChildByName("aether"), level);
 					break;
 				case DIG:
-					s = new Dig(world, from, to, data_root.getChildByName("dig"), level);
+					s = new Dig(universe, from, to, data_root.getChildByName("dig"), level);
 					break;
 			}
 		}
