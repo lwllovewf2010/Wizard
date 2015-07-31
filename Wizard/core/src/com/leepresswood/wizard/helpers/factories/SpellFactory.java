@@ -1,11 +1,6 @@
 package com.leepresswood.wizard.helpers.factories;
 
-import java.io.IOException;
-import java.util.HashMap;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.enums.Spells;
@@ -77,6 +72,9 @@ public class SpellFactory
 					return new Dig(universe, from, to, data);
 			}
 		}
+		
+		//If we make it here, we weren't ready to cast the spell.
+		return null;
 	}
 	
 	/**

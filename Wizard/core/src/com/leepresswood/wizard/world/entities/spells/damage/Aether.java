@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
+import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
@@ -28,15 +28,15 @@ public class Aether extends BoltSpell
 	
 	public Aether(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 	
-	public Aether(Universe universe, Vector2 from, Vector2 to, Element data, int level)
+	public Aether(Universe universe, Vector2 from, Vector2 to, SpellPackage data)
 	{
-		super(universe, from, to, data, level);
+		super(universe, from, to, data);
 		
 		//Get XML data.
-		follow = data.getChildrenByName("level").get(level).getBoolean("follow");
+		follow = SpellPackage.getSubLevel(data).getBoolean("follow");
 		
 		//Aether will be split into multiple bolts. Each split should move and collide individually.
-		int split_count = data.getChildrenByName("level").get(level).getInt("split");
+		int split_count = SpellPackage.getMainLevel(data).getInt("split");
 		float rotate_by = ROTATE_SPLIT_ANGLE / (split_count + 1);
 		for(int i = 1; i < split_count; i++)
 		{
@@ -52,17 +52,19 @@ public class Aether extends BoltSpell
 			else
 				new_to.rotate((i - split_count / 2) * rotate_by);
 			
-			universe.entity_handler.spells.add(new Aether(universe, from, new Vector2(from).add(new_to), data, level, i));
+			universe.entity_handler.spells.add(new Aether(universe, from, new Vector2(from).add(new_to), data, true));
 		}
 	}
 	
 	/**
 	 * This is a private version of the spell that can be used to create splits.
 	 * Send this instance directly into the spell list.
+	 * 
+	 * Note: The variable i doesn't do anything. it's purely there to overload.
 	 */
-	private Aether(Universe world, Vector2 from, Vector2 to, Element data, int level, int count)
+	private Aether(Universe world, Vector2 from, Vector2 to, SpellPackage data, boolean i)
 	{
-		super(world, from, to, data, level);
+		super(world, from, to, data);
 	}
 
 	@Override

@@ -3,8 +3,8 @@ package com.leepresswood.wizard.world.entities.spells.damage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
+import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -17,17 +17,17 @@ import com.leepresswood.wizard.world.entities.spells.BoltSpell;
  */
 public class Fireball extends BoltSpell
 { 
-	private Element explosion_data;
+	//private Element explosion_data;
 	
 	public Fireball(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 	
-	public Fireball(Universe universe, Vector2 from, Vector2 to, Element data, int level)
+	public Fireball(Universe universe, Vector2 from, Vector2 to, SpellPackage data)
 	{
-		super(universe, from, to, data, level);
+		super(universe, from, to, data);
 		
 		//Read the data from the XML file.
-		float impulse = data.getFloat("impulse");
-		explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
+		float impulse = SpellPackage.getMainLevel(data).getFloat("impulse");
+		//explosion_data = data.getChildrenByName("level").get(level).getChildByName("explosion");
 		
 		//Set impulse and the initial linear velocity. Gravity will do the rest.
 		parts[0].body.getFixtureList().get(0).setRestitution(impulse);
@@ -63,7 +63,7 @@ public class Fireball extends BoltSpell
 			//The collision death of this bolt will create an explosion.
 			//Note: Instantiating this spell will create a new body in the world while we're already rendering. This isn't allowed, so we need to add it to a body queue instead.
 			Vector2 location = new Vector2(parts[0].sprite.getX() + parts[0].sprite.getWidth() / 2f, parts[0].sprite.getY() + parts[0].sprite.getHeight() / 2f);
-			universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
+			//universe.entity_handler.spell_queue.add(new Explosion(universe, location, location, explosion_data, level));
 		}
    }
 }

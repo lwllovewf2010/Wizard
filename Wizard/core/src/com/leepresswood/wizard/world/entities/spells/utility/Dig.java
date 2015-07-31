@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
+import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.handlers.ContactHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.GameEntity;
@@ -21,7 +22,7 @@ public class Dig extends Spell
 	
 	public Dig(Texture t, float x, float y, float width, float height){super(t, x, y, width, height);}
 	
-	public Dig(Universe universe, Vector2 from, Vector2 to, Element data, int level)
+	public Dig(Universe universe, Vector2 from, Vector2 to, SpellPackage data)
 	{
 		super(universe, from, to, to, data, level);
 		
