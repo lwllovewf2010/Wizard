@@ -56,24 +56,22 @@ public class SpellFactory
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		//Parse spell from this package.
-		if(time_recharge[category_index] >= time_max[category_index] && universe.entity_handler.player.mana_current >= SpellPackage.getMainLevel(data).getFloat("mana_cost"))
+		if(time_recharge[category_index] >= main.getFloat("recharge") && universe.entity_handler.player.mana_current >= SpellPackage.getMainLevel(data).getFloat("mana_cost"))
 		{
 			time_recharge[category_index] = 0f;
+			
+			//Spell was successfully cast. Let's find out which one.
+			Spells spell_type = Spells.valueOf(main.get("name")); 
 			switch(spell_type)
 			{
 				case FIREBALL:
-					s = new Fireball(universe, from, to, data_root.getChildByName("fireball"), level);
-					break;
+					return new Fireball(universe, from, to, data);
 				case AETHER:
-					s = new Aether(universe, from, to, data_root.getChildByName("aether"), level);
-					break;
+					return new Aether(universe, from, to, data);
 				case DIG:
-					s = new Dig(universe, from, to, data_root.getChildByName("dig"), level);
-					break;
+					return new Dig(universe, from, to, data);
 			}
 		}
-		
-		return s;
 	}
 	
 	/**
