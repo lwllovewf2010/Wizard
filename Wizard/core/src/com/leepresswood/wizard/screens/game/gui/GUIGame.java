@@ -1,21 +1,15 @@
 package com.leepresswood.wizard.screens.game.gui;
 
-import java.io.IOException;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.XmlReader;
-import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.guielements.GUIButton;
+import com.leepresswood.wizard.helpers.handlers.LevelHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
-import com.leepresswood.wizard.world.entities.spells.Spell;
-import com.leepresswood.wizard.world.entities.spells.damage.Aether;
-import com.leepresswood.wizard.world.entities.spells.damage.Fireball;
-import com.leepresswood.wizard.world.entities.spells.utility.Dig;
 
 /**
  * The GUI for the game.
@@ -36,7 +30,8 @@ public class GUIGame
 	
 	//Spells
 	public int spell_active = 0;
-	public Spell[] spells;
+	public boolean[] spell_shader;
+	public Sprite[] spell_sprites;
 	
 	//Position outline.
 	private Vector3 mouse_position;
@@ -46,6 +41,8 @@ public class GUIGame
 		this.screen = screen;
 		
 		mouse_position = new Vector3();
+		spell_shader = new boolean[LevelHandler.NUMBER_OF_SPELLS];
+		spell_sprites = new Sprite[LevelHandler.NUMBER_OF_SPELLS];
 		
 		makeCamera();
 		makeStatusBars();
@@ -89,38 +86,29 @@ public class GUIGame
 	 * Create the spell list.
 	 */
 	public void makeSpellList()
-	{
-		try
-		{//Initialize each spell. We will be reading from the player's list of spells.
-			spells = new Spell[screen.universe.level_handler.spells_available];
-			for(int i = 0; i < screen.universe.level_handler.spells_available; i++)
-				spells[i] = parseSpell(new XmlReader().parse(Gdx.files.internal("data/spells.xml")), screen.universe.entity_handler.player_root.getChildByName("spell_list").getChild(i).getText(), i);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	private Spell parseSpell(Element spell_root, String spell_name, int position)
-	{
+	{//From the level handler, determine the look of the spells.
 		final float gap = Gdx.graphics.getWidth() * 0.002f;
 		final float width = Gdx.graphics.getWidth() * 0.03f;
 		final float height = width;
-		final float bar_x = position * (width + gap);
-		final float bar_y = Gdx.graphics.getHeight() - gap - height;
 		
-		Spell s = null;
-		if(spell_name.equalsIgnoreCase("dig"))
-			s = new Dig(screen.game.assets.get("textures/hold.png", Texture.class), bar_x, bar_y, width, height);
-		else if(spell_name.equalsIgnoreCase("aether"))
-			s = new Aether(screen.game.assets.get("textures/hold.png", Texture.class),bar_x, bar_y, width, height);
-		else if(spell_name.equalsIgnoreCase("fireball"))
-			s = new Fireball(screen.game.assets.get("textures/hold.png", Texture.class), bar_x, bar_y, width, height);
-		
-		//Get mana cost of this spell.
-		s.mana_cost = spell_root.getChildByName(spell_name).getChildrenByName("level").get(screen.universe.level_handler.spell_levels[position]).getFloat("cost");
-		return s;
+		for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
+		{//If greater than 0, we've leveled this spell.
+			final float bar_x = i * (width + gap);
+			final float bar_y = Gdx.graphics.getHeight() - gap - height;
+			
+			if(screen.universe.level_handler.castable_spells[i].level > 0)
+			{//Available.
+				spell_shader[i] = false;
+			}
+			else
+			{//Not available.
+				spell_shader[i] = true;
+			}
+			
+			//Grab the sprite of the spell.
+			spell_sprites[i] = new Sprite(screen.game.assets.get("textures/hold.png", Texture.class));
+			spell_sprites[i].setBounds(bar_x, bar_y, width, height);
+		}
 	}
 	
 	/**
@@ -166,8 +154,8 @@ public class GUIGame
 			for(GUIButton b : button_array)
 				b.draw(screen.batch);
 			
-			for(int i = 0; i < screen.universe.level_handler.spells_available; i++)
-				spells[i].sprite.draw(screen.batch);
+			for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
+				spell_sprites[i].draw(screen.batch);
 		screen.batch.end();
 		
 		//Health/Mana bars.		
@@ -187,14 +175,17 @@ public class GUIGame
 			screen.renderer.rect(bar_experience.x, bar_experience.y, bar_experience.width, bar_experience.MAX_BAR_HEIGHT, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
 		screen.renderer.end();
 		
+		//Spell overlays.
+		
+		
 		//Spell outlines.
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
-			for(int i = 0; i < screen.universe.level_handler.spells_available; i++)
+			for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
 				if(i == spell_active)
-					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
+					screen.renderer.rect(spell_sprites[i].getX() - 1, spell_sprites[i].getY() + 1, spell_sprites[i].getWidth() + 1, spell_sprites[i].getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
 				else
-					screen.renderer.rect(spells[i].sprite.getX() - 1, spells[i].sprite.getY() + 1, spells[i].sprite.getWidth() + 1, spells[i].sprite.getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
+					screen.renderer.rect(spell_sprites[i].getX() - 1, spell_sprites[i].getY() + 1, spell_sprites[i].getWidth() + 1, spell_sprites[i].getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
 		screen.renderer.end();
 		
 		//Text is handled by the GUI.
@@ -235,7 +226,7 @@ public class GUIGame
 	private void shiftSpellLeft()
 	{
 		if(spell_active < 0)
-			spell_active = screen.universe.level_handler.spells_available - 1;
+			spell_active = LevelHandler.NUMBER_OF_SPELLS - 1;
 	}
 	
 	/**
@@ -243,7 +234,7 @@ public class GUIGame
 	 */
 	private void shiftSpellRight()
 	{
-		if(spell_active == screen.universe.level_handler.spells_available)
+		if(spell_active == LevelHandler.NUMBER_OF_SPELLS)
 			spell_active = 0;
 	}
 	

@@ -50,6 +50,8 @@ public class LevelHandler
 	public final int TOTAL_LEVELS = 6;
 	public final int COST_PER_LEVEL = 2;
 	public final int ULTIMATE_COST_PER_LEVEL = 5;
+	public static final int NUMBER_OF_SPELLS = 4;
+	
 	public int direct_levels;
 	public int direct_sublevels;
 	public int indirect_levels;
@@ -60,7 +62,6 @@ public class LevelHandler
 	public int ultimate_sublevels;
 	
 	//This is going to be the list of available castable spells.
-	public static final int NUMBER_OF_SPELLS = 4;
 	public SpellPackage[] castable_spells;
 	
 	//Experience stuff.
@@ -77,6 +78,7 @@ public class LevelHandler
 		this.level = level;
 		
 		//Create spell packages.
+		castable_spells = new SpellPackage[NUMBER_OF_SPELLS];
 		recalculate();
 	}
 
@@ -146,12 +148,14 @@ public class LevelHandler
 	 */
 	public void recalculate()
    {
-		castable_spells = new SpellPackage[NUMBER_OF_SPELLS];
-		
 		//In order: Direct, Indirect, Defense, Ultimate.
+		
 		castable_spells[0] = new SpellPackage(universe.entity_handler.type, SpellCategory.DIRECT, direct_levels, direct_sublevels);
 		castable_spells[1] = new SpellPackage(universe.entity_handler.type, SpellCategory.INDIRECT, indirect_levels, indirect_sublevels);
 		castable_spells[2] = new SpellPackage(universe.entity_handler.type, SpellCategory.DEFENSE, defense_levels, defense_sublevels);
 		castable_spells[3] = new SpellPackage(universe.entity_handler.type, SpellCategory.ULTIMATE, ultimate_levels, ultimate_sublevels);
+   
+		//Recalculate the GUI's spell list.
+		universe.screen.gui.makeSpellList();
    }
 }
