@@ -1,5 +1,8 @@
 package com.leepresswood.wizard.helpers.datapackage;
 
+import com.leepresswood.wizard.helpers.enums.MagicType;
+import com.leepresswood.wizard.helpers.enums.SpellCategory;
+
 /**
  * The LevelHandler will create a data package about the spells. 
  * The EntityHandler will use this information to spawn new spells.
@@ -7,8 +10,12 @@ package com.leepresswood.wizard.helpers.datapackage;
  */
 public class SpellPackage
 {
-
-	public SpellPackage()
+	public MagicType type;
+	public SpellCategory category;
+	public int level;
+	public int sublevel;
+	
+	public SpellPackage(MagicType type, SpellCategory category, int level, int sublevel)
 	{
 		
 	}

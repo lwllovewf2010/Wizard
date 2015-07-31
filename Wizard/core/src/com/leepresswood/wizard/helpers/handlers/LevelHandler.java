@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
+import com.leepresswood.wizard.helpers.enums.SpellCategory;
 import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.spells.Spell;
@@ -63,6 +64,7 @@ public class LevelHandler
 	public int ultimate_sublevels;
 	
 	//This is going to be the list of available castable spells.
+	public final int NUMBER_OF_SPELLS = 4;
 	public SpellPackage[] castable_spells;
 	
 	//Experience stuff.
@@ -148,8 +150,12 @@ public class LevelHandler
 	 */
 	public void recalculate()
    {
-		castable_spells = new SpellPackage[4];
+		castable_spells = new SpellPackage[NUMBER_OF_SPELLS];
 		
-		castable_spells[0] = new SpellPackage();
+		//In order: Direct, Indirect, Defense, Ultimate.
+		castable_spells[0] = new SpellPackage(universe.entity_handler.type, SpellCategory.DIRECT, direct_levels, direct_sublevels);
+		castable_spells[1] = new SpellPackage(universe.entity_handler.type, SpellCategory.INDIRECT, indirect_levels, indirect_sublevels);
+		castable_spells[2] = new SpellPackage(universe.entity_handler.type, SpellCategory.DEFENSE, defense_levels, defense_sublevels);
+		castable_spells[3] = new SpellPackage(universe.entity_handler.type, SpellCategory.ULTIMATE, ultimate_levels, ultimate_sublevels);
    }
 }

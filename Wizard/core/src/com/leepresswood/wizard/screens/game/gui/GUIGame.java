@@ -249,7 +249,7 @@ public class GUIGame
 	
 	/**
 	 * Get the active spell.
-	 * @return The chosen spell.
+	 * @return The chosen spell's index.
 	 */
 	public Spell getActiveSpell()
 	{
