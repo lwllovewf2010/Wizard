@@ -149,13 +149,9 @@ public class LevelHandler
 	public void recalculate()
    {
 		//In order: Direct, Indirect, Defense, Ultimate.
-		
 		castable_spells[0] = new SpellPackage(universe.entity_handler.type, SpellCategory.DIRECT, direct_levels, direct_sublevels);
 		castable_spells[1] = new SpellPackage(universe.entity_handler.type, SpellCategory.INDIRECT, indirect_levels, indirect_sublevels);
 		castable_spells[2] = new SpellPackage(universe.entity_handler.type, SpellCategory.DEFENSE, defense_levels, defense_sublevels);
 		castable_spells[3] = new SpellPackage(universe.entity_handler.type, SpellCategory.ULTIMATE, ultimate_levels, ultimate_sublevels);
-   
-		//Recalculate the GUI's spell list.
-		universe.screen.gui.makeSpellList();
    }
 }

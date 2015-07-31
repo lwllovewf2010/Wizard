@@ -73,7 +73,10 @@ public class ScreenGame extends ScreenParent
 	   
 	   //Upon returning from the level store, recalculate the spell packages.
 	   if(screen_level_store != null)
-		   universe.level_handler.recalculate();
+	   {
+	   	universe.level_handler.recalculate();
+	   	gui.makeSpellList();
+	   }
 	}
 	
 	@Override

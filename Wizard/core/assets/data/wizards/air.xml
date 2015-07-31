@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE doc [
+<!ENTITY levels SYSTEM "air_levels.xml">
+]>
 <wizard>
 	<data>
 		<name>Air Wizard</name>
@@ -12,32 +15,7 @@
 	    <speed>10.0</speed>
 	    <acceleration>300.0</acceleration>
 	</data>
-	<levels>
-		<direct>
-			<main>
-				
-			</main>
-			<sub>
-			
-			</sub>
-		</direct>
-		<indirect>
-			<main>
-				
-			</main>
-			<sub>
-			
-			</sub>
-		</indirect>
-		<defense>
-			<main>
-				
-			</main>
-			<sub>
-			
-			</sub>
-		</defense>
-	</levels>
+	<levels>&levels;</levels>
 		
 	    <spell_list>
 	    	<spell>dig</spell>
