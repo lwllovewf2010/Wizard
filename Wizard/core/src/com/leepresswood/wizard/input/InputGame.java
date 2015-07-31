@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.leepresswood.wizard.helpers.guielements.GUIButton;
+import com.leepresswood.wizard.helpers.handlers.LevelHandler;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 
 public class InputGame implements InputProcessor
@@ -139,16 +140,15 @@ public class InputGame implements InputProcessor
 		//ScreenY will be flipped for no reason. Flip it back.
 		screenY = Gdx.graphics.getHeight() - screenY;
 		
-		//Check spell icons if spells exist.
-		if(screen.gui.spells != null)
-			for(int i = 0; i < screen.gui.spells.length; i++)
+		//Check spell icons.
+		for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
+		{
+			if(screen.gui.spell_sprites[i].getBoundingRectangle().contains(screenX, screenY))
 			{
-				if(screen.gui.spells[i].sprite.getBoundingRectangle().contains(screenX, screenY))
-				{
-					screen.gui.shiftSpellTo(i);
-					return true;
-				}
+				screen.gui.shiftSpellTo(i);
+				return true;
 			}
+		}	
 		
 		//Check menu buttons. Note: The click can't happen if the button isn't active.
 		for(GUIButton b : screen.gui.button_array)
