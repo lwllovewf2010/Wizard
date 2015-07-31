@@ -11,6 +11,9 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 	<li>Extra level up points from experience.</li>
 	<li>Experience drops on enemy death stored in XML.</li>
 	<li>Corrected positioning of decay text.</li>
+	<li>Spells now created from packages.</li>
+	<li>Changed number of spells to 4.</li>
+	<li>Gave each spell an attribute for parallelism between characters.</li>
 </ul>
 
 <h4>Issues</h4>
