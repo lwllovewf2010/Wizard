@@ -1,13 +1,9 @@
 package com.leepresswood.wizard.helpers.handlers;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Color;
 import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.enums.SpellCategory;
-import com.leepresswood.wizard.screens.levelstore.ScreenLevelStore;
 import com.leepresswood.wizard.world.Universe;
-import com.leepresswood.wizard.world.entities.spells.Spell;
 
 /**
  * Level manager for the player.

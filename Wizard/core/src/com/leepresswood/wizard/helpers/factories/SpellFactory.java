@@ -66,17 +66,21 @@ public class SpellFactory
 	
 	/**
 	 * Create a new spell with the given data.
-	 * @param type The type of spell to create.
+	 * @param category_index Category of the spell that was requested. (Direct, Indirect, etc.)
 	 * @param from The start location of the spell. Typically the player's center.
 	 * @param to The end location of the spell. Typically where the player aimed.
-	 * @return An instance of the desired spell. Will be null if spell can't be summoned at this time due to recharging.
+	 * @return An instance of the desired spell. Will be null if spell can't be summoned at this time due to recharging or mana cost..
 	 */
-	public Spell getSpell(SpellPackage data, Vector2 from, Vector2 to)
+	public Spell getSpell(int category_index, Vector2 from, Vector2 to)
 	{
-		Spells spell_type = Spells.valueOf(type);
-		Spell s = null;
-
-		if(time_recharge.get(spell_type) >= time_max.get(spell_type))
+		//Get data package.
+		SpellPackage data = world.level_handler.castable_spells[category_index];
+		Element main = SpellPackage.getMainLevel(data);
+		Element sub = SpellPackage.getSubLevel(data);
+		
+		//Parse spell from this package.
+		
+		if(time_recharge.get(spell_type) >= time_max.get(spell_type) && world.entity_handler.player.mana_current >= getManaCost(category_index, data))
 		{
 			time_recharge.put(spell_type, 0f);
 			switch(spell_type)
@@ -94,5 +98,17 @@ public class SpellFactory
 		}
 		
 		return s;
+	}
+	
+	/**
+	 * We're trying to add a spell to the world and we need the mana
+	 * cost of that spell. Get it.
+	 * @param level The level.
+	 * @param data The datapackage we're using.
+	 * @return the mana cost of that spell.
+	 */
+	private float getManaCost(int level, SpellPackage data)
+	{
+		return SpellPackage.getMain(data).getChild(level).getFloat("mana_cost");
 	}
 }

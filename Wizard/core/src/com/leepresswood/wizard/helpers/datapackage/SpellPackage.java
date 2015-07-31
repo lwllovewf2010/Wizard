@@ -1,5 +1,10 @@
 package com.leepresswood.wizard.helpers.datapackage;
 
+import java.io.IOException;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.enums.MagicType;
 import com.leepresswood.wizard.helpers.enums.SpellCategory;
 
@@ -10,10 +15,14 @@ import com.leepresswood.wizard.helpers.enums.SpellCategory;
  */
 public class SpellPackage
 {
+	//Gathered from constructor.
 	public MagicType type;
 	public SpellCategory category;
 	public int level;
 	public int sublevel;
+	
+	//Data node gathered from it.
+	public Element data;
 	
 	public SpellPackage(MagicType type, SpellCategory category, int level, int sublevel)
 	{
@@ -21,5 +30,56 @@ public class SpellPackage
 		this.category = category;
 		this.level = level;
 		this.sublevel = sublevel;
+		
+		//Get the correct data from the file.
+		try
+		{
+		   data = new XmlReader().parse(Gdx.files.internal("data/wizards/" + type.toString().toLowerCase() + ".xml")).getChildByName("levels").getChildByName(category.toString().toLowerCase());
+		}
+		catch(IOException e)
+		{
+			data = null;
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Get the root of the spell's main path.
+	 * @param pack
+	 * @return
+	 */
+	public static Element getMain(SpellPackage data_package)
+	{
+		return data_package.data.getChildByName("main");
+	}
+	
+	/**
+	 * Get the root of the spell's main path.
+	 * @param pack
+	 * @return
+	 */
+	public static Element getSub(SpellPackage data_package)
+	{
+		return data_package.data.getChildByName("sub");
+	}
+	
+	/**
+	 * Get the root of the spell's main level.
+	 * @param pack
+	 * @return
+	 */
+	public static Element getMainLevel(SpellPackage data_package)
+	{
+		return getMain(data_package).getChild(data_package.level);
+	}
+	
+	/**
+	 * Get the root of the spell's sub level.
+	 * @param pack
+	 * @return
+	 */
+	public static Element getSubLevel(SpellPackage data_package)
+	{
+		return getSub(data_package).getChild(data_package.sublevel);
 	}
 }
