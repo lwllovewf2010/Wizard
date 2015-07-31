@@ -48,6 +48,16 @@ public class SpellPackage
 	 * @param pack
 	 * @return
 	 */
+	public static Element getBasic(SpellPackage data_package)
+	{
+		return data_package.data.getChildByName("basic");
+	}
+	
+	/**
+	 * Get the root of the spell's main path.
+	 * @param pack
+	 * @return
+	 */
 	public static Element getMain(SpellPackage data_package)
 	{
 		return data_package.data.getChildByName("main");

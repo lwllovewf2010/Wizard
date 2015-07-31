@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE doc [
-<!ENTITY levels SYSTEM "air_levels.xml">
-]>
 <wizard>
 	<data>
 		<name>Air Wizard</name>
@@ -15,7 +12,81 @@
 	    <speed>10.0</speed>
 	    <acceleration>300.0</acceleration>
 	</data>
-	<levels>&levels;</levels>
+	<levels>
+		<direct>
+			<basic>
+				<name>Aether</name>
+				<texture>aether</texture>
+				<width>1.5</width>
+				<height>1.5</height>
+				<type>Void</type>
+				<recharge>0.5</recharge>
+				<time_alive>3.0</time_alive>
+				<knockback>1500.0</knockback>
+				<damage>2.0</damage>
+				<speed>11.0</speed>
+				<number>1</number>
+			</basic>
+			<main>
+				<level>
+				</level>
+				<level>
+				</level>
+				<level>
+				</level>
+				<level>
+				</level>
+				<level>
+				</level>
+				<level>
+				</level>
+			</main>
+			<sub>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+			</sub>
+		</direct>
+<indirect>
+	<main>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+	</main>
+	<sub>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+	</sub>
+</indirect>
+<defense>
+	<main>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+	</main>
+	<sub>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+		<level></level>
+	</sub>
+</defense>
+	</levels>
 		
 	    <spell_list>
 	    	<spell>dig</spell>

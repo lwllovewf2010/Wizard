@@ -47,12 +47,13 @@ public class SpellFactory
 	{
 		//Get data package.
 		SpellPackage data = universe.level_handler.castable_spells[category_index];
-		Element main = SpellPackage.getMainLevel(data);
-		Element sub = SpellPackage.getSubLevel(data);
+		Element basic = SpellPackage.getBasic(data);
+		Element main = SpellPackage.getMain(data);
+		Element sub = SpellPackage.getSub(data);
 		
 		//Recharge time and mana cost may each be affected by sub levels.
-		float recharge = getRechargeTime(main, sub);
-		float mana_cost = getManaCost(main, sub);
+		float recharge = getRechargeTime(basic, main, sub);
+		float mana_cost = getManaCost(basic, main, sub);
 				
 		//Parse spell from this package.
 		if(time_recharge[category_index] >= recharge && universe.entity_handler.player.mana_current >= mana_cost)
@@ -80,11 +81,13 @@ public class SpellFactory
 	/**
 	 * @return The recharge time of the spell.
 	 */
-	private float getRechargeTime(Element main, Element sub)
+	private float getRechargeTime(Element basic, Element main, Element sub)
 	{
-		float recharge = main.getFloat("recharge");
+		float recharge = basic.getFloat("recharge");
+		if(main.get("recharge",  null) != null)
+			recharge = main.getFloat("recharge");
 		if(sub.get("recharge",  null) != null)
-			recharge += sub.getFloat("recharge");
+			recharge = sub.getFloat("recharge");
 		
 		return recharge;
 	}
@@ -92,11 +95,13 @@ public class SpellFactory
 	/**
 	 * @return The mana cost of the spell.
 	 */
-	private float getManaCost(Element main, Element sub)
+	private float getManaCost(Element basic, Element main, Element sub)
 	{
-		float mana_cost = main.getFloat("mana_cost");
+		float mana_cost = basic.getFloat("mana");
+		if(main.get("mana_cost",  null) != null)
+			mana_cost = main.getFloat("mana_cost");
 		if(sub.get("mana_cost",  null) != null)
-			mana_cost += sub.getFloat("mana_cost");
+			mana_cost = sub.getFloat("mana_cost");
 		
 		return mana_cost;
 	}
