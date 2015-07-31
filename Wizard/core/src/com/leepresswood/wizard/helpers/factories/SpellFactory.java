@@ -62,7 +62,7 @@ public class SpellFactory
 			universe.entity_handler.player.mana_current -= mana_cost;
 			
 			//Spell was successfully cast. Let's find out which one.
-			Spells spell_type = Spells.valueOf(main.get("name")); 
+			Spells spell_type = Spells.valueOf(basic.get("name").toUpperCase()); 
 			switch(spell_type)
 			{
 				case FIREBALL:
@@ -97,7 +97,7 @@ public class SpellFactory
 	 */
 	private float getManaCost(Element basic, Element main, Element sub)
 	{
-		float mana_cost = basic.getFloat("mana");
+		float mana_cost = basic.getFloat("mana_cost");
 		if(main.get("mana_cost",  null) != null)
 			mana_cost = main.getFloat("mana_cost");
 		if(sub.get("mana_cost",  null) != null)

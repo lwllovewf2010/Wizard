@@ -60,14 +60,14 @@ public abstract class Spell extends GameEntity
 		 * this activates on a class-by-class basis, the lower-level classes will be
 		 * able to pinpoint what needs to be changed directly.
 		 */
-		super(universe, spawn.x, spawn.y, SpellPackage.getMain(data));
+		super(universe, spawn.x, spawn.y, SpellPackage.getBasic(data));
 		
 		this.from = from;
 		this.to = to;
 		this.spell_data = data;
 		
 		//Read the data from the XML file.
-		time_alive_max = SpellPackage.getMainLevel(data).getFloat("time_alive");
+		time_alive_max = SpellPackage.getBasic(data).getFloat("time_alive");
 	}
 	
 	/**

@@ -14,19 +14,18 @@
 	</data>
 	<levels>
 		<direct>
-			<basic>
-				<name>Aether</name>
-				<texture>aether</texture>
-				<width>1.5</width>
-				<height>1.5</height>
-				<type>Void</type>
-				<recharge>0.5</recharge>
-				<time_alive>3.0</time_alive>
-				<knockback>1500.0</knockback>
-				<damage>2.0</damage>
-				<speed>11.0</speed>
-				<number>1</number>
-			</basic>
+			<name>Aether</name>
+			<texture>aether</texture>
+			<width>1.5</width>
+			<height>1.5</height>
+			<type>Void</type>
+			<recharge>0.5</recharge>
+			<mana_cost>5.0</mana_cost>
+			<time_alive>3.0</time_alive>
+			<knockback>1500.0</knockback>
+			<damage>2.0</damage>
+			<speed>11.0</speed>
+			<number>1</number>
 			<main>
 				<level>
 				</level>

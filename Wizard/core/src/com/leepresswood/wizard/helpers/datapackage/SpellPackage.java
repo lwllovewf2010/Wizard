@@ -50,7 +50,7 @@ public class SpellPackage
 	 */
 	public static Element getBasic(SpellPackage data_package)
 	{
-		return data_package.data.getChildByName("basic");
+		return data_package.data;
 	}
 	
 	/**
