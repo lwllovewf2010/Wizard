@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.enums.Spells;
+import com.leepresswood.wizard.helpers.handlers.LevelHandler;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 import com.leepresswood.wizard.world.entities.spells.damage.Aether;
@@ -24,33 +25,13 @@ public class SpellFactory
 {
 	private Universe world;
 	
-	private Element data_root;									//Location of spell data.
-	
-	public HashMap<Spells, Float> time_recharge;			//Recharge zeroed out after casting a spell.
-	public HashMap<Spells, Float> time_max;				//Max time set by spell data.
+	public float[] time_recharge;			//Recharge zeroed out after casting a spell.
 	
 	public SpellFactory(Universe world)
 	{
 		this.world = world;
 
-		//Read information about the spells from the XML data file. Stores this information into a data root node that can be used to gather data about each spell.
-		try
-		{
-			data_root = new XmlReader().parse(Gdx.files.internal("data/spells.xml"));
-			time_recharge = new HashMap<Spells, Float>();
-			time_max = new HashMap<Spells, Float>();
-			
-			//Set the times for all spells.
-			for(Spells s : Spells.values())
-			{
-				time_recharge.put(s, 0f);
-				time_max.put(s, data_root.getChildByName(s.toString().toLowerCase()).getFloat("recharge"));
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
+		time_recharge = new float[LevelHandler.NUMBER_OF_SPELLS];
 	}
 	
 	/**
@@ -58,10 +39,9 @@ public class SpellFactory
 	 * @param delta Change in time.
 	 */
 	public void update(float delta)
-	{//If time to recharge is above the max, we can cast the spell again. We want to limit this value to avoid a potential overflow (in a few billion seconds).
-		for(Spells s : time_recharge.keySet())
-			if(time_recharge.get(s) < time_max.get(s))
-				time_recharge.put(s, time_recharge.get(s) + delta);
+	{
+		for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
+			time_recharge[i] += delta;
 	}
 	
 	/**
@@ -79,10 +59,9 @@ public class SpellFactory
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		//Parse spell from this package.
-		
-		if(time_recharge.get(spell_type) >= time_max.get(spell_type) && world.entity_handler.player.mana_current >= getManaCost(category_index, data))
+		if(time_recharge[category_index] >= time_max[category_index] && world.entity_handler.player.mana_current >= SpellPackage.getMainLevel(data).getFloat("mana_cost"))
 		{
-			time_recharge.put(spell_type, 0f);
+			time_recharge[category_index] = 0f;
 			switch(spell_type)
 			{
 				case FIREBALL:

@@ -16,7 +16,7 @@ import com.leepresswood.wizard.helpers.enums.SpellCategory;
 public class SpellPackage
 {
 	//Gathered from constructor.
-	public MagicType type;
+	public MagicType spell_type;
 	public SpellCategory category;
 	public int level;
 	public int sublevel;
@@ -26,7 +26,7 @@ public class SpellPackage
 	
 	public SpellPackage(MagicType type, SpellCategory category, int level, int sublevel)
 	{
-		this.type = type;
+		this.spell_type = type;
 		this.category = category;
 		this.level = level;
 		this.sublevel = sublevel;

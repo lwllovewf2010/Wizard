@@ -60,7 +60,7 @@ public class LevelHandler
 	public int ultimate_sublevels;
 	
 	//This is going to be the list of available castable spells.
-	public final int NUMBER_OF_SPELLS = 4;
+	public static final int NUMBER_OF_SPELLS = 4;
 	public SpellPackage[] castable_spells;
 	
 	//Experience stuff.
