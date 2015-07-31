@@ -17,6 +17,9 @@ public class SpellPackage
 	
 	public SpellPackage(MagicType type, SpellCategory category, int level, int sublevel)
 	{
-		
+		this.type = type;
+		this.category = category;
+		this.level = level;
+		this.sublevel = sublevel;
 	}
 }

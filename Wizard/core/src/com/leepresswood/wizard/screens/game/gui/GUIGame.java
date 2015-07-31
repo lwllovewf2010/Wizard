@@ -251,8 +251,8 @@ public class GUIGame
 	 * Get the active spell.
 	 * @return The chosen spell's index.
 	 */
-	public Spell getActiveSpell()
+	public int getActiveSpell()
 	{
-		return spells[spell_active];
+		return spell_active;
 	}
 }

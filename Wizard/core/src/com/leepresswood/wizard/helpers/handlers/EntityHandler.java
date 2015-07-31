@@ -117,27 +117,31 @@ public class EntityHandler
 	 * Player requested to cast a spell. Manage this here.
 	 */
 	public void addSpell(Vector2 touch)
-	{
-		if(player.active && universe.level_handler.castable_spells.size() > 0)
-		{
-			//Get the selected spell type from the GUI.
-			Spell spell_type = universe.screen.gui.getActiveSpell();
+	{//Don't cast if dead. Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
+		int active = universe.screen.gui.getActiveSpell();
+		if(player.active && player.mana_current >= getManaCost(active))
+		{//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
+			Spell spell = factory_spell.getSpell(universe.level_handler.castable_spells[active], new Vector2(player.parts[0].sprite.getX() + player.parts[0].sprite.getWidth() / 2f, player.parts[0].sprite.getY() + player.parts[0].sprite.getHeight() / 2f), new Vector2(touch.x, touch.y), universe.level_handler.spell_levels[universe.screen.gui.spell_active]);
 			
-			//Get the selected spell's mana cost and compare it to the player's current mana. See if it's possible to cast.
-			if(player.mana_current >= spell_type.mana_cost)
-			{
-				//Get the spell from the factory. Two vectors represent the player's center and the click location, respectively.
-				Spell spell = universe.entity_handler.factory_spell.getSpell(spell_type.getClass().getSimpleName().toUpperCase(), new Vector2(player.parts[0].sprite.getX() + player.parts[0].sprite.getWidth() / 2f, player.parts[0].sprite.getY() + player.parts[0].sprite.getHeight() / 2f), new Vector2(touch.x, touch.y), universe.level_handler.spell_levels[universe.screen.gui.spell_active]);
-				
-				//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
-				if(spell != null)
-				{ 
-					//Create the selected spell.
-					player.mana_current -= spell.mana_cost;
-					spells.add(spell);
-				}
+			//If this spell is null, we weren't able to instantiate it due to recharge timing not being correct or an active spell not being chosen in the GUI.
+			if(spell != null)
+			{ 
+				//Create the selected spell.
+				player.mana_current -= spell.mana_cost;
+				spells.add(spell);
 			}
 		}
+	}
+	
+	/**
+	 * We're trying to add a spell to the world and we need the mana
+	 * cost of that spell. Get it.
+	 * @param index The index of the SpellCategory we're using.
+	 * @return the mana cost of that spell.
+	 */
+	private float getManaCost(int index)
+	{
+		
 	}
 	
 	/**

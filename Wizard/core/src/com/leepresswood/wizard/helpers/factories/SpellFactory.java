@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.enums.Spells;
 import com.leepresswood.wizard.world.Universe;
 import com.leepresswood.wizard.world.entities.spells.Spell;
@@ -70,7 +71,7 @@ public class SpellFactory
 	 * @param to The end location of the spell. Typically where the player aimed.
 	 * @return An instance of the desired spell. Will be null if spell can't be summoned at this time due to recharging.
 	 */
-	public Spell getSpell(String type, Vector2 from, Vector2 to, int level)
+	public Spell getSpell(SpellPackage data, Vector2 from, Vector2 to)
 	{
 		Spells spell_type = Spells.valueOf(type);
 		Spell s = null;
