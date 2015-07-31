@@ -176,16 +176,32 @@ public class GUIGame
 		screen.renderer.end();
 		
 		//Spell overlays.
-		
+		screen.renderer.begin(ShapeType.Filled);
+		screen.renderer.identity();
+		for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
+		{	
+			if(spell_shader[i])
+			{//This spell has been leveled. Display overlay as a percentage of the time to the next cast.
+				screen.renderer.rect(spell_sprites[i].getX() - 1, spell_sprites[i].getY() + 1, spell_sprites[i].getWidth() + 1, spell_sprites[i].getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
+			}
+			else
+			{//This spell has not been leveled. A black overlay will do.
+				screen.renderer.rect(spell_sprites[i].getX() - 1, spell_sprites[i].getY() + 1, spell_sprites[i].getWidth() + 1, spell_sprites[i].getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);
+			}
+									
+		}
+		screen.renderer.end();
 		
 		//Spell outlines.
 		screen.renderer.begin(ShapeType.Line);
 			screen.renderer.identity();
 			for(int i = 0; i < LevelHandler.NUMBER_OF_SPELLS; i++)
+			{	
 				if(i == spell_active)
 					screen.renderer.rect(spell_sprites[i].getX() - 1, spell_sprites[i].getY() + 1, spell_sprites[i].getWidth() + 1, spell_sprites[i].getHeight() + 1, Color.RED, Color.RED, Color.RED, Color.RED);
 				else
 					screen.renderer.rect(spell_sprites[i].getX() - 1, spell_sprites[i].getY() + 1, spell_sprites[i].getWidth() + 1, spell_sprites[i].getHeight() + 1, Color.WHITE, Color.WHITE, Color.WHITE, Color.WHITE);					
+			}
 		screen.renderer.end();
 		
 		//Text is handled by the GUI.
