@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
 import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.world.Universe;
@@ -67,7 +68,7 @@ public abstract class Spell extends GameEntity
 		this.spell_data = data;
 		
 		//Read the data from the XML file.
-		time_alive_max = SpellPackage.getBasic(data).getFloat("time_alive");
+		time_alive_max = getTimeAlive(data);
 	}
 	
 	/**
@@ -112,5 +113,23 @@ public abstract class Spell extends GameEntity
 	@Override
 	public void die(float delta)
 	{
+	}
+	
+	/**
+	 * @return The damage of the spell.
+	 */
+	private float getTimeAlive(SpellPackage data)
+	{
+		Element basic = SpellPackage.getBasic(data);
+		Element main = SpellPackage.getMainLevel(data);
+		Element sub = SpellPackage.getSubLevel(data);
+		
+		float time_alive = basic.getFloat("time_alive");
+		if(main.get("time_alive",  null) != null)
+			time_alive = main.getFloat("time_alive");
+		if(sub.get("time_alive",  null) != null)
+			time_alive = sub.getFloat("time_alive");
+		
+		return time_alive;
 	}
 }
