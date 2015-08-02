@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.leepresswood.wizard.helpers.Box2DSprite;
 import com.leepresswood.wizard.helpers.datapackage.SpellPackage;
 import com.leepresswood.wizard.helpers.handlers.ContactHandler;
@@ -33,10 +34,10 @@ public class Aether extends BoltSpell
 		super(universe, from, to, data);
 		
 		//Get XML data.
-		follow = SpellPackage.getSubLevel(data).getBoolean("follow");
+		follow = getFollow(data);
 		
 		//Aether will be split into multiple bolts. Each split should move and collide individually.
-		int split_count = SpellPackage.getMainLevel(data).getInt("split");
+		int split_count = getSplit(data);
 		float rotate_by = ROTATE_SPLIT_ANGLE / (split_count + 1);
 		for(int i = 1; i < split_count; i++)
 		{
@@ -125,4 +126,26 @@ public class Aether extends BoltSpell
 		
 		parts[0].body.setLinearVelocity(speed_x, speed_y);
    }
+	
+	/**
+	 * @return The split quality of the spell.
+	 */
+	private int getSplit(SpellPackage data)
+	{
+		return SpellPackage.getMainLevel(data).getInt("split");
+	}
+	
+	/**
+	 * @return The follow quality of the spell.
+	 */
+	private boolean getFollow(SpellPackage data)
+	{
+		Element sub = SpellPackage.getSubLevel(data);
+		
+		boolean follow = false;
+		if(sub.get("follow",  null) != null)
+			follow = sub.getBoolean("follow");
+		
+		return follow;
+	}
 }

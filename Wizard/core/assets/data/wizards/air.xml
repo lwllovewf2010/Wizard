@@ -25,7 +25,7 @@
 			<knockback>1500.0</knockback>
 			<damage>2.0</damage>
 			<speed>11.0</speed>
-			<number>1</number>
+			<split>1</split>
 			<main>
 				<level>
 				</level>

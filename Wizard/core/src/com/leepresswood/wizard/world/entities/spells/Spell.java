@@ -116,7 +116,7 @@ public abstract class Spell extends GameEntity
 	}
 	
 	/**
-	 * @return The damage of the spell.
+	 * @return The time alive of the spell.
 	 */
 	private float getTimeAlive(SpellPackage data)
 	{
