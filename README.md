@@ -8,7 +8,7 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 
 <h4>Version 0.13 Alpha Change Log</h4>
 <ul>
-	
+	<li>Store clicks now level correctly.</li>
 </ul>
 
 <h4>Issues</h4>
