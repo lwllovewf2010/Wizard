@@ -20,12 +20,15 @@ public class LevelUpSpellButton extends GUIButton
 	   this.type = type;
 	   this.level = level;
 	   this.button_number = button_number;
-	   this.is_active = false;
+	   
+	   //First buttons are active. Others are not.
+	   this.is_active = button_number == 0;
    }
 	
 	@Override
 	public void doClick()
 	{
+		//Do the level up.
 		((ScreenLevelStore) screen).levelUpSpell(type, level, button_number);
 	}
 }

@@ -102,6 +102,16 @@ public class ScreenLevelStore extends ScreenParent
 			buttons_ultimate_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_ULTIMATE_EFF, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
 		}
 		
+		//The first buttons will be initialized.
+		buttons_direct[0].is_active = true;
+		buttons_direct_effect[0].is_active = true;
+		buttons_indirect[0].is_active = true;
+		buttons_indirect_effect[0].is_active = true;
+		buttons_defense[0].is_active = true;
+		buttons_defense_effect[0].is_active = true;
+		buttons_ultimate[0].is_active = true;
+		buttons_ultimate_effect[0].is_active = true;
+		
 		//Other buttons.
 		//button_array = new GUIButton[NUMBER_OF_BUTTONS];
 	}
@@ -120,7 +130,7 @@ public class ScreenLevelStore extends ScreenParent
 	
 	@Override
 	public void update(float delta)
-	{System.out.println(getLevelHandler().getPointsAvailable());
+	{
 		for(int i = 0; i < NUMBER_LEVELS; i++)
 		{
 			buttons_direct[i].update(delta);
@@ -183,7 +193,8 @@ public class ScreenLevelStore extends ScreenParent
    {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
 		//Cost will be dependent upon the type of spell this is.
 		int cost = button_number * (type == AttackType.ULTIMATE ? ULTIMATE_COST_PER_LEVEL : COST_PER_LEVEL);
-		
+		System.out.println(cost);
+		//Note: Be sure to disable this button and enable the next one (if possible).					
 		//If we can spend that many points, do it.
 		if(getLevelHandler().canSpend(cost))
 		{
@@ -194,27 +205,83 @@ public class ScreenLevelStore extends ScreenParent
 			{
 				case DIRECT:
 					if(level == AttackLevel.MAIN)
+					{
 						getLevelHandler().direct_levels = button_number;
+						buttons_direct[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_direct[button_number].is_active = true;
+						}
+					}
 					else
+					{
 						getLevelHandler().direct_sublevels = button_number;
+						buttons_direct_effect[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_direct_effect[button_number].is_active = true;
+						}
+					}
 					break;				
 				case INDIRECT:
 					if(level == AttackLevel.MAIN)
+					{
 						getLevelHandler().indirect_levels = button_number;
+						buttons_indirect[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_indirect[button_number].is_active = true;
+						}
+					}
 					else
+					{
 						getLevelHandler().indirect_sublevels = button_number;
+						buttons_indirect_effect[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_indirect_effect[button_number].is_active = true;
+						}
+					}
 					break;
 				case DEFENSE:
 					if(level == AttackLevel.MAIN)
+					{
 						getLevelHandler().defense_levels = button_number;
+						buttons_defense[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_defense[button_number].is_active = true;
+						}
+					}
 					else
+					{
 						getLevelHandler().defense_sublevels = button_number;
+						buttons_defense_effect[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_defense_effect[button_number].is_active = true;
+						}
+					}
 					break;
 				case ULTIMATE:
 					if(level == AttackLevel.MAIN)
+					{
 						getLevelHandler().ultimate_levels= button_number;
+						buttons_ultimate[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_ultimate[button_number].is_active = true;
+						}
+					}
 					else
+					{
 						getLevelHandler().ultimate_sublevels = button_number;
+						buttons_ultimate_effect[button_number].is_active = false;
+						if(button_number < NUMBER_LEVELS)
+						{
+							buttons_ultimate_effect[button_number].is_active = true;
+						}
+					}
 					break;				
 				default:
 					System.out.println("Error: Tried to level " + type + ". This should never happen.");
