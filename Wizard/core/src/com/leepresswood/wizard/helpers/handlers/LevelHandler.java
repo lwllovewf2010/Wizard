@@ -93,7 +93,7 @@ public class LevelHandler
 		
 		//Increase experience (and experience bar indirectly) by this amount.
 		this.experience_current += experience;
-		while(this.experience_current >= EXPERIENCE_MAX);
+		while(this.experience_current >= EXPERIENCE_MAX)
 		{
 			levelUp();
 			this.experience_current -= EXPERIENCE_MAX;
