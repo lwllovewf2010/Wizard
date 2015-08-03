@@ -42,6 +42,8 @@ public class ScreenLevelStore extends ScreenParent
 	public GUIButton[] buttons_indirect_effect;
 	public GUIButton[] buttons_defense;
 	public GUIButton[] buttons_defense_effect;
+	public GUIButton[] buttons_ultimate;
+	public GUIButton[] buttons_ultimate_effect;
 	
 	public ScreenLevelStore(ScreenGame game_screen, TextureRegion background)
 	{
@@ -72,6 +74,8 @@ public class ScreenLevelStore extends ScreenParent
 		buttons_indirect_effect = new GUIButton[NUMBER_LEVELS];
 		buttons_defense = new GUIButton[NUMBER_LEVELS];
 		buttons_defense_effect = new GUIButton[NUMBER_LEVELS];
+		buttons_ultimate = new GUIButton[NUMBER_LEVELS];
+		buttons_ultimate_effect = new GUIButton[NUMBER_LEVELS];
 		
 		//Create each individual button.
 		for(int i = 0; i < NUMBER_LEVELS; i++)
@@ -111,8 +115,17 @@ public class ScreenLevelStore extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
-		for(GUIButton b : button_array)
-			b.update(delta);
+		for(int i = 0; i < NUMBER_LEVELS; i++)
+		{
+			buttons_direct[i].update(delta);
+			buttons_direct_effect[i].update(delta);
+			buttons_indirect[i].update(delta);
+			buttons_indirect_effect[i].update(delta);
+			buttons_defense[i].update(delta);
+			buttons_defense_effect[i].update(delta);
+			buttons_ultimate[i].update(delta);
+			buttons_ultimate_effect[i].update(delta);
+		}
 	}
 	
 	@Override
@@ -131,8 +144,17 @@ public class ScreenLevelStore extends ScreenParent
 		
 		//Buttons.
 		batch.begin();
-			for(GUIButton b : button_array)
-				b.draw(batch);
+			for(int i = 0; i < NUMBER_LEVELS; i++)
+			{
+				buttons_direct[i].draw(batch);
+				buttons_direct_effect[i].draw(batch);
+				buttons_indirect[i].draw(batch);
+				buttons_indirect_effect[i].draw(batch);
+				buttons_defense[i].draw(batch);
+				buttons_defense_effect[i].draw(batch);
+				buttons_ultimate[i].draw(batch);
+				buttons_ultimate_effect[i].draw(batch);
+			}
 		batch.end();
 	}
 	
@@ -144,26 +166,6 @@ public class ScreenLevelStore extends ScreenParent
 	{
 		return game_screen.universe.level_handler;
 	}
-
-	/**
-	 * Level up of number of spells was requested. Increase the number and spend a point.
-	 */
-	public void levelUpSpellNumber()
-   {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
-		if(getLevelHandler().canSpend())
-		{
-			if(++getLevelHandler().spells_available >= getLevelHandler().SPELLS_NUMBER_MAX)
-			{
-				getLevelHandler().spells_available = getLevelHandler().SPELLS_NUMBER_MAX;
-				button_array[BUTTON_SPELL_NUMBER].is_active = false;
-			}
-			else
-			{//Spend a point and activate the corresponding button.
-				getLevelHandler().spend();
-				button_array[getLevelHandler().spells_available + BUTTON_SKILL_ONE - 1].is_active = true;
-			}
-		}
-   }
 
 	/**
 	 * Level up the designated spell.
