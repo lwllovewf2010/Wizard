@@ -14,6 +14,8 @@ public class AssetHelper extends AssetManager
 {
 	public static final int MAP_TEST = 0;
 	
+	public static final String TEXTURE_SPELL_AETHER = "textures/spells/aether.png";
+	
 	public AssetHelper()
 	{
 		//Maps.
@@ -33,7 +35,7 @@ public class AssetHelper extends AssetManager
 		load("textures/enemies/back1.png", Texture.class);
 		
 		//Spell.
-		load("textures/spells/aether.png", Texture.class);
+		load(TEXTURE_SPELL_AETHER, Texture.class);
 		load("textures/spells/fireball.png", Texture.class);
 		load("textures/spells/hold.png", Texture.class);
 		
