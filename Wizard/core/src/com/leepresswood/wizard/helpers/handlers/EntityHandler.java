@@ -67,7 +67,6 @@ public class EntityHandler
 		{
 			//Read the root of the wizard file and gather the requested type of wizard. 
 			player_root = new XmlReader().parse(Gdx.files.internal("data/wizards/" + type.toString().toLowerCase() + ".xml")).getChildByName("data");
-			System.out.println("data/wizards/" + type.toString().toLowerCase() + ".xml" + " -> " + player_root);
 			switch(type)
 			{
 				case AIR:
