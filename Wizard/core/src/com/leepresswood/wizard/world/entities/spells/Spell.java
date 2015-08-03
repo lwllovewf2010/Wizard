@@ -125,9 +125,9 @@ public abstract class Spell extends GameEntity
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		float time_alive = basic.getFloat("time_alive");
-		if(main.get("time_alive",  null) != null)
+		if(main != null && main.get("time_alive",  null) != null)
 			time_alive = main.getFloat("time_alive");
-		if(sub.get("time_alive",  null) != null)
+		if(sub != null && sub.get("time_alive",  null) != null)
 			time_alive = sub.getFloat("time_alive");
 		
 		return time_alive;

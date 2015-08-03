@@ -61,9 +61,9 @@ public abstract class BoltSpell extends Spell
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		float damage = basic.getFloat("damage");
-		if(main.get("damage",  null) != null)
+		if(main != null && main.get("damage",  null) != null)
 			damage = main.getFloat("damage");
-		if(sub.get("damage",  null) != null)
+		if(sub != null && sub.get("damage",  null) != null)
 			damage = sub.getFloat("damage");
 		
 		return damage;
@@ -79,9 +79,9 @@ public abstract class BoltSpell extends Spell
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		float speed = basic.getFloat("speed");
-		if(main.get("speed",  null) != null)
+		if(main != null && main.get("speed",  null) != null)
 			speed = main.getFloat("speed");
-		if(sub.get("speed",  null) != null)
+		if(sub != null && sub.get("speed",  null) != null)
 			speed = sub.getFloat("speed");
 		
 		return speed;
@@ -97,9 +97,9 @@ public abstract class BoltSpell extends Spell
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		float knockback = basic.getFloat("knockback");
-		if(main.get("knockback",  null) != null)
+		if(main != null && main.get("knockback",  null) != null)
 			knockback = main.getFloat("knockback");
-		if(sub.get("knockback",  null) != null)
+		if(sub != null && sub.get("knockback",  null) != null)
 			knockback = sub.getFloat("knockback");
 		
 		return knockback;

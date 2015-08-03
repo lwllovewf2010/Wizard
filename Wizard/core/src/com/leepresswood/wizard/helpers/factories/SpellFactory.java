@@ -51,6 +51,29 @@ public class SpellFactory
 		Element main = SpellPackage.getMain(data);
 		Element sub = SpellPackage.getSub(data);
 		
+		//Determine if the selected spell has been bought from the store.
+		switch(category_index)
+		{
+			case 0:
+				if(universe.level_handler.direct_levels < 0)
+					return null;
+				break;
+			case 1:
+				if(universe.level_handler.indirect_levels < 0)
+					return null;
+				break;
+			case 2:
+				if(universe.level_handler.defense_levels < 0)
+					return null;
+				break;
+			case 3:
+				if(universe.level_handler.ultimate_levels < 0)
+					return null;
+				break;
+			default:
+				break;
+		}
+		
 		//Recharge time and mana cost may each be affected by sub levels.
 		float recharge = getRechargeTime(basic, main, sub);
 		float mana_cost = getManaCost(basic, main, sub);

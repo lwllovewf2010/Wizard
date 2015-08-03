@@ -80,6 +80,8 @@ public class SpellPackage
 	 */
 	public static Element getMainLevel(SpellPackage data_package)
 	{
+		if(data_package.level < 0)
+			return null;
 		return getMain(data_package).getChild(data_package.level);
 	}
 	
@@ -90,6 +92,8 @@ public class SpellPackage
 	 */
 	public static Element getSubLevel(SpellPackage data_package)
 	{
+		if(data_package.sublevel < 0)
+			return null;
 		return getSub(data_package).getChild(data_package.sublevel);
 	}
 }

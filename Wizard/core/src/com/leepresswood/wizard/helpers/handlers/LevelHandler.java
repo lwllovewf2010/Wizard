@@ -50,14 +50,14 @@ public class LevelHandler
 	public static final int TOTAL_LEVELS = 6;
 	public static final int NUMBER_OF_SPELLS = 4;
 	
-	public int direct_levels;
-	public int direct_sublevels;
-	public int indirect_levels;
-	public int indirect_sublevels;
-	public int defense_levels;
-	public int defense_sublevels;
-	public int ultimate_levels;
-	public int ultimate_sublevels;
+	public int direct_levels = -1;
+	public int direct_sublevels = -1;
+	public int indirect_levels = -1;
+	public int indirect_sublevels = -1;
+	public int defense_levels = -1;
+	public int defense_sublevels = -1;
+	public int ultimate_levels = -1;
+	public int ultimate_sublevels = -1;
 	
 	//This is going to be the list of available castable spells.
 	public SpellPackage[] castable_spells;

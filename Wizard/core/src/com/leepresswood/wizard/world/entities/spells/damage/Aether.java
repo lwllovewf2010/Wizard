@@ -143,7 +143,7 @@ public class Aether extends BoltSpell
 		Element sub = SpellPackage.getSubLevel(data);
 		
 		boolean follow = false;
-		if(sub.get("follow",  null) != null)
+		if(sub != null && sub.get("follow",  null) != null)
 			follow = sub.getBoolean("follow");
 		
 		return follow;
