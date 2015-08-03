@@ -11,7 +11,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
  * @author Lee
  */
 public class AssetHelper extends AssetManager
-{	
+{
 	public static final int MAP_TEST = 0;
 	
 	public AssetHelper()
