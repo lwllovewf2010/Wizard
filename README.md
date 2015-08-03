@@ -15,6 +15,8 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 	<li>Changed number of spells to 4.</li>
 	<li>Gave each spell an attribute for parallelism between characters.</li>
 	<li>Created spells/wizards on a per-file basis rather than all-in-one.</li>
+	<li>Level up costs multiple points for high-level items.</li>
+	<li>Dynamic spell selection from level store.</li>
 </ul>
 
 <h4>Issues</h4>
