@@ -54,6 +54,9 @@ public class InputLevelStore implements InputProcessor
 				screen.buttons_ultimate[i].doClick();
 			else if(screen.buttons_ultimate_effect[i].is_active && screen.buttons_ultimate_effect[i].sprite.getBoundingRectangle().contains(screenX, screenY))
 				screen.buttons_ultimate_effect[i].doClick();
+			
+			if(screen.button_return.is_active && screen.button_return.sprite.getBoundingRectangle().contains(screenX, screenY))
+				screen.button_return.doClick();
 		}
 		
 		return true;

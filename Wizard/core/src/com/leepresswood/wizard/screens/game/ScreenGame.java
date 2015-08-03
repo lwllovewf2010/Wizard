@@ -45,8 +45,7 @@ public class ScreenGame extends ScreenParent
 	{
 		//Determine if we have to go to the level store. If so, replace the current screen with the shop screen. Pauses the game in the process.
 		if(go_to_level_store)
-		{
-			//First time we visit the store will require loading.
+		{//First time we visit the store will require loading.
 			if(screen_level_store == null)
 				screen_level_store = new ScreenLevelStore(this, ScreenUtils.getFrameBufferTexture());
 			game.setScreen(screen_level_store);

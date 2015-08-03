@@ -14,6 +14,7 @@ import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.levelstore.gui.LevelUpSpellButton;
+import com.leepresswood.wizard.screens.levelstore.gui.ReturnToGameGUIButton;
 
 /**
  * This is the store that may be used for leveling up between rounds. We'll be lazy here and put everything in this class
@@ -42,6 +43,9 @@ public class ScreenLevelStore extends ScreenParent
 	public GUIButton[] buttons_defense_effect;
 	public GUIButton[] buttons_ultimate;
 	public GUIButton[] buttons_ultimate_effect;
+	
+	//Other buttons.
+	public GUIButton button_return;
 	
 	//Button placement.
 	private final float BUTTON_SIZE = 25f;
@@ -113,7 +117,7 @@ public class ScreenLevelStore extends ScreenParent
 		buttons_ultimate_effect[0].is_active = true;
 		
 		//Other buttons.
-		//button_array = new GUIButton[NUMBER_OF_BUTTONS];
+		button_return = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 0f, 0f, 50f, 50f);
 	}
 	
 	@Override
@@ -142,6 +146,9 @@ public class ScreenLevelStore extends ScreenParent
 			buttons_ultimate[i].update(delta);
 			buttons_ultimate_effect[i].update(delta);
 		}
+		
+		//Other buttons.
+		button_return.update(delta);
 	}
 	
 	@Override
@@ -171,6 +178,9 @@ public class ScreenLevelStore extends ScreenParent
 				buttons_ultimate[i].draw(batch);
 				buttons_ultimate_effect[i].draw(batch);
 			}
+			
+			//Other buttons.
+			button_return.draw(batch);
 		batch.end();
 	}
 	
@@ -193,7 +203,7 @@ public class ScreenLevelStore extends ScreenParent
    {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
 		//Cost will be dependent upon the type of spell this is.
 		int cost = (button_number + 1) * (type == AttackType.ULTIMATE ? ULTIMATE_COST_PER_LEVEL : COST_PER_LEVEL);
-		System.out.println(cost + " " + getLevelHandler().getPointsAvailable());
+		
 		//Note: Be sure to disable this button and enable the next one (if possible).					
 		//If we can spend that many points, do it.
 		if(getLevelHandler().canSpend(cost))
