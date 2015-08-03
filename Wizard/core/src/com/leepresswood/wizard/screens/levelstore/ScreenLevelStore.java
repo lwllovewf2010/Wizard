@@ -46,7 +46,7 @@ public class ScreenLevelStore extends ScreenParent
 	//Button placement.
 	private final float BUTTON_SIZE = 25f;
 	private final float BUTTON_GAP = Gdx.graphics.getWidth() / (NUMBER_LEVELS + 1f) - BUTTON_SIZE;
-	private final float BUTTON_Y_DIRECT = Gdx.graphics.getWidth() - BUTTON_SIZE;
+	private final float BUTTON_Y_DIRECT = Gdx.graphics.getHeight() - BUTTON_SIZE;
 	private final float BUTTON_Y_DIRECT_EFF = BUTTON_Y_DIRECT - BUTTON_SIZE;
 	private final float BUTTON_Y_INDIRECT = BUTTON_Y_DIRECT_EFF - BUTTON_SIZE;
 	private final float BUTTON_Y_INDIRECT_EFF = BUTTON_Y_INDIRECT - BUTTON_SIZE;
@@ -90,16 +90,16 @@ public class ScreenLevelStore extends ScreenParent
 		//Create each individual button.
 		for(int i = 0; i < NUMBER_LEVELS; i++)
 		{
-			final float x = i * (BUTTON_SIZE + BUTTON_GAP);
+			final float x = BUTTON_GAP + i * (BUTTON_SIZE + BUTTON_GAP);
 			
-			buttons_direct[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_direct_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_indirect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_indirect_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_defense[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_defense_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_ultimate[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
-			buttons_ultimate_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_direct[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_DIRECT, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_direct_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_DIRECT_EFF, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_indirect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_INDIRECT, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_indirect_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_INDIRECT_EFF, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_defense[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_DEFENSE, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_defense_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_DEFENSE_EFF, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_ultimate[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_ULTIMATE, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_ultimate_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, BUTTON_Y_ULTIMATE_EFF, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
 		}
 		
 		//Other buttons.
@@ -120,7 +120,7 @@ public class ScreenLevelStore extends ScreenParent
 	
 	@Override
 	public void update(float delta)
-	{
+	{System.out.println(getLevelHandler().getPointsAvailable());
 		for(int i = 0; i < NUMBER_LEVELS; i++)
 		{
 			buttons_direct[i].update(delta);
