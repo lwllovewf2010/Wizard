@@ -14,5 +14,5 @@ Logs will be kept for all major patches from Version 0.11 Alpha onward. The most
 <h4>Issues</h4>
 <ul>
 	<li>No bounds on player movement outside of world.</li>
-	<li>Level store broken.</li>
+	<li><del>Level store is broken.</del></li>
 </ul>
