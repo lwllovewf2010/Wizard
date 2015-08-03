@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.leepresswood.wizard.helpers.enums.AttackLevel;
+import com.leepresswood.wizard.helpers.enums.AttackType;
 import com.leepresswood.wizard.helpers.guielements.GUIButton;
 import com.leepresswood.wizard.helpers.handlers.LevelHandler;
 import com.leepresswood.wizard.input.InputLevelStore;
@@ -165,20 +167,50 @@ public class ScreenLevelStore extends ScreenParent
 
 	/**
 	 * Level up the designated spell.
-	 * @param spell_number The spell to level up.
+	 * @param type Direct, Indirect, etc.
+	 * @param level Main or Sub ability.
+	 * @param button_number The button value.
 	 */
-	public void levelUpSpell(int spell_number)
+	public void levelUpSpell(AttackType type, AttackLevel level, int button_number)
    {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
-		if(getLevelHandler().canSpend())
+		//Cost will be dependent upon the type of spell this is.
+		int cost = button_number * (type == AttackType.ULTIMATE ? ULTIMATE_COST_PER_LEVEL : COST_PER_LEVEL);
+		
+		//If we can spend that many points, do it.
+		if(getLevelHandler().canSpend(cost))
 		{
-			if(++getLevelHandler().spell_levels[spell_number] >= getLevelHandler().SPELL_LEVEL_MAX)
+			getLevelHandler().spend(cost);
+			
+			//Level the correct counter.
+			switch(type)
 			{
-				getLevelHandler().spell_levels[spell_number] = getLevelHandler().SPELL_LEVEL_MAX;
-				button_array[spell_number + BUTTON_SKILL_ONE].is_active = false;		//Index is shifted to correct for the spell level up buttons starting at an arbitrary point.
-			}
-			else
-			{
-				getLevelHandler().spend();
+				case DIRECT:
+					if(level == AttackLevel.MAIN)
+						getLevelHandler().direct_levels = button_number;
+					else
+						getLevelHandler().direct_sublevels = button_number;
+					break;				
+				case INDIRECT:
+					if(level == AttackLevel.MAIN)
+						getLevelHandler().indirect_levels = button_number;
+					else
+						getLevelHandler().indirect_sublevels = button_number;
+					break;
+				case DEFENSE:
+					if(level == AttackLevel.MAIN)
+						getLevelHandler().defense_levels = button_number;
+					else
+						getLevelHandler().defense_sublevels = button_number;
+					break;
+				case ULTIMATE:
+					if(level == AttackLevel.MAIN)
+						getLevelHandler().ultimate_levels= button_number;
+					else
+						getLevelHandler().ultimate_sublevels = button_number;
+					break;				
+				default:
+					System.out.println("Error: Tried to level " + type + ". This should never happen.");
+					break;
 			}
 		}
    }
