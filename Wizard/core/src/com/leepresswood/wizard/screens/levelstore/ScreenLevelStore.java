@@ -27,22 +27,19 @@ public class ScreenLevelStore extends ScreenParent
 	//This background will be blurred.
 	public TextureRegion background;
 	
-	//There will be buttons that are used to level up attributes.
-	public GUIButton[] button_array;
-	private final int NUMBER_OF_BUTTONS = 7;
-	private final int BUTTON_RETURN = 0;
-	private final int BUTTON_SPELL_NUMBER = 1;
-	private final int BUTTON_SKILL_ONE = 2;
-	private final int BUTTON_SKILL_TWO = 3;
-	private final int BUTTON_SKILL_THREE = 4;
-	private final int BUTTON_SKILL_FOUR = 5;
-	private final int BUTTON_SKILL_FIVE = 6;
+	//There will be buttons that are used to level up attributes. These are the attributes.
+	public final int COST_PER_LEVEL = 2;
+	public final int ULTIMATE_COST_PER_LEVEL = 5;
+	public final int NUMBER_LEVELS = LevelHandler.TOTAL_LEVELS;
+	public final int NUMBER_SKILLS = LevelHandler.NUMBER_OF_SPELLS;
 	
-	public GUIButton[] attack_buttons;
-	public GUIButton[] attack_effects_buttons;
-	public GUIButton[] defense_buttons;
-	public GUIButton[] defense_effects_buttons;
-	public GUIButton[] utility_buttons;
+	//The actual buttons.
+	public GUIButton[] buttons_direct;
+	public GUIButton[] buttons_direct_effect;
+	public GUIButton[] buttons_indirect;
+	public GUIButton[] buttons_indirect_effect;
+	public GUIButton[] buttons_defense;
+	public GUIButton[] buttons_defense_effect;
 	
 	public ScreenLevelStore(ScreenGame game_screen, TextureRegion background)
 	{
@@ -66,6 +63,23 @@ public class ScreenLevelStore extends ScreenParent
 	 */
 	private void makeButtons()
 	{
+		//Initialize each array of skill buttons.
+		buttons_direct = new GUIButton[NUMBER_LEVELS];
+		buttons_direct_effect = new GUIButton[NUMBER_LEVELS];
+		buttons_indirect = new GUIButton[NUMBER_LEVELS];
+		buttons_indirect_effect = new GUIButton[NUMBER_LEVELS];
+		buttons_defense = new GUIButton[NUMBER_LEVELS];
+		buttons_defense_effect = new GUIButton[NUMBER_LEVELS];
+		
+		//Create each individual button.
+		for(int i = 0; i < NUMBER_LEVELS; i++)
+		{
+			final float size = 25f;
+			final float x = size * i;
+			
+			buttons_direct[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", x, 0f, size, size, spell_number)
+		}
+		
 		button_array = new GUIButton[NUMBER_OF_BUTTONS];
 		
 		//Attribute level-up buttons.
