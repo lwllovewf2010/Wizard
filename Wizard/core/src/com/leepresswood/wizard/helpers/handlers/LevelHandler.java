@@ -145,8 +145,7 @@ public class LevelHandler
 	 * After returning from the level store, we need to remake the spell data packages.
 	 */
 	public void recalculate()
-   {
-		//In order: Direct, Indirect, Defense, Ultimate.
+   {//In order: Direct, Indirect, Defense, Ultimate.
 		castable_spells[0] = new SpellPackage(universe.entity_handler.type, SpellCategory.DIRECT, direct_levels, direct_sublevels);
 		castable_spells[1] = new SpellPackage(universe.entity_handler.type, SpellCategory.INDIRECT, indirect_levels, indirect_sublevels);
 		castable_spells[2] = new SpellPackage(universe.entity_handler.type, SpellCategory.DEFENSE, defense_levels, defense_sublevels);

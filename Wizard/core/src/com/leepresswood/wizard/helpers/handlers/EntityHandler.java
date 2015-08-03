@@ -19,6 +19,7 @@ import com.leepresswood.wizard.world.entities.GameEntity;
 import com.leepresswood.wizard.world.entities.living.enemies.Enemy;
 import com.leepresswood.wizard.world.entities.living.player.Player;
 import com.leepresswood.wizard.world.entities.living.player.types.AirWizard;
+import com.leepresswood.wizard.world.entities.living.player.types.VoidWizard;
 import com.leepresswood.wizard.world.entities.spells.Spell;
 
 public class EntityHandler
@@ -45,7 +46,7 @@ public class EntityHandler
 	 * Debug constructor.
 	 * @param universe Reference to universe.
 	 */
-	public EntityHandler(Universe universe){this(universe, MagicType.AIR);}
+	public EntityHandler(Universe universe){this(universe, MagicType.VOID);}
 	
 	/**
 	 * Spawn player of the given magic type.
@@ -65,8 +66,8 @@ public class EntityHandler
 		try
 		{
 			//Read the root of the wizard file and gather the requested type of wizard. 
-			player_root = new XmlReader().parse(Gdx.files.internal("data/wizards.xml")).getChildByName(type.toString().toLowerCase());
-			
+			player_root = new XmlReader().parse(Gdx.files.internal("data/wizards/" + type.toString().toLowerCase() + ".xml")).getChildByName(type.toString().toLowerCase());
+			System.out.println("data/wizards/" + type.toString().toLowerCase() + ".xml" + " -> " + player_root);
 			switch(type)
 			{
 				case AIR:
@@ -83,6 +84,7 @@ public class EntityHandler
 				case UTILITY:
 					break;
 				case VOID:
+					player = new VoidWizard(universe, universe.map_camera_handler.WORLD_TOTAL_HORIZONTAL / 2f, universe.map_camera_handler.GROUND + 5f, player_root);
 					break;
 				case WATER:
 					break;
