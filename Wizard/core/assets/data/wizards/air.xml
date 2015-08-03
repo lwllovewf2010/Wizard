@@ -25,19 +25,24 @@
 			<knockback>1500.0</knockback>
 			<damage>2.0</damage>
 			<speed>11.0</speed>
-			<split>1</split>
 			<main>
 				<level>
+					<split>1</split>
 				</level>
 				<level>
+					<split>3</split>
 				</level>
 				<level>
+					<split>5</split>
 				</level>
 				<level>
+					<split>7</split>
 				</level>
 				<level>
+					<split>9</split>
 				</level>
 				<level>
+					<split>11</split>
 				</level>
 			</main>
 			<sub>
@@ -49,47 +54,41 @@
 				<level></level>
 			</sub>
 		</direct>
-<indirect>
-	<main>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-	</main>
-	<sub>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-	</sub>
-</indirect>
-<defense>
-	<main>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-	</main>
-	<sub>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-		<level></level>
-	</sub>
-</defense>
+		<indirect>
+			<main>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+			</main>
+			<sub>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+			</sub>
+		</indirect>
+		<defense>
+			<main>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+			</main>
+			<sub>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+				<level></level>
+			</sub>
+		</defense>
 	</levels>
-		
-	    <spell_list>
-	    	<spell>dig</spell>
-	    	<spell>aether</spell>
-	    	<spell>fireball</spell>
-	    </spell_list>
 </wizard>
