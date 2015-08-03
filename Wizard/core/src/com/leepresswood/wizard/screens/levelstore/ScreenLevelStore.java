@@ -192,8 +192,8 @@ public class ScreenLevelStore extends ScreenParent
 	public void levelUpSpell(AttackType type, AttackLevel level, int button_number)
    {//Increase the number. Check the bounds. If it hit the max, disable the level up button.
 		//Cost will be dependent upon the type of spell this is.
-		int cost = button_number * (type == AttackType.ULTIMATE ? ULTIMATE_COST_PER_LEVEL : COST_PER_LEVEL);
-		System.out.println(cost);
+		int cost = (button_number + 1) * (type == AttackType.ULTIMATE ? ULTIMATE_COST_PER_LEVEL : COST_PER_LEVEL);
+		System.out.println(cost + " " + getLevelHandler().getPointsAvailable());
 		//Note: Be sure to disable this button and enable the next one (if possible).					
 		//If we can spend that many points, do it.
 		if(getLevelHandler().canSpend(cost))
@@ -208,18 +208,18 @@ public class ScreenLevelStore extends ScreenParent
 					{
 						getLevelHandler().direct_levels = button_number;
 						buttons_direct[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_direct[button_number].is_active = true;
+							buttons_direct[button_number + 1].is_active = true;
 						}
 					}
 					else
 					{
 						getLevelHandler().direct_sublevels = button_number;
 						buttons_direct_effect[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_direct_effect[button_number].is_active = true;
+							buttons_direct_effect[button_number + 1].is_active = true;
 						}
 					}
 					break;				
@@ -228,18 +228,18 @@ public class ScreenLevelStore extends ScreenParent
 					{
 						getLevelHandler().indirect_levels = button_number;
 						buttons_indirect[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_indirect[button_number].is_active = true;
+							buttons_indirect[button_number + 1].is_active = true;
 						}
 					}
 					else
 					{
 						getLevelHandler().indirect_sublevels = button_number;
 						buttons_indirect_effect[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_indirect_effect[button_number].is_active = true;
+							buttons_indirect_effect[button_number + 1].is_active = true;
 						}
 					}
 					break;
@@ -248,18 +248,18 @@ public class ScreenLevelStore extends ScreenParent
 					{
 						getLevelHandler().defense_levels = button_number;
 						buttons_defense[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_defense[button_number].is_active = true;
+							buttons_defense[button_number + 1].is_active = true;
 						}
 					}
 					else
 					{
 						getLevelHandler().defense_sublevels = button_number;
 						buttons_defense_effect[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_defense_effect[button_number].is_active = true;
+							buttons_defense_effect[button_number + 1].is_active = true;
 						}
 					}
 					break;
@@ -268,18 +268,18 @@ public class ScreenLevelStore extends ScreenParent
 					{
 						getLevelHandler().ultimate_levels= button_number;
 						buttons_ultimate[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_ultimate[button_number].is_active = true;
+							buttons_ultimate[button_number + 1].is_active = true;
 						}
 					}
 					else
 					{
 						getLevelHandler().ultimate_sublevels = button_number;
 						buttons_ultimate_effect[button_number].is_active = false;
-						if(button_number < NUMBER_LEVELS)
+						if(button_number + 1 < NUMBER_LEVELS)
 						{
-							buttons_ultimate_effect[button_number].is_active = true;
+							buttons_ultimate_effect[button_number + 1].is_active = true;
 						}
 					}
 					break;				
