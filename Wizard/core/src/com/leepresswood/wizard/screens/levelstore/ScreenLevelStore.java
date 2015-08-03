@@ -14,8 +14,6 @@ import com.leepresswood.wizard.input.InputLevelStore;
 import com.leepresswood.wizard.screens.ScreenParent;
 import com.leepresswood.wizard.screens.game.ScreenGame;
 import com.leepresswood.wizard.screens.levelstore.gui.LevelUpSpellButton;
-import com.leepresswood.wizard.screens.levelstore.gui.ReturnToGameGUIButton;
-import com.leepresswood.wizard.screens.levelstore.gui.SpellLevelUpGUIButton;
 
 /**
  * This is the store that may be used for leveling up between rounds. We'll be lazy here and put everything in this class
@@ -44,6 +42,18 @@ public class ScreenLevelStore extends ScreenParent
 	public GUIButton[] buttons_defense_effect;
 	public GUIButton[] buttons_ultimate;
 	public GUIButton[] buttons_ultimate_effect;
+	
+	//Button placement.
+	private final float BUTTON_SIZE = 25f;
+	private final float BUTTON_GAP = Gdx.graphics.getWidth() / (NUMBER_LEVELS + 1f) - BUTTON_SIZE;
+	private final float BUTTON_Y_DIRECT = Gdx.graphics.getWidth() - BUTTON_SIZE;
+	private final float BUTTON_Y_DIRECT_EFF = BUTTON_Y_DIRECT - BUTTON_SIZE;
+	private final float BUTTON_Y_INDIRECT = BUTTON_Y_DIRECT_EFF - BUTTON_SIZE;
+	private final float BUTTON_Y_INDIRECT_EFF = BUTTON_Y_INDIRECT - BUTTON_SIZE;
+	private final float BUTTON_Y_DEFENSE = BUTTON_Y_INDIRECT_EFF - BUTTON_SIZE;
+	private final float BUTTON_Y_DEFENSE_EFF = BUTTON_Y_DEFENSE - BUTTON_SIZE;
+	private final float BUTTON_Y_ULTIMATE = BUTTON_Y_DEFENSE_EFF - BUTTON_SIZE;
+	private final float BUTTON_Y_ULTIMATE_EFF = BUTTON_Y_ULTIMATE - BUTTON_SIZE;
 	
 	public ScreenLevelStore(ScreenGame game_screen, TextureRegion background)
 	{
@@ -80,24 +90,20 @@ public class ScreenLevelStore extends ScreenParent
 		//Create each individual button.
 		for(int i = 0; i < NUMBER_LEVELS; i++)
 		{
-			final float size = 25f;
-			final float x = size * i;
+			final float x = i * (BUTTON_SIZE + BUTTON_GAP);
 			
-			buttons_direct[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", x, 0f, size, size, spell_number)
+			buttons_direct[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_direct_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_indirect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_indirect_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_defense[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_defense_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_ultimate[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
+			buttons_ultimate_effect[i] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), x, 0f, BUTTON_SIZE, BUTTON_SIZE, AttackType.DIRECT, AttackLevel.MAIN, i);
 		}
 		
-		button_array = new GUIButton[NUMBER_OF_BUTTONS];
-		
-		//Attribute level-up buttons.
-		button_array[BUTTON_RETURN] = new ReturnToGameGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 25f, 25f, 25f);
-		button_array[BUTTON_SPELL_NUMBER] = new SpellLevelUpGUIButton(this, game.assets.get("textures/hold.png", Texture.class), 100f, 25f, 25f, 25f);
-		
-		//Spell level-up buttons.
-		button_array[BUTTON_SKILL_ONE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 25f, 100f, 25f, 25f, 0);
-		button_array[BUTTON_SKILL_TWO] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 51f, 100f, 25f, 25f, 1);
-		button_array[BUTTON_SKILL_THREE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 77f, 100f, 25f, 25f, 2);
-		button_array[BUTTON_SKILL_FOUR] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 103f, 100f, 25f, 25f, 3);
-		button_array[BUTTON_SKILL_FIVE] = new LevelUpSpellButton(this, game.assets.get("textures/hold.png", Texture.class), 129f, 100f, 25f, 25f, 4);
+		//Other buttons.
+		//button_array = new GUIButton[NUMBER_OF_BUTTONS];
 	}
 	
 	@Override
