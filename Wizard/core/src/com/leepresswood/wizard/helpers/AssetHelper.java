@@ -15,6 +15,7 @@ public class AssetHelper extends AssetManager
 	public static final int MAP_TEST = 0;
 	
 	public static final String TEXTURE_SPELL_AETHER = "textures/spells/aether.png";
+	public static final String TEXTURE_SPELL_FIREBALL = "textures/spells/aether.png";
 	
 	public AssetHelper()
 	{
